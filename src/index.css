@@ -1,14 +1,14 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --ink: #1c1a18; /* Gris anthracite chaud au lieu de noir pur pour un contraste adouci */
-  --paper: #f7f5f0; /* Fond crème très doux et reposant */
-  --paper-dark: #eeebe5;
+  --ink: #2a2622; /* Anthracite chaud, moins dur que le noir pur */
+  --paper: #e0dbd1; /* Pierre chaude — fond mat, sans éclat blanc */
+  --paper-dark: #d2cbc0; /* Surfaces secondaires légèrement plus foncées */
   --accent: #1c3c2b; /* Vert forêt profond */
   --accent-bright: #2d6a4f; /* Vert émeraude */
   --accent-glow: #489e72;
-  --muted: #5e5a55; /* Contraste doux conforme WCAG AA */
-  --rule: rgba(28,26,24,0.1);
+  --muted: #6a645c; /* Gris chaud, lisible sans agresser */
+  --rule: rgba(42,38,34,0.14);
   --mono: 'DM Mono', monospace;
   --serif: 'DM Serif Display', serif;
   --sans: 'DM Sans', sans-serif;
@@ -48,6 +48,15 @@ body::before {
   opacity: 0.35;
 }
 
+/* Mode clair : grain un peu plus présent pour casser l'effet « page blanche » */
+body:not(.dark-theme)::before {
+  opacity: 0.55;
+}
+
+body:not(.dark-theme) {
+  background: linear-gradient(165deg, #e4dfd5 0%, #dbd5ca 55%, #d6d0c4 100%);
+}
+
 /* ── NAV ── */
 nav {
   position: fixed;
@@ -58,7 +67,7 @@ nav {
   justify-content: space-between;
   padding: 1.25rem 3rem;
   border-bottom: 0.5px solid var(--rule);
-  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  background: color-mix(in srgb, var(--paper) 92%, transparent);
   backdrop-filter: blur(12px);
   transition: background 0.3s, border-color 0.3s;
 }

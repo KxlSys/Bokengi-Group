@@ -70,7 +70,17 @@ const Navbar = ({ onOpenContact }) => {
           </li>
           <li role="none">
             <a 
-              href="#about" 
+              href="#portfolio" 
+              onClick={(e) => handleLinkClick(e, 'portfolio')} 
+              className={activeSection === 'portfolio' ? 'active' : ''}
+              role="menuitem"
+            >
+              Portfolio
+            </a>
+          </li>
+          <li role="none">
+            <a 
+              href="#about"
               onClick={(e) => handleLinkClick(e, 'about')} 
               className={activeSection === 'about' ? 'active' : ''}
               role="menuitem"

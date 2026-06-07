@@ -620,6 +620,171 @@ h3 {
 
 .ticker-item:hover .ticker-dot { background: var(--accent-glow); }
 
+/* ── PORTFOLIO ── */
+#portfolio .section-header {
+  border-bottom: none;
+}
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border-top: 0.5px solid var(--rule);
+}
+
+.portfolio-card {
+  padding: 2.5rem 3rem;
+  border-right: 0.5px solid var(--rule);
+  border-bottom: 0.5px solid var(--rule);
+  transition: background 0.3s;
+}
+
+.portfolio-card:nth-child(2n) {
+  border-right: none;
+}
+
+.portfolio-card:hover {
+  background: var(--paper-dark);
+}
+
+.portfolio-card.expanded {
+  background: var(--paper-dark);
+}
+
+.portfolio-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.portfolio-category {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-bright);
+  border: 0.5px solid var(--accent-bright);
+  padding: 0.35rem 0.75rem;
+}
+
+.portfolio-year {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+
+.portfolio-summary {
+  font-size: 0.92rem;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.portfolio-results {
+  list-style: none;
+  margin-bottom: 1.5rem;
+}
+
+.portfolio-results li {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  padding: 0.45rem 0;
+  border-bottom: 0.5px solid var(--rule);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.portfolio-results li::before {
+  content: '→';
+  color: var(--accent-bright);
+  flex-shrink: 0;
+}
+
+.portfolio-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 1.5rem;
+}
+
+.portfolio-tag {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border: 0.5px solid var(--rule);
+  padding: 0.3rem 0.65rem;
+}
+
+.portfolio-toggle {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-bright);
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0;
+  transition: color 0.2s;
+}
+
+.portfolio-toggle:hover {
+  color: var(--accent-glow);
+}
+
+.portfolio-toggle-icon {
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.portfolio-detail {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 0.5px solid var(--rule);
+  animation: fadeIn 0.35s ease forwards;
+}
+
+.portfolio-detail-block {
+  margin-bottom: 1.25rem;
+}
+
+.portfolio-detail-block h4 {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-bright);
+  margin-bottom: 0.5rem;
+}
+
+.portfolio-detail-block p {
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.portfolio-client {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  margin-top: 0.5rem;
+}
+
+.portfolio-client span {
+  color: var(--accent-bright);
+  margin-right: 0.5rem;
+}
+
 /* ── ABOUT ── */
 #about {
   background: var(--accent);
@@ -860,6 +1025,8 @@ footer {
   .service-card { border-right: none; border-bottom: 0.5px solid var(--rule); }
   .service-card:last-child { border-bottom: none; }
   .service-card { padding: 2rem 1.5rem; }
+  .portfolio-grid { grid-template-columns: 1fr; }
+  .portfolio-card { border-right: none; padding: 2rem 1.5rem; }
   .about-body { grid-template-columns: 1fr; }
   .about-text { border-right: none; border-bottom: 0.5px solid rgba(255,255,255,0.1); padding: 2rem 1.5rem; }
   .about-tags { padding: 2rem 1.5rem; }
@@ -960,6 +1127,21 @@ footer {
 .form-group input:focus,
 .form-group textarea:focus {
   border-color: var(--accent-bright);
+}
+
+.form-honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.form-error {
+  color: #d90429;
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+  line-height: 1.5;
 }
 .form-submit {
   width: 100%;

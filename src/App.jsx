@@ -47,12 +47,13 @@ const Home = ({ onOpenContact }) => {
 
 function App() {
   const [isContactOpen, setIsContactOpen] = useState(false);
+  const basename = import.meta.env.BASE_URL.replace(/\/$/, '') || undefined;
 
   const handleOpenContact = () => setIsContactOpen(true);
   const handleCloseContact = () => setIsContactOpen(false);
 
   return (
-    <Router>
+    <Router basename={basename}>
       <div className="app-container">
         <Navbar onOpenContact={handleOpenContact} />
         

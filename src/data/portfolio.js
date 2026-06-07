@@ -1,78 +1,78 @@
 export const portfolioProjects = [
   {
-    id: 'cloud-migration-pme',
-    category: 'Administration Systèmes',
-    title: 'Migration cloud d\'une PME logistique',
-    summary:
-      'Sortie d\'un hébergement mutualisé obsolète vers une infra AWS containerisée, sans interruption de service.',
-    challenge:
-      'Déploiements manuels, temps d\'indisponibilité récurrents et absence de sauvegardes testées.',
-    solution:
-      'Architecture Docker sur ECS, pipeline CI/CD GitHub Actions, monitoring et procédure de rollback documentée.',
-    results: [
-      '99,9 % de disponibilité atteinte',
-      '-60 % sur le temps de déploiement',
-      'Sauvegardes automatisées quotidiennes',
-    ],
-    stack: ['AWS', 'Docker', 'GitHub Actions', 'Nginx'],
-    year: '2025',
-    client: 'PME logistique · 35 collaborateurs',
-  },
-  {
-    id: 'security-audit-vpn',
-    category: 'Cybersécurité',
-    title: 'Audit sécurité & déploiement VPN',
-    summary:
-      'Durcissement de l\'infrastructure réseau et mise en place d\'un accès distant sécurisé pour une équipe hybride.',
-    challenge:
-      'Accès RDP exposés, mots de passe partagés et absence de segmentation réseau entre services critiques.',
-    solution:
-      'Audit complet, durcissement des serveurs Linux, VPN WireGuard avec MFA et politique de moindre privilège.',
-    results: [
-      '12 failles critiques corrigées',
-      'Accès distant chiffré pour 20 utilisateurs',
-      'Rapport d\'audit livré en 5 jours',
-    ],
-    stack: ['WireGuard', 'Linux', 'Nginx', 'Fail2ban'],
-    year: '2025',
-    client: 'Cabinet comptable · remote-first',
-  },
-  {
-    id: 'fullstack-saas',
+    id: 'esiika',
     category: 'Full-Stack',
-    title: 'Application web de gestion métier',
+    title: 'ESIIKA — Marketplace Congo-Brazzaville',
     summary:
-      'Conception et développement d\'un outil sur mesure remplaçant des tableurs Excel éclatés entre 4 services.',
+      'Plateforme e-commerce de mode et électronique (neuf & occasion) avec livraison à Brazzaville et paiement Mobile Money / Airtel Money / Visa.',
     challenge:
-      'Processus manuels chronophages, données incohérentes et aucune visibilité temps réel pour la direction.',
+      'Ancien frontend statique difficile à maintenir, backend PHP à sécuriser et besoin d\'une expérience d\'achat fiable pour un marché africain.',
     solution:
-      'SPA React + API Node.js, authentification JWT, tableau de bord temps réel et exports automatisés.',
+      'Reconstruction du frontend en React + Vite, API REST PHP durcie (rate limiting, bcrypt, sessions), pipeline de build vers hébergement LWS et administration dynamique.',
     results: [
-      '-4 h/semaine de saisie manuelle',
-      'Données centralisées en temps réel',
-      'Livraison en 6 semaines',
+      'Site en production sur esiika.com',
+      'Parcours complet : inscription, panier, checkout, admin',
+      'Backend sécurisé : CSRF, rate limiting, secrets hors Git',
     ],
-    stack: ['React', 'Node.js', 'PostgreSQL', 'Docker'],
-    year: '2024',
-    client: 'Startup B2B · 12 collaborateurs',
+    stack: ['React', 'Vite', 'PHP', 'MySQL', 'Axios'],
+    year: '2025',
+    client: 'Projet fondateur · Marketplace Afrique',
   },
   {
-    id: 'cicd-automation',
-    category: 'DevOps',
-    title: 'Automatisation CI/CD & conteneurisation',
+    id: 'kongama',
+    category: 'Full-Stack',
+    title: 'Kongama Academy — Plateforme e-learning',
     summary:
-      'Industrialisation des déploiements d\'une application legacy avec tests automatisés et environnements reproductibles.',
+      'Écosystème numérique connectant apprenants et formateurs, avec interface moderne et expérience mobile-first.',
     challenge:
-      'Releases mensuelles stressantes, environnements dev/prod divergents et rollbacks impossibles.',
+      'Offrir une plateforme éducative fluide, accessible partout, avec une navigation simple et des performances élevées sur mobile.',
     solution:
-      'Conteneurisation Docker, pipeline CI/CD avec tests E2E, staging automatique et déploiement blue-green.',
+      'Application React + TypeScript (Vite), UI shadcn/ui + Tailwind, architecture PWA et déploiement continu synchronisé avec le workflow de production.',
     results: [
-      'Déploiements hebdomadaires sans stress',
-      'Rollbacks en moins de 2 minutes',
-      '3 environnements iso-prod',
+      'Plateforme en ligne sur kongama.com',
+      'Interface responsive et PWA-ready',
+      'Stack moderne : React, TypeScript, Tailwind, Vite',
     ],
-    stack: ['Docker', 'Kubernetes', 'GitLab CI', 'Jest'],
-    year: '2024',
-    client: 'ESN · équipe de 8 développeurs',
+    stack: ['React', 'TypeScript', 'Tailwind', 'Vite', 'shadcn/ui'],
+    year: '2026',
+    client: 'Kongama Academy · Éducation numérique',
+  },
+  {
+    id: 'bisomaptech',
+    category: 'Full-Stack & Cybersécurité',
+    title: 'BisoMapTech — Carte tech du Congo',
+    summary:
+      'Plateforme open source qui cartographie et connecte la communauté informatique congolaise : devs, sysadmins, cybersécurité, DevOps.',
+    challenge:
+      'Rendre visible un écosystème tech dispersé et permettre des échanges sécurisés entre profils, lieux et communautés.',
+    solution:
+      'Carte interactive Leaflet, profils détaillés avec sync GitHub, messagerie chiffrée E2E (ECDH P-256 + AES-GCM), backend Supabase et déploiement Vercel.',
+    results: [
+      'Carte interactive + recherche multi-critères',
+      'Messagerie chiffrée de bout en bout',
+      'Auth Supabase, admin modération, mode clair/sombre',
+    ],
+    stack: ['React', 'TypeScript', 'Supabase', 'Leaflet', 'Zustand'],
+    year: '2025',
+    client: 'Projet open source · Communauté tech Congo',
+  },
+  {
+    id: 'fleetguard',
+    category: 'DevOps & Administration Systèmes',
+    title: 'FleetGuard — Gestion maritime des équipements',
+    summary:
+      'Application de suivi des équipements de sécurité à bord (extincteurs, radeaux, EPIRB…) avec alertes d\'expiration et sync multi-appareils.',
+    challenge:
+      'Remplacer un suivi papier/Excel par un outil fiable, accessible sur mer et à terre, avec historique et rapports de conformité.',
+    solution:
+      'Single-page app JavaScript vanilla, stockage cloud Upstash Redis via API serverless Vercel, polling temps réel, dashboard Chart.js et export rapport HTML.',
+    results: [
+      'Synchronisation cloud entre tous les appareils',
+      'Alertes automatiques par code couleur',
+      'Historique complet des modifications + export rapport',
+    ],
+    stack: ['JavaScript', 'Upstash Redis', 'Vercel', 'Chart.js'],
+    year: '2025',
+    client: 'Projet métier · Flotte maritime',
   },
 ];

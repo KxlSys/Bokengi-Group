@@ -29,7 +29,7 @@ const Contact = ({ onOpenContact }) => {
           </div>
           <div className="contact-item">
             <span className="contact-item-label">Zone d'intervention</span>
-            <span className="contact-item-value">France · International (Remote)</span>
+            <span className="contact-item-value">Europe & Afrique (Remote)</span>
           </div>
           <div className="contact-item">
             <span className="contact-item-label">Type de structure</span>

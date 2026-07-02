@@ -12,6 +12,7 @@ const About = () => {
           <p><strong>Bokengi</strong> est une startup technologique et une PME innovante conçue pour offrir un accompagnement à 360° aux entreprises et aux particuliers.</p>
           <p>À travers nos deux entités (Bokengi Services IT et Bokengi-Group), nous allions le développement de solutions numériques de pointe à une assistance administrative et logistique rigoureuse.</p>
           <p>Notre philosophie : <strong>comprendre vos enjeux métiers</strong> avant d'implémenter nos solutions. Nous garantissons une excellence opérationnelle, une sécurité renforcée et un accompagnement de proximité.</p>
+          <p>Grâce à un modèle collaboratif agile et moderne, nos équipes interviennent à distance (100% remote) sur toute la <strong>zone Europe & Afrique</strong> pour répondre à vos besoins avec une réactivité maximale.</p>
         </div>
         <div className="about-tags fade-up" style={{ transitionDelay: '0.1s' }}>
           <div className="tag-row">

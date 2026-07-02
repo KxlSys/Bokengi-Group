@@ -53,7 +53,7 @@ const Navbar = ({ onOpenContact }) => {
   return (
     <nav>
       <a href="#hero" onClick={(e) => handleLinkClick(e, 'hero')} className="nav-logo">
-        Kal<span>-</span>Cooperation
+        BOKENGI
       </a>
       
       <div className="nav-right-container">

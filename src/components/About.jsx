@@ -5,39 +5,37 @@ const About = () => {
     <section id="about">
       <div className="section-header">
         <span className="section-label" data-num="03">À propos</span>
-        <h2>La distance n'est<br/>jamais un frein.</h2>
+        <h2>L'alliance de la tech<br/>et du service.</h2>
       </div>
       <div className="about-body">
         <div className="about-text fade-up">
-          <p>Ingénieur informatique polyvalent, j'ai choisi l'indépendance pour offrir une <strong>réactivité et une flexibilité</strong> qu'une grande structure ne peut pas toujours garantir.</p>
-          <p>Chez Kal-Cooperation, chaque mission est traitée avec l'exigence d'un partenaire technique dédié — pas comme un prestataire parmi d'autres.</p>
-          <p>Mon approche : <strong>comprendre votre métier</strong> avant de toucher au code. Livrer vite, livrer bien, documenter proprement.</p>
+          <p><strong>Bokengi</strong> est une startup technologique et une PME innovante conçue pour offrir un accompagnement à 360° aux entreprises et aux particuliers.</p>
+          <p>À travers nos deux entités (Bokengi Services IT et Bokengi-Group), nous allions le développement de solutions numériques de pointe à une assistance administrative et logistique rigoureuse.</p>
+          <p>Notre philosophie : <strong>comprendre vos enjeux métiers</strong> avant d'implémenter nos solutions. Nous garantissons une excellence opérationnelle, une sécurité renforcée et un accompagnement de proximité.</p>
         </div>
         <div className="about-tags fade-up" style={{ transitionDelay: '0.1s' }}>
           <div className="tag-row">
             <span className="tag">React</span>
             <span className="tag">Node.js</span>
-            <span className="tag">Python</span>
+            <span className="tag">Cybersécurité</span>
             <span className="tag">TypeScript</span>
           </div>
           <div className="tag-row">
             <span className="tag">Docker</span>
-            <span className="tag">Kubernetes</span>
-            <span className="tag">AWS</span>
-            <span className="tag">Azure</span>
-            <span className="tag">GCP</span>
+            <span className="tag">Cloud AWS</span>
+            <span className="tag">Audits Système</span>
+            <span className="tag">CI/CD</span>
           </div>
           <div className="tag-row">
-            <span className="tag">VPN</span>
-            <span className="tag">Pentest</span>
-            <span className="tag">CI/CD</span>
-            <span className="tag">No-code</span>
+            <span className="tag">Campus France</span>
+            <span className="tag">Gestion d'Agenda</span>
+            <span className="tag">Facturation</span>
           </div>
           <div className="tag-row">
             <span className="tag muted">Linux</span>
             <span className="tag muted">Nginx</span>
             <span className="tag muted">PostgreSQL</span>
-            <span className="tag muted">Redis</span>
+            <span className="tag muted">Secrétariat</span>
           </div>
         </div>
       </div>

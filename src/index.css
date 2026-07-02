@@ -1,28 +1,28 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --ink: #2a2622; /* Anthracite chaud, moins dur que le noir pur */
-  --paper: #e0dbd1; /* Pierre chaude — fond mat, sans éclat blanc */
-  --paper-dark: #d2cbc0; /* Surfaces secondaires légèrement plus foncées */
-  --accent: #1c3c2b; /* Vert forêt profond */
-  --accent-bright: #2d6a4f; /* Vert émeraude */
-  --accent-glow: #489e72;
-  --muted: #6a645c; /* Gris chaud, lisible sans agresser */
-  --rule: rgba(42,38,34,0.14);
+  --ink: #0f172a; /* Slate 900 */
+  --paper: #f8fafc; /* Slate 50 */
+  --paper-dark: #f1f5f9; /* Slate 100 */
+  --accent: #0f2d59; /* Deep navy-blue corporate/tech */
+  --accent-bright: #0066cc; /* Modern corporate blue */
+  --accent-glow: #0ea5e9; /* Sky blue */
+  --muted: #475569; /* Slate 600 */
+  --rule: rgba(15, 23, 42, 0.08);
   --mono: 'DM Mono', monospace;
   --serif: 'DM Serif Display', serif;
   --sans: 'DM Sans', sans-serif;
 }
 
 body.dark-theme {
-  --ink: #e6e3de; /* Blanc chaud doux au lieu de blanc pur pour éviter l'éblouissement */
-  --paper: #0d110e; /* Fond sombre ardoise-forêt très reposant (pas noir pur) */
-  --paper-dark: #151a16;
-  --accent: #132a1e;
-  --accent-bright: #439a70;
-  --accent-glow: #7bcda4;
-  --muted: #938e88;
-  --rule: rgba(230,227,222,0.1);
+  --ink: #f1f5f9; /* Slate 100 */
+  --paper: #0b0f19; /* Very deep slate blue */
+  --paper-dark: #111827; /* Slate 900 */
+  --accent: #112240; /* Navy-blue tech backdrop */
+  --accent-bright: #00b4d8; /* Bright cyan/blue */
+  --accent-glow: #90e0ef; /* Sky glow */
+  --muted: #94a3b8; /* Slate 400 */
+  --rule: rgba(241, 245, 249, 0.08);
 }
 
 html { scroll-behavior: smooth; }
@@ -54,7 +54,7 @@ body:not(.dark-theme)::before {
 }
 
 body:not(.dark-theme) {
-  background: linear-gradient(165deg, #e4dfd5 0%, #dbd5ca 55%, #d6d0c4 100%);
+  background: linear-gradient(165deg, #f8fafc 0%, #f1f5f9 55%, #e2e8f0 100%);
 }
 
 /* ── NAV ── */
@@ -453,21 +453,81 @@ h2 {
   border-bottom: none;
 }
 
+/* Services division tab container */
+.services-tabs-container {
+  display: flex;
+  justify-content: center;
+  padding: 0 3rem 2rem 3rem;
+}
+
+.services-tabs {
+  display: flex;
+  background: var(--paper-dark);
+  border: 0.5px solid var(--rule);
+  padding: 0.3rem;
+  gap: 0.3rem;
+  width: 100%;
+  max-width: 650px;
+}
+
+.tab-btn {
+  flex: 1;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: none;
+  border: none;
+  padding: 0.8rem 1.2rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  text-align: center;
+}
+
+.tab-btn.active {
+  color: var(--paper);
+  background: var(--accent-bright);
+}
+
+.tab-btn:hover:not(.active) {
+  color: var(--ink);
+  background: rgba(0, 0, 0, 0.05);
+}
+
+body.dark-theme .tab-btn:hover:not(.active) {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.services-pane {
+  display: none;
+}
+
+.services-pane.active {
+  display: block;
+}
+
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   border-top: 0.5px solid var(--rule);
 }
 
 .service-card {
-  padding: 3rem;
+  padding: 3rem 2rem;
   border-right: 0.5px solid var(--rule);
+  border-bottom: 0.5px solid var(--rule);
   transition: background 0.3s;
   cursor: default;
 }
 
-.service-card:last-child { border-right: none; }
-.service-card:hover { background: var(--paper-dark); }
+.service-card:nth-child(4n) {
+  border-right: none;
+}
+
+.service-card:hover {
+  background: var(--paper-dark);
+}
 
 .service-icon {
   font-family: var(--mono);
@@ -983,6 +1043,21 @@ footer {
 }
 
 /* ── RESPONSIVE ── */
+@media (max-width: 1200px) and (min-width: 901px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .service-card:nth-child(2n) {
+    border-right: none !important;
+  }
+  .service-card:nth-child(2n+1) {
+    border-right: 0.5px solid var(--rule) !important;
+  }
+  .services-tabs-container {
+    padding: 0 1.5rem 2rem 1.5rem;
+  }
+}
+
 @media (max-width: 900px) {
   nav { padding: 1rem 1.5rem; }
   .nav-links {
@@ -1022,7 +1097,7 @@ footer {
   .hero-left { padding: 5rem 1.5rem 3rem; }
   .section-header { padding: 3rem 1.5rem 2rem; flex-direction: column; gap: 1rem; }
   .services-grid { grid-template-columns: 1fr; }
-  .service-card { border-right: none; border-bottom: 0.5px solid var(--rule); }
+  .service-card { border-right: none !important; border-bottom: 0.5px solid var(--rule); }
   .service-card:last-child { border-bottom: none; }
   .service-card { padding: 2rem 1.5rem; }
   .portfolio-grid { grid-template-columns: 1fr; }

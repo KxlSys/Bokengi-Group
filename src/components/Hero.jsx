@@ -16,12 +16,12 @@ const Hero = ({ onOpenContact }) => {
   return (
     <section className="hero" id="hero">
       <div className="hero-left">
-        <p className="hero-eyebrow">Freelance · Ingénieur informatique</p>
-        <h1>Votre <em>transformation</em> numérique mérite l'excellence.</h1>
-        <p className="hero-sub">Chez Kal-Cooperation, la distance n'est jamais un frein à la qualité technique. J'accompagne les PME et entrepreneurs dans la sécurisation et le développement de leur écosystème digital.</p>
+        <p className="hero-eyebrow">Bokengi · Startup Technologique & Services d'Entreprise</p>
+        <h1>Propulsez votre structure vers la <em>performance</em>.</h1>
+        <p className="hero-sub">De l'ingénierie informatique de pointe (Services IT) à la gestion administrative et l'accompagnement stratégique (Bokengi-Group), nous concevons des solutions sur mesure.</p>
         <div className="hero-actions">
           <button onClick={onOpenContact} className="btn-primary">Lancer le projet</button>
-          <a href="#services" onClick={handleScrollToServices} className="btn-ghost">Mes services</a>
+          <a href="#services" onClick={handleScrollToServices} className="btn-ghost">Nos services</a>
         </div>
       </div>
       <div className="hero-right">
@@ -29,16 +29,16 @@ const Hero = ({ onOpenContact }) => {
         <Terminal />
         <div className="hero-stats">
           <div className="stat">
+            <span className="stat-val">2</span>
+            <span className="stat-lbl">Pôles d'activité</span>
+          </div>
+          <div className="stat">
             <span className="stat-val">99.9%</span>
             <span className="stat-lbl">Disponibilité</span>
           </div>
           <div className="stat">
-            <span className="stat-val">3</span>
-            <span className="stat-lbl">Expertises</span>
-          </div>
-          <div className="stat">
-            <span className="stat-val">∞</span>
-            <span className="stat-lbl">Sans frontières</span>
+            <span className="stat-val">100%</span>
+            <span className="stat-lbl">Sur-mesure</span>
           </div>
         </div>
       </div>

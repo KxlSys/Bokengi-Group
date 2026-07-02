@@ -5,5 +5,5 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   // GitHub Actions → sous-dossier Pages ; Vercel / preview local → racine
-  base: process.env.GITHUB_ACTIONS ? '/Kal-coorportion/' : '/',
+  base: process.env.GITHUB_ACTIONS ? '/bokengi/' : '/',
 })

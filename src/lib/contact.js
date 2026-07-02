@@ -27,8 +27,8 @@ export async function sendContactMessage({ name, email, message, website = '' })
         name,
         email,
         message,
-        subject: `[Kal-Cooperation] ${name}`,
-        from_name: 'Kal-Cooperation',
+        subject: `[Bokengi] ${name}`,
+        from_name: 'Bokengi',
         botcheck: website,
       }),
     });

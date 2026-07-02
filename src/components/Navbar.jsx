@@ -53,16 +53,16 @@ const Navbar = ({ onOpenContact }) => {
   return (
     <nav>
       <a href="#hero" onClick={(e) => handleLinkClick(e, 'hero')} className="nav-logo">
-        <svg className="logo-svg" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="7.5" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
-          <path d="M 37 36 A 13 13 0 1 1 63 36" />
-          <path d="M 41.5 45 L 50 24 L 58.5 45" />
-          <path d="M 46 42 L 38 30 V 58 C 38 72 50 85 50 85" />
-          <path d="M 54 42 L 62 30 V 58 C 62 72 50 85 50 85" />
-          <path d="M 38 58 Q 45 42 50 50 T 62 42" />
-          <path d="M 42 68 L 50 85 L 58 68" />
-          <path d="M 50 85 V 60" />
+        <svg className="logo-svg" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="34" r="18" />
+          <path d="M 39 46 L 50 20 L 61 46" />
+          <path d="M 44 42 L 32 24 V 58 C 32 76 50 90 50 90" />
+          <path d="M 56 42 L 68 24 V 58 C 68 76 50 90 50 90" />
+          <path d="M 32 54 C 38 40 44 40 50 50 C 56 60 62 60 68 54" />
+          <path d="M 38 68 L 50 90 L 62 68" />
+          <path d="M 50 90 V 50" />
         </svg>
-        <span className="logo-text">BOKENGI <span className="logo-subtext">GROUP</span></span>
+        <span className="logo-text">BOKENGI</span>
       </a>
       
       <div className="nav-right-container">

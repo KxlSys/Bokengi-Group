@@ -85,7 +85,7 @@ const Navbar = ({ onOpenContact }) => {
               className={activeSection === 'portfolio' ? 'active' : ''}
               role="menuitem"
             >
-              Portfolio
+              Réalisations
             </a>
           </li>
           <li role="none">
@@ -115,7 +115,7 @@ const Navbar = ({ onOpenContact }) => {
               className="nav-cta" 
               role="menuitem"
             >
-              Démarrer un projet
+              Nous contacter
             </a>
           </li>
         </ul>
@@ -151,7 +151,7 @@ const Navbar = ({ onOpenContact }) => {
           onClick={(e) => { e.preventDefault(); onOpenContact(); }} 
           className="nav-cta nav-cta-desktop"
         >
-          Démarrer un projet
+          Nous contacter
         </a>
 
         {/* Menu Hamburger Mobile */}

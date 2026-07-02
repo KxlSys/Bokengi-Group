@@ -20,7 +20,7 @@ const Hero = ({ onOpenContact }) => {
         <h1>Propulsez votre structure vers la <em>performance</em>.</h1>
         <p className="hero-sub">De l'ingénierie informatique de pointe (Services IT) à la gestion administrative et l'accompagnement stratégique (Bokengi-Group), nous concevons des solutions sur mesure.</p>
         <div className="hero-actions">
-          <button onClick={onOpenContact} className="btn-primary">Lancer le projet</button>
+          <button onClick={onOpenContact} className="btn-primary">Nous contacter</button>
           <a href="#services" onClick={handleScrollToServices} className="btn-ghost">Nos services</a>
         </div>
       </div>

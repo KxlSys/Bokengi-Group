@@ -93,7 +93,7 @@ const Portfolio = () => {
   return (
     <section id="portfolio">
       <div className="section-header">
-        <span className="section-label" data-num="02">Portfolio</span>
+        <span className="section-label" data-num="02">Réalisations</span>
         <h2>
           Des résultats concrets,
           <br />

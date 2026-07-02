@@ -5,7 +5,7 @@ const Contact = ({ onOpenContact }) => {
     <section id="contact">
       <div className="section-header">
         <span className="section-label" data-num="04">Contact</span>
-        <h2>Prêt à lancer<br/>votre projet ?</h2>
+        <h2>Prêt à propulser<br/>votre structure ?</h2>
       </div>
       <div className="contact-body">
         <div className="contact-left fade-up">

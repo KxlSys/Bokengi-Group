@@ -5,22 +5,22 @@
   --paper: #f8fafc; /* Slate 50 */
   --paper-dark: #f1f5f9; /* Slate 100 */
   --accent: #0f2d59; /* Deep navy-blue corporate/tech */
-  --accent-bright: #0066cc; /* Modern corporate blue */
+  --accent-bright: #0055d4; /* Corporate tech blue */
   --accent-glow: #0ea5e9; /* Sky blue */
   --muted: #475569; /* Slate 600 */
   --rule: rgba(15, 23, 42, 0.08);
-  --mono: 'DM Mono', monospace;
-  --serif: 'DM Serif Display', serif;
-  --sans: 'DM Sans', sans-serif;
+  --mono: 'Fira Code', monospace;
+  --serif: 'Syne', sans-serif;
+  --sans: 'Outfit', sans-serif;
 }
 
 body.dark-theme {
-  --ink: #f1f5f9; /* Slate 100 */
-  --paper: #0b0f19; /* Very deep slate blue */
-  --paper-dark: #111827; /* Slate 900 */
-  --accent: #112240; /* Navy-blue tech backdrop */
-  --accent-bright: #00b4d8; /* Bright cyan/blue */
-  --accent-glow: #90e0ef; /* Sky glow */
+  --ink: #f8fafc; /* Slate 50 */
+  --paper: #060913; /* Very deep tech space blue */
+  --paper-dark: #0c1222; /* Slate 900 surface */
+  --accent: #0f2d59; /* Navy-blue tech backdrop */
+  --accent-bright: #0ea5e9; /* Bright cyan/blue */
+  --accent-glow: #67e8f9; /* Cyber cyan glow */
   --muted: #94a3b8; /* Slate 400 */
   --rule: rgba(241, 245, 249, 0.08);
 }
@@ -45,12 +45,12 @@ body::before {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
   pointer-events: none;
   z-index: 0;
-  opacity: 0.35;
+  opacity: 0.25;
 }
 
 /* Mode clair : grain un peu plus présent pour casser l'effet « page blanche » */
 body:not(.dark-theme)::before {
-  opacity: 0.55;
+  opacity: 0.45;
 }
 
 body:not(.dark-theme) {
@@ -65,24 +65,61 @@ nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.25rem 3rem;
-  border-bottom: 0.5px solid var(--rule);
-  background: color-mix(in srgb, var(--paper) 92%, transparent);
-  backdrop-filter: blur(12px);
-  transition: background 0.3s, border-color 0.3s;
+  padding: 1.1rem 3rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--ink) 6%, transparent);
+  background: color-mix(in srgb, var(--paper) 75%, transparent);
+  backdrop-filter: blur(20px);
+  transition: background 0.3s, border-color 0.3s, padding 0.3s;
 }
 
 .nav-logo {
-  font-family: var(--mono);
-  font-size: 0.8rem;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink);
+  display: flex;
+  align-items: center;
   text-decoration: none;
+  color: var(--ink);
+  transition: transform 0.2s ease;
 }
 
-.nav-logo span { color: var(--accent-bright); }
+.nav-logo:hover {
+  transform: translateY(-0.5px);
+}
+
+.logo-svg {
+  width: 32px;
+  height: 32px;
+  margin-right: 0.75rem;
+  color: var(--accent-bright);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s;
+}
+
+.nav-logo:hover .logo-svg {
+  transform: rotate(-10deg) scale(1.05);
+  color: var(--accent-glow);
+}
+
+.logo-text {
+  font-family: var(--serif);
+  font-weight: 800;
+  font-size: 1.2rem;
+  letter-spacing: 0.05em;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.logo-subtext {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 0.8rem;
+  color: var(--accent-bright);
+  letter-spacing: 0.1em;
+  opacity: 0.85;
+}
+
+body.dark-theme .logo-subtext {
+  color: var(--accent-glow);
+}
 
 .nav-right-container {
   display: flex;
@@ -157,6 +194,11 @@ nav {
   stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.theme-toggle:hover svg {
+  transform: rotate(45deg);
 }
 
 .theme-toggle .sun-icon { display: none; }
@@ -517,8 +559,9 @@ body.dark-theme .tab-btn:hover:not(.active) {
   padding: 3rem 2rem;
   border-right: 0.5px solid var(--rule);
   border-bottom: 0.5px solid var(--rule);
-  transition: background 0.3s;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s, box-shadow 0.4s ease, border-color 0.3s;
   cursor: default;
+  position: relative;
 }
 
 .service-card:nth-child(4n) {
@@ -527,6 +570,13 @@ body.dark-theme .tab-btn:hover:not(.active) {
 
 .service-card:hover {
   background: var(--paper-dark);
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.03);
+  z-index: 2;
+}
+
+body.dark-theme .service-card:hover {
+  box-shadow: 0 16px 40px rgba(14, 165, 233, 0.05);
 }
 
 .service-icon {
@@ -695,7 +745,8 @@ h3 {
   padding: 2.5rem 3rem;
   border-right: 0.5px solid var(--rule);
   border-bottom: 0.5px solid var(--rule);
-  transition: background 0.3s;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s, box-shadow 0.4s ease, border-color 0.3s;
+  position: relative;
 }
 
 .portfolio-card:nth-child(2n) {
@@ -704,10 +755,19 @@ h3 {
 
 .portfolio-card:hover {
   background: var(--paper-dark);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.03);
+  z-index: 2;
 }
 
 .portfolio-card.expanded {
   background: var(--paper-dark);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.04);
+}
+
+body.dark-theme .portfolio-card:hover,
+body.dark-theme .portfolio-card.expanded {
+  box-shadow: 0 16px 40px rgba(14, 165, 233, 0.05);
 }
 
 .portfolio-card-header {
@@ -1261,4 +1321,37 @@ footer {
   .modal-container {
     padding: 2rem 1.5rem;
   }
+}
+
+/* ── GLOW DECORATIONS ── */
+.glow-blob {
+  position: absolute;
+  width: 450px;
+  height: 450px;
+  border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--accent-glow) 12%, transparent) 0%, transparent 70%);
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.7;
+  animation: drift 25s infinite alternate ease-in-out;
+}
+
+.glow-blob-1 {
+  top: 10%;
+  left: -15%;
+}
+
+.glow-blob-2 {
+  top: 60%;
+  right: -15%;
+  width: 550px;
+  height: 550px;
+  background: radial-gradient(circle, color-mix(in srgb, var(--accent-bright) 8%, transparent) 0%, transparent 70%);
+  animation-delay: -7s;
+}
+
+@keyframes drift {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(60px, 40px) scale(1.1); }
 }

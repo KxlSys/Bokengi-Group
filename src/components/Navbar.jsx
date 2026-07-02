@@ -53,14 +53,16 @@ const Navbar = ({ onOpenContact }) => {
   return (
     <nav>
       <a href="#hero" onClick={(e) => handleLinkClick(e, 'hero')} className="nav-logo">
-        <svg className="logo-svg" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="50" cy="34" r="16" />
-          <path d="M 42 43 L 50 26 L 58 43" />
-          <path d="M 44 42 L 32 22 V 58 C 32 78 50 90 50 90 C 50 90 68 78 68 58 V 22 L 57 42" />
-          <path d="M 32 56 C 38 42 44 42 50 50 C 56 58 62 58 68 56" />
-          <path d="M 40 68 L 50 85 L 60 68" />
-          <path d="M 50 85 V 50" />
-        </svg>
+        <div className="logo-badge">
+          <svg className="logo-svg" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="5.5" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="34" r="16" />
+            <path d="M 42 43 L 50 26 L 58 43" />
+            <path d="M 44 42 L 32 22 V 58 C 32 78 50 90 50 90 C 50 90 68 78 68 58 V 22 L 56 42" />
+            <path d="M 32 56 C 38 42 44 42 50 50 C 56 58 62 58 68 56" />
+            <path d="M 40 68 L 50 85 L 60 68" />
+            <path d="M 50 85 V 50" />
+          </svg>
+        </div>
         <span className="logo-text">BOKENGI</span>
       </a>
       

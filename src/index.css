@@ -84,17 +84,45 @@ nav {
   transform: translateY(-0.5px);
 }
 
-.logo-svg {
-  width: 36px;
-  height: 36px;
+.logo-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--accent-bright) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent-bright) 18%, transparent);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
   margin-right: 0.85rem;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+body.dark-theme .logo-badge {
+  background: color-mix(in srgb, var(--accent-bright) 14%, transparent);
+  border-color: color-mix(in srgb, var(--accent-bright) 28%, transparent);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.nav-logo:hover .logo-badge {
+  transform: translateY(-0.5px) scale(1.02);
+  border-color: var(--accent-glow);
+  box-shadow: 0 4px 20px color-mix(in srgb, var(--accent-glow) 15%, transparent);
+}
+
+.logo-svg {
+  width: 25px;
+  height: 25px;
   color: var(--accent-bright);
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s;
 }
 
-.nav-logo:hover .logo-svg {
-  transform: rotate(-10deg) scale(1.05);
+body.dark-theme .logo-svg {
   color: var(--accent-glow);
+}
+
+.nav-logo:hover .logo-svg {
+  transform: rotate(-8deg);
 }
 
 .logo-text {

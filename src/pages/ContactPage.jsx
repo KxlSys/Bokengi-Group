@@ -89,56 +89,58 @@ const ContactPage = () => {
         breadcrumbs={[{ label: 'Contact' }]}
       />
 
-      <section className="contact-main-section">
-        <div className="container">
-          <div className="contact-layout-grid">
+      <section className="contact-main-section" style={{ padding: '6.5rem 0' }}>
+        <div className="container-v2">
+          <div className="contact-layout-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))', gap: '4.5rem' }}>
             {/* Left Column: Direct Info & Guidelines */}
             <div className="contact-info-panel">
-              <span className="section-kicker">Échange direct</span>
-              <h2>Un accompagnement sur mesure pour vos ambitions</h2>
-              <p className="contact-panel-lead">
+              <span className="kicker-v2">Échange direct</span>
+              <h2 className="title-section" style={{ margin: '0.5rem 0 1.25rem' }}>Un accompagnement sur mesure pour vos ambitions</h2>
+              <p className="contact-panel-lead" style={{ fontSize: '1.1rem', color: 'var(--ink-muted)', lineHeight: 1.7, marginBottom: '2.5rem' }}>
                 Que vous ayez un cahier des charges précis ou une simple idée à structurer, nos équipes vous orientent vers le pôle adapté.
               </p>
 
-              <div className="contact-direct-card">
-                <h3>Coordonnées officielles</h3>
-                <div className="direct-item">
-                  <span className="direct-label">Email de réception :</span>
-                  <a href="mailto:bokengi.group@gmail.com" className="direct-value">
-                    bokengi.group@gmail.com
-                  </a>
-                </div>
-                <div className="direct-item">
-                  <span className="direct-label">Délai moyen de réponse :</span>
-                  <span className="direct-value">Sous 24 à 48 heures ouvrées</span>
-                </div>
-                <div className="direct-item">
-                  <span className="direct-label">Zones d'intervention :</span>
-                  <span className="direct-value">Afrique · Europe · À distance</span>
+              <div className="project-secondary-card" style={{ padding: '2.25rem', marginBottom: '2rem' }}>
+                <h3 className="title-subsection" style={{ marginBottom: '1.25rem' }}>Coordonnées officielles</h3>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+                  <div className="direct-item">
+                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', textTransform: 'uppercase', color: 'var(--ink-faint)' }}>Email de réception :</span>
+                    <a href="mailto:bokengi.group@gmail.com" style={{ color: 'var(--blue-accent)', fontWeight: 600, fontSize: '1.05rem', fontFamily: 'var(--font-mono)', textDecoration: 'none' }}>
+                      bokengi.group@gmail.com
+                    </a>
+                  </div>
+                  <div className="direct-item">
+                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', textTransform: 'uppercase', color: 'var(--ink-faint)' }}>Délai moyen de réponse :</span>
+                    <span style={{ color: 'var(--ink-heading)', fontWeight: 600, fontSize: '0.95rem' }}>Sous 24 à 48 heures ouvrées</span>
+                  </div>
+                  <div className="direct-item">
+                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', textTransform: 'uppercase', color: 'var(--ink-faint)' }}>Zones d'intervention :</span>
+                    <span style={{ color: 'var(--ink-heading)', fontWeight: 600, fontSize: '0.95rem' }}>Afrique · Europe · À distance</span>
+                  </div>
                 </div>
               </div>
 
-              <div className="contact-reassurance-box">
-                <h4>Confidentialité garantie</h4>
-                <p>
+              <div style={{ background: 'var(--bg-elevated)', borderLeft: '3px solid var(--blue-accent)', padding: '1.5rem', borderRadius: '0 var(--radius-sm) var(--radius-sm) 0' }}>
+                <h4 style={{ fontSize: '0.95rem', color: 'var(--ink-heading)', marginBottom: '0.35rem', fontWeight: 700 }}>Confidentialité garantie</h4>
+                <p style={{ fontSize: '0.9rem', color: 'var(--ink-muted)', lineHeight: 1.6 }}>
                   Les informations et données partagées dans le cadre de vos demandes de devis et projets restent strictement confidentielles.
                 </p>
               </div>
             </div>
 
             {/* Right Column: Complete Form */}
-            <div className="contact-form-panel">
+            <div className="project-flagship-card" style={{ padding: '3.5rem' }}>
               {status === 'success' ? (
-                <div className="contact-success-card" role="status">
-                  <div className="success-icon">✓</div>
-                  <h3>Message transmis avec succès !</h3>
-                  <p>
+                <div className="contact-success-card" role="status" style={{ textAlign: 'center' }}>
+                  <div style={{ width: '64px', height: '64px', background: '#10B981', color: '#FFFFFF', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem', margin: '0 auto 1.5rem' }}>✓</div>
+                  <h3 className="title-subsection" style={{ marginBottom: '0.75rem' }}>Message transmis avec succès !</h3>
+                  <p style={{ fontSize: '1.05rem', color: 'var(--ink-muted)', lineHeight: 1.65, maxWidth: '480px', margin: '0 auto' }}>
                     Merci pour votre sollicitation. Notre équipe Bokengi Group a bien reçu votre demande et vous contactera dans les plus brefs délais.
                   </p>
                   <button 
                     onClick={() => setStatus('idle')} 
-                    className="btn-primary"
-                    style={{ marginTop: '1.5rem' }}
+                    className="btn-v2-primary"
+                    style={{ marginTop: '2rem' }}
                   >
                     Envoyer une autre demande
                   </button>
@@ -278,7 +280,7 @@ const ContactPage = () => {
                     <button
                       type="submit"
                       disabled={status === 'loading'}
-                      className="btn-primary form-submit-btn"
+                      className="btn-v2-primary form-submit-btn"
                     >
                       {status === 'loading' ? 'Envoi en cours...' : 'Envoyer ma demande →'}
                     </button>

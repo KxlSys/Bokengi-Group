@@ -1,4 +1,4 @@
-/* ==========================================================================
+css_content = """/* ==========================================================================
    BOKENGI GROUP — DIRECTION ARTISTIQUE & DESIGN SYSTEM V2
    Corporate · Technologique · Éditorial · Premium
    Couleurs : Navy #00124D | Blue #0033A0 | Light #F7F9FC | Dark #050914
@@ -1298,3 +1298,9 @@ body.dark-theme .footer-v2 {
     scroll-behavior: auto !important;
   }
 }
+"""
+
+with open(r"E:\01_Projets\Actifs\kal-cooperation\bokengi-group\src\bokengi-brand.css", "w", encoding="utf-8") as f:
+    f.write(css_content)
+
+print("bokengi-brand.css written successfully with V2 design system")

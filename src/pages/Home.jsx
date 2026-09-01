@@ -1,305 +1,366 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
-import CTASection from '../components/CTASection';
-import { portfolioProjects } from '../data/portfolio';
 
 const Home = () => {
-  const featuredProjects = portfolioProjects.slice(0, 4);
-
-  const expertises = [
+  const poles = [
     {
-      name: 'BOKENGI IT',
-      summary: 'Technologie, infrastructure et cybersécurité.',
+      num: '01',
+      title: 'BOKENGI IT',
+      domains: 'Technologie · Infrastructure · Cybersécurité',
       to: '/expertises/it',
-      icon: (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75">
-          <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-          <line x1="8" y1="21" x2="16" y2="21"></line>
-          <line x1="12" y1="17" x2="12" y2="21"></line>
-        </svg>
-      )
     },
     {
-      name: 'BOKENGI DIGITAL',
-      summary: 'Solutions web et transformation numérique.',
+      num: '02',
+      title: 'BOKENGI DIGITAL',
+      domains: 'Web · Produits numériques · Transformation',
       to: '/expertises/digital',
-      icon: (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75">
-          <circle cx="12" cy="12" r="10"></circle>
-          <line x1="2" y1="12" x2="22" y2="12"></line>
-          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-        </svg>
-      )
     },
     {
-      name: 'BOKENGI BUSINESS',
-      summary: 'Assistance administrative et accompagnement professionnel.',
+      num: '03',
+      title: 'BOKENGI BUSINESS',
+      domains: 'Administration · Organisation · Support',
       to: '/expertises/business',
-      icon: (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75">
-          <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-          <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-        </svg>
-      )
     },
     {
-      name: 'BOKENGI CONSULTING',
-      summary: 'Conseil, audit et accompagnement stratégique.',
+      num: '04',
+      title: 'BOKENGI CONSULTING',
+      domains: 'Conseil · Audit · Accompagnement',
       to: '/expertises/consulting',
-      icon: (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75">
-          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-        </svg>
-      )
     },
     {
-      name: 'BOKENGI EVENTS',
-      summary: 'Organisation et solutions pour événements.',
+      num: '05',
+      title: 'BOKENGI EVENTS',
+      domains: 'Événementiel · Coordination · Solutions techniques',
       to: '/expertises/events',
-      icon: (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75">
-          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-          <line x1="16" y1="2" x2="16" y2="6"></line>
-          <line x1="8" y1="2" x2="8" y2="6"></line>
-          <line x1="3" y1="10" x2="21" y2="10"></line>
-        </svg>
-      )
-    }
+    },
+  ];
+
+  const itDomains = [
+    {
+      title: 'Cybersécurité & Résilience',
+      desc: 'Protection périmétrique, audit des vulnérabilités, sauvegardes immuables et conformité des accès.',
+    },
+    {
+      title: 'Systèmes & Réseaux',
+      desc: 'Architecture réseau local et distant, serveurs haute disponibilité, VPN sécurisés et infogérance.',
+    },
+    {
+      title: 'Ingénierie & Développement',
+      desc: 'Conception de logiciels métier, API robustes et intégrations système pérennes.',
+    },
+    {
+      title: 'Maintenance & Support',
+      desc: 'Contrats de maintenance proactive, assistance rapide et supervision continue de vos parcs.',
+    },
+  ];
+
+  const whyPillars = [
+    {
+      idx: '01',
+      title: 'Expertise',
+      desc: 'Des compétences pointues adaptées aux enjeux réels des PME et grandes organisations.',
+    },
+    {
+      idx: '02',
+      title: 'Sécurité',
+      desc: 'La sécurité intégrée nativement à chaque couche d\'infrastructure dès sa conception.',
+    },
+    {
+      idx: '03',
+      title: 'Agilité',
+      desc: 'Des solutions sur mesure et évolutives qui respectent votre contexte et vos ressources.',
+    },
+    {
+      idx: '04',
+      title: 'Accompagnement',
+      desc: 'Une relation de partenariat durable avec un support réactif qui continue après le déploiement.',
+    },
+  ];
+
+  const methodSteps = [
+    {
+      num: '01',
+      title: 'Comprendre',
+      desc: 'Audit de votre environnement existant, cadrage précis des besoins et analyse des risques.',
+    },
+    {
+      num: '02',
+      title: 'Concevoir',
+      desc: 'Élaboration de l\'architecture technique, du cahier des charges et de la feuille de route.',
+    },
+    {
+      num: '03',
+      title: 'Déployer',
+      desc: 'Mise en production rigoureuse, tests de charge, sécurisation et validation des jalons.',
+    },
+    {
+      num: '04',
+      title: 'Accompagner',
+      desc: 'Formation des équipes, maintenance proactive et évolutions continues dans le temps.',
+    },
   ];
 
   return (
-    <div className="page-home">
+    <div className="page-home-v2">
       <SEO 
-        title="Accueil" 
-        description="Bokengi Group accompagne les entreprises, organisations et entrepreneurs dans leurs projets technologiques, numériques et professionnels." 
+        title="Bokengi Group | Technologie, Digital & Services professionnels" 
+        description="Bokengi Group conçoit, sécurise et accompagne les infrastructures, solutions numériques et projets professionnels qui font avancer les organisations." 
       />
 
-      {/* ── SECTION 01 — HERO ── */}
-      <section className="home-hero">
-        <div className="home-hero-container">
-          <div className="home-hero-content">
-            <span className="home-hero-eyebrow">BOKENGI GROUP</span>
-            <h1 className="home-hero-title">
-              Construire. <em>Protéger.</em> Développer.
-            </h1>
-            <p className="home-hero-text">
-              Bokengi Group accompagne les entreprises, organisations et entrepreneurs dans leurs projets technologiques, numériques et professionnels.
-            </p>
-            <div className="home-hero-actions">
-              <Link to="/expertises" className="btn-primary">
-                Découvrir nos expertises
-              </Link>
-              <Link to="/contact?type=devis" className="btn-ghost">
-                Demander un devis
-              </Link>
-            </div>
-          </div>
-
-          <div className="home-hero-visual">
-            <div className="home-hero-card">
-              <div className="home-hero-card-header">
-                <img src="/bokengi-mark.png" alt="Bokengi Group" className="home-hero-badge-img" />
-                <div>
-                  <span className="home-hero-card-brand">BOKENGI GROUP</span>
-                  <strong>Structure d'ingénierie & services</strong>
-                </div>
-              </div>
-              <p className="home-hero-card-desc">
-                Des pôles d'expertise complémentaires réunis sous une gouvernance unifiée pour délivrer des solutions sécurisées, pérennes et à fort impact.
+      {/* ── 01 HERO SECTION V2 ── */}
+      <section className="hero-v2">
+        <div className="container-v2">
+          <div className="hero-v2-grid">
+            <div className="hero-v2-content">
+              <span className="kicker-v2">BOKENGI GROUP</span>
+              <h1 className="title-display hero-v2-title">
+                Construire.<br />
+                <span className="accent-protect">Protéger.</span><br />
+                Développer.
+              </h1>
+              <p className="hero-v2-lead">
+                Bokengi Group conçoit, sécurise et accompagne les infrastructures, solutions numériques et projets professionnels qui font avancer les organisations.
               </p>
-              <div className="home-hero-pillars-preview">
-                <span>IT & Infra</span>
-                <span>Digital</span>
-                <span>Business</span>
-                <span>Consulting</span>
-                <span>Events</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── SECTION 02 — INTRODUCTION ── */}
-      <section className="home-intro-section">
-        <div className="container-narrow">
-          <div className="section-heading-center">
-            <span className="section-kicker">Positionnement</span>
-            <h2 className="section-title">Un groupe. Plusieurs expertises.</h2>
-            <p className="section-lead">
-              Bokengi Group réunit plusieurs expertises complémentaires pour accompagner ses clients dans leurs enjeux technologiques, numériques, organisationnels et événementiels.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* ── SECTION 03 — EXPERTISES (5 CARTES) ── */}
-      <section className="home-expertises-section">
-        <div className="container">
-          <div className="expertises-cards-grid">
-            {expertises.map((exp, idx) => (
-              <div key={idx} className="expertise-card">
-                <div className="expertise-card-icon">{exp.icon}</div>
-                <h3 className="expertise-card-title">{exp.name}</h3>
-                <p className="expertise-card-summary">{exp.summary}</p>
-                <Link to={exp.to} className="expertise-card-link">
-                  Découvrir {exp.name.split(' ')[0]} {exp.name.split(' ')[1]} →
+              <div className="hero-v2-actions">
+                <Link to="/expertises" className="btn-v2-primary">
+                  Découvrir nos expertises
+                </Link>
+                <Link to="/contact?type=devis" className="btn-v2-ghost">
+                  Demander un devis
                 </Link>
               </div>
+            </div>
+
+            <div className="hero-v2-artwork">
+              <div className="hero-artwork-canvas">
+                <div className="artwork-technical-grid"></div>
+                <div className="artwork-nodes-orbit">
+                  <span className="orbit-node node-it">Bokengi IT</span>
+                  <span className="orbit-node node-digital">Digital</span>
+                  <span className="orbit-node node-business">Business</span>
+                  <span className="orbit-node node-consulting">Consulting</span>
+                  <span className="orbit-node node-events">Events</span>
+                </div>
+                <div className="artwork-emblem-center">
+                  <img src="/bokengi-mark.png" alt="Emblème Bokengi Group" />
+                </div>
+                <span className="artwork-caption">
+                  Ingénierie & Gouvernance Unifiée
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── 02 PRÉSENTATION DU GROUPE ── */}
+      <section className="intro-v2-section">
+        <div className="container-v2">
+          <div className="intro-v2-grid">
+            <div>
+              <span className="kicker-v2">Vision Globale</span>
+              <h2 className="title-section">
+                Une vision globale.<br />
+                Des expertises complémentaires.
+              </h2>
+            </div>
+            <div className="intro-v2-text">
+              <p>
+                Bokengi Group réunit des expertises technologiques, numériques et professionnelles au sein d'une même organisation afin d'accompagner les projets de manière cohérente, sécurisée et durable.
+              </p>
+              <p>
+                De l'administration de systèmes informatiques critiques à la mise en œuvre de plateformes digitales en passant par l'accompagnement opérationnel, nous apportons aux entreprises la solidité d'un partenaire structuré.
+              </p>
+              <div className="intro-v2-quote">
+                « Notre raison d'être : bâtir des fondations technologiques fiables et libérer le potentiel opérationnel de chaque organisation. »
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── 03 NOS PÔLES (SIGNATURE EDITORIAL) ── */}
+      <section className="poles-v2-section">
+        <div className="container-v2">
+          <div className="poles-v2-header">
+            <span className="kicker-v2">Architecture Opérationnelle</span>
+            <h2 className="title-section">Nos expertises</h2>
+            <p style={{ fontSize: '1.2rem', color: 'var(--ink-muted)', marginTop: '0.75rem' }}>
+              Cinq pôles d'excellence. Une même exigence de rigueur.
+            </p>
+          </div>
+
+          <div className="poles-v2-list">
+            {poles.map((p) => (
+              <Link key={p.num} to={p.to} className="pole-v2-row">
+                <span className="pole-v2-num">{p.num}</span>
+                <span className="pole-v2-title">{p.title}</span>
+                <span className="pole-v2-domains">{p.domains}</span>
+                <span className="pole-v2-arrow" aria-hidden="true">→</span>
+              </Link>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── SECTION 04 — BOKENGI IT FOCUS ── */}
-      <section className="home-it-section">
-        <div className="container">
-          <div className="home-it-box">
-            <div className="home-it-left">
-              <span className="it-kicker">Pôle Technologique Principal</span>
-              <h2 className="it-title">Bokengi IT</h2>
-              <p className="it-subtitle">Technologie. Infrastructure. Sécurité.</p>
-              <p className="it-text">
-                Nous concevons, déployons et maintenons des solutions informatiques adaptées aux besoins des organisations.
+      {/* ── 04 FOCUS BOKENGI IT ── */}
+      <section className="it-v2-section">
+        <div className="container-v2 it-v2-container">
+          <div className="it-v2-grid">
+            <div className="it-v2-left">
+              <span className="kicker-v2" style={{ color: 'var(--blue-glow)' }}>Cœur Technologique</span>
+              <h2 className="title-section">Bokengi IT</h2>
+              <p className="it-v2-tagline">
+                L'infrastructure qui soutient votre activité.<br />
+                La sécurité qui la protège.
               </p>
-              <Link to="/expertises/it" className="btn-primary it-cta">
+              <p className="it-v2-desc">
+                Pôle central du groupe, Bokengi IT garantit la continuité, la performance et l'intégrité de vos parcs informatiques, serveurs et réseaux d'entreprise.
+              </p>
+              <Link to="/expertises/it" className="btn-v2-primary it-v2-cta">
                 Découvrir Bokengi IT
               </Link>
             </div>
-            <div className="home-it-right">
-              <ul className="it-categories-list">
-                <li>
-                  <strong>Cybersécurité</strong>
-                  <span>Audits, protection des postes, gestion des accès et continuité.</span>
-                </li>
-                <li>
-                  <strong>Systèmes & réseaux</strong>
-                  <span>Architectures serveurs, VPN, segmentation VLAN et supervision.</span>
-                </li>
-                <li>
-                  <strong>Développement</strong>
-                  <span>Applications web sécurisées, API et automatisation des flux.</span>
-                </li>
-                <li>
-                  <strong>Cloud & infrastructure</strong>
-                  <span>Déploiements hybrides, virtualisation et sauvegardes résilientes.</span>
-                </li>
-                <li>
-                  <strong>Maintenance & support</strong>
-                  <span>Maintien en conditions opérationnelles et assistance technique.</span>
-                </li>
-              </ul>
+
+            <div className="it-v2-domains-grid">
+              {itDomains.map((dom, i) => (
+                <div key={i} className="it-domain-card">
+                  <h3>{dom.title}</h3>
+                  <p>{dom.desc}</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── SECTION 05 — RÉALISATIONS ── */}
-      <section className="home-projects-section">
-        <div className="container">
-          <div className="section-heading-flex">
+      {/* ── 05 RÉALISATIONS ── */}
+      <section className="projects-v2-section">
+        <div className="container-v2">
+          <div className="projects-v2-header">
             <div>
-              <span className="section-kicker">Portfolio & Cas concrets</span>
-              <h2 className="section-title">Nos réalisations</h2>
+              <span className="kicker-v2">Cas d'Usage & Réalisations</span>
+              <h2 className="title-section">Réalisations récentes</h2>
             </div>
-            <Link to="/realisations" className="btn-ghost">
-              Voir toutes nos réalisations
+            <Link to="/realisations" className="btn-v2-ghost">
+              Voir tous les projets →
             </Link>
           </div>
 
-          <div className="projects-grid-home">
-            {featuredProjects.map((p) => (
-              <article key={p.id} className="project-card-home">
-                <div className="project-card-top">
-                  <span className="project-badge">{p.category}</span>
-                  <span className="project-year">{p.year}</span>
+          <div className="projects-v2-showcase">
+            {/* Flagship Case */}
+            <div className="project-flagship-card">
+              <div>
+                <div className="project-flagship-top">
+                  <span className="project-flagship-badge">Bokengi IT & Digital</span>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.82rem', color: 'var(--ink-faint)' }}>Production active</span>
                 </div>
-                <h3 className="project-title">{p.title}</h3>
-                <p className="project-summary">{p.summary}</p>
-                <div className="project-stack">
-                  {p.stack.map((tech) => (
-                    <span key={tech} className="tech-pill">{tech}</span>
-                  ))}
-                </div>
-                <div className="project-footer">
-                  <Link to="/realisations" className="project-link">
-                    Consulter l'étude de cas →
-                  </Link>
-                </div>
-              </article>
+                <h3 className="project-flagship-title">Esiika — Plateforme de Commerce & Logistique</h3>
+                <p className="project-flagship-lead">
+                  Conception et déploiement d'une architecture e-commerce complète avec gestion des commandes, suivi d'expédition multi-statuts et dispatch transactionnel sécurisé.
+                </p>
+                <ul className="project-specs-list">
+                  <li>Infrastructure cloud haute disponibilité avec sauvegardes continues</li>
+                  <li>Système de tracking d'expéditions automatisé par e-mail transactionnel</li>
+                  <li>Intégration d'un tunnel de paiement sécurisé et gestion des stocks temps réel</li>
+                </ul>
+              </div>
+              <Link to="/realisations" className="btn-v2-ghost" style={{ alignSelf: 'flex-start' }}>
+                Consulter l'étude de cas
+              </Link>
+            </div>
+
+            {/* Secondary Column */}
+            <div className="projects-secondary-column">
+              <div className="project-secondary-card">
+                <span className="project-flagship-badge">Bokengi Digital</span>
+                <h3>Kongama — Gestion de Point de Vente</h3>
+                <p>
+                  Application de gestion de caisse et de suivi des stocks multi-magasins avec synchronisation hors-ligne et rapports d'activité analytiques.
+                </p>
+                <Link to="/realisations" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.82rem', color: 'var(--blue-accent)', textDecoration: 'none', fontWeight: 600 }}>
+                  Détails du projet →
+                </Link>
+              </div>
+
+              <div className="project-secondary-card">
+                <span className="project-flagship-badge">Bokengi IT</span>
+                <h3>FleetGuard — Télématique & Suivi de Flotte</h3>
+                <p>
+                  Dispositif de centralisation télématique permettant la surveillance de véhicules, l'optimisation des trajets et la maintenance prédictive.
+                </p>
+                <Link to="/realisations" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.82rem', color: 'var(--blue-accent)', textDecoration: 'none', fontWeight: 600 }}>
+                  Détails du projet →
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── 06 POURQUOI BOKENGI GROUP ── */}
+      <section className="why-v2-section">
+        <div className="container-v2">
+          <div className="why-v2-header">
+            <span className="kicker-v2">Engagement & Rigueur</span>
+            <h2 className="title-section">Pourquoi choisir Bokengi Group ?</h2>
+          </div>
+
+          <div className="why-v2-grid">
+            {whyPillars.map((wp) => (
+              <div key={wp.idx} className="why-v2-col">
+                <span className="why-v2-idx">{wp.idx}</span>
+                <h3 className="title-subsection">{wp.title}</h3>
+                <p>{wp.desc}</p>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── SECTION 06 — POURQUOI BOKENGI GROUP ── */}
-      <section className="home-why-section">
-        <div className="container">
-          <div className="section-heading-center">
-            <span className="section-kicker">Engagements & Valeur ajoutée</span>
-            <h2 className="section-title">Pourquoi Bokengi Group ?</h2>
+      {/* ── 07 NOTRE MÉTHODE ── */}
+      <section className="method-v2-section">
+        <div className="container-v2">
+          <div className="method-v2-header">
+            <span className="kicker-v2">Méthodologie</span>
+            <h2 className="title-section">Notre méthode d'intervention</h2>
           </div>
 
-          <div className="why-grid">
-            <div className="why-card">
-              <span className="why-num">01</span>
-              <h3>Expertise</h3>
-              <p>Des compétences techniques et opérationnelles adaptées aux besoins réels.</p>
-            </div>
-            <div className="why-card">
-              <span className="why-num">02</span>
-              <h3>Solutions sur mesure</h3>
-              <p>Des solutions pensées selon le contexte, les objectifs et les contraintes du client.</p>
-            </div>
-            <div className="why-card">
-              <span className="why-num">03</span>
-              <h3>Accompagnement</h3>
-              <p>Une approche qui ne s'arrête pas au déploiement initial.</p>
-            </div>
-            <div className="why-card">
-              <span className="why-num">04</span>
-              <h3>Vision long terme</h3>
-              <p>Des solutions conçues pour évoluer avec la maturité des organisations.</p>
-            </div>
+          <div className="method-v2-track">
+            {methodSteps.map((s) => (
+              <div key={s.num} className="method-v2-step">
+                <div className="method-v2-dot">{s.num}</div>
+                <h3 className="title-subsection">{s.title}</h3>
+                <p>{s.desc}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* ── SECTION 07 — NOTRE MÉTHODE ── */}
-      <section className="home-method-section">
-        <div className="container">
-          <div className="section-heading-center">
-            <span className="section-kicker">Processus opérationnel</span>
-            <h2 className="section-title">Notre méthode</h2>
-          </div>
-
-          <div className="method-steps-grid">
-            <div className="method-step">
-              <div className="step-num">01</div>
-              <h3>Comprendre</h3>
-              <p>Analyser le besoin, les contraintes et le contexte spécifique.</p>
-            </div>
-            <div className="method-step">
-              <div className="step-num">02</div>
-              <h3>Concevoir</h3>
-              <p>Définir une architecture et un plan de déploiement adapté.</p>
-            </div>
-            <div className="method-step">
-              <div className="step-num">03</div>
-              <h3>Déployer</h3>
-              <p>Mettre en œuvre la solution avec rigueur et contrôle qualité.</p>
-            </div>
-            <div className="method-step">
-              <div className="step-num">04</div>
-              <h3>Accompagner</h3>
-              <p>Assurer le suivi, le transfert de compétences et l'amélioration continue.</p>
+      {/* ── 08 CTA FINAL V2 ── */}
+      <section className="cta-v2-section">
+        <div className="container-v2">
+          <div className="cta-v2-box">
+            <span className="kicker-v2" style={{ color: 'var(--blue-glow)', justifyContent: 'center' }}>
+              Engagement Professionnel
+            </span>
+            <h2 className="cta-v2-title">Construisons quelque chose d'utile.</h2>
+            <p className="cta-v2-lead">
+              Vous avez un projet, un besoin informatique, un enjeu numérique ou une organisation à structurer ? Parlons-en dès aujourd'hui.
+            </p>
+            <div className="cta-v2-actions">
+              <Link to="/contact?type=devis" className="btn-v2-primary">
+                Demander un devis
+              </Link>
+              <Link to="/contact" className="btn-v2-ghost">
+                Nous contacter
+              </Link>
             </div>
           </div>
         </div>
       </section>
-
-      {/* ── SECTION 08 — CTA FINAL ── */}
-      <CTASection />
     </div>
   );
 };

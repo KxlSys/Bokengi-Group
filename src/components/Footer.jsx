@@ -3,76 +3,77 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
-    <footer className="site-footer">
-      <div className="footer-top">
-        <div className="footer-container">
-          {/* Col 1: Brand & Description */}
-          <div className="footer-col footer-col-brand">
-            <Link to="/" className="footer-logo">
-              <div className="logo-badge">
-                <img src="/bokengi-mark.png" alt="Bokengi Group" className="logo-image" />
+    <footer className="footer-v2" aria-label="Pied de page institutionnel">
+      <div className="footer-v2-top">
+        <div className="container-v2">
+          <div className="footer-v2-grid">
+            {/* Col 1: Brand & Identity */}
+            <div className="footer-brand-col">
+              <Link to="/" className="nav-logo-v2" style={{ textDecoration: 'none', marginBottom: '1.25rem' }}>
+                <div className="nav-logo-mark" style={{ background: '#00227A' }}>
+                  <img src="/bokengi-mark.png" alt="Bokengi Group" />
+                </div>
+                <div className="nav-logo-texts">
+                  <span className="footer-brand-name">BOKENGI GROUP</span>
+                  <span className="nav-logo-tag" style={{ color: 'var(--blue-glow)' }}>Technologie & Services</span>
+                </div>
+              </Link>
+              <p className="footer-brand-baseline">
+                Bokengi Group réunit des expertises technologiques, numériques et professionnelles pour concevoir, sécuriser et déployer des solutions durables pour les organisations.
+              </p>
+              <div style={{ marginTop: '1.25rem' }}>
+                <span style={{ fontSize: '0.75rem', fontFamily: 'var(--font-mono)', textTransform: 'uppercase', color: 'var(--blue-glow)', display: 'block', marginBottom: '0.35rem' }}>Contact officiel</span>
+                <a href="mailto:bokengi.group@gmail.com" style={{ color: '#FFFFFF', fontWeight: 600, textDecoration: 'none', fontSize: '1rem', fontFamily: 'var(--font-mono)' }}>
+                  bokengi.group@gmail.com
+                </a>
               </div>
-              <div className="logo-text-group">
-                <span className="logo-text">BOKENGI GROUP</span>
-                <span className="logo-subtext">Technology & Business Services</span>
-              </div>
-            </Link>
-            <p className="footer-desc">
-              Groupe de services technologiques et professionnels accompagnant les entreprises, organisations et entrepreneurs dans leurs projets d'infrastructure, de numérique et de transformation.
-            </p>
-            <div className="footer-contact-info">
-              <span className="footer-contact-label">Contact officiel :</span>
-              <a href="mailto:bokengi.group@gmail.com" className="footer-email-link">
-                bokengi.group@gmail.com
-              </a>
             </div>
-          </div>
 
-          {/* Col 2: Navigation */}
-          <div className="footer-col">
-            <h4 className="footer-heading">Navigation</h4>
-            <ul className="footer-links">
-              <li><Link to="/">Accueil</Link></li>
-              <li><Link to="/groupe">Le Groupe</Link></li>
-              <li><Link to="/expertises">Nos expertises</Link></li>
-              <li><Link to="/realisations">Réalisations</Link></li>
-              <li><Link to="/contact">Contact</Link></li>
-            </ul>
-          </div>
+            {/* Col 2: Le Groupe */}
+            <div>
+              <h4 className="footer-col-title">Le Groupe</h4>
+              <ul className="footer-v2-links">
+                <li><Link to="/">Accueil</Link></li>
+                <li><Link to="/groupe">Présentation & Vision</Link></li>
+                <li><Link to="/realisations">Nos Réalisations</Link></li>
+                <li><Link to="/contact">Prendre Contact</Link></li>
+              </ul>
+            </div>
 
-          {/* Col 3: Expertises */}
-          <div className="footer-col">
-            <h4 className="footer-heading">Nos Pôles</h4>
-            <ul className="footer-links">
-              <li><Link to="/expertises/it">Bokengi IT</Link></li>
-              <li><Link to="/expertises/digital">Bokengi Digital</Link></li>
-              <li><Link to="/expertises/business">Bokengi Business</Link></li>
-              <li><Link to="/expertises/consulting">Bokengi Consulting</Link></li>
-              <li><Link to="/expertises/events">Bokengi Events</Link></li>
-            </ul>
-          </div>
+            {/* Col 3: Nos 5 Pôles */}
+            <div>
+              <h4 className="footer-col-title">Nos 5 Pôles</h4>
+              <ul className="footer-v2-links">
+                <li><Link to="/expertises/it">Bokengi IT</Link></li>
+                <li><Link to="/expertises/digital">Bokengi Digital</Link></li>
+                <li><Link to="/expertises/business">Bokengi Business</Link></li>
+                <li><Link to="/expertises/consulting">Bokengi Consulting</Link></li>
+                <li><Link to="/expertises/events">Bokengi Events</Link></li>
+              </ul>
+            </div>
 
-          {/* Col 4: Devis CTA */}
-          <div className="footer-col footer-col-cta">
-            <h4 className="footer-heading">Un projet ?</h4>
-            <p className="footer-cta-text">
-              Exprimez vos besoins et obtenez une proposition d'accompagnement sur mesure.
-            </p>
-            <Link to="/contact?type=devis" className="btn-primary footer-btn">
-              Demander un devis
-            </Link>
+            {/* Col 4: Action & Devis */}
+            <div>
+              <h4 className="footer-col-title">Engager un projet</h4>
+              <p style={{ fontSize: '0.92rem', color: 'rgba(255,255,255,0.75)', lineHeight: 1.6, marginBottom: '1.5rem' }}>
+                Besoins d'infrastructure, de développement ou d'audit ? Nos pôles interviennent rapidement.
+              </p>
+              <Link to="/contact?type=devis" className="btn-v2-primary" style={{ width: '100%', textAlign: 'center', background: '#FFFFFF', color: 'var(--navy-primary)' }}>
+                Demander un devis
+              </Link>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Footer Bottom */}
-      <div className="footer-bottom">
-        <div className="footer-bottom-container">
-          <p className="footer-copyright">
-            © 2026 Bokengi Group — Tous droits réservés.
-          </p>
-          <div className="footer-legal">
-            <span>Technologies & Services souverains</span>
+      {/* Bottom Bar */}
+      <div className="footer-v2-bottom">
+        <div className="container-v2">
+          <div className="footer-bottom-flex">
+            <span>© 2026 Bokengi Group. Tous droits réservés.</span>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem' }}>
+              Technologies · Digital · Services Professionnels
+            </span>
           </div>
         </div>
       </div>

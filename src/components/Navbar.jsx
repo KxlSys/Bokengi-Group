@@ -17,30 +17,30 @@ const Navbar = () => {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   const expertises = [
-    { to: '/expertises/it', label: 'Bokengi IT', desc: 'Technologie, infrastructure & cybersécurité' },
-    { to: '/expertises/digital', label: 'Bokengi Digital', desc: 'Solutions web & transformation numérique' },
-    { to: '/expertises/business', label: 'Bokengi Business', desc: 'Assistance & organisation professionnelle' },
-    { to: '/expertises/consulting', label: 'Bokengi Consulting', desc: 'Conseil stratégique & audits techniques' },
-    { to: '/expertises/events', label: 'Bokengi Events', desc: 'Organisation & solutions événementielles' },
+    { to: '/expertises/it', label: 'BOKENGI IT', desc: 'Technologie, infrastructure & cybersécurité' },
+    { to: '/expertises/digital', label: 'BOKENGI DIGITAL', desc: 'Web, produits numériques & transformation' },
+    { to: '/expertises/business', label: 'BOKENGI BUSINESS', desc: 'Assistance administrative & support opérationnel' },
+    { to: '/expertises/consulting', label: 'BOKENGI CONSULTING', desc: 'Conseil, audit & accompagnement' },
+    { to: '/expertises/events', label: 'BOKENGI EVENTS', desc: 'Événementiel & solutions techniques' },
   ];
 
   return (
-    <nav className="site-nav" aria-label="Navigation principale">
-      <div className="nav-container">
-        {/* Brand Logo */}
-        <Link to="/" className="nav-logo" aria-label="Bokengi Group — Retour à l'accueil">
-          <div className="logo-badge">
-            <img src="/bokengi-mark.png" alt="Bokengi Group" className="logo-image" />
+    <nav className="site-nav-v2" aria-label="Navigation principale">
+      <div className="nav-container-v2">
+        {/* Brand Logo Master */}
+        <Link to="/" className="nav-logo-v2" aria-label="Bokengi Group — Retour à l'accueil">
+          <div className="nav-logo-mark">
+            <img src="/bokengi-mark.png" alt="Bokengi Group" />
           </div>
-          <div className="logo-text-group">
-            <span className="logo-text">BOKENGI GROUP</span>
-            <span className="logo-subtext">Technology & Business</span>
+          <div className="nav-logo-texts">
+            <span className="nav-logo-name">BOKENGI GROUP</span>
+            <span className="nav-logo-tag">Technologie & Services</span>
           </div>
         </Link>
 
         {/* Desktop Navigation Links */}
-        <div className="nav-center">
-          <ul className="nav-links">
+        <div className="nav-center-v2">
+          <ul className="nav-links-v2">
             <li>
               <NavLink to="/" end className={({ isActive }) => (isActive ? 'active' : '')}>
                 Accueil
@@ -52,7 +52,7 @@ const Navbar = () => {
               </NavLink>
             </li>
             <li 
-              className="nav-item-dropdown"
+              className="nav-dropdown-v2"
               onMouseEnter={() => setIsDropdownOpen(true)}
               onMouseLeave={() => setIsDropdownOpen(false)}
             >
@@ -62,18 +62,16 @@ const Navbar = () => {
                 onClick={() => setIsDropdownOpen(false)}
               >
                 Expertises
-                <span className="dropdown-caret" aria-hidden="true">▾</span>
+                <span className="dropdown-caret-v2" aria-hidden="true">▾</span>
               </NavLink>
-              <div className={`dropdown-menu ${isDropdownOpen ? 'is-open' : ''}`}>
-                <div className="dropdown-header">
-                  <Link to="/expertises" className="dropdown-view-all">
-                    Toutes nos expertises →
-                  </Link>
-                </div>
-                <div className="dropdown-items">
+              <div className={`dropdown-menu-v2 ${isDropdownOpen ? 'is-open' : ''}`}>
+                <Link to="/expertises" className="dropdown-all-link">
+                  Vue d'ensemble des 5 pôles →
+                </Link>
+                <div className="dropdown-list-v2">
                   {expertises.map((exp) => (
-                    <Link key={exp.to} to={exp.to} className="dropdown-item">
-                      <strong className="dropdown-item-title">{exp.label}</strong>
+                    <Link key={exp.to} to={exp.to} className="dropdown-item-v2">
+                      <span className="dropdown-item-name">{exp.label}</span>
                       <span className="dropdown-item-desc">{exp.desc}</span>
                     </Link>
                   ))}
@@ -94,7 +92,7 @@ const Navbar = () => {
         </div>
 
         {/* Right side Actions */}
-        <div className="nav-right-container">
+        <div className="nav-actions-v2">
           <button
             onClick={toggleTheme}
             className="theme-toggle"
@@ -117,7 +115,7 @@ const Navbar = () => {
             </svg>
           </button>
 
-          <Link to="/contact?type=devis" className="nav-cta btn-primary">
+          <Link to="/contact?type=devis" className="btn-v2-primary">
             Demander un devis
           </Link>
 
@@ -134,8 +132,8 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Drawer Menu */}
-      <div className={`mobile-menu ${isOpen ? 'is-open' : ''}`}>
-        <ul className="mobile-nav-links">
+      <div className={`mobile-nav-v2 ${isOpen ? 'is-open' : ''}`}>
+        <ul className="mobile-links-list-v2">
           <li>
             <NavLink to="/" end onClick={() => setIsOpen(false)}>
               Accueil
@@ -147,14 +145,14 @@ const Navbar = () => {
             </NavLink>
           </li>
           <li className="mobile-expertises-group">
-            <NavLink to="/expertises" onClick={() => setIsOpen(false)} className="mobile-section-title">
-              Nos expertises
+            <NavLink to="/expertises" onClick={() => setIsOpen(false)} style={{ fontWeight: 700 }}>
+              Nos expertises (5 Pôles)
             </NavLink>
-            <ul className="mobile-sublinks">
+            <ul className="mobile-poles-sublist">
               {expertises.map((exp) => (
                 <li key={exp.to}>
                   <Link to={exp.to} onClick={() => setIsOpen(false)}>
-                    {exp.label}
+                    {exp.label} — {exp.desc}
                   </Link>
                 </li>
               ))}
@@ -172,10 +170,11 @@ const Navbar = () => {
           </li>
         </ul>
 
-        <div className="mobile-menu-footer">
+        <div style={{ marginTop: '1.75rem', paddingTop: '1.25rem', borderTop: '1px solid var(--border-subtle)' }}>
           <Link 
             to="/contact?type=devis" 
-            className="btn-primary mobile-cta" 
+            className="btn-v2-primary" 
+            style={{ width: '100%', textAlign: 'center' }}
             onClick={() => setIsOpen(false)}
           >
             Demander un devis

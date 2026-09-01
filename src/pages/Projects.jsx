@@ -49,16 +49,28 @@ const Projects = () => {
         breadcrumbs={[{ label: 'Réalisations' }]}
       />
 
-      <section className="projects-section">
-        <div className="container">
+      <section className="projects-section" style={{ padding: '6.5rem 0' }}>
+        <div className="container-v2">
           {/* Filters */}
-          <div className="portfolio-filters-bar">
-            <span className="filters-label">Filtrer par domaine :</span>
-            <div className="filters-list" role="tablist">
+          <div className="portfolio-filters-bar" style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', marginBottom: '3.5rem', flexWrap: 'wrap' }}>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', textTransform: 'uppercase', color: 'var(--ink-faint)', letterSpacing: '0.1em' }}>
+              Filtrer par pôle / domaine :
+            </span>
+            <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }} role="tablist">
               {filters.map((f) => (
                 <button
                   key={f.id}
-                  className={`filter-btn ${activeFilter === f.id ? 'is-active' : ''}`}
+                  style={{
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: '0.75rem',
+                    background: activeFilter === f.id ? 'var(--navy-primary)' : 'var(--bg-surface)',
+                    color: activeFilter === f.id ? '#FFFFFF' : 'var(--ink-muted)',
+                    border: `1px solid ${activeFilter === f.id ? 'var(--navy-primary)' : 'var(--border-medium)'}`,
+                    padding: '0.5rem 1rem',
+                    borderRadius: 'var(--radius-xs)',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s ease',
+                  }}
                   onClick={() => setActiveFilter(f.id)}
                   role="tab"
                   aria-selected={activeFilter === f.id}
@@ -70,48 +82,54 @@ const Projects = () => {
           </div>
 
           {/* Projects Grid */}
-          <div className="projects-cards-grid">
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(380px, 1fr))', gap: '2.5rem' }}>
             {filteredProjects.map((project) => (
-              <article key={project.id} className="project-item-card">
-                <div className="project-item-header">
-                  <span className="project-item-badge">{project.category}</span>
-                  <span className="project-item-year">{project.year}</span>
+              <article key={project.id} className="project-flagship-card" style={{ padding: '3rem' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
+                  <span className="project-flagship-badge">{project.category}</span>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', color: 'var(--ink-faint)' }}>{project.year}</span>
                 </div>
 
-                <h2 className="project-item-title">{project.title}</h2>
+                <h2 className="title-subsection" style={{ fontSize: '1.55rem', marginBottom: '0.65rem' }}>{project.title}</h2>
                 
-                <p className="project-item-client">
-                  <strong>Contexte :</strong> {project.client}
+                <p style={{ fontSize: '0.88rem', color: 'var(--ink-muted)', marginBottom: '1.25rem' }}>
+                  <strong style={{ color: 'var(--ink-heading)' }}>Contexte :</strong> {project.client}
                 </p>
 
-                <p className="project-item-summary">{project.summary}</p>
+                <p style={{ fontSize: '1rem', color: 'var(--ink-body)', lineHeight: 1.65, marginBottom: '2rem', flex: 1 }}>{project.summary}</p>
 
-                <div className="project-item-highlights">
-                  <div className="highlight-block">
-                    <span className="highlight-label">Défi initial</span>
-                    <p className="highlight-text">{project.challenge}</p>
+                <div style={{ background: 'var(--bg-elevated)', padding: '1.5rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)', marginBottom: '1.75rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                  <div>
+                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.68rem', textTransform: 'uppercase', color: 'var(--blue-accent)', display: 'block', marginBottom: '0.25rem', fontWeight: 600 }}>Défi initial</span>
+                    <p style={{ fontSize: '0.88rem', color: 'var(--ink-muted)', lineHeight: 1.55 }}>{project.challenge}</p>
                   </div>
-                  <div className="highlight-block">
-                    <span className="highlight-label">Solution déployée</span>
-                    <p className="highlight-text">{project.solution}</p>
+                  <div>
+                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.68rem', textTransform: 'uppercase', color: 'var(--blue-accent)', display: 'block', marginBottom: '0.25rem', fontWeight: 600 }}>Solution déployée</span>
+                    <p style={{ fontSize: '0.88rem', color: 'var(--ink-muted)', lineHeight: 1.55 }}>{project.solution}</p>
                   </div>
                 </div>
 
                 {project.results && project.results.length > 0 && (
-                  <div className="project-item-results">
-                    <span className="results-label">Résultats vérifiés :</span>
-                    <ul className="results-list">
+                  <div style={{ marginBottom: '2rem' }}>
+                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', textTransform: 'uppercase', color: 'var(--ink-heading)', fontWeight: 600, display: 'block', marginBottom: '0.6rem' }}>
+                      Résultats vérifiés :
+                    </span>
+                    <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
                       {project.results.map((r, i) => (
-                        <li key={i}>{r}</li>
+                        <li key={i} style={{ fontSize: '0.88rem', color: 'var(--ink-muted)', display: 'flex', gap: '0.5rem' }}>
+                          <span style={{ color: '#10B981', fontWeight: 700 }}>✓</span> {r}
+                        </li>
                       ))}
                     </ul>
                   </div>
                 )}
 
-                <div className="project-item-footer">
-                  <div className="project-stack-tags">
+                <div style={{ paddingTop: '1.25rem', borderTop: '1px solid var(--border-subtle)' }}>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
                     {project.stack.map((tech) => (
-                      <span key={tech} className="tech-badge">{tech}</span>
+                      <span key={tech} style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', background: 'var(--bg-main)', color: 'var(--ink-body)', padding: '0.25rem 0.6rem', borderRadius: 'var(--radius-xs)', border: '1px solid var(--border-subtle)' }}>
+                        {tech}
+                      </span>
                     ))}
                   </div>
                 </div>

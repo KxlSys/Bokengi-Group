@@ -65,21 +65,26 @@ const BokengiConsulting = () => {
         ]}
       />
 
-      <section className="pole-domains-section">
-        <div className="container">
-          <div className="pole-domains-grid">
+      <section className="pole-domains-section" style={{ padding: '6.5rem 0' }}>
+        <div className="container-v2">
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: '2.5rem' }}>
             {domains.map((dom, idx) => (
-              <div key={idx} className="pole-domain-card">
-                <div className="pole-domain-header">
-                  <span className="pole-domain-idx">0{idx + 1}</span>
-                  <h2>{dom.title}</h2>
+              <div key={idx} className="project-secondary-card" style={{ padding: '2.75rem' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem' }}>
+                  <span className="why-v2-idx" style={{ marginBottom: 0 }}>0{idx + 1}</span>
+                  <span className="project-flagship-badge">Bokengi Consulting</span>
                 </div>
-                <p className="pole-domain-desc">{dom.desc}</p>
-                <div className="pole-services-box">
-                  <h3>Missions types :</h3>
-                  <ul className="pole-services-list">
+                <h2 className="title-subsection" style={{ margin: '0.5rem 0 0.85rem' }}>{dom.title}</h2>
+                <p style={{ fontSize: '1.05rem', color: 'var(--ink-muted)', lineHeight: 1.65, marginBottom: '2rem' }}>{dom.desc}</p>
+                <div style={{ background: 'var(--bg-elevated)', padding: '1.75rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)' }}>
+                  <h3 style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--blue-accent)', marginBottom: '1rem' }}>
+                    Missions types :
+                  </h3>
+                  <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
                     {dom.missions.map((m, mIdx) => (
-                      <li key={mIdx}>{m}</li>
+                      <li key={mIdx} style={{ display: 'flex', gap: '0.6rem', fontSize: '0.92rem', color: 'var(--ink-body)' }}>
+                        <span style={{ color: 'var(--blue-accent)', fontWeight: 700 }}>•</span> {m}
+                      </li>
                     ))}
                   </ul>
                 </div>

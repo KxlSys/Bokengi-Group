@@ -50,7 +50,7 @@ const BokengiEvents = () => {
   return (
     <div className="page-pole page-pole-events">
       <SEO 
-        title="Bokengi Events — Organisation & Solutions Événementielles" 
+        title="Bokengi Events · Organisation & Solutions Événementielles" 
         description="Pôle événementiel de Bokengi Group : organisation de séminaires, conférences, coordination logistique et solutions audiovisuelles." 
       />
 

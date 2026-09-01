@@ -1,98 +1,126 @@
-# Kal-Cooperation — Landing Page
+# Bokengi Group · Technology & Services
 
-> Site vitrine freelance · Single-file HTML · Zero dépendances locales
+> Plateforme web institutionnelle officielle de **Bokengi Group**, groupe de services technologiques, numériques et professionnels.
 
-![Preview](https://img.shields.io/badge/status-production-2d6a4f?style=flat-square)
-![Type](https://img.shields.io/badge/type-single--file%20HTML-1a3a2a?style=flat-square)
-![License](https://img.shields.io/badge/license-MIT-52b788?style=flat-square)
-
----
-
-## Aperçu
-
-Landing page one-page pour **Kal-Cooperation**, cabinet de conseil freelance en ingénierie informatique. Conçu pour les PME et entrepreneurs cherchant une expertise en développement full-stack, cybersécurité, administration systèmes et maintenance informatique.
+[![Production](https://img.shields.io/badge/status-production-0055D4?style=flat-square)](https://kxlsys.github.io/Bokengi-Group/)
+[![React](https://img.shields.io/badge/React-18.3-61DAFB?style=flat-square&logo=react)](https://reactjs.org/)
+[![Vite](https://img.shields.io/badge/Vite-5.4-646CFF?style=flat-square&logo=vite)](https://vitejs.dev/)
+[![Design System](https://img.shields.io/badge/Design_System-V4_Corporate-0033A0?style=flat-square)](https://kxlsys.github.io/Bokengi-Group/)
+[![License](https://img.shields.io/badge/license-Proprietary-0A193D?style=flat-square)](#)
 
 ---
 
-## Stack
+## 🏛️ Présentation du Groupe
 
-| Technologie | Usage |
-|---|---|
-| HTML5 sémantique | Structure |
-| CSS3 (variables, animations, grid) | Style & layout |
-| JavaScript vanilla | Scroll animations, ticker |
-| Google Fonts (DM Serif Display, DM Mono, DM Sans) | Typographie |
+**Bokengi Group** fédère cinq expertises spécialisées et complémentaires pour concevoir, sécuriser et déployer les projets informatiques, opérationnels et organisationnels de ses clients (entreprises, PME, organisations et fondateurs) :
 
-**Aucune dépendance npm. Aucun build requis.**
+`
+                                  ┌────────────────────────┐
+                                  │     BOKENGI GROUP      │
+                                  │  Technology & Services │
+                                  └───────────┬────────────┘
+         ┌──────────────────┬─────────────────┼─────────────────┬──────────────────┐
+         │                  │                 │                 │                  │
+┌────────▼────────┐┌────────▼────────┐┌───────▼────────┐┌───────▼────────┐┌────────▼────────┐
+│   BOKENGI IT    ││ BOKENGI DIGITAL ││BOKENGI BUSINESS││   BOKENGI      ││ BOKENGI EVENTS   │
+│                 ││                 ││                ││   CONSULTING   ││                 │
+│ • Cybersécurité ││ • Dév Web & App ││ • Support Ops  ││ • Conseil IT   ││ • Séminaires    │
+│ • Systèmes/Réseau││ • E-commerce   ││ • Assistance   ││ • Audit & AMOA ││ • Événements pro│
+│ • Maintenance   ││ • UX/UI & Auto  ││ • Gestion Doc  ││ • Stratégie SI ││ • Régie Tech    │
+└─────────────────┘└─────────────────┘└────────────────┘└────────────────┘└────────────────┘
+`
 
----
+### Les 5 Pôles d'Expertise
 
-## Structure
-
-```
-kal-cooperation/
-├── index.html          # Site complet (single-file)
-├── README.md           # Ce fichier
-├── .gitignore          # Fichiers à ignorer
-└── LICENSE             # Licence MIT
-```
-
----
-
-## Déploiement
-
-### GitHub Pages (recommandé)
-
-1. Fork ou clone ce dépôt
-2. `Settings` → `Pages` → Source : `main` / `root`
-3. Le site est live sur `https://<username>.github.io/kal-cooperation`
-
-### Netlify / Vercel
-
-Drag & drop du fichier `index.html` sur [netlify.com/drop](https://app.netlify.com/drop) — en ligne en 30 secondes.
-
-### Local
-
-```bash
-git clone https://github.com/<username>/kal-cooperation.git
-cd kal-cooperation
-open index.html   # macOS
-# ou
-xdg-open index.html  # Linux
-```
+1. **Bokengi IT** — Cœur technologique : Cybersécurité périmétrique, durcissement système, architecture réseaux, cloud et infogérance.
+2. **Bokengi Digital** — Solutions web & produits : Développement full-stack moderne, plateformes sur mesure, refonte UX/UI et intégration d'automatisations.
+3. **Bokengi Business** — Support opérationnel : Assistance administrative, secrétariat externalisé, gestion documentaire et aide au pilotage d'activités.
+4. **Bokengi Consulting** — Conseil & gouvernance : Audit des systèmes d'information, schéma directeur, accompagnement stratégique et cadrage AMOA.
+5. **Bokengi Events** — Événementiel professionnel : Conception, logistique, digitalisation et régie technique de séminaires et conférences d'entreprise.
 
 ---
 
-## Sections
+## ⚡ Stack Technologique
 
-| Section | Description |
-|---|---|
-| **Hero** | Accroche + terminal animé + stats |
-| **Services** | 3 cartes — Full-Stack, Cybersécurité, Systèmes |
-| **Ticker** | Bandeau défilant de toutes les compétences |
-| **À propos** | Présentation + stack technologique |
-| **Contact** | CTA email + informations pratiques |
+- **Framework Frontend** : [React 18](https://reactjs.org/)
+- **Bundler & Build Tool** : [Vite 5](https://vitejs.dev/)
+- **Routage** : [React Router 7](https://reactrouter.com/) (HashRouter pour une robustesse totale sur tout hébergeur statique)
+- **Design System V4** : CSS modulaire sur mesure sans dépendances lourdes (thème bicolore sombre & clair, palette soyeuse, ombres multicouches *Soft Depth*, grille de points cyan à fondu radial).
+- **SEO & Performance** : Composant dynamique de métadonnées, structure sémantique Schema.org, temps de chargement ultra-rapide (CSS bundle < 28 kB, JS gzippé ~ 72 kB).
 
 ---
 
-## Personnalisation rapide
+## 📁 Architecture du Projet
 
-Toutes les couleurs sont centralisées dans les variables CSS en haut du fichier `index.html` :
-
-```css
-:root {
-  --ink: #0a0a0a;           /* Texte principal */
-  --paper: #f5f2ed;         /* Fond clair */
-  --accent: #1a3a2a;        /* Vert foncé (sections sombres) */
-  --accent-bright: #2d6a4f; /* Vert moyen (accents) */
-  --accent-glow: #52b788;   /* Vert vif (highlights) */
-}
-```
-
-Pour modifier l'email de contact, chercher `contact@kal-cooperation.com` dans `index.html`.
+`
+bokengi-group/
+├── public/
+│   ├── favicon.ico                 # Favicon multi-résolutions haute visibilité
+│   ├── favicon-32x32.png           # Favicon 32px contrasté
+│   ├── apple-touch-icon.png        # Icône iOS / Apple
+│   ├── bokengi-logo.png            # Logotype officiel
+│   ├── bokengi-mark.png            # Emblème de marque
+│   └── 404.html                    # Redirection SPA GitHub Pages
+├── src/
+│   ├── components/                 # Composants réutilisables (Navbar, Footer, SEO, CTA...)
+│   ├── context/                    # Contextes React (ThemeContext pour Light/Dark Mode)
+│   ├── lib/                        # Utilitaires & passerelle d'envoi de contact
+│   ├── pages/                      # Pages principales (Home, Group, Expertises, Projects, Contact)
+│   │   └── expertises/             # Pages dédiées aux 5 pôles (BokengiIT, Digital, Business...)
+│   ├── bokengi-brand.css           # Design System V4 institutionnel unifié
+│   ├── App.jsx                     # Routeur principal et structure globale
+│   └── main.jsx                    # Point d'entrée de l'application
+├── api/                            # Endpoints serverless pour le formulaire de contact (Vercel)
+├── index.html                      # Document racine avec OpenGraph et Schema.org
+├── vite.config.js                  # Configuration Vite optimisée
+└── package.json                    # Dépendances et scripts
+`
 
 ---
 
-## Licence
+## 🚀 Démarrage & Développement Local
 
-MIT — libre d'utilisation, de modification et de distribution.
+### Prérequis
+- [Node.js](https://nodejs.org/) (version 18 ou supérieure recommandée)
+- 
+pm ou yarn
+
+### Installation
+
+`ash
+# 1. Cloner le dépôt
+git clone https://github.com/KxlSys/Bokengi-Group.git
+cd Bokengi-Group
+
+# 2. Installer les dépendances
+npm install
+
+# 3. Lancer le serveur de développement local
+npm run dev
+`
+
+L'application sera accessible sur http://localhost:3000 (ou le port indiqué par Vite).
+
+### Build de Production
+
+`ash
+# Compiler le bundle de production optimisé
+npm run build
+
+# Prévisualiser le build localement
+npm run preview
+`
+
+---
+
+## 📬 Contact & Informations
+
+- **Email officiel** : [bokengi.group@gmail.com](mailto:bokengi.group@gmail.com)
+- **Site en ligne** : [https://kxlsys.github.io/Bokengi-Group/](https://kxlsys.github.io/Bokengi-Group/)
+- **Zones d'intervention** : Afrique · Europe · À distance
+
+---
+
+## 📄 Propriété Intellectuelle
+
+© 2026 Bokengi Group. Tous droits réservés.

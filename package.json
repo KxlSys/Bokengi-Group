@@ -1,5 +1,6 @@
 {
-  "name": "kal-cooperation",
+  "name": "bokengi-group",
+  "description": "Plateforme web institutionnelle officielle de Bokengi Group — Technology, Digital & Services",
   "private": true,
   "version": "1.0.0",
   "type": "module",

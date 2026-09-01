@@ -12,10 +12,10 @@ const Footer = () => {
           
           {/* Col 1: Identity & Official Logo */}
           <div>
-            <Link to="/" aria-label="Bokengi Group — Retour à l'accueil">
+            <Link to="/" aria-label="Bokengi Group · Retour à l'accueil">
               <img 
                 src={isDark ? `${import.meta.env.BASE_URL}bokengi-logo-horizontal-dark.png` : `${import.meta.env.BASE_URL}bokengi-logo-horizontal.png`} 
-                alt="Bokengi Group — Technology & Services" 
+                alt="Bokengi Group · Technology & Services" 
                 className="footer-v4-logo-img"
               />
             </Link>

@@ -82,7 +82,7 @@ const Home = () => {
   return (
     <div className="page-home-v4">
       <SEO 
-        title="Bokengi Group — Technology & Services" 
+        title="" 
         description="Bokengi Group accompagne les organisations dans leurs projets technologiques, numériques et professionnels : IT, cybersécurité, développement, infrastructure, conseil, assistance et événementiel." 
       />
 

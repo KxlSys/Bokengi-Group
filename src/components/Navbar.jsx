@@ -34,10 +34,10 @@ const Navbar = () => {
     <header className={`header-v4 ${isScrolled ? 'is-scrolled' : ''}`}>
       <div className="container-v4 header-v4-inner">
         {/* Official Brand Logo */}
-        <Link to="/" className="header-v4-logo" aria-label="Bokengi Group — Retour à l'accueil">
+        <Link to="/" className="header-v4-logo" aria-label="Bokengi Group · Retour à l'accueil">
           <img 
             src={isDark ? `${import.meta.env.BASE_URL}bokengi-logo-horizontal-dark.png` : `${import.meta.env.BASE_URL}bokengi-logo-horizontal.png`} 
-            alt="Bokengi Group — Technology & Services" 
+            alt="Bokengi Group · Technology & Services" 
             className="header-v4-logo-img"
           />
         </Link>

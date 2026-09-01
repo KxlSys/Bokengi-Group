@@ -5,8 +5,8 @@ import { useEffect } from 'react';
  */
 const SEO = ({ title, description }) => {
   useEffect(() => {
-    const baseTitle = 'Bokengi Group | Technologie, Digital & Services professionnels';
-    document.title = title ? `${title} — Bokengi Group` : baseTitle;
+    const baseTitle = 'Bokengi Group · Technology & Services';
+    document.title = title ? `${title} · Bokengi Group` : baseTitle;
 
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription && description) {

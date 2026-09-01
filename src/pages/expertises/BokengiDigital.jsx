@@ -35,7 +35,7 @@ const BokengiDigital = () => {
   return (
     <div className="page-pole page-pole-digital">
       <SEO 
-        title="Bokengi Digital — Solutions Web & Transformation Numérique" 
+        title="Bokengi Digital · Solutions Web & Transformation Numérique" 
         description="Pôle digital de Bokengi Group : création de sites web, e-commerce, UX/UI, applications web et automatisation de processus." 
       />
 

@@ -50,7 +50,7 @@ const BokengiBusiness = () => {
   return (
     <div className="page-pole page-pole-business">
       <SEO 
-        title="Bokengi Business — Assistance Administrative & Support Opérationnel" 
+        title="Bokengi Business · Assistance Administrative & Support Opérationnel" 
         description="Pôle business de Bokengi Group : assistance administrative, gestion documentaire, secrétariat externalisé et support aux entrepreneurs." 
       />
 

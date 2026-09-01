@@ -50,7 +50,7 @@ const BokengiConsulting = () => {
   return (
     <div className="page-pole page-pole-consulting">
       <SEO 
-        title="Bokengi Consulting — Conseil Stratégique & Audits IT" 
+        title="Bokengi Consulting · Conseil Stratégique & Audits IT" 
         description="Pôle consulting de Bokengi Group : conseil IT, audit informatique, cybersécurité, schéma directeur et accompagnement des PME." 
       />
 

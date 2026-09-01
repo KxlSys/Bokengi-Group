@@ -67,7 +67,7 @@ const BokengiIT = () => {
   return (
     <div className="page-pole page-pole-it">
       <SEO 
-        title="Bokengi IT — Technologie, Infrastructure & Sécurité" 
+        title="Bokengi IT · Technologie, Infrastructure & Sécurité" 
         description="Pôle technologique de Bokengi Group : cybersécurité, administration systèmes & réseaux, développement d'applications et maintenance informatique." 
       />
 

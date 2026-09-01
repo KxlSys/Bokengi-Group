@@ -158,29 +158,29 @@ const ContactPage = () => {
                     </div>
                   )}
 
-                  {/* Nature de la demande (Segmented Tabs) */}
+                  {/* Type de demande (Liste déroulante nette et sans bug) */}
                   <div className="form-group">
-                    <label className="form-label">
-                      <span>Nature de votre démarche</span>
+                    <label htmlFor="form-type" className="form-label">
+                      <span>Type de demande</span>
                       <span className="req">*</span>
                     </label>
-                    <div className="form-segmented-tabs">
-                      {[
-                        { id: 'Demande de devis', label: '📋 Devis chiffré' },
-                        { id: 'Cadrage de projet', label: '🎯 Cadrage projet' },
-                        { id: 'Conseil & Audit', label: '🛡️ Conseil / Audit' },
-                        { id: 'Autre demande', label: '💬 Autre échange' },
-                      ].map((t) => (
-                        <button
-                          key={t.id}
-                          type="button"
-                          className={`form-segmented-btn ${form.type === t.id ? 'is-active' : ''}`}
-                          onClick={() => setForm((prev) => ({ ...prev, type: t.id }))}
-                        >
-                          {t.label}
-                        </button>
-                      ))}
-                    </div>
+                    <select
+                      id="form-type"
+                      name="type"
+                      value={form.type}
+                      onChange={handleChange}
+                      className="form-select"
+                      required
+                    >
+                      <option value="Demande de devis">Demande de devis</option>
+                      <option value="Projet informatique & Cybersécurité">Projet informatique & Cybersécurité</option>
+                      <option value="Développement Web & Plateformes">Développement Web & Plateformes</option>
+                      <option value="Infrastructure Cloud & Réseaux">Infrastructure Cloud & Réseaux</option>
+                      <option value="Support & Assistance opérationnelle">Support & Assistance opérationnelle</option>
+                      <option value="Conseil stratégique & Audit">Conseil stratégique & Audit</option>
+                      <option value="Événementiel professionnel">Événementiel professionnel</option>
+                      <option value="Autre demande">Autre demande</option>
+                    </select>
                   </div>
 
                   {/* Pôle d'expertise concerné (Architectural Cards) */}

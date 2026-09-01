@@ -1,14 +1,33 @@
 const WEB3FORMS_URL = 'https://api.web3forms.com/submit';
 
-export async function sendContactMessage({ name, email, message, website = '' }) {
+export async function sendContactMessage({
+  name,
+  email,
+  phone = '',
+  pole = 'Autre',
+  type = 'Demande de devis',
+  message,
+  website = ''
+}) {
+  // Honeypot anti-spam
   if (website) {
     return { success: true };
   }
 
+  const payload = {
+    name,
+    email,
+    phone,
+    pole,
+    type,
+    message,
+    website
+  };
+
   const apiResponse = await fetch('/api/contact', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ name, email, message, website }),
+    body: JSON.stringify(payload),
   });
 
   if (apiResponse.ok) {
@@ -26,9 +45,9 @@ export async function sendContactMessage({ name, email, message, website = '' })
         access_key: web3Key,
         name,
         email,
-        message,
-        subject: `[Bokengi] ${name}`,
-        from_name: 'Bokengi',
+        message: `[Type: ${type} | Pôle: ${pole} | Tél: ${phone || 'Non renseigné'}]\n\n${message}`,
+        subject: `[Bokengi Group] ${type} — ${pole} (${name})`,
+        from_name: 'Bokengi Group Web',
         botcheck: website,
       }),
     });

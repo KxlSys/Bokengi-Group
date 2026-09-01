@@ -18,14 +18,15 @@ export default async function handler(req, res) {
     });
   }
 
-  const { name, email, message, website } = req.body ?? {};
+  const { name, email, phone, pole, type, message, website } = req.body ?? {};
 
+  // Honeypot anti-spam
   if (website) {
     return res.status(200).json({ success: true });
   }
 
   if (!name?.trim() || !email?.trim() || !message?.trim()) {
-    return res.status(400).json({ error: 'Tous les champs sont requis.' });
+    return res.status(400).json({ error: 'Nom, email et message sont requis.' });
   }
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -37,17 +38,22 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Message trop long.' });
   }
 
-  // Adresse temporaire de réception. Elle pourra être remplacée plus tard
-  // via CONTACT_TO_EMAIL dans les variables d'environnement Vercel.
+  // Adresse temporaire officielle de réception : bokengi.group@gmail.com
   const toEmail = process.env.CONTACT_TO_EMAIL || 'bokengi.group@gmail.com';
   const fromEmail = process.env.CONTACT_FROM_EMAIL || 'Bokengi Group <onboarding@resend.dev>';
+  const safeType = type?.trim() || 'Demande de contact';
+  const safePole = pole?.trim() || 'Général';
 
   const html = `
-    <h2>Nouveau message — Bokengi Group</h2>
+    <h2>Nouveau message reçu — Bokengi Group</h2>
+    <p><strong>Type de demande :</strong> ${escapeHtml(safeType)}</p>
+    <p><strong>Pôle concerné :</strong> ${escapeHtml(safePole)}</p>
     <p><strong>Nom / Entreprise :</strong> ${escapeHtml(name)}</p>
     <p><strong>Email :</strong> ${escapeHtml(email)}</p>
+    <p><strong>Téléphone :</strong> ${escapeHtml(phone || 'Non renseigné')}</p>
     <hr />
-    <p style="white-space: pre-wrap;">${escapeHtml(message)}</p>
+    <h3>Message :</h3>
+    <p style="white-space: pre-wrap; background: #f8fafc; padding: 15px; border-left: 4px solid #00124D;">${escapeHtml(message)}</p>
   `;
 
   try {
@@ -61,7 +67,7 @@ export default async function handler(req, res) {
         from: fromEmail,
         to: [toEmail],
         reply_to: email,
-        subject: `[Bokengi Group] ${name.trim()}`,
+        subject: `[Bokengi Group] ${safeType} — ${safePole} (${name.trim()})`,
         html,
       }),
     });
@@ -69,7 +75,7 @@ export default async function handler(req, res) {
     if (!response.ok) {
       const detail = await response.text();
       console.error('Resend error:', detail);
-      return res.status(502).json({ error: "L'envoi a échoué. Réessayez ou contactez par email." });
+      return res.status(502).json({ error: "L'envoi a échoué. Réessayez ou contactez-nous directement par email." });
     }
 
     return res.status(200).json({ success: true });

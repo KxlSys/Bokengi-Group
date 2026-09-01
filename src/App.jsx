@@ -1,78 +1,51 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import Services from './components/Services';
-import Portfolio from './components/Portfolio';
-import About from './components/About';
-import Contact from './components/Contact';
-import ContactModal from './components/ContactModal';
 import Footer from './components/Footer';
+import ScrollToTop from './components/ScrollToTop';
 
-// Page d'accueil regroupant les sections de la landing page
-const Home = ({ onOpenContact }) => {
-  useEffect(() => {
-    // 1. IntersectionObserver pour les animations d'apparition fade-up
-    const fadeObserver = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          fadeObserver.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.15 });
-
-    const fadeElements = document.querySelectorAll('.fade-up');
-    fadeElements.forEach(el => fadeObserver.observe(el));
-
-    return () => {
-      fadeElements.forEach(el => {
-        try {
-          fadeObserver.unobserve(el);
-        } catch (err) {
-          // ignore
-        }
-      });
-    };
-  }, []);
-
-  return (
-    <>
-      <Hero onOpenContact={onOpenContact} />
-      <Services />
-      <Portfolio />
-      <About />
-      <Contact onOpenContact={onOpenContact} />
-    </>
-  );
-};
+// Pages
+import Home from './pages/Home';
+import Group from './pages/Group';
+import Expertises from './pages/Expertises';
+import BokengiIT from './pages/expertises/BokengiIT';
+import BokengiDigital from './pages/expertises/BokengiDigital';
+import BokengiBusiness from './pages/expertises/BokengiBusiness';
+import BokengiConsulting from './pages/expertises/BokengiConsulting';
+import BokengiEvents from './pages/expertises/BokengiEvents';
+import Projects from './pages/Projects';
+import ContactPage from './pages/ContactPage';
 
 function App() {
-  const [isContactOpen, setIsContactOpen] = useState(false);
   const basename = import.meta.env.BASE_URL.replace(/\/$/, '') || undefined;
-
-  const handleOpenContact = () => setIsContactOpen(true);
-  const handleCloseContact = () => setIsContactOpen(false);
 
   return (
     <Router basename={basename}>
-      <div className="app-container" style={{ position: 'relative', overflow: 'hidden' }}>
-        {/* Glow decorations for premium feel */}
-        <div className="glow-blob glow-blob-1"></div>
-        <div className="glow-blob glow-blob-2"></div>
-        
-        <Navbar onOpenContact={handleOpenContact} />
-        
-        <main>
+      <ScrollToTop />
+      <div className="app-container">
+        {/* Subtle corporate ambient glows */}
+        <div className="glow-blob glow-blob-1" aria-hidden="true"></div>
+        <div className="glow-blob glow-blob-2" aria-hidden="true"></div>
+
+        <Navbar />
+
+        <main id="main-content" tabIndex="-1">
           <Routes>
-            <Route path="/" element={<Home onOpenContact={handleOpenContact} />} />
-            {/* Possibilité d'ajouter des routes supplémentaires ici */}
+            <Route path="/" element={<Home />} />
+            <Route path="/groupe" element={<Group />} />
+            <Route path="/expertises" element={<Expertises />} />
+            <Route path="/expertises/it" element={<BokengiIT />} />
+            <Route path="/expertises/digital" element={<BokengiDigital />} />
+            <Route path="/expertises/business" element={<BokengiBusiness />} />
+            <Route path="/expertises/consulting" element={<BokengiConsulting />} />
+            <Route path="/expertises/events" element={<BokengiEvents />} />
+            <Route path="/realisations" element={<Projects />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </main>
-        
+
         <Footer />
-        
-        <ContactModal isOpen={isContactOpen} onClose={handleCloseContact} />
       </div>
     </Router>
   );

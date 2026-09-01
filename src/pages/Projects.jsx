@@ -58,7 +58,7 @@ const Projects = () => {
               {filters.map((f) => (
                 <button
                   key={f.id}
-                  className={ilter-btn }
+                  className={`filter-btn ${activeFilter === f.id ? 'is-active' : ''}`}
                   onClick={() => setActiveFilter(f.id)}
                   role="tab"
                   aria-selected={activeFilter === f.id}

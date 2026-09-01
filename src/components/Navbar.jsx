@@ -64,7 +64,7 @@ const Navbar = () => {
                 Expertises
                 <span className="dropdown-caret" aria-hidden="true">▾</span>
               </NavLink>
-              <div className={dropdown-menu }>
+              <div className={`dropdown-menu ${isDropdownOpen ? 'is-open' : ''}`}>
                 <div className="dropdown-header">
                   <Link to="/expertises" className="dropdown-view-all">
                     Toutes nos expertises →
@@ -123,8 +123,7 @@ const Navbar = () => {
 
           {/* Mobile Hamburger Toggle */}
           <button
-            className={
-av-toggle }
+            className={`nav-toggle ${isOpen ? 'open' : ''}`}
             onClick={toggleMenu}
             aria-label={isOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
             aria-expanded={isOpen}
@@ -135,7 +134,7 @@ av-toggle }
       </div>
 
       {/* Mobile Drawer Menu */}
-      <div className={mobile-menu }>
+      <div className={`mobile-menu ${isOpen ? 'is-open' : ''}`}>
         <ul className="mobile-nav-links">
           <li>
             <NavLink to="/" end onClick={() => setIsOpen(false)}>

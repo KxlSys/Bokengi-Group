@@ -1,0 +1,41 @@
+/* Bokengi Group brand layer — intentionally overrides the legacy landing-page details. */
+.logo-image { width: 100%; height: 100%; object-fit: cover; display: block; }
+.nav-logo .logo-badge { padding: 0; overflow: hidden; border-radius: 10px; background: var(--paper); }
+.nav-logo:hover .logo-image { transform: none; }
+
+.hero-brand-card { position: relative; z-index: 1; width: 100%; max-width: 420px; margin-bottom: 1.25rem; padding: 1.2rem; display: flex; gap: 1rem; align-items: center; border: 1px solid var(--rule); background: color-mix(in srgb, var(--paper) 88%, transparent); backdrop-filter: blur(10px); }
+.hero-brand-mark { width: 62px; height: 62px; flex: 0 0 62px; border-radius: 14px; }
+.hero-brand-card > div { display: flex; flex-direction: column; gap: .12rem; }
+.hero-brand-kicker { font-family: var(--mono); font-size: .65rem; letter-spacing: .14em; color: var(--accent-bright); }
+.hero-brand-card strong { font-family: var(--serif); font-size: 1.1rem; line-height: 1.2; }
+.hero-brand-card > div > span:last-child { color: var(--muted); font-size: .78rem; }
+
+.services-intro { max-width: 720px; margin: -1rem 0 3rem auto; color: var(--muted); font-size: 1.05rem; line-height: 1.7; }
+.services-group-grid { grid-template-columns: repeat(6, 1fr); gap: 1px; }
+.service-group-card { grid-column: span 2; min-height: 100%; }
+.service-group-card:nth-child(4), .service-group-card:nth-child(5) { grid-column: span 3; }
+.service-card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
+.service-number { font-family: var(--mono); font-size: .7rem; color: var(--accent-bright); letter-spacing: .1em; }
+.service-category { font-family: var(--mono); font-size: .62rem; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; }
+.service-group-card h3 { font-size: clamp(1.45rem, 2.4vw, 2rem); }
+.service-group-card .service-items { margin-top: 1.5rem; }
+
+/* Contact form / business language */
+.contact-note { color: var(--muted); }
+.form-error { color: #b91c1c; margin: .75rem 0; font-size: .9rem; }
+.form-honeypot { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+
+@media (max-width: 900px) {
+  .services-group-grid { grid-template-columns: repeat(2, 1fr); }
+  .service-group-card, .service-group-card:nth-child(4), .service-group-card:nth-child(5) { grid-column: span 1; }
+  .services-intro { margin: 0 0 2rem; }
+}
+
+@media (max-width: 640px) {
+  .hero-brand-card { align-self: stretch; max-width: none; }
+  .hero-brand-mark { width: 52px; height: 52px; flex-basis: 52px; }
+  .services-group-grid { grid-template-columns: 1fr; }
+  .service-group-card, .service-group-card:nth-child(4), .service-group-card:nth-child(5) { grid-column: span 1; }
+  .hero-actions { flex-direction: column; align-items: stretch; }
+  .hero-actions .btn-primary, .hero-actions .btn-ghost { text-align: center; }
+}

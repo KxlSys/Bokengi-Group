@@ -15,16 +15,16 @@
   --radius-sm: 6px;
   --radius-md: 8px;
 
-  /* ── LIGHT THEME PALETTE (MODERNE, DOUX, PRESTIGIEUX & HAUT DE GAMME) ── */
-  --bg-main: #F8FAFD;
+  /* ── LIGHT THEME PALETTE (BLANC SATINÉ PERLÉ & ANTHRACITE CHAUD — ANTI-ÉBLOUISSEMENT) ── */
+  --bg-main: #F4F6FA;
   --bg-surface: #FFFFFF;
-  --bg-elevated: #F0F4FA;
-  --bg-subtle: #E6EDF6;
+  --bg-elevated: #EAF0F8;
+  --bg-subtle: #DEE6F2;
 
-  --ink-heading: #0A193D;
-  --ink-body: #2B384E;
-  --ink-muted: #576882;
-  --ink-faint: #8E9EBA;
+  --ink-heading: #0C1E4A;
+  --ink-body: #334155;
+  --ink-muted: #5E6E88;
+  --ink-faint: #8E9DB7;
 
   --blue-primary: #0033A0;
   --blue-accent: #0055D4;
@@ -34,13 +34,13 @@
   --blue-tag-bg: rgba(0, 85, 212, 0.07);
   --blue-tag-text: #004BB5;
 
-  --border-subtle: rgba(10, 25, 61, 0.07);
-  --border-medium: rgba(10, 25, 61, 0.13);
-  --border-strong: rgba(10, 25, 61, 0.22);
+  --border-subtle: rgba(12, 30, 74, 0.06);
+  --border-medium: rgba(12, 30, 74, 0.11);
+  --border-strong: rgba(12, 30, 74, 0.20);
 
-  --shadow-subtle: 0 1px 2px rgba(10, 25, 61, 0.03), 0 1px 3px rgba(10, 25, 61, 0.02);
-  --shadow-card: 0 1px 3px rgba(10, 25, 61, 0.03), 0 8px 24px -4px rgba(10, 25, 61, 0.06);
-  --shadow-elevated: 0 3px 6px rgba(10, 25, 61, 0.04), 0 18px 36px -8px rgba(10, 25, 61, 0.10);
+  --shadow-subtle: 0 1px 2px rgba(12, 30, 74, 0.03), 0 1px 3px rgba(12, 30, 74, 0.02);
+  --shadow-card: 0 1px 3px rgba(12, 30, 74, 0.04), 0 10px 28px -4px rgba(12, 30, 74, 0.07);
+  --shadow-elevated: 0 2px 6px rgba(12, 30, 74, 0.04), 0 20px 40px -8px rgba(12, 30, 74, 0.11);
 
   --transition-fast: 0.15s ease;
   --transition-normal: 0.25s cubic-bezier(0.16, 1, 0.3, 1);
@@ -672,7 +672,13 @@ body.dark-theme .hero-brand-symbol {
    ========================================================================== */
 .section-groupe-v4 {
   padding: 110px 0;
+  background: #FFFFFF;
+  border-top: 1px solid var(--border-subtle);
   border-bottom: 1px solid var(--border-subtle);
+}
+
+body.dark-theme .section-groupe-v4 {
+  background: var(--bg-main);
 }
 
 .groupe-v4-grid {
@@ -729,11 +735,12 @@ body.dark-theme .hero-brand-symbol {
    ========================================================================== */
 .section-expertises-v4 {
   padding: 110px 0;
+  background: var(--bg-main);
   border-bottom: 1px solid var(--border-subtle);
 }
 
 .expertises-v4-header {
-  margin-bottom: 4rem;
+  margin-bottom: 3.5rem;
 }
 
 .expertises-v4-title {
@@ -744,29 +751,38 @@ body.dark-theme .hero-brand-symbol {
 .expertises-v4-list {
   display: flex;
   flex-direction: column;
+  gap: 0.65rem;
 }
 
 .expertises-v4-row {
   display: grid;
   grid-template-columns: 80px 1.4fr 2fr 60px;
   align-items: center;
-  padding: 2.25rem 1.75rem;
-  border-top: 1px solid var(--border-subtle);
+  padding: 2rem 2.25rem;
+  background: #FFFFFF;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xs);
+  box-shadow: var(--shadow-card);
   text-decoration: none;
   transition: all var(--transition-normal);
   cursor: pointer;
-  border-radius: var(--radius-xs);
 }
 
-.expertises-v4-row:last-child {
-  border-bottom: 1px solid var(--border-subtle);
+body.dark-theme .expertises-v4-row {
+  background: var(--bg-surface);
+  border-color: var(--border-subtle);
 }
 
 .expertises-v4-row:hover {
+  background: #FFFFFF;
+  border-color: var(--blue-accent);
+  box-shadow: var(--shadow-elevated);
+  transform: translateX(6px) translateY(-1px);
+}
+
+body.dark-theme .expertises-v4-row:hover {
   background: var(--bg-surface);
-  border-color: transparent;
-  box-shadow: var(--shadow-card);
-  transform: translateX(4px);
+  border-color: var(--blue-cyan);
 }
 
 .row-v4-num {
@@ -914,7 +930,13 @@ body.dark-theme .section-it-v4 {
    ========================================================================== */
 .section-projects-v4 {
   padding: 110px 0;
+  background: #FFFFFF;
+  border-top: 1px solid var(--border-subtle);
   border-bottom: 1px solid var(--border-subtle);
+}
+
+body.dark-theme .section-projects-v4 {
+  background: var(--bg-main);
 }
 
 .projects-v4-header {

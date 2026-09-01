@@ -16,7 +16,7 @@ const Contact = ({ onOpenContact }) => {
               className="contact-cta-main btn-primary" 
               style={{ border: 'none', cursor: 'pointer', display: 'block', width: '100%' }}
             >
-              Envoyer un message
+              Demander un devis
             </button>
             <p className="contact-note">Réponse sous 24h · Devis gratuit</p>
           </div>
@@ -32,14 +32,14 @@ const Contact = ({ onOpenContact }) => {
             <span className="contact-item-value">Europe & Afrique (Remote)</span>
           </div>
           <div className="contact-item">
-            <span className="contact-item-label">Type de structure</span>
-            <span className="contact-item-value">PME · Startups · Étudiants · Particuliers</span>
+            <span className="contact-item-label">Clients</span>
+            <span className="contact-item-value">Entreprises · Organisations · Entrepreneurs · Particuliers</span>
           </div>
           <div className="contact-item">
             <span className="contact-item-label">Email</span>
             <span className="contact-item-value">
-              <a href="mailto:contact@bokengi.com" style={{ color: 'inherit', textDecoration: 'none' }}>
-                contact@bokengi.com
+              <a href="mailto:bokengi.group@gmail.com" style={{ color: 'inherit', textDecoration: 'none' }}>
+                bokengi.group@gmail.com
               </a>
             </span>
           </div>

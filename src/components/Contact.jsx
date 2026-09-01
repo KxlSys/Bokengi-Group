@@ -5,11 +5,11 @@ const Contact = ({ onOpenContact }) => {
     <section id="contact">
       <div className="section-header">
         <span className="section-label" data-num="04">Contact</span>
-        <h2>Prêt à lancer<br/>votre projet ?</h2>
+        <h2>Prêt à propulser<br/>votre structure ?</h2>
       </div>
       <div className="contact-body">
         <div className="contact-left fade-up">
-          <p className="contact-tagline">"Une intervention immédiate, une expertise sur mesure."</p>
+          <p className="contact-tagline">"Une intervention structurée, des solutions d'excellence."</p>
           <div className="contact-cta-block">
             <button 
               onClick={onOpenContact} 
@@ -29,17 +29,17 @@ const Contact = ({ onOpenContact }) => {
           </div>
           <div className="contact-item">
             <span className="contact-item-label">Zone d'intervention</span>
-            <span className="contact-item-value">France · International (Remote)</span>
+            <span className="contact-item-value">Europe & Afrique (Remote)</span>
           </div>
           <div className="contact-item">
-            <span className="contact-item-label">Type de mission</span>
-            <span className="contact-item-value">PME · Startups · Entrepreneurs</span>
+            <span className="contact-item-label">Type de structure</span>
+            <span className="contact-item-value">PME · Startups · Étudiants · Particuliers</span>
           </div>
           <div className="contact-item">
             <span className="contact-item-label">Email</span>
             <span className="contact-item-value">
-              <a href="mailto:contact@kal-cooperation.com" style={{ color: 'inherit', textDecoration: 'none' }}>
-                contact@kal-cooperation.com
+              <a href="mailto:contact@bokengi.com" style={{ color: 'inherit', textDecoration: 'none' }}>
+                contact@bokengi.com
               </a>
             </span>
           </div>

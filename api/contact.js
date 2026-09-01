@@ -37,11 +37,11 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Message trop long.' });
   }
 
-  const toEmail = process.env.CONTACT_TO_EMAIL || 'contact@kal-cooperation.com';
-  const fromEmail = process.env.CONTACT_FROM_EMAIL || 'Kal-Cooperation <onboarding@resend.dev>';
+  const toEmail = process.env.CONTACT_TO_EMAIL || 'contact@bokengi.com';
+  const fromEmail = process.env.CONTACT_FROM_EMAIL || 'Bokengi <onboarding@resend.dev>';
 
   const html = `
-    <h2>Nouveau message — Kal-Cooperation</h2>
+    <h2>Nouveau message — Bokengi</h2>
     <p><strong>Nom / Entreprise :</strong> ${escapeHtml(name)}</p>
     <p><strong>Email :</strong> ${escapeHtml(email)}</p>
     <hr />
@@ -59,7 +59,7 @@ export default async function handler(req, res) {
         from: fromEmail,
         to: [toEmail],
         reply_to: email,
-        subject: `[Kal-Cooperation] ${name.trim()}`,
+        subject: `[Bokengi] ${name.trim()}`,
         html,
       }),
     });

@@ -56,7 +56,11 @@ function App() {
 
   return (
     <Router basename={basename}>
-      <div className="app-container">
+      <div className="app-container" style={{ position: 'relative', overflow: 'hidden' }}>
+        {/* Glow decorations for premium feel */}
+        <div className="glow-blob glow-blob-1"></div>
+        <div className="glow-blob glow-blob-2"></div>
+        
         <Navbar onOpenContact={handleOpenContact} />
         
         <main>

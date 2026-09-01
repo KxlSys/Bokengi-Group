@@ -3,11 +3,11 @@ import React, { useState, useEffect } from 'react';
 const Terminal = () => {
   const steps = [
     { type: 'cmd', text: 'whoami', delayAfter: 600 },
-    { type: 'out', text: 'ingénieur full-stack · sécurité · systèmes', delayAfter: 800 },
-    { type: 'cmd', text: 'stack --list', delayAfter: 600 },
-    { type: 'out', text: 'React · Node · Docker · AWS · VPN', delayAfter: 800 },
-    { type: 'cmd', text: 'availability --check', delayAfter: 600 },
-    { type: 'out', text: '✓ disponible pour missions immédiates', delayAfter: 1000 }
+    { type: 'out', text: 'bokengi · startup technologique & services', delayAfter: 800 },
+    { type: 'cmd', text: 'services --list', delayAfter: 600 },
+    { type: 'out', text: 'IT (Dev, Cyber, Cloud) · Group (Admin, Accompagnement)', delayAfter: 800 },
+    { type: 'cmd', text: 'status --check', delayAfter: 600 },
+    { type: 'out', text: '✓ opérationnel · prêt à propulser vos projets', delayAfter: 1000 }
   ];
 
   const [lines, setLines] = useState([]);
@@ -52,7 +52,7 @@ const Terminal = () => {
 
   return (
     <div className="hero-terminal" id="hero-terminal">
-      <div className="terminal-header">// kal-cooperation.sh — session active</div>
+      <div className="terminal-header">// bokengi.sh — session active</div>
       <div className="terminal-content">
         {lines.map((line, idx) => (
           <div 

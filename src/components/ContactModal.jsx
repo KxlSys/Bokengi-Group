@@ -55,7 +55,7 @@ const ContactModal = ({ isOpen, onClose }) => {
       console.error(err);
       setError(
         err.message ||
-          "L'envoi a échoué. Réessayez ou écrivez à contact@kal-cooperation.com."
+          "L'envoi a échoué. Réessayez ou écrivez à contact@bokengi.com."
       );
     } finally {
       setLoading(false);

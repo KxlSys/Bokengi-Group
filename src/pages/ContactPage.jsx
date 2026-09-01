@@ -158,46 +158,57 @@ const ContactPage = () => {
                     </div>
                   )}
 
-                  {/* Type de demande */}
-                  <div className="form-group">
-                    <label htmlFor="form-type" className="form-label">
-                      <span>Type de demande</span>
-                      <span className="req">*</span>
-                    </label>
-                    <select
-                      id="form-type"
-                      name="type"
-                      value={form.type}
-                      onChange={handleChange}
-                      className="form-select"
-                      required
-                    >
-                      <option value="Demande de devis">Demande de devis</option>
-                      <option value="Projet informatique">Projet informatique</option>
-                      <option value="Cybersécurité">Cybersécurité</option>
-                      <option value="Développement Web">Développement Web</option>
-                      <option value="Infrastructure">Infrastructure</option>
-                      <option value="Assistance administrative">Assistance administrative</option>
-                      <option value="Événementiel">Événementiel</option>
-                      <option value="Autre">Autre</option>
-                    </select>
-                  </div>
-
-                  {/* Pôle concerné - Interactive Pills */}
+                  {/* Nature de la demande (Segmented Tabs) */}
                   <div className="form-group">
                     <label className="form-label">
-                      <span>Pôle d'expertise concerné</span>
+                      <span>Nature de votre démarche</span>
+                      <span className="req">*</span>
+                    </label>
+                    <div className="form-segmented-tabs">
+                      {[
+                        { id: 'Demande de devis', label: '📋 Devis chiffré' },
+                        { id: 'Cadrage de projet', label: '🎯 Cadrage projet' },
+                        { id: 'Conseil & Audit', label: '🛡️ Conseil / Audit' },
+                        { id: 'Autre demande', label: '💬 Autre échange' },
+                      ].map((t) => (
+                        <button
+                          key={t.id}
+                          type="button"
+                          className={`form-segmented-btn ${form.type === t.id ? 'is-active' : ''}`}
+                          onClick={() => setForm((prev) => ({ ...prev, type: t.id }))}
+                        >
+                          {t.label}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Pôle d'expertise concerné (Architectural Cards) */}
+                  <div className="form-group">
+                    <label className="form-label">
+                      <span>Pôle d'expertise sollicité</span>
                       <span className="req">*</span>
                     </label>
                     <div className="form-poles-grid">
-                      {['Bokengi IT', 'Bokengi Digital', 'Bokengi Business', 'Bokengi Consulting', 'Bokengi Events'].map((pName) => (
+                      {[
+                        { name: 'Bokengi IT', num: '01', desc: 'Cybersécurité, Cloud & Infra' },
+                        { name: 'Bokengi Digital', num: '02', desc: 'Développement Web, Apps & UX' },
+                        { name: 'Bokengi Business', num: '03', desc: 'Support opérationnel & Gestion' },
+                        { name: 'Bokengi Consulting', num: '04', desc: 'Conseil stratégique & Audit' },
+                        { name: 'Bokengi Events', num: '05', desc: 'Événements & Séminaires pro' },
+                      ].map((p) => (
                         <button
-                          key={pName}
+                          key={p.name}
                           type="button"
-                          className={`form-pole-pill ${form.pole === pName ? 'is-active' : ''}`}
-                          onClick={() => setForm((prev) => ({ ...prev, pole: pName }))}
+                          className={`form-pole-card ${form.pole === p.name ? 'is-active' : ''}`}
+                          onClick={() => setForm((prev) => ({ ...prev, pole: p.name }))}
                         >
-                          {pName}
+                          <div className="pole-card-header">
+                            <span className="pole-card-num">{p.num}</span>
+                            <span className="pole-card-check">✓</span>
+                          </div>
+                          <span className="pole-card-name">{p.name}</span>
+                          <span className="pole-card-desc">{p.desc}</span>
                         </button>
                       ))}
                     </div>

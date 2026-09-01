@@ -784,10 +784,33 @@ body.dark-theme .hero-brand-symbol {
    ========================================================================== */
 .section-it-v4 {
   padding: 120px 0;
-  background: #00124D;
+  background: #060D20;
   color: #F8FAFC;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+body.dark-theme .section-it-v4 {
+  background: #040915;
+  border-color: rgba(22, 184, 243, 0.12);
+}
+
+/* ── Subtle Dotted Grid Pattern with Radial Opacity Fade (Right Concentration) ── */
+.pattern-dotted-radial-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, rgba(22, 184, 243, 0.38) 1.2px, transparent 1.2px);
+  background-size: 20px 20px;
+  background-position: right center;
+  -webkit-mask-image: radial-gradient(ellipse 65% 75% at 90% 50%, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.4) 45%, rgba(0, 0, 0, 0) 80%);
+  mask-image: radial-gradient(ellipse 65% 75% at 90% 50%, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.4) 45%, rgba(0, 0, 0, 0) 80%);
+  z-index: 1;
 }
 
 .it-v4-grid {
@@ -795,6 +818,8 @@ body.dark-theme .hero-brand-symbol {
   grid-template-columns: 1.1fr 1.3fr;
   gap: clamp(3rem, 6vw, 6rem);
   align-items: center;
+  position: relative;
+  z-index: 2;
 }
 
 .it-v4-left .kicker-v4 {
@@ -823,13 +848,22 @@ body.dark-theme .hero-brand-symbol {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1.75rem;
+  position: relative;
+  z-index: 2;
 }
 
 .it-v4-service-item {
-  padding: 1.5rem;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1.75rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: var(--radius-xs);
+  transition: all var(--transition-fast);
+}
+
+.it-v4-service-item:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(22, 184, 243, 0.3);
+  transform: translateY(-2px);
 }
 
 .it-service-title {
@@ -843,7 +877,7 @@ body.dark-theme .hero-brand-symbol {
 .it-service-desc {
   font-size: 0.9rem;
   color: #94A3B8;
-  line-height: 1.5;
+  line-height: 1.55;
 }
 
 /* ==========================================================================
@@ -944,7 +978,7 @@ body.dark-theme .hero-brand-symbol {
 }
 
 /* ==========================================================================
-   07 CTA FINAL V4
+   07 CTA FINAL V4 (DARK ROUNDED EXECUTIVE CARD)
    ========================================================================== */
 .section-cta-v4 {
   padding: 120px 0;
@@ -952,25 +986,48 @@ body.dark-theme .hero-brand-symbol {
 
 .cta-v4-box {
   padding: 5rem 3.5rem;
-  background: var(--bg-surface);
-  border: 1px solid var(--border-medium);
-  border-radius: var(--radius-xs);
+  background: #060D20;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-sm);
   text-align: center;
   max-width: 1080px;
   margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  color: #FFFFFF;
+}
+
+body.dark-theme .cta-v4-box {
+  background: #040915;
+  border-color: rgba(22, 184, 243, 0.15);
+}
+
+.cta-v4-box .kicker-v4 {
+  color: #38BDF8;
+  position: relative;
+  z-index: 2;
+}
+
+.cta-v4-box .kicker-v4::before {
+  background: #38BDF8;
 }
 
 .cta-v4-title {
   font-size: clamp(2.25rem, 4vw, 3.5rem);
+  color: #FFFFFF;
   margin-bottom: 1.25rem;
+  position: relative;
+  z-index: 2;
 }
 
 .cta-v4-lead {
   font-size: 1.2rem;
-  color: var(--ink-muted);
+  color: #CBD5E1;
   max-width: 620px;
   margin: 0 auto 2.5rem;
   line-height: 1.65;
+  position: relative;
+  z-index: 2;
 }
 
 .cta-v4-actions {
@@ -979,6 +1036,8 @@ body.dark-theme .hero-brand-symbol {
   align-items: center;
   gap: 1.25rem;
   flex-wrap: wrap;
+  position: relative;
+  z-index: 2;
 }
 
 /* ==========================================================================

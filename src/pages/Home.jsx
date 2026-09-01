@@ -196,6 +196,7 @@ const Home = () => {
 
       {/* ── 04 FOCUS BOKENGI IT V4 (CŒUR TECHNOLOGIQUE INSTITUTIONNEL) ── */}
       <section className="section-it-v4">
+        <div className="pattern-dotted-radial-right" aria-hidden="true" />
         <div className="container-v4">
           <div className="it-v4-grid">
             <div className="it-v4-left">
@@ -258,6 +259,7 @@ const Home = () => {
       <section className="section-cta-v4">
         <div className="container-v4">
           <div className="cta-v4-box">
+            <div className="pattern-dotted-radial-right" aria-hidden="true" />
             <span className="kicker-v4" style={{ justifyContent: 'center' }}>BOKENGI GROUP · ENGAGEMENT PROFESSIONNEL</span>
             <h2 className="cta-v4-title">Construisons une infrastructure solide pour votre organisation.</h2>
             <p className="cta-v4-lead">

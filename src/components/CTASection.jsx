@@ -17,6 +17,7 @@ const CTASection = ({
     <section className="section-cta-v4">
       <div className="container-v4">
         <div className="cta-v4-box">
+          <div className="pattern-dotted-radial-right" aria-hidden="true" />
           <span className="kicker-v4" style={{ justifyContent: 'center' }}>
             BOKENGI GROUP · ENGAGEMENT PROFESSIONNEL
           </span>

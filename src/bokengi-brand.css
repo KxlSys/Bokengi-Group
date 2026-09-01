@@ -1078,51 +1078,53 @@ body.dark-theme .cta-v4-box {
 }
 
 /* ==========================================================================
-   08 FOOTER V4 (LARGE & STRUCTURÉ)
+   08 FOOTER V4 (COMPACT & STRUCTURÉ)
    ========================================================================== */
 .footer-v4 {
-  padding: 90px 0 40px;
+  padding: 50px 0 25px;
   background: var(--bg-surface);
   border-top: 1px solid var(--border-subtle);
 }
 
 .footer-v4-grid {
   display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
-  gap: 4rem;
-  margin-bottom: 4.5rem;
+  grid-template-columns: 1.4fr 0.9fr 1.1fr 1.1fr;
+  gap: 3rem;
+  margin-bottom: 2.25rem;
 }
 
 .footer-v4-logo-img {
-  height: 42px;
+  height: 34px;
   width: auto;
-  margin-bottom: 1.25rem;
+  margin-bottom: 0.85rem;
 }
 
 .footer-v4-desc {
-  font-size: 0.95rem;
+  font-size: 0.88rem;
   color: var(--ink-muted);
-  line-height: 1.65;
-  max-width: 320px;
+  line-height: 1.55;
+  max-width: 300px;
 }
 
 .footer-v4-col-title {
   font-family: var(--font-display);
-  font-size: 1rem;
+  font-size: 0.88rem;
   font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
   color: var(--ink-heading);
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.85rem;
 }
 
 .footer-v4-links {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 0.85rem;
+  gap: 0.45rem;
 }
 
 .footer-v4-link {
-  font-size: 0.92rem;
+  font-size: 0.86rem;
   color: var(--ink-muted);
   text-decoration: none;
   transition: color var(--transition-fast);
@@ -1134,21 +1136,21 @@ body.dark-theme .cta-v4-box {
 
 .footer-v4-email {
   font-family: var(--font-mono);
-  font-size: 0.95rem;
+  font-size: 0.88rem;
   font-weight: 600;
   color: var(--blue-accent);
   text-decoration: none;
   display: inline-block;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.4rem;
 }
 
 .footer-v4-bottom {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 2rem;
+  padding-top: 1.25rem;
   border-top: 1px solid var(--border-subtle);
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: var(--ink-faint);
   flex-wrap: wrap;
   gap: 1rem;

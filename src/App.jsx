@@ -23,10 +23,6 @@ function App() {
     <Router basename={basename}>
       <ScrollToTop />
       <div className="app-container">
-        {/* Subtle corporate ambient glows */}
-        <div className="glow-blob glow-blob-1" aria-hidden="true"></div>
-        <div className="glow-blob glow-blob-2" aria-hidden="true"></div>
-
         <Navbar />
 
         <main id="main-content" tabIndex="-1">

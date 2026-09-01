@@ -1157,7 +1157,370 @@ body.dark-theme .cta-v4-box {
 }
 
 /* ==========================================================================
-   09 RESPONSIVE BREAKPOINTS
+   09 PAGE CONTACT & FORMULAIRE V4 (LUXURY CORPORATE FORM)
+   ========================================================================== */
+.section-contact-v4 {
+  padding: 90px 0 120px;
+}
+
+.contact-v4-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.35fr;
+  gap: clamp(3rem, 6vw, 5.5rem);
+  align-items: flex-start;
+}
+
+.contact-v4-info-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-v4-title {
+  font-size: clamp(2.25rem, 4vw, 3.25rem);
+  line-height: 1.15;
+  margin: 0.5rem 0 1.25rem;
+}
+
+.contact-v4-lead {
+  font-size: 1.15rem;
+  color: var(--ink-muted);
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+}
+
+.contact-v4-card {
+  padding: 2.25rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-card);
+  margin-bottom: 2rem;
+}
+
+.contact-card-title {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--ink-heading);
+  margin-bottom: 1.5rem;
+}
+
+.contact-card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.contact-coord-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-coord-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-faint);
+  margin-bottom: 0.35rem;
+}
+
+.contact-coord-email {
+  color: var(--blue-accent);
+  font-weight: 700;
+  font-size: 1.15rem;
+  font-family: var(--font-mono);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.contact-coord-email:hover {
+  color: var(--blue-cyan);
+}
+
+.contact-coord-val {
+  color: var(--ink-heading);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.contact-v4-guarantee {
+  background: var(--bg-elevated);
+  border-left: 3px solid var(--blue-cyan);
+  padding: 1.5rem;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.contact-guarantee-title {
+  font-size: 0.95rem;
+  color: var(--ink-heading);
+  margin-bottom: 0.35rem;
+  font-weight: 700;
+}
+
+.contact-guarantee-desc {
+  font-size: 0.9rem;
+  color: var(--ink-muted);
+  line-height: 1.6;
+}
+
+/* ── Right Column: Form Container ── */
+.contact-v4-form-card {
+  padding: 3.5rem 3rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-elevated);
+}
+
+body.dark-theme .contact-v4-form-card {
+  background: #080F22;
+  border-color: rgba(255, 255, 255, 0.09);
+  box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.6);
+}
+
+.contact-form-header {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.contact-form-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--ink-heading);
+  margin-bottom: 0.35rem;
+}
+
+.contact-form-subtitle {
+  font-size: 0.9rem;
+  color: var(--ink-muted);
+}
+
+.form-group {
+  margin-bottom: 1.6rem;
+}
+
+.form-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--ink-heading);
+  margin-bottom: 0.5rem;
+}
+
+.form-label .req {
+  color: var(--blue-accent);
+  margin-left: 3px;
+}
+
+.form-label .optional {
+  font-size: 0.78rem;
+  font-weight: 400;
+  color: var(--ink-faint);
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  color: var(--ink-heading);
+  background: var(--bg-elevated);
+  border: 1.5px solid var(--border-medium);
+  border-radius: var(--radius-xs);
+  transition: all var(--transition-fast);
+}
+
+.form-input,
+.form-select {
+  height: 48px;
+  padding: 0 1.2rem;
+}
+
+.form-textarea {
+  padding: 1rem 1.2rem;
+  min-height: 140px;
+  line-height: 1.6;
+  resize: vertical;
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: var(--ink-faint);
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  outline: none;
+  background: var(--bg-surface);
+  border-color: var(--blue-accent);
+  box-shadow: 0 0 0 3px rgba(0, 85, 212, 0.14);
+}
+
+body.dark-theme .form-input,
+body.dark-theme .form-select,
+body.dark-theme .form-textarea {
+  background: #040816;
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #F8FAFC;
+}
+
+body.dark-theme .form-input:focus,
+body.dark-theme .form-select:focus,
+body.dark-theme .form-textarea:focus {
+  background: #060D20;
+  border-color: #16B8F3;
+  box-shadow: 0 0 0 3px rgba(22, 184, 243, 0.2);
+}
+
+.form-select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23576882' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1.2rem center;
+  background-size: 16px;
+  padding-right: 2.75rem;
+  cursor: pointer;
+}
+
+body.dark-theme .form-select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2394A3B8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+}
+
+/* ── Interactive Pole Pill Selector ── */
+.form-poles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 0.65rem;
+  margin-top: 0.25rem;
+}
+
+.form-pole-pill {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0.75rem 0.85rem;
+  font-family: var(--font-sans);
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--ink-muted);
+  background: var(--bg-elevated);
+  border: 1.5px solid var(--border-subtle);
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  user-select: none;
+}
+
+.form-pole-pill:hover {
+  color: var(--ink-heading);
+  border-color: var(--border-medium);
+  background: var(--bg-subtle);
+}
+
+.form-pole-pill.is-active {
+  color: #FFFFFF !important;
+  background: var(--blue-accent);
+  border-color: var(--blue-accent);
+  box-shadow: 0 2px 6px rgba(0, 85, 212, 0.25);
+}
+
+body.dark-theme .form-pole-pill.is-active {
+  background: #0055D4;
+  border-color: #0055D4;
+  box-shadow: 0 2px 8px rgba(0, 85, 212, 0.4);
+}
+
+.form-row-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+@media (max-width: 600px) {
+  .form-row-2 {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}
+
+.form-honeypot {
+  position: absolute;
+  left: -9999px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.form-submit-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.form-submit-btn {
+  height: 50px;
+  padding: 0 2rem;
+  font-size: 0.95rem;
+}
+
+.form-security-note {
+  font-size: 0.82rem;
+  color: var(--ink-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* Success Card */
+.form-success-box {
+  text-align: center;
+  padding: 3rem 1.5rem;
+}
+
+.form-success-icon {
+  width: 68px;
+  height: 68px;
+  background: #10B981;
+  color: #FFFFFF;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.25rem;
+  margin: 0 auto 1.5rem;
+  box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
+}
+
+.form-success-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--ink-heading);
+  margin-bottom: 0.75rem;
+}
+
+.form-success-lead {
+  font-size: 1.05rem;
+  color: var(--ink-muted);
+  line-height: 1.65;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   10 RESPONSIVE BREAKPOINTS
    ========================================================================== */
 @media (max-width: 1080px) {
   .header-v4-nav,

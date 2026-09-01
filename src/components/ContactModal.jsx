@@ -55,7 +55,7 @@ const ContactModal = ({ isOpen, onClose }) => {
       console.error(err);
       setError(
         err.message ||
-          "L'envoi a échoué. Réessayez ou écrivez à contact@bokengi.com."
+          "L'envoi a échoué. Réessayez ou écrivez à bokengi.group@gmail.com."
       );
     } finally {
       setLoading(false);
@@ -81,10 +81,10 @@ const ContactModal = ({ isOpen, onClose }) => {
           {!submitted ? (
             <>
               <h3 className="modal-title" id="modal-title">
-                Discutons de votre projet
+                Demander un devis
               </h3>
               <p className="modal-subtitle">
-                Décrivez-moi vos besoins, je vous recontacterai sous 24h.
+                Décrivez votre besoin. Notre équipe vous recontactera pour échanger sur votre projet.
               </p>
 
               <form id="contact-form" onSubmit={handleSubmit}>
@@ -127,11 +127,11 @@ const ContactModal = ({ isOpen, onClose }) => {
                   />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="form-message">Votre message</label>
+                  <label htmlFor="form-message">Votre besoin</label>
                   <textarea
                     id="form-message"
                     required
-                    placeholder="Quels sont vos objectifs, stack, délais ?"
+                    placeholder="Décrivez votre projet, vos objectifs ou la prestation recherchée."
                     rows={5}
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
@@ -140,17 +140,16 @@ const ContactModal = ({ isOpen, onClose }) => {
                 </div>
                 {error && <p className="form-error">{error}</p>}
                 <button type="submit" className="btn-primary form-submit" disabled={loading}>
-                  {loading ? 'Envoi en cours...' : 'Envoyer la demande'}
+                  {loading ? 'Envoi en cours...' : 'Envoyer ma demande'}
                 </button>
               </form>
             </>
           ) : (
             <div id="form-success" className="form-success-message">
               <div className="success-icon">✓</div>
-              <h4>Message envoyé !</h4>
+              <h4>Demande envoyée !</h4>
               <p>
-                Merci pour votre intérêt. Je reviens vers vous sous 24h avec une proposition ou
-                pour planifier un échange.
+                Merci pour votre demande. Bokengi Group reviendra vers vous prochainement.
               </p>
               <button
                 className="btn-primary"

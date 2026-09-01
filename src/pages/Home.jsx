@@ -99,7 +99,7 @@ const Home = () => {
           <div className="home-hero-visual">
             <div className="home-hero-card">
               <div className="home-hero-card-header">
-                <img src="/bokengi-mark.svg" alt="" className="home-hero-badge-img" aria-hidden="true" />
+                <img src="/bokengi-mark.png" alt="Bokengi Group" className="home-hero-badge-img" />
                 <div>
                   <span className="home-hero-card-brand">BOKENGI GROUP</span>
                   <strong>Structure d'ingénierie & services</strong>

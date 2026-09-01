@@ -10,7 +10,7 @@ const Footer = () => {
           <div className="footer-col footer-col-brand">
             <Link to="/" className="footer-logo">
               <div className="logo-badge">
-                <img src="/bokengi-mark.svg" alt="" className="logo-image" aria-hidden="true" />
+                <img src="/bokengi-mark.png" alt="Bokengi Group" className="logo-image" />
               </div>
               <div className="logo-text-group">
                 <span className="logo-text">BOKENGI GROUP</span>

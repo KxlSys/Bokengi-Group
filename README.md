@@ -14,21 +14,22 @@
 
 **Bokengi Group** fédère cinq expertises spécialisées et complémentaires pour concevoir, sécuriser et déployer les projets informatiques, opérationnels et organisationnels de ses clients (entreprises, PME, organisations et fondateurs) :
 
-`
-                                  ┌────────────────────────┐
-                                  │     BOKENGI GROUP      │
-                                  │  Technology & Services │
-                                  └───────────┬────────────┘
-         ┌──────────────────┬─────────────────┼─────────────────┬──────────────────┐
-         │                  │                 │                 │                  │
-┌────────▼────────┐┌────────▼────────┐┌───────▼────────┐┌───────▼────────┐┌────────▼────────┐
-│   BOKENGI IT    ││ BOKENGI DIGITAL ││BOKENGI BUSINESS││   BOKENGI      ││ BOKENGI EVENTS   │
-│                 ││                 ││                ││   CONSULTING   ││                 │
-│ • Cybersécurité ││ • Dév Web & App ││ • Support Ops  ││ • Conseil IT   ││ • Séminaires    │
-│ • Systèmes/Réseau││ • E-commerce   ││ • Assistance   ││ • Audit & AMOA ││ • Événements pro│
-│ • Maintenance   ││ • UX/UI & Auto  ││ • Gestion Doc  ││ • Stratégie SI ││ • Régie Tech    │
-└─────────────────┘└─────────────────┘└────────────────┘└────────────────┘└────────────────┘
-`
+```mermaid
+flowchart TD
+    BG["🏛️ BOKENGI GROUP<br/><b>Technology & Services</b>"]
+    
+    IT["💻 BOKENGI IT<br/>• Cybersécurité<br/>• Systèmes & Réseaux<br/>• Cloud & Infogérance"]
+    DIG["🌐 BOKENGI DIGITAL<br/>• Dév Web & Applications<br/>• E-commerce & UI/UX<br/>• Transformation Numérique"]
+    BUS["📁 BOKENGI BUSINESS<br/>• Support Opérationnel<br/>• Assistance Administrative<br/>• Gestion Documentaire"]
+    CON["📊 BOKENGI CONSULTING<br/>• Conseil IT & Stratégie<br/>• Audit de Systèmes<br/>• Schéma Directeur & AMOA"]
+    EVE["🎪 BOKENGI EVENTS<br/>• Organisation de Séminaires<br/>• Coordination Événementielle<br/>• Solutions Audiovisuelles"]
+    
+    BG --> IT
+    BG --> DIG
+    BG --> BUS
+    BG --> CON
+    BG --> EVE
+```
 
 ### Les 5 Pôles d'Expertise
 
@@ -52,29 +53,22 @@
 
 ## 📁 Architecture du Projet
 
-`
-bokengi-group/
-├── public/
-│   ├── favicon.ico                 # Favicon multi-résolutions haute visibilité
-│   ├── favicon-32x32.png           # Favicon 32px contrasté
-│   ├── apple-touch-icon.png        # Icône iOS / Apple
-│   ├── bokengi-logo.png            # Logotype officiel
-│   ├── bokengi-mark.png            # Emblème de marque
-│   └── 404.html                    # Redirection SPA GitHub Pages
-├── src/
-│   ├── components/                 # Composants réutilisables (Navbar, Footer, SEO, CTA...)
-│   ├── context/                    # Contextes React (ThemeContext pour Light/Dark Mode)
-│   ├── lib/                        # Utilitaires & passerelle d'envoi de contact
-│   ├── pages/                      # Pages principales (Home, Group, Expertises, Projects, Contact)
-│   │   └── expertises/             # Pages dédiées aux 5 pôles (BokengiIT, Digital, Business...)
-│   ├── bokengi-brand.css           # Design System V4 institutionnel unifié
-│   ├── App.jsx                     # Routeur principal et structure globale
-│   └── main.jsx                    # Point d'entrée de l'application
-├── api/                            # Endpoints serverless pour le formulaire de contact (Vercel)
-├── index.html                      # Document racine avec OpenGraph et Schema.org
-├── vite.config.js                  # Configuration Vite optimisée
-└── package.json                    # Dépendances et scripts
-`
+| Dossier / Fichier | Description & Rôle |
+|---|---|
+| `public/` | Assets statiques publics (favicons haute visibilité, logos officiels, `404.html` SPA) |
+| `src/components/` | Composants UI transverses (`Navbar`, `Footer`, `SEO`, `PageHeader`, `CTASection`) |
+| `src/context/` | Contextes d'état global (`ThemeContext` pour le mode Clair / Sombre) |
+| `src/data/` | Données de contenu (`portfolio.js` pour les réalisations) |
+| `src/lib/` | Utilitaires et connecteur d'envoi du formulaire de contact |
+| `src/pages/` | Pages principales (`Home`, `Group`, `Expertises`, `Projects`, `ContactPage`) |
+| `src/pages/expertises/` | Pages dédiées aux 5 pôles spécialisés (`BokengiIT`, `Digital`, `Business`...) |
+| `src/bokengi-brand.css` | Design System V4 institutionnel unifié |
+| `src/App.jsx` | Routeur central et mise en page principale |
+| `src/main.jsx` | Point d'entrée de l'application React |
+| `api/` | Endpoints serverless pour le formulaire de contact (Vercel) |
+| `index.html` | Document racine avec balises SEO OpenGraph et Schema.org |
+| `vite.config.js` | Configuration du bundler Vite |
+| `package.json` | Manifeste des dépendances et commandes npm |
 
 ---
 
@@ -82,12 +76,11 @@ bokengi-group/
 
 ### Prérequis
 - [Node.js](https://nodejs.org/) (version 18 ou supérieure recommandée)
-- 
-pm ou yarn
+- `npm` ou `yarn`
 
 ### Installation
 
-`ash
+```bash
 # 1. Cloner le dépôt
 git clone https://github.com/KxlSys/Bokengi-Group.git
 cd Bokengi-Group
@@ -97,19 +90,19 @@ npm install
 
 # 3. Lancer le serveur de développement local
 npm run dev
-`
+```
 
-L'application sera accessible sur http://localhost:3000 (ou le port indiqué par Vite).
+L'application sera accessible sur `http://localhost:3000` (ou le port indiqué par Vite).
 
 ### Build de Production
 
-`ash
+```bash
 # Compiler le bundle de production optimisé
 npm run build
 
 # Prévisualiser le build localement
 npm run preview
-`
+```
 
 ---
 

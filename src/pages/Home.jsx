@@ -137,7 +137,7 @@ const Home = () => {
               </svg>
 
               <img 
-                src="/bokengi-mark.png" 
+                src={`${import.meta.env.BASE_URL}bokengi-mark.png`} 
                 alt="Emblème Bokengi Group" 
                 className="hero-brand-symbol"
               />

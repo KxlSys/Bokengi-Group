@@ -49,12 +49,12 @@ const Projects = () => {
         breadcrumbs={[{ label: 'Réalisations' }]}
       />
 
-      <section className="projects-section" style={{ padding: '6.5rem 0' }}>
-        <div className="container-v2">
+      <section style={{ padding: '90px 0' }}>
+        <div className="container-v4">
           {/* Filters */}
-          <div className="portfolio-filters-bar" style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', marginBottom: '3.5rem', flexWrap: 'wrap' }}>
-            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', textTransform: 'uppercase', color: 'var(--ink-faint)', letterSpacing: '0.1em' }}>
-              Filtrer par pôle / domaine :
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', marginBottom: '3.5rem', flexWrap: 'wrap' }}>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', textTransform: 'uppercase', color: 'var(--ink-faint)', letterSpacing: '0.12em' }}>
+              Filtrer par pôle :
             </span>
             <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }} role="tablist">
               {filters.map((f) => (
@@ -63,9 +63,9 @@ const Projects = () => {
                   style={{
                     fontFamily: 'var(--font-mono)',
                     fontSize: '0.75rem',
-                    background: activeFilter === f.id ? 'var(--navy-primary)' : 'var(--bg-surface)',
+                    background: activeFilter === f.id ? 'var(--blue-accent)' : 'var(--bg-surface)',
                     color: activeFilter === f.id ? '#FFFFFF' : 'var(--ink-muted)',
-                    border: `1px solid ${activeFilter === f.id ? 'var(--navy-primary)' : 'var(--border-medium)'}`,
+                    border: `1px solid ${activeFilter === f.id ? 'var(--blue-accent)' : 'var(--border-medium)'}`,
                     padding: '0.5rem 1rem',
                     borderRadius: 'var(--radius-xs)',
                     cursor: 'pointer',
@@ -84,40 +84,40 @@ const Projects = () => {
           {/* Projects Grid */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(380px, 1fr))', gap: '2.5rem' }}>
             {filteredProjects.map((project) => (
-              <article key={project.id} className="project-flagship-card" style={{ padding: '3rem' }}>
+              <article key={project.id} style={{ padding: '3rem', background: 'var(--bg-surface)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-xs)', display: 'flex', flexDirection: 'column' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
-                  <span className="project-flagship-badge">{project.category}</span>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--blue-cyan)', textTransform: 'uppercase', fontWeight: 700 }}>{project.category}</span>
                   <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', color: 'var(--ink-faint)' }}>{project.year}</span>
                 </div>
 
-                <h2 className="title-subsection" style={{ fontSize: '1.55rem', marginBottom: '0.65rem' }}>{project.title}</h2>
+                <h2 style={{ fontSize: '1.6rem', marginBottom: '0.65rem' }}>{project.title}</h2>
                 
-                <p style={{ fontSize: '0.88rem', color: 'var(--ink-muted)', marginBottom: '1.25rem' }}>
+                <p style={{ fontSize: '0.9rem', color: 'var(--ink-muted)', marginBottom: '1.25rem' }}>
                   <strong style={{ color: 'var(--ink-heading)' }}>Contexte :</strong> {project.client}
                 </p>
 
                 <p style={{ fontSize: '1rem', color: 'var(--ink-body)', lineHeight: 1.65, marginBottom: '2rem', flex: 1 }}>{project.summary}</p>
 
-                <div style={{ background: 'var(--bg-elevated)', padding: '1.5rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)', marginBottom: '1.75rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                <div style={{ background: 'var(--bg-elevated)', padding: '1.5rem', borderRadius: 'var(--radius-xs)', border: '1px solid var(--border-subtle)', marginBottom: '1.75rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                   <div>
-                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.68rem', textTransform: 'uppercase', color: 'var(--blue-accent)', display: 'block', marginBottom: '0.25rem', fontWeight: 600 }}>Défi initial</span>
-                    <p style={{ fontSize: '0.88rem', color: 'var(--ink-muted)', lineHeight: 1.55 }}>{project.challenge}</p>
+                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.68rem', textTransform: 'uppercase', color: 'var(--blue-cyan)', display: 'block', marginBottom: '0.25rem', fontWeight: 700 }}>Défi initial</span>
+                    <p style={{ fontSize: '0.9rem', color: 'var(--ink-muted)', lineHeight: 1.55 }}>{project.challenge}</p>
                   </div>
                   <div>
-                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.68rem', textTransform: 'uppercase', color: 'var(--blue-accent)', display: 'block', marginBottom: '0.25rem', fontWeight: 600 }}>Solution déployée</span>
-                    <p style={{ fontSize: '0.88rem', color: 'var(--ink-muted)', lineHeight: 1.55 }}>{project.solution}</p>
+                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.68rem', textTransform: 'uppercase', color: 'var(--blue-cyan)', display: 'block', marginBottom: '0.25rem', fontWeight: 700 }}>Solution déployée</span>
+                    <p style={{ fontSize: '0.9rem', color: 'var(--ink-muted)', lineHeight: 1.55 }}>{project.solution}</p>
                   </div>
                 </div>
 
                 {project.results && project.results.length > 0 && (
                   <div style={{ marginBottom: '2rem' }}>
-                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', textTransform: 'uppercase', color: 'var(--ink-heading)', fontWeight: 600, display: 'block', marginBottom: '0.6rem' }}>
+                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', textTransform: 'uppercase', color: 'var(--ink-heading)', fontWeight: 700, display: 'block', marginBottom: '0.6rem' }}>
                       Résultats vérifiés :
                     </span>
                     <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
                       {project.results.map((r, i) => (
-                        <li key={i} style={{ fontSize: '0.88rem', color: 'var(--ink-muted)', display: 'flex', gap: '0.5rem' }}>
-                          <span style={{ color: '#10B981', fontWeight: 700 }}>✓</span> {r}
+                        <li key={i} style={{ fontSize: '0.9rem', color: 'var(--ink-muted)', display: 'flex', gap: '0.5rem' }}>
+                          <span style={{ color: 'var(--blue-cyan)', fontWeight: 700 }}>✓</span> {r}
                         </li>
                       ))}
                     </ul>
@@ -138,9 +138,9 @@ const Projects = () => {
           </div>
 
           {filteredProjects.length === 0 && (
-            <div className="empty-projects-notice">
-              <p>Aucune réalisation ne correspond à ce filtre pour le moment.</p>
-              <button onClick={() => setActiveFilter('all')} className="btn-ghost">
+            <div style={{ textAlign: 'center', padding: '4rem 0' }}>
+              <p style={{ color: 'var(--ink-muted)', marginBottom: '1rem' }}>Aucune réalisation ne correspond à ce filtre pour le moment.</p>
+              <button onClick={() => setActiveFilter('all')} className="btn-v4-secondary">
                 Afficher toutes les réalisations
               </button>
             </div>

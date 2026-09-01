@@ -65,25 +65,25 @@ const BokengiEvents = () => {
         ]}
       />
 
-      <section className="pole-domains-section" style={{ padding: '6.5rem 0' }}>
-        <div className="container-v2">
+      <section style={{ padding: '90px 0' }}>
+        <div className="container-v4">
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: '2.5rem' }}>
             {domains.map((dom, idx) => (
-              <div key={idx} className="project-secondary-card" style={{ padding: '2.75rem' }}>
+              <div key={idx} style={{ padding: '2.5rem', background: 'var(--bg-surface)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-xs)' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem' }}>
-                  <span className="why-v2-idx" style={{ marginBottom: 0 }}>0{idx + 1}</span>
-                  <span className="project-flagship-badge">Bokengi Events</span>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: '1.1rem', color: 'var(--blue-cyan)', fontWeight: 700 }}>0{idx + 1}</span>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', textTransform: 'uppercase', color: 'var(--blue-cyan)', fontWeight: 700 }}>Bokengi Events</span>
                 </div>
-                <h2 className="title-subsection" style={{ margin: '0.5rem 0 0.85rem' }}>{dom.title}</h2>
+                <h2 style={{ fontSize: '1.45rem', margin: '0.5rem 0 0.85rem' }}>{dom.title}</h2>
                 <p style={{ fontSize: '1.05rem', color: 'var(--ink-muted)', lineHeight: 1.65, marginBottom: '2rem' }}>{dom.desc}</p>
-                <div style={{ background: 'var(--bg-elevated)', padding: '1.75rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)' }}>
-                  <h3 style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--blue-accent)', marginBottom: '1rem' }}>
+                <div style={{ background: 'var(--bg-elevated)', padding: '1.75rem', borderRadius: 'var(--radius-xs)', border: '1px solid var(--border-subtle)' }}>
+                  <h3 style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--blue-cyan)', marginBottom: '1rem', fontWeight: 700 }}>
                     Dispositifs & prestations :
                   </h3>
                   <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
                     {dom.items.map((item, iIdx) => (
                       <li key={iIdx} style={{ display: 'flex', gap: '0.6rem', fontSize: '0.92rem', color: 'var(--ink-body)' }}>
-                        <span style={{ color: 'var(--blue-accent)', fontWeight: 700 }}>•</span> {item}
+                        <span style={{ color: 'var(--blue-cyan)', fontWeight: 700 }}>•</span> {item}
                       </li>
                     ))}
                   </ul>

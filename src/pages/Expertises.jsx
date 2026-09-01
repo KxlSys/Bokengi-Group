@@ -97,33 +97,33 @@ const Expertises = () => {
         breadcrumbs={[{ label: 'Expertises' }]}
       />
 
-      <section className="expertises-list-section" style={{ padding: '6.5rem 0' }}>
-        <div className="container-v2">
+      <section style={{ padding: '100px 0' }}>
+        <div className="container-v4">
           <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem' }}>
             {poles.map((pole) => (
-              <article key={pole.id} className="project-flagship-card" id={pole.id} style={{ padding: '3.5rem' }}>
+              <article key={pole.id} id={pole.id} style={{ padding: '3.5rem', background: 'var(--bg-surface)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-xs)' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.75rem' }}>
-                  <span className="why-v2-idx" style={{ marginBottom: 0 }}>{pole.number}</span>
-                  <span className="project-flagship-badge">{pole.tag}</span>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: '1.25rem', color: 'var(--blue-cyan)', fontWeight: 700 }}>{pole.number}</span>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', textTransform: 'uppercase', color: 'var(--blue-cyan)', fontWeight: 700 }}>{pole.tag}</span>
                 </div>
 
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '3.5rem', alignItems: 'center' }}>
                   <div>
-                    <h2 className="title-section" style={{ marginBottom: '1rem' }}>{pole.name}</h2>
-                    <p style={{ fontSize: '1.1rem', color: 'var(--ink-muted)', lineHeight: 1.7, marginBottom: '2rem' }}>{pole.desc}</p>
-                    <Link to={pole.to} className="btn-v2-primary">
+                    <h2 style={{ fontSize: '2.25rem', marginBottom: '1rem', lineHeight: 1.15 }}>{pole.name}</h2>
+                    <p style={{ fontSize: '1.15rem', color: 'var(--ink-muted)', lineHeight: 1.7, marginBottom: '2rem' }}>{pole.desc}</p>
+                    <Link to={pole.to} className="btn-v4-primary">
                       {pole.cta} →
                     </Link>
                   </div>
 
-                  <div style={{ background: 'var(--bg-elevated)', padding: '2rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)' }}>
-                    <h3 style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--blue-accent)', marginBottom: '1.25rem' }}>
+                  <div style={{ background: 'var(--bg-elevated)', padding: '2rem', borderRadius: 'var(--radius-xs)', border: '1px solid var(--border-subtle)' }}>
+                    <h3 style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--blue-cyan)', marginBottom: '1.25rem', fontWeight: 700 }}>
                       Domaines d'intervention :
                     </h3>
                     <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                       {pole.domains.map((domain, i) => (
                         <li key={i} style={{ display: 'flex', gap: '0.65rem', fontSize: '0.95rem', color: 'var(--ink-body)' }}>
-                          <span style={{ color: 'var(--blue-accent)', fontWeight: 700 }}>→</span> {domain}
+                          <span style={{ color: 'var(--blue-cyan)', fontWeight: 700 }}>→</span> {domain}
                         </li>
                       ))}
                     </ul>

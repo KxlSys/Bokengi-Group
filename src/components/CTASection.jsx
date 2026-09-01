@@ -14,17 +14,17 @@ const CTASection = ({
   const finalSecondaryTo = pole ? `/contact?pole=${pole}` : secondaryTo;
 
   return (
-    <section className="cta-v2-section">
-      <div className="container-v2">
-        <div className="cta-v2-box">
-          <span className="kicker-v2" style={{ color: 'var(--blue-glow)', justifyContent: 'center' }}>
-            Bokengi Group · Engagement Professionnel
+    <section className="section-cta-v4">
+      <div className="container-v4">
+        <div className="cta-v4-box">
+          <span className="kicker-v4" style={{ justifyContent: 'center' }}>
+            BOKENGI GROUP · ENGAGEMENT PROFESSIONNEL
           </span>
-          <h2 className="cta-v2-title">{title}</h2>
-          <p className="cta-v2-lead">{text}</p>
-          <div className="cta-v2-actions">
-            <Link to={finalPrimaryTo} className="btn-v2-primary">{primaryLabel}</Link>
-            <Link to={finalSecondaryTo} className="btn-v2-ghost">{secondaryLabel}</Link>
+          <h2 className="cta-v4-title">{title}</h2>
+          <p className="cta-v4-lead">{text}</p>
+          <div className="cta-v4-actions">
+            <Link to={finalPrimaryTo} className="btn-v4-primary">{primaryLabel}</Link>
+            <Link to={finalSecondaryTo} className="btn-v4-secondary">{secondaryLabel}</Link>
           </div>
         </div>
       </div>

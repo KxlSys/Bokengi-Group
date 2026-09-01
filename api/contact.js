@@ -37,11 +37,13 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Message trop long.' });
   }
 
-  const toEmail = process.env.CONTACT_TO_EMAIL || 'contact@bokengi.com';
-  const fromEmail = process.env.CONTACT_FROM_EMAIL || 'Bokengi <onboarding@resend.dev>';
+  // Adresse temporaire de réception. Elle pourra être remplacée plus tard
+  // via CONTACT_TO_EMAIL dans les variables d'environnement Vercel.
+  const toEmail = process.env.CONTACT_TO_EMAIL || 'bokengi.group@gmail.com';
+  const fromEmail = process.env.CONTACT_FROM_EMAIL || 'Bokengi Group <onboarding@resend.dev>';
 
   const html = `
-    <h2>Nouveau message — Bokengi</h2>
+    <h2>Nouveau message — Bokengi Group</h2>
     <p><strong>Nom / Entreprise :</strong> ${escapeHtml(name)}</p>
     <p><strong>Email :</strong> ${escapeHtml(email)}</p>
     <hr />
@@ -59,7 +61,7 @@ export default async function handler(req, res) {
         from: fromEmail,
         to: [toEmail],
         reply_to: email,
-        subject: `[Bokengi] ${name.trim()}`,
+        subject: `[Bokengi Group] ${name.trim()}`,
         html,
       }),
     });

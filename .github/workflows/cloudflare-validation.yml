@@ -11,6 +11,7 @@ on:
       - 'pnpm-lock.yaml'
       - 'wrangler.jsonc'
       - 'open-next.config.ts'
+      - 'next.config.ts'
       - '.github/workflows/cloudflare-validation.yml'
 
 concurrency:

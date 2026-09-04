@@ -11,6 +11,8 @@ const NEXT_PUBLIC_SERVER_URL = process.env.VERCEL_PROJECT_PRODUCTION_URL
   ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
   : process.env.__NEXT_PRIVATE_ORIGIN || 'http://localhost:3000'
 
+const isWorkerBuild = Boolean(process.env.CLOUDFLARE_WORKERS || process.env.NEXT_PRIVATE_STANDALONE)
+
 const nextConfig: NextConfig = {
   images: {
     localPatterns: [
@@ -74,7 +76,23 @@ const nextConfig: NextConfig = {
   ],
   turbopack: {
     root: path.resolve(dirname),
+    ...(isWorkerBuild
+      ? {
+          resolveAlias: {
+            'drizzle-kit/api': './src/shims/drizzle-kit.ts',
+            sharp: './src/shims/sharp.ts',
+          },
+        }
+      : {}),
   },
 }
 
-export default withPayload(nextConfig, { devBundleServerPackages: false })
+const configured = withPayload(nextConfig, { devBundleServerPackages: false })
+
+if (isWorkerBuild) {
+  configured.serverExternalPackages = (configured.serverExternalPackages || [])
+    .filter((pkg) => !pkg.startsWith('drizzle-kit') && pkg !== 'sharp')
+    .concat('pg-cloudflare')
+}
+
+export default configured

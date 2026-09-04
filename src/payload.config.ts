@@ -64,7 +64,17 @@ export default buildConfig({
   editor: defaultLexical,
   db: postgresAdapter({
     pool: {
-      connectionString: process.env.DATABASE_URI || process.env.POSTGRES_URL || process.env.DATABASE_URL || '',
+      get connectionString() {
+        try {
+          const cf = (globalThis as any)[Symbol.for('__cloudflare-context__')];
+          const env = cf?.env || (globalThis as any).env || (globalThis as any);
+          const hyperdrive = env?.HYPERDRIVE || (process.env as any)?.HYPERDRIVE;
+          if (hyperdrive?.connectionString) {
+            return hyperdrive.connectionString;
+          }
+        } catch {}
+        return process.env.DATABASE_URI || process.env.POSTGRES_URL || process.env.DATABASE_URL || '';
+      },
     },
   }),
   collections: [
@@ -84,8 +94,24 @@ export default buildConfig({
       collections: {
         media: true,
       },
-      bucket: (process.env.MEDIA_BUCKET as any) || (globalThis as any).MEDIA_BUCKET || ({} as any),
-      enabled: Boolean((process.env.MEDIA_BUCKET as any) || (globalThis as any).MEDIA_BUCKET),
+      bucket: new Proxy({} as any, {
+        get(_target, prop) {
+          const cf = (globalThis as any)[Symbol.for('__cloudflare-context__')];
+          const env = cf?.env || (globalThis as any).env || (globalThis as any);
+          const bucket = env?.MEDIA_BUCKET || (process.env as any)?.MEDIA_BUCKET;
+          if (bucket && typeof bucket[prop] === 'function') {
+            return bucket[prop].bind(bucket);
+          }
+          return bucket?.[prop];
+        },
+      }),
+      enabled: Boolean(
+        typeof process.env.CLOUDFLARE_WORKERS !== 'undefined' ||
+        process.env.CF_PAGES ||
+        process.env.NODE_ENV === 'production' ||
+        (process.env.MEDIA_BUCKET as any) ||
+        (globalThis as any).MEDIA_BUCKET
+      ),
     }),
   ],
   globals: [

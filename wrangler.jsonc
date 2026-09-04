@@ -15,5 +15,26 @@
       "binding": "MEDIA_BUCKET",
       "bucket_name": "bokengi-media"
     }
-  ]
+  ],
+  "env": {
+    "preview": {
+      "name": "bokengi-group-preview",
+      "assets": {
+        "directory": ".open-next/assets",
+        "binding": "ASSETS"
+      },
+      "r2_buckets": [
+        {
+          "binding": "MEDIA_BUCKET",
+          "bucket_name": "bokengi-media-preview"
+        }
+      ],
+      "hyperdrive": [
+        {
+          "binding": "HYPERDRIVE",
+          "id": "3b28e5bf5151410480fd9505eb7413fe"
+        }
+      ]
+    }
+  }
 }

@@ -8,6 +8,8 @@ node_modules
 .next
 next-env.d.ts
 .vercel
+.open-next/
+.wrangler/
 
 # Payload default media upload directory
 public/media/

@@ -1,0 +1,90 @@
+name: Cloudflare Worker Validation (Temporary)
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - migration/bokengi-2.0
+    paths:
+      - 'src/**'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - 'wrangler.jsonc'
+      - 'open-next.config.ts'
+      - '.github/workflows/cloudflare-validation.yml'
+
+concurrency:
+  group: cloudflare-validation-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-worker:
+    name: Build OpenNext Cloudflare Worker (Ubuntu Linux)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.33.0
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Generate Payload types
+        run: pnpm generate:types
+        env:
+          PAYLOAD_SECRET: temporary-validation-secret-at-least-32-chars-long
+          DATABASE_URI: postgresql://postgres:postgres@localhost:5432/dummy
+
+      - name: Build OpenNext Worker
+        run: pnpm run build:worker
+        env:
+          CLOUDFLARE_WORKERS: 'true'
+          PAYLOAD_SECRET: temporary-validation-secret-at-least-32-chars-long
+          DATABASE_URI: postgresql://postgres:postgres@localhost:5432/dummy
+
+      - name: Inspect generated Worker and Assets
+        run: |
+          echo "=== Vérification des fichiers générés ==="
+          ls -la .open-next/
+          if [ -f .open-next/worker.js ]; then
+            echo "✅ .open-next/worker.js généré avec succès !"
+            ls -lh .open-next/worker.js
+          else
+            echo "❌ .open-next/worker.js manquant !"
+            exit 1
+          fi
+          echo "=== Taille des assets ==="
+          du -sh .open-next/assets/
+          echo "=== Taille totale .open-next ==="
+          du -sh .open-next/
+
+      - name: Audit Worker Bundle for Node.js modules
+        run: |
+          echo "=== Audit du bundle worker.js ==="
+          for mod in sharp "@img" libvips child_process worker_threads fs net tls pg; do
+            COUNT=$(grep -c "$mod" .open-next/worker.js || true)
+            echo "Module '$mod': $COUNT occurrences trouvées"
+          done
+
+      - name: Validate with Wrangler (dry-run)
+        run: pnpm wrangler deploy --dry-run --outdir .open-next/dry-run
+
+      - name: Upload OpenNext build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: open-next-worker-linux-build
+          path: |
+            .open-next/worker.js
+            .open-next/assets/
+          retention-days: 3

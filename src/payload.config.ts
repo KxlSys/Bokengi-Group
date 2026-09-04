@@ -1,4 +1,4 @@
-import { vercelPostgresAdapter } from '@payloadcms/db-vercel-postgres'
+import { postgresAdapter } from '@payloadcms/db-postgres'
 import sharp from 'sharp'
 import path from 'path'
 import { buildConfig, PayloadRequest } from 'payload'
@@ -18,7 +18,7 @@ import { Footer } from './globals/Footer'
 import { plugins } from './plugins'
 import { defaultLexical } from '@/fields/defaultLexical'
 import { getServerSideURL } from './utilities/getURL'
-import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
+import { r2Storage } from '@payloadcms/storage-r2'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -62,9 +62,9 @@ export default buildConfig({
   },
   // This config helps us configure global or default features that the other editors can inherit
   editor: defaultLexical,
-  db: vercelPostgresAdapter({
+  db: postgresAdapter({
     pool: {
-      connectionString: process.env.POSTGRES_URL || process.env.DATABASE_URI || '',
+      connectionString: process.env.DATABASE_URI || process.env.POSTGRES_URL || process.env.DATABASE_URL || '',
     },
   }),
   collections: [
@@ -80,11 +80,12 @@ export default buildConfig({
   cors: [getServerSideURL()].filter(Boolean),
   plugins: [
     ...plugins,
-    vercelBlobStorage({
+    r2Storage({
       collections: {
         media: true,
       },
-      token: process.env.BLOB_READ_WRITE_TOKEN || '',
+      bucket: (process.env.MEDIA_BUCKET as any) || (globalThis as any).MEDIA_BUCKET || ({} as any),
+      enabled: Boolean((process.env.MEDIA_BUCKET as any) || (globalThis as any).MEDIA_BUCKET),
     }),
   ],
   globals: [
@@ -93,7 +94,7 @@ export default buildConfig({
     Footer,
   ],
   secret: process.env.PAYLOAD_SECRET,
-  sharp,
+  sharp: typeof process.env.CLOUDFLARE_WORKERS !== 'undefined' ? undefined : sharp,
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },

@@ -19,6 +19,7 @@ import { plugins } from './plugins'
 import { defaultLexical } from '@/fields/defaultLexical'
 import { getServerSideURL } from './utilities/getURL'
 import { r2Storage } from '@payloadcms/storage-r2'
+import { migrations } from './migrations'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -76,6 +77,8 @@ export default buildConfig({
         return process.env.DATABASE_URI || process.env.POSTGRES_URL || process.env.DATABASE_URL || '';
       },
     },
+    transactionOptions: false,
+    prodMigrations: migrations as any,
   }),
   collections: [
     Poles,

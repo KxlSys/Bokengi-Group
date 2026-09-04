@@ -1,4 +1,4 @@
-﻿import { NextRequest, NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 
 // Cache mémoire simple pour limitation des abus (fenêtre glissante par IP)
 const rateLimitMap = new Map<string, { count: number; lastReset: number }>()
@@ -132,6 +132,7 @@ export async function POST(req: NextRequest) {
           source: 'website-contact-form',
           status: 'new',
         },
+        disableTransaction: true,
       })
 
       createdLeadId = leadDoc.id

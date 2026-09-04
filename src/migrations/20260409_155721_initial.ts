@@ -1,7 +1,6 @@
-import { MigrateUpArgs, MigrateDownArgs, sql } from '@payloadcms/db-vercel-postgres'
+import { MigrateUpArgs, MigrateDownArgs, sql } from '@payloadcms/db-postgres'
 
-export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
-  await db.execute(sql`
+const upSql = `
    CREATE TYPE "public"."enum_pages_hero_links_link_type" AS ENUM('reference', 'custom');
   CREATE TYPE "public"."enum_pages_hero_links_link_appearance" AS ENUM('default', 'outline');
   CREATE TYPE "public"."enum_pages_blocks_cta_links_link_type" AS ENUM('reference', 'custom');
@@ -1137,11 +1136,9 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX "footer_rels_parent_idx" ON "footer_rels" USING btree ("parent_id");
   CREATE INDEX "footer_rels_path_idx" ON "footer_rels" USING btree ("path");
   CREATE INDEX "footer_rels_pages_id_idx" ON "footer_rels" USING btree ("pages_id");
-  CREATE INDEX "footer_rels_posts_id_idx" ON "footer_rels" USING btree ("posts_id");`)
-}
+  CREATE INDEX "footer_rels_posts_id_idx" ON "footer_rels" USING btree ("posts_id");`
 
-export async function down({ db, payload, req }: MigrateDownArgs): Promise<void> {
-  await db.execute(sql`
+const downSql = `
    DROP TABLE "pages_hero_links" CASCADE;
   DROP TABLE "pages_blocks_cta_links" CASCADE;
   DROP TABLE "pages_blocks_cta" CASCADE;
@@ -1239,5 +1236,58 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   DROP TYPE "public"."enum_payload_jobs_task_slug";
   DROP TYPE "public"."enum_payload_folders_folder_type";
   DROP TYPE "public"."enum_header_nav_items_link_type";
-  DROP TYPE "public"."enum_footer_nav_items_link_type";`)
+  DROP TYPE "public"."enum_footer_nav_items_link_type";`
+
+export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
+  const statements = upSql
+    .split(';')
+    .map((s) => s.trim())
+    .filter((s) => s.length > 0)
+
+  for (let i = 0; i < statements.length; i++) {
+    const statement = statements[i]
+    try {
+      await db.execute(sql.raw(statement))
+    } catch (err: any) {
+      const cause = err?.cause || err
+      console.error(
+        `[MIGRATE ERROR at ${i + 1}/${statements.length}]:`,
+        JSON.stringify({
+          message: err?.message,
+          causeMessage: cause?.message,
+          code: cause?.code || err?.code,
+          detail: cause?.detail,
+          hint: cause?.hint,
+          severity: cause?.severity,
+        })
+      )
+      if (
+        cause?.code === '42710' ||
+        cause?.code === '42P07' ||
+        cause?.message?.includes('already exists')
+      ) {
+        console.warn(`[MIGRATE SKIPPED EXISTING]: statement ${i + 1}`)
+        continue
+      }
+      throw err
+    }
+  }
+}
+
+export async function down({ db, payload, req }: MigrateDownArgs): Promise<void> {
+  const statements = downSql
+    .split(';')
+    .map((s) => s.trim())
+    .filter((s) => s.length > 0)
+
+  for (const statement of statements) {
+    try {
+      await db.execute(sql.raw(statement))
+    } catch (err: any) {
+      if (err?.message && err.message.includes('does not exist')) {
+        continue
+      }
+      throw err
+    }
+  }
 }

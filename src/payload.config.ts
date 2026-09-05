@@ -1,4 +1,6 @@
 import { postgresAdapter } from '@payloadcms/db-postgres'
+import { drizzle } from '@payloadcms/db-postgres/drizzle/node-postgres'
+import { requestDrizzleMap } from './lib/db-lifecycle'
 import sharp from 'sharp'
 import path from 'path'
 import { buildConfig, PayloadRequest } from 'payload'
@@ -63,23 +65,116 @@ export default buildConfig({
   },
   // This config helps us configure global or default features that the other editors can inherit
   editor: defaultLexical,
-  db: postgresAdapter({
-    pool: {
-      get connectionString() {
-        try {
-          const cf = (globalThis as any)[Symbol.for('__cloudflare-context__')];
-          const env = cf?.env || (globalThis as any).env || (globalThis as any);
-          const hyperdrive = env?.HYPERDRIVE || (process.env as any)?.HYPERDRIVE;
-          if (hyperdrive?.connectionString) {
-            return hyperdrive.connectionString;
-          }
-        } catch {}
-        return process.env.DATABASE_URI || process.env.POSTGRES_URL || process.env.DATABASE_URL || '';
+  db: (() => {
+    const baseAdapter = postgresAdapter({
+      pool: {
+        get connectionString() {
+          try {
+            const cf = (globalThis as any)[Symbol.for('__cloudflare-context__')];
+            const env = cf?.env || (globalThis as any).env || (globalThis as any);
+            const hyperdrive = env?.HYPERDRIVE || (process.env as any)?.HYPERDRIVE;
+            if (hyperdrive?.connectionString) {
+              return hyperdrive.connectionString;
+            }
+          } catch {}
+          return process.env.DATABASE_URI || process.env.POSTGRES_URL || process.env.DATABASE_URL || '';
+        },
       },
-    },
-    transactionOptions: false,
-    prodMigrations: migrations as any,
-  }),
+      transactionOptions: false,
+      prodMigrations: migrations as any,
+    });
+
+    const origInit = baseAdapter.init;
+    baseAdapter.init = function (args: any) {
+      const adapter = origInit.call(this, args);
+
+      let fallbackDrizzle: any = undefined;
+      let fallbackPool: any = undefined;
+
+      const getOrCreateScope = (cfContext: any, connectionString: string) => {
+        const key = cfContext.ctx || cfContext;
+        let scope = requestDrizzleMap.get(key);
+        if (!scope) {
+          const PoolClass = (adapter as any).pg?.Pool;
+          const requestPool = new PoolClass({
+            connectionString,
+            max: 10,
+            maxUses: 1,
+          });
+          const requestDrizzle = drizzle({
+            client: requestPool,
+            logger: (adapter as any).logger || false,
+            schema: (adapter as any).schema,
+          } as any);
+          scope = {
+            pool: requestPool,
+            drizzle: requestDrizzle,
+            ended: false,
+          };
+          requestDrizzleMap.set(key, scope);
+          if (cfContext !== key) {
+            requestDrizzleMap.set(cfContext, scope);
+          }
+        }
+        return scope;
+      };
+
+      Object.defineProperty(adapter, 'drizzle', {
+        get() {
+          const cfContext = (globalThis as any)[Symbol.for('__cloudflare-context__')];
+          const connectionString = cfContext?.env?.HYPERDRIVE?.connectionString;
+
+          if (connectionString) {
+            return getOrCreateScope(cfContext, connectionString).drizzle;
+          }
+
+          // Fallback Node.js (CLI, Migrations, Seed, Tests, Bootstrap)
+          return fallbackDrizzle;
+        },
+        set(val) {
+          const cfContext = (globalThis as any)[Symbol.for('__cloudflare-context__')];
+          const connectionString = cfContext?.env?.HYPERDRIVE?.connectionString;
+          if (connectionString) {
+            const scope = getOrCreateScope(cfContext, connectionString);
+            scope.drizzle = val;
+            return;
+          }
+          fallbackDrizzle = val;
+        },
+        configurable: true,
+        enumerable: true,
+      });
+
+      Object.defineProperty(adapter, 'pool', {
+        get() {
+          const cfContext = (globalThis as any)[Symbol.for('__cloudflare-context__')];
+          const connectionString = cfContext?.env?.HYPERDRIVE?.connectionString;
+
+          if (connectionString) {
+            return getOrCreateScope(cfContext, connectionString).pool;
+          }
+
+          return fallbackPool;
+        },
+        set(val) {
+          const cfContext = (globalThis as any)[Symbol.for('__cloudflare-context__')];
+          const connectionString = cfContext?.env?.HYPERDRIVE?.connectionString;
+          if (connectionString) {
+            const scope = getOrCreateScope(cfContext, connectionString);
+            scope.pool = val;
+            return;
+          }
+          fallbackPool = val;
+        },
+        configurable: true,
+        enumerable: true,
+      });
+
+      return adapter;
+    };
+
+    return baseAdapter;
+  })(),
   collections: [
     Poles,
     Services,

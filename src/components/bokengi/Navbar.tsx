@@ -1,8 +1,7 @@
-﻿'use client'
+'use client'
 
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { ThemeToggle } from './ThemeToggle'
 import { useTheme } from '@/providers/Theme'
@@ -31,12 +30,18 @@ export const Navbar: React.FC = () => {
 
   const isDark = mounted ? theme === 'dark' : true
 
-  const navLinks = [
-    { href: '/groupe', label: 'Le Groupe' },
-    { href: '/expertises', label: 'Expertises' },
-    { href: '/realisations', label: 'Réalisations' },
-    { href: '/contact', label: 'Contact' },
+  const expertises = [
+    { href: '/expertises/it', name: '01 — BOKENGI IT', sub: 'Technologie, infrastructure & cybersécurité' },
+    { href: '/expertises/digital', name: '02 — BOKENGI DIGITAL', sub: 'Web, produits numériques & transformation' },
+    { href: '/expertises/business', name: '03 — BOKENGI BUSINESS', sub: 'Assistance administrative & organisation' },
+    { href: '/expertises/consulting', name: '04 — BOKENGI CONSULTING', sub: 'Conseil stratégique & audits IT' },
+    { href: '/expertises/events', name: '05 — BOKENGI EVENTS', sub: 'Événements professionnels & régie' },
   ]
+
+  const isGroupeActive = pathname === '/groupe'
+  const isExpertisesActive = pathname === '/expertises' || pathname?.startsWith('/expertises/')
+  const isRealisationsActive = pathname === '/realisations' || pathname?.startsWith('/realisations/')
+  const isContactActive = pathname === '/contact'
 
   return (
     <header className={`header-v4 ${isScrolled ? 'is-scrolled' : ''}`}>
@@ -54,23 +59,49 @@ export const Navbar: React.FC = () => {
         {/* Desktop Navigation */}
         <nav className="header-v4-nav hidden md:flex" aria-label="Navigation principale">
           <ul className="header-v4-links">
-            {navLinks.map((link) => {
-              const isActive = pathname === link.href || (link.href !== '/' && pathname?.startsWith(link.href))
-              return (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className={`header-v4-link ${isActive ? 'is-active' : ''}`}
-                    style={{
-                      color: isActive ? 'var(--ink-heading)' : 'var(--ink-muted)',
-                      fontWeight: isActive ? 600 : 500,
-                    }}
-                  >
-                    {link.label}
+            <li>
+              <Link
+                href="/groupe"
+                className={`header-v4-link ${isGroupeActive ? 'is-active' : ''}`}
+              >
+                Le Groupe
+              </Link>
+            </li>
+
+            <li className="header-v4-dropdown-wrap">
+              <Link
+                href="/expertises"
+                className={`header-v4-link ${isExpertisesActive ? 'is-active' : ''}`}
+              >
+                Expertises
+              </Link>
+              <div className="header-v4-dropdown-menu">
+                {expertises.map((exp) => (
+                  <Link key={exp.href} href={exp.href} className="header-v4-dropdown-item">
+                    <span className="dropdown-item-pole">{exp.name}</span>
+                    <span className="dropdown-item-sub">{exp.sub}</span>
                   </Link>
-                </li>
-              )
-            })}
+                ))}
+              </div>
+            </li>
+
+            <li>
+              <Link
+                href="/realisations"
+                className={`header-v4-link ${isRealisationsActive ? 'is-active' : ''}`}
+              >
+                Réalisations
+              </Link>
+            </li>
+
+            <li>
+              <Link
+                href="/contact"
+                className={`header-v4-link ${isContactActive ? 'is-active' : ''}`}
+              >
+                Contact
+              </Link>
+            </li>
           </ul>
         </nav>
 
@@ -104,23 +135,75 @@ export const Navbar: React.FC = () => {
       {/* Mobile Menu */}
       {isOpen && (
         <div className="md:hidden bg-[var(--bg-surface)] border-b border-[var(--border-subtle)] px-6 py-5 shadow-lg">
-          <ul className="flex flex-col gap-4 list-none p-0 m-0">
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  onClick={() => setIsOpen(false)}
-                  className="text-base font-medium text-[var(--ink-heading)] hover:text-[var(--blue-cyan)]"
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-            <li className="pt-2">
+          <ul className="flex flex-col gap-3 list-none p-0 m-0">
+            <li>
+              <Link
+                href="/groupe"
+                onClick={() => setIsOpen(false)}
+                className={`block text-base font-medium transition-colors ${
+                  isGroupeActive ? 'text-[var(--blue-cyan)] font-semibold' : 'text-[var(--ink-heading)] hover:text-[var(--blue-cyan)]'
+                }`}
+              >
+                Le Groupe
+              </Link>
+            </li>
+
+            <li>
+              <Link
+                href="/expertises"
+                onClick={() => setIsOpen(false)}
+                className={`block text-base font-medium transition-colors ${
+                  isExpertisesActive ? 'text-[var(--blue-cyan)] font-semibold' : 'text-[var(--ink-heading)] hover:text-[var(--blue-cyan)]'
+                }`}
+              >
+                Expertises
+              </Link>
+              <div className="mobile-poles-subgrid">
+                {expertises.map((exp) => {
+                  const isSubActive = pathname === exp.href
+                  return (
+                    <Link
+                      key={exp.href}
+                      href={exp.href}
+                      onClick={() => setIsOpen(false)}
+                      className={`mobile-pole-sublink ${isSubActive ? 'is-active' : ''}`}
+                    >
+                      <span className="mobile-sublink-name">{exp.name}</span>
+                    </Link>
+                  )
+                })}
+              </div>
+            </li>
+
+            <li>
+              <Link
+                href="/realisations"
+                onClick={() => setIsOpen(false)}
+                className={`block text-base font-medium transition-colors ${
+                  isRealisationsActive ? 'text-[var(--blue-cyan)] font-semibold' : 'text-[var(--ink-heading)] hover:text-[var(--blue-cyan)]'
+                }`}
+              >
+                Réalisations
+              </Link>
+            </li>
+
+            <li>
+              <Link
+                href="/contact"
+                onClick={() => setIsOpen(false)}
+                className={`block text-base font-medium transition-colors ${
+                  isContactActive ? 'text-[var(--blue-cyan)] font-semibold' : 'text-[var(--ink-heading)] hover:text-[var(--blue-cyan)]'
+                }`}
+              >
+                Contact
+              </Link>
+            </li>
+
+            <li className="pt-3 border-t border-[var(--border-subtle)]">
               <Link
                 href="/contact?type=devis"
                 onClick={() => setIsOpen(false)}
-                className="btn-v4-primary w-full text-center"
+                className="btn-v4-primary w-full text-center justify-center"
               >
                 Demander un devis →
               </Link>

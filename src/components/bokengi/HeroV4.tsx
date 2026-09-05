@@ -1,4 +1,4 @@
-﻿import React from 'react'
+import React from 'react'
 import Link from 'next/link'
 import { Kicker } from './Kicker'
 
@@ -96,7 +96,7 @@ export const HeroV4: React.FC = () => {
 
             {/* Official Brand Vector Mark */}
             <img
-              src="/bokengi-mark.svg"
+              src="/bokengi-mark.png"
               alt="Emblème officiel Bokengi Group"
               className="hero-brand-symbol"
             />

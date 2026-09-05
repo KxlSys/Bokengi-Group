@@ -1,8 +1,11 @@
-﻿import React from 'react'
+import React from 'react'
 import Link from 'next/link'
 import { Metadata } from 'next'
 import { Navbar } from '@/components/bokengi/Navbar'
 import { HeroV4 } from '@/components/bokengi/HeroV4'
+import { GroupeSectionV4 } from '@/components/bokengi/GroupeSectionV4'
+import { CtaSectionV4 } from '@/components/bokengi/CtaSectionV4'
+import { ProjectsSectionV4 } from '@/components/bokengi/ProjectsSectionV4'
 import { Footer } from '@/components/bokengi/Footer'
 import { Kicker } from '@/components/bokengi/Kicker'
 import { getPoles, getCaseStudies, getServices } from '@/lib/data'
@@ -27,29 +30,8 @@ export default async function HomePage() {
         {/* ── 01 HERO SECTION V4 OFFICIELLE ── */}
         <HeroV4 />
 
-        {/* ── 02 BANDEAU D'ALIGNEMENT INSTITUTIONNEL ── */}
-        <section className="py-12 border-y border-[var(--border-subtle)] bg-[var(--bg-surface)]/40">
-          <div className="container-v4">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-              <div>
-                <div className="font-mono text-3xl font-bold text-[var(--blue-cyan)] mb-1">05</div>
-                <div className="text-xs uppercase tracking-widest text-[var(--ink-muted)]">Pôles Intégrés</div>
-              </div>
-              <div>
-                <div className="font-mono text-3xl font-bold text-[var(--blue-cyan)] mb-1">100%</div>
-                <div className="text-xs uppercase tracking-widest text-[var(--ink-muted)]">Souveraineté & Contrôle</div>
-              </div>
-              <div>
-                <div className="font-mono text-3xl font-bold text-[var(--blue-cyan)] mb-1">&lt; 1.2s</div>
-                <div className="text-xs uppercase tracking-widest text-[var(--ink-muted)]">Performance Web Vitals</div>
-              </div>
-              <div>
-                <div className="font-mono text-3xl font-bold text-[var(--blue-cyan)] mb-1">24/7</div>
-                <div className="text-xs uppercase tracking-widest text-[var(--ink-muted)]">Supervision & MCO</div>
-              </div>
-            </div>
-          </div>
-        </section>
+        {/* ── 02 SECTION LE GROUPE V4 (ÉDITORIALE) ── */}
+        <GroupeSectionV4 />
 
         {/* ── 03 LES 5 PÔLES D'EXPERTISE V4 ── */}
         <section className="py-24 relative overflow-hidden">
@@ -130,77 +112,11 @@ export default async function HomePage() {
           </div>
         </section>
 
-        {/* ── 05 RÉALISATIONS & ÉTUDES DE CAS ── */}
-        <section className="py-24">
-          <div className="container-v4">
-            <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
-              <div>
-                <Kicker>RÉALISATIONS & ÉTUDES DE CAS</Kicker>
-                <h2 className="text-3xl md:text-4xl font-extrabold text-[var(--ink-heading)] tracking-tight mt-2">
-                  Des architectures déployées avec rigueur.
-                </h2>
-              </div>
-              <Link href="/realisations" className="btn-v4-secondary self-start md:self-auto">
-                Voir toutes les réalisations →
-              </Link>
-            </div>
+        {/* ── 05 RÉALISATIONS V4 (PORTFOLIO CRÉDIBLE & VÉRIFIÉ) ── */}
+        <ProjectsSectionV4 caseStudies={featuredCases} />
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {featuredCases.slice(0, 3).map((item) => (
-                <div
-                  key={item.slug}
-                  className="p-6 rounded-[var(--radius-md)] bg-[var(--bg-surface)] border border-[var(--border-subtle)] flex flex-col justify-between hover:border-[var(--border-medium)] transition-colors"
-                >
-                  <div>
-                    <div className="text-xs font-mono text-[var(--blue-cyan)] mb-3">
-                      {item.category}
-                    </div>
-                    <h3 className="text-xl font-bold text-[var(--ink-heading)] mb-3">
-                      {item.title}
-                    </h3>
-                    <p className="text-sm text-[var(--ink-muted)] mb-6 leading-relaxed">
-                      {item.summary}
-                    </p>
-                  </div>
-
-                  <div>
-                    <div className="flex flex-wrap gap-2 pt-4 border-t border-[var(--border-subtle)]">
-                      {item.technologies.slice(0, 4).map((tech) => (
-                        <span
-                          key={tech.name}
-                          className="px-2 py-1 text-xs font-mono rounded-[var(--radius-xs)] bg-[var(--bg-elevated)] text-[var(--ink-heading)] border border-[var(--border-subtle)]"
-                        >
-                          {tech.name}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ── 06 CTA INSTITUTIONNEL ── */}
-        <section className="py-20 border-t border-[var(--border-subtle)] bg-[var(--bg-surface)]/30">
-          <div className="container-v4 text-center max-w-3xl mx-auto">
-            <Kicker>ENGAGER UN PROJET</Kicker>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-[var(--ink-heading)] mt-2 mb-4">
-              Prêt à structurer votre prochain défi technologique ?
-            </h2>
-            <p className="text-base text-[var(--ink-muted)] mb-8 leading-relaxed">
-              Nos ingénieurs et consultants étudient votre besoin sous 24 à 48h ouvrées. Échange confidentiel et cadrage précis.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/contact?type=devis" className="btn-v4-primary">
-                Demander un devis ou cadrage →
-              </Link>
-              <Link href="/groupe" className="btn-v4-secondary">
-                En savoir plus sur le Groupe
-              </Link>
-            </div>
-          </div>
-        </section>
+        {/* ── 06 CTA FINAL V4 ── */}
+        <CtaSectionV4 />
       </main>
 
       <Footer />

@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "build": "cross-env NODE_OPTIONS=--no-deprecation next build",
-    "build:worker": "opennextjs-cloudflare build",
+    "build:worker": "cross-env CLOUDFLARE_WORKERS=true opennextjs-cloudflare build",
     "dev:worker": "wrangler dev",
     "preview:worker": "opennextjs-cloudflare preview",
     "postbuild": "next-sitemap --config next-sitemap.config.cjs",

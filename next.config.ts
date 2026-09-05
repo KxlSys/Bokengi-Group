@@ -39,6 +39,15 @@ const nextConfig: NextConfig = {
       '.mjs': ['.mts', '.mjs'],
     }
 
+    if (isWorkerBuild) {
+      webpackConfig.resolve.alias = {
+        ...webpackConfig.resolve.alias,
+        'drizzle-kit/api': path.resolve(dirname, './src/shims/drizzle-kit.ts'),
+        sharp: path.resolve(dirname, './src/shims/sharp.ts'),
+        undici: path.resolve(dirname, './src/shims/undici.ts'),
+      }
+    }
+
     return webpackConfig
   },
   reactStrictMode: true,
@@ -81,6 +90,7 @@ const nextConfig: NextConfig = {
           resolveAlias: {
             'drizzle-kit/api': './src/shims/drizzle-kit.ts',
             sharp: './src/shims/sharp.ts',
+            undici: './src/shims/undici.ts',
           },
         }
       : {}),
@@ -91,7 +101,7 @@ const configured = withPayload(nextConfig, { devBundleServerPackages: false })
 
 if (isWorkerBuild) {
   configured.serverExternalPackages = (configured.serverExternalPackages || [])
-    .filter((pkg) => !pkg.startsWith('drizzle-kit') && pkg !== 'sharp')
+    .filter((pkg) => !pkg.startsWith('drizzle-kit') && pkg !== 'sharp' && pkg !== 'undici')
     .concat('pg-cloudflare')
 }
 

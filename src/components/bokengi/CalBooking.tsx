@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import React, { useState } from 'react'
 import { Kicker } from './Kicker'
@@ -29,10 +29,10 @@ export const CalBooking: React.FC<CalBookingProps> = ({
           </span>
         </div>
         <h4 className="text-base font-bold text-[var(--ink-heading)] mb-2">
-          Planification d\'un échange direct (Visioconférence)
+          Planification d’un échange direct (Visioconférence)
         </h4>
         <p className="text-xs text-[var(--ink-muted)] leading-relaxed mb-4">
-          L\'intégration native de planification en temps réel Cal.com est préparée techniquement. Elle sera activée lors de la validation des plages d\'agenda de la direction technique.
+          L’intégration native de planification en temps réel Cal.com est préparée techniquement. Elle sera activée lors de la validation des plages d’agenda de la direction technique.
         </p>
         <div className="text-xs font-mono text-[var(--blue-cyan)] flex items-center gap-1.5">
           <span>ℹ</span>

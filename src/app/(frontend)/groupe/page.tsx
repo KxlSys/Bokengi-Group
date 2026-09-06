@@ -1,4 +1,4 @@
-﻿import React from 'react'
+import React from 'react'
 import Link from 'next/link'
 import { Metadata } from 'next'
 import { Navbar } from '@/components/bokengi/Navbar'
@@ -9,7 +9,7 @@ import { getPoles } from '@/lib/data'
 export const metadata: Metadata = {
   title: 'Le Groupe · Vision, Gouvernance & Pôles Intégrés — Bokengi Group',
   description:
-    'Découvrez l\'organisation et la vision de Bokengi Group : cinq expertises synergiques au service de la transformation technologique et de la souveraineté numérique.',
+    'Découvrez l’organisation et la vision de Bokengi Group : cinq expertises synergiques au service de la transformation technologique et de la souveraineté numérique.',
 }
 
 export default async function GroupePage() {
@@ -29,7 +29,7 @@ export default async function GroupePage() {
               Construire. Protéger. Développer.
             </h1>
             <p className="text-lg md:text-xl text-[var(--ink-muted)] leading-relaxed mb-6 font-light">
-              Bokengi Group réunit des compétences technologiques, numériques et professionnelles au service des organisations privées et publiques en Afrique et à l\'international.
+              Bokengi Group réunit des compétences technologiques, numériques et professionnelles au service des organisations privées et publiques en Afrique et à l’international.
             </p>
             <div className="flex flex-wrap gap-4 text-xs font-mono text-[var(--blue-cyan)]">
               <span className="px-3 py-1.5 rounded-[var(--radius-xs)] bg-[var(--bg-surface)] border border-[var(--border-subtle)]">
@@ -55,7 +55,7 @@ export default async function GroupePage() {
                   Bâtir des solutions résilientes et pérennes
                 </h3>
                 <p className="text-base text-[var(--ink-muted)] leading-relaxed">
-                  Fournir aux entreprises, institutions et porteurs de projets des infrastructures stables, des logiciels sur-mesure et un accompagnement de proximité. Nous refusons les solutions éphémères au profit d\'architectures rigoureusement pensées pour durer.
+                  Fournir aux entreprises, institutions et porteurs de projets des infrastructures stables, des logiciels sur-mesure et un accompagnement de proximité. Nous refusons les solutions éphémères au profit d’architectures rigoureusement pensées pour durer.
                 </p>
               </div>
 
@@ -78,10 +78,10 @@ export default async function GroupePage() {
             <div className="max-w-2xl mb-14">
               <Kicker>ORGANISATION OPÉRATIONNELLE</Kicker>
               <h2 className="text-3xl md:text-4xl font-extrabold text-[var(--ink-heading)] tracking-tight mt-2">
-                Cinq pôles pour couvrir l\'intégralité du cycle de valeur
+                Cinq pôles pour couvrir l’intégralité du cycle de valeur
               </h2>
               <p className="text-base text-[var(--ink-muted)] mt-4 leading-relaxed">
-                Chaque pôle dispose d\'une équipe dédiée tout en collaborant étroitement avec les autres divisions sur les projets transverses.
+                Chaque pôle dispose d’une équipe dédiée tout en collaborant étroitement avec les autres divisions sur les projets transverses.
               </p>
             </div>
 
@@ -135,14 +135,15 @@ export default async function GroupePage() {
         </section>
 
         {/* ── ENGAGEMENT & SOUVERAINETÉ ── */}
-        <section className="py-20 bg-[var(--bg-surface)]/50 border-t border-[var(--border-subtle)]">
-          <div className="container-v4 max-w-4xl text-center mx-auto">
+        <section className="py-20 bg-[var(--bg-surface)]/50 border-t border-[var(--border-subtle)] relative overflow-hidden">
+          <div className="pattern-dotted-radial-center" aria-hidden="true" />
+          <div className="container-v4 relative z-10 max-w-4xl text-center mx-auto">
             <Kicker>VALEURS & RIGUEUR</Kicker>
             <h2 className="text-3xl font-extrabold text-[var(--ink-heading)] mt-2 mb-6">
               Souveraineté, éthique et conformité sans compromis
             </h2>
             <p className="text-base text-[var(--ink-muted)] leading-relaxed mb-8">
-              Dans un monde de dépendances technologiques croissantes, Bokengi Group préconise l\'autonomie technique, le recours aux standards ouverts audités, la protection rigoureuse des données professionnelles et le transfert méthodique de compétences aux équipes internes de nos clients.
+              Dans un monde de dépendances technologiques croissantes, Bokengi Group préconise l’autonomie technique, le recours aux standards ouverts audités, la protection rigoureuse des données professionnelles et le transfert méthodique de compétences aux équipes internes de nos clients.
             </p>
             <Link href="/contact?type=partenariat" className="btn-v4-primary">
               Construire un partenariat institutionnel →

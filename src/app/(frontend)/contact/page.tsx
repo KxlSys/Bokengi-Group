@@ -1,4 +1,4 @@
-﻿import React, { Suspense } from 'react'
+import React, { Suspense } from 'react'
 import { Metadata } from 'next'
 import { Navbar } from '@/components/bokengi/Navbar'
 import { Footer } from '@/components/bokengi/Footer'
@@ -10,7 +10,7 @@ import { siteConfig } from '@/config/site'
 export const metadata: Metadata = {
   title: 'Contact & Demande de Devis · Cadrage Technique — Bokengi Group',
   description:
-    'Contactez la direction technique de Bokengi Group ou formulez votre demande de devis pour vos projets d\'infrastructures, logiciels, digitalisation et événements.',
+    'Contactez la direction technique de Bokengi Group ou formulez votre demande de devis pour vos projets d’infrastructures, logiciels, digitalisation et événements.',
 }
 
 export default function ContactPage() {
@@ -34,8 +34,9 @@ export default function ContactPage() {
         </section>
 
         {/* ── SECTION CONTACT (2 COLONNES) ── */}
-        <section className="py-20">
-          <div className="container-v4">
+        <section className="py-20 relative overflow-hidden">
+          <div className="pattern-dotted-contact" aria-hidden="true" />
+          <div className="container-v4 relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
               {/* Colonne gauche : Coordonnées, Garanties & Emplacement Cal.com */}
               <div className="lg:col-span-5 space-y-8">
@@ -45,7 +46,7 @@ export default function ContactPage() {
                     Un accompagnement sur mesure pour vos ambitions
                   </h2>
                   <p className="text-sm text-[var(--ink-muted)] leading-relaxed">
-                    Que vous disposiez d\'un cahier des charges rigoureusement rédigé ou d\'une vision initiale à structurer, nos équipes vous orientent vers la division opérationnelle appropriée.
+                    Que vous disposiez d’un cahier des charges rigoureusement rédigé ou d’une vision initiale à structurer, nos équipes vous orientent vers la division opérationnelle appropriée.
                   </p>
                 </div>
 
@@ -59,18 +60,12 @@ export default function ContactPage() {
                       <span className="block text-xs text-[var(--ink-muted)] font-mono uppercase">
                         Email de réception officiel :
                       </span>
-                      {siteConfig.contact.email ? (
-                        <a
-                          href={`mailto:${siteConfig.contact.email}`}
-                          className="font-mono text-sm text-[var(--blue-cyan)] hover:underline"
-                        >
-                          {siteConfig.contact.email}
-                        </a>
-                      ) : (
-                        <span className="font-mono text-sm text-[var(--ink-heading)]">
-                          Via formulaire ci-contre
-                        </span>
-                      )}
+                      <a
+                        href="mailto:contact@bokengi-group.com"
+                        className="font-mono text-sm text-[var(--blue-cyan)] hover:underline font-medium"
+                      >
+                        contact@bokengi-group.com
+                      </a>
                     </div>
                     <div>
                       <span className="block text-xs text-[var(--ink-muted)] font-mono uppercase">
@@ -82,7 +77,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <span className="block text-xs text-[var(--ink-muted)] font-mono uppercase">
-                        Zones d\'intervention :
+                        Zones d’intervention :
                       </span>
                       <span className="text-sm text-[var(--ink-heading)] font-medium">
                         Afrique centrale · International · À distance

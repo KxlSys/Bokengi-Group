@@ -89,7 +89,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Le message est trop volumineux (maximum 5000 caractères).' }, { status: 400 })
     }
 
-    const validRequestTypes = ['devis', 'cadrage', 'partenariat', 'autre']
+    const validRequestTypes = ['devis', 'cadrage', 'support', 'partenariat', 'autre']
     const safeType = validRequestTypes.includes(requestType) ? requestType : 'devis'
 
     // 3. PERSISTANCE DANS PAYLOAD CMS
@@ -118,6 +118,12 @@ export async function POST(req: NextRequest) {
         }
       }
 
+      // Compatibilité DB sans migration schema: 'support' est persisté sous 'autre' avec tag explicite
+      const payloadRequestType = safeType === 'support' ? 'autre' : safeType
+      const enrichedMessage = safeType === 'support'
+        ? `[Demande de type: Support / Assistance technique]\n\n${safeMessage}`
+        : safeMessage
+
       const leadDoc = await payload.create({
         collection: 'leads',
         data: {
@@ -126,9 +132,9 @@ export async function POST(req: NextRequest) {
           company: typeof company === 'string' ? company.trim().slice(0, 150) : null,
           email: safeEmail,
           phone: typeof phone === 'string' ? phone.trim().slice(0, 50) : null,
-          requestType: safeType as any,
+          requestType: payloadRequestType as any,
           pole: resolvedPoleId as any,
-          message: safeMessage,
+          message: enrichedMessage,
           source: 'website-contact-form',
           status: 'new',
         },

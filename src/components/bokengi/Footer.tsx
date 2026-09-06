@@ -14,11 +14,12 @@ export const Footer: React.FC = () => {
     setMounted(true)
   }, [])
 
-  const isDark = mounted ? theme === 'dark' : true
+  const isDark = mounted ? theme === 'dark' : false
 
   return (
     <footer className="footer-v4" aria-label="Pied de page">
-      <div className="container-v4">
+      <div className="footer-v4-pattern" aria-hidden="true" />
+      <div className="container-v4 relative z-10">
         <div className="footer-v4-grid">
           {/* Col 1: Identity & Official Logo */}
           <div>
@@ -27,7 +28,7 @@ export const Footer: React.FC = () => {
                 src={isDark ? '/bokengi-logo-horizontal-dark.png' : '/bokengi-logo-horizontal.png'}
                 alt="Bokengi Group · Technology & Services"
                 className="footer-v4-logo-img"
-                style={{ height: '36px', width: 'auto', display: 'block' }}
+                style={{ height: '34px', width: 'auto', display: 'block' }}
               />
             </Link>
             <p className="footer-v4-desc">
@@ -58,32 +59,23 @@ export const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* Col 4: Contact Officiel */}
+          {/* Col 4: Contact & Formulaire */}
           <div>
             <h4 className="footer-v4-col-title">Contact</h4>
-            {siteConfig.contact.email ? (
-              <a
-                href={`mailto:${siteConfig.contact.email}`}
-                className="text-[var(--blue-cyan)] font-mono text-sm block mb-2"
-              >
-                {siteConfig.contact.email}
-              </a>
-            ) : (
-              <Link
-                href="/contact"
-                className="text-[var(--blue-cyan)] font-mono text-sm block mb-2 hover:underline"
-              >
-                Formulaire de contact →
-              </Link>
-            )}
-            <p className="footer-v4-desc" style={{ fontSize: '0.85rem', marginTop: '0.5rem' }}>
-              Réponse sous {siteConfig.contact.responseTime} pour toute demande de devis ou cadrage de projet.
+            <Link
+              href="/contact"
+              className="footer-v4-link inline-flex items-center gap-1.5 font-medium text-[var(--blue-cyan)] hover:underline mb-2"
+            >
+              Formulaire de contact <span>→</span>
+            </Link>
+            <p className="footer-v4-desc" style={{ fontSize: '0.82rem', marginTop: '0.35rem' }}>
+              Réponse sous 24 à 48h ouvrées pour toute demande de devis ou cadrage de projet.
             </p>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="footer-v4-bottom flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="footer-v4-bottom flex flex-col sm:flex-row items-center justify-between gap-3">
           <span>© {new Date().getFullYear()} Bokengi Group. Tous droits réservés.</span>
           <div className="flex items-center gap-4">
             <OpenStatusBadge />

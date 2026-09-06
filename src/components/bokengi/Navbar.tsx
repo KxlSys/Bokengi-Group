@@ -28,7 +28,7 @@ export const Navbar: React.FC = () => {
 
   const toggleMenu = () => setIsOpen((prev) => !prev)
 
-  const isDark = mounted ? theme === 'dark' : true
+  const isDark = mounted ? theme === 'dark' : false
 
   const expertises = [
     { href: '/expertises/it', name: '01 — BOKENGI IT', sub: 'Technologie, infrastructure & cybersécurité' },
@@ -116,7 +116,7 @@ export const Navbar: React.FC = () => {
           {/* Mobile Hamburger */}
           <button
             type="button"
-            className={`md:hidden p-2 text-[var(--ink-heading)] cursor-pointer`}
+            className="md:hidden p-2 min-w-[44px] min-h-[44px] inline-flex items-center justify-center text-[var(--ink-heading)] cursor-pointer"
             onClick={toggleMenu}
             aria-label={isOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
             aria-expanded={isOpen}
@@ -132,9 +132,12 @@ export const Navbar: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Drawer */}
       {isOpen && (
-        <div className="md:hidden bg-[var(--bg-surface)] border-b border-[var(--border-subtle)] px-6 py-5 shadow-lg">
+        <div
+          className="md:hidden bg-[var(--bg-surface)] border-b border-[var(--border-subtle)] px-6 py-5 shadow-lg max-h-[calc(100dvh-80px)] overflow-y-auto"
+          style={{ paddingBottom: 'max(1.25rem, env(safe-area-inset-bottom, 0px))' }}
+        >
           <ul className="flex flex-col gap-3 list-none p-0 m-0">
             <li>
               <Link

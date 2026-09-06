@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import React, { useState, useEffect } from 'react'
 import { useSearchParams } from 'next/navigation'
@@ -41,7 +41,7 @@ export const ContactForm: React.FC<ContactFormProps> = () => {
     if (qPole && POLES_OPTIONS.some((p) => p.id === qPole)) {
       setForm((prev) => ({ ...prev, pole: qPole }))
     }
-    if (qType && ['devis', 'cadrage', 'partenariat', 'autre'].includes(qType)) {
+    if (qType && ['devis', 'cadrage', 'support', 'partenariat', 'autre'].includes(qType)) {
       setForm((prev) => ({ ...prev, requestType: qType }))
     }
   }, [searchParams])
@@ -154,6 +154,7 @@ export const ContactForm: React.FC<ContactFormProps> = () => {
         >
           <option value="devis">Demande de devis chiffré</option>
           <option value="cadrage">Cadrage de projet & audit technique</option>
+          <option value="support">Support / Assistance technique</option>
           <option value="partenariat">Partenariat institutionnel / commercial</option>
           <option value="autre">Autre demande générale</option>
         </select>
@@ -162,7 +163,7 @@ export const ContactForm: React.FC<ContactFormProps> = () => {
       {/* 2. Sélection du Pôle (Architectural Cards) */}
       <div>
         <label className="block text-xs uppercase font-mono tracking-wider text-[var(--ink-heading)] mb-2 font-semibold">
-          Pôle d\'expertise sollicité <span className="text-[var(--blue-cyan)]">*</span>
+          Pôle d’expertise sollicité <span className="text-[var(--blue-cyan)]">*</span>
         </label>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
           {POLES_OPTIONS.map((p) => {

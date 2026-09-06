@@ -1,4 +1,4 @@
-﻿import React from 'react'
+import React from 'react'
 import Link from 'next/link'
 import { Metadata } from 'next'
 import { Navbar } from '@/components/bokengi/Navbar'
@@ -9,7 +9,7 @@ import { getCaseStudies } from '@/lib/data'
 export const metadata: Metadata = {
   title: 'Réalisations & Études de Cas · Projets Déployés — Bokengi Group',
   description:
-    'Découvrez les 5 réalisations d\'ingénierie majeures de Bokengi Group : ESIIKA, Portail Kongama, Kongama Academy, BisoMapTech et FleetGuard.',
+    'Découvrez les 5 réalisations d’ingénierie majeures de Bokengi Group : ESIIKA, Portail Kongama, Kongama Academy, BisoMapTech et FleetGuard.',
 }
 
 export default async function RealisationsPage() {
@@ -29,7 +29,7 @@ export default async function RealisationsPage() {
               Des architectures déployées, éprouvées et mesurables.
             </h1>
             <p className="text-lg md:text-xl text-[var(--ink-muted)] leading-relaxed font-light">
-              Chaque projet mené par Bokengi Group répond à un cahier des charges rigoureux : résilience face aux contraintes réseaux, sécurité dès la conception (Security by Design), maîtrise des coûts d\'exploitation et transfert d\'autonomie.
+              Chaque projet mené par Bokengi Group répond à un cahier des charges rigoureux : résilience face aux contraintes réseaux, sécurité dès la conception (Security by Design), maîtrise des coûts d’exploitation et transfert d’autonomie.
             </p>
           </div>
         </section>
@@ -56,7 +56,7 @@ export default async function RealisationsPage() {
                       </span>
                       <span className="text-xs text-[var(--ink-muted)]">/</span>
                       <span className="text-xs font-mono text-[var(--ink-muted)]">
-                        {cs.publishedDate ? cs.publishedDate.substring(0, 4) : '2025'}
+                        {cs.slug === 'esiika' ? '2026' : (cs.publishedDate ? cs.publishedDate.substring(0, 4) : '2026')}
                       </span>
                     </div>
                     <h2 className="text-2xl md:text-4xl font-extrabold text-[var(--ink-heading)] tracking-tight mt-1">
@@ -162,14 +162,15 @@ export default async function RealisationsPage() {
         </section>
 
         {/* ── CTA TECHNIQUE ── */}
-        <section className="py-20 border-t border-[var(--border-subtle)] bg-[var(--bg-surface)]/30">
-          <div className="container-v4 text-center max-w-3xl mx-auto">
+        <section className="py-20 border-t border-[var(--border-subtle)] bg-[var(--bg-surface)]/30 relative overflow-hidden">
+          <div className="pattern-dotted-radial-center" aria-hidden="true" />
+          <div className="container-v4 relative z-10 text-center max-w-3xl mx-auto">
             <Kicker>VOTRE PROJET</Kicker>
             <h2 className="text-3xl md:text-4xl font-extrabold text-[var(--ink-heading)] mt-2 mb-4">
-              Un projet d\'ingénierie similaire à concevoir ?
+              Un projet d’ingénierie similaire à concevoir ?
             </h2>
             <p className="text-base text-[var(--ink-muted)] mb-8 leading-relaxed">
-              Consultez notre équipe technique pour analyser la faisabilité, l\'architecture cible et les délais de réalisation.
+              Consultez notre équipe technique pour analyser la faisabilité, l’architecture cible et les délais de réalisation.
             </p>
             <Link href="/contact?type=devis" className="btn-v4-primary">
               Échanger avec notre direction technique →

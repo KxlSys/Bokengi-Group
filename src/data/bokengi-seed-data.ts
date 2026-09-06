@@ -1,4 +1,4 @@
-﻿/**
+/**
  * DONNÉES OFFICIELLES BOKENGI GROUP 2.0
  * Source de vérité éditoriale et technique pour le seed Payload CMS et les pages SSR.
  */
@@ -401,7 +401,7 @@ export const CASE_STUDIES_SEED_DATA: CaseStudyData[] = [
     architecture:
       'Architecture découplée en micro-services conteneurisés sous Docker Compose. Reverse-proxy Nginx gérant le terminaison SSL et la mise en cache statique. Base de données relationnelle PostgreSQL avec indexation optimisée pour la recherche de produits. Passerelle de webhooks sécurisée pour la confirmation des transactions financières.',
     featured: true,
-    publishedDate: '2025-06-15',
+    publishedDate: '2026-06-15',
     seo: {
       title: 'Étude de cas ESIIKA · Marketplace Congo-Brazzaville — Bokengi Group',
       description: 'Découvrez comment Bokengi Group a conçu et sécurisé la marketplace ESIIKA avec intégration Mobile Money et infrastructure Docker.',

@@ -1,4 +1,4 @@
-﻿import React from 'react'
+import React from 'react'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { Metadata } from 'next'
@@ -171,14 +171,15 @@ export default async function PoleDetailPage({ params }: PageProps) {
         </section>
 
         {/* ── CTA CONTEXTUEL DU PÔLE ── */}
-        <section className="py-20 border-t border-[var(--border-subtle)]">
-          <div className="container-v4 max-w-3xl text-center mx-auto">
+        <section className="py-20 border-t border-[var(--border-subtle)] relative overflow-hidden">
+          <div className="pattern-dotted-radial-center" aria-hidden="true" />
+          <div className="container-v4 relative z-10 max-w-3xl text-center mx-auto">
             <Kicker>COLLABORER AVEC CE PÔLE</Kicker>
             <h2 className="text-3xl font-extrabold text-[var(--ink-heading)] mt-2 mb-4">
-              Besoin d\'une intervention {pole.name} ?
+              Besoin d’une intervention {pole.name} ?
             </h2>
             <p className="text-base text-[var(--ink-muted)] mb-8 leading-relaxed">
-              Consultez notre équipe d\'ingénieurs et spécialistes pour un devis détaillé, un diagnostic initial ou un cadrage technique d\'envergure.
+              Consultez notre équipe d’ingénieurs et spécialistes pour un devis détaillé, un diagnostic initial ou un cadrage technique d’envergure.
             </p>
             <Link
               href={`/contact?pole=${pole.slug}&type=devis`}

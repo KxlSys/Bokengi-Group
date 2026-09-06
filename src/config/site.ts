@@ -1,4 +1,4 @@
-﻿/**
+/**
  * BOKENGI GROUP 2.0 — CONFIGURATION CENTRALISÉE DU SITE
  *
  * Ce module centralise les paramètres essentiels du projet :
@@ -24,7 +24,7 @@ export const siteConfig = {
    * La valeur est injectée via CONTACT_EMAIL ou NEXT_PUBLIC_CONTACT_EMAIL.
    */
   contact: {
-    email: process.env.NEXT_PUBLIC_CONTACT_EMAIL || process.env.CONTACT_EMAIL || '',
+    email: process.env.NEXT_PUBLIC_CONTACT_EMAIL || process.env.CONTACT_EMAIL || 'contact@bokengi-group.com',
     responseTime: '24 à 48h ouvrées',
   },
 

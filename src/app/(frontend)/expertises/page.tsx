@@ -1,4 +1,4 @@
-﻿import React from 'react'
+import React from 'react'
 import Link from 'next/link'
 import { Metadata } from 'next'
 import { Navbar } from '@/components/bokengi/Navbar'
@@ -7,9 +7,9 @@ import { Kicker } from '@/components/bokengi/Kicker'
 import { getPoles, getServices } from '@/lib/data'
 
 export const metadata: Metadata = {
-  title: 'Nos Expertises · Les 5 Pôles d\'Ingénierie & Services — Bokengi Group',
+  title: 'Nos Expertises · Les 5 Pôles d’Ingénierie & Services — Bokengi Group',
   description:
-    'Explorez l\'ensemble des expertises de Bokengi Group : IT & Cybersécurité, Digital & Web, Business & ERP, Consulting Stratégique et Solutions Événementielles.',
+    'Explorez l’ensemble des expertises de Bokengi Group : IT & Cybersécurité, Digital & Web, Business & ERP, Consulting Stratégique et Solutions Événementielles.',
 }
 
 export default async function ExpertisesPage() {
@@ -30,7 +30,7 @@ export default async function ExpertisesPage() {
               Cinq expertises pointues. Une exigence commune.
             </h1>
             <p className="text-lg md:text-xl text-[var(--ink-muted)] leading-relaxed font-light">
-              Bokengi Group structure son offre autour de 5 divisions complémentaires capables d\'intervenir de façon autonome ou concertée pour répondre à vos impératifs de performance et de sécurité.
+              Bokengi Group structure son offre autour de 5 divisions complémentaires capables d’intervenir de façon autonome ou concertée pour répondre à vos impératifs de performance et de sécurité.
             </p>
           </div>
         </section>
@@ -116,8 +116,9 @@ export default async function ExpertisesPage() {
         </section>
 
         {/* ── BANNIÈRE D'APPEL À L'ACTION ── */}
-        <section className="py-16 bg-[var(--bg-surface)]/50 border-t border-[var(--border-subtle)]">
-          <div className="container-v4 flex flex-col md:flex-row items-center justify-between gap-6">
+        <section className="py-16 bg-[var(--bg-surface)]/50 border-t border-[var(--border-subtle)] relative overflow-hidden">
+          <div className="pattern-dotted-radial-center" aria-hidden="true" />
+          <div className="container-v4 relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
             <div>
               <h3 className="text-2xl font-bold text-[var(--ink-heading)]">
                 Un besoin spécifique nécessitant plusieurs pôles ?

@@ -194,6 +194,8 @@ export interface Pole {
   createdAt: string;
 }
 /**
+ * Centralisation des ressources visuelles, photographies et documents du Groupe Bokengi.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "media".
  */

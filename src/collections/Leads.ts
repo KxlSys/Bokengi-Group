@@ -147,6 +147,9 @@ export const Leads: CollectionConfig = {
       ],
       admin: {
         position: 'sidebar',
+        components: {
+          Cell: '@/components/admin/leads/LeadStatusCell',
+        },
       },
     },
   ],

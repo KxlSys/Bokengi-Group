@@ -16,6 +16,16 @@ const dirname = path.dirname(filename)
 
 export const Media: CollectionConfig = {
   slug: 'media',
+  labels: {
+    singular: 'Média',
+    plural: 'Médiathèque',
+  },
+  admin: {
+    useAsTitle: 'filename',
+    defaultColumns: ['filename', 'alt', 'mimeType', 'filesize', 'updatedAt'],
+    group: 'Ressources & Médias',
+    description: 'Centralisation des ressources visuelles, photographies et documents du Groupe Bokengi.',
+  },
   access: {
     create: authenticated,
     delete: authenticated,

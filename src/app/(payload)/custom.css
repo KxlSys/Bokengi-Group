@@ -1,0 +1,1965 @@
+/* ==============================================================================
+   BOKENGI ADMIN 3.0 — DESIGN SYSTEM & TOKENS OFFICIELS PAYLOAD CMS
+   Projet : Bokengi Group 2.0 (Platform Foundation)
+   Architecture : Next.js 16 (App Router) + Payload CMS 3.88.0 + Neon Postgres
+   ============================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&family=Syne:wght@600;700&display=swap');
+
+/* ==============================================================================
+   1. VARIABLES DE THÈME & TOKENS BOKENGI (LIGHT & DARK)
+   ============================================================================== */
+
+:root,
+html[data-theme='light'],
+[data-theme='light'] {
+  /* ── Typographie officielle ── */
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'Fira Code', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-display: 'Outfit', sans-serif;
+  --font-accent: 'Syne', sans-serif;
+
+  /* ── Géométrie Bokengi ── */
+  --bokengi-radius-xs: 4px;
+  --bokengi-radius-sm: 6px;
+  --bokengi-radius-md: 8px;
+  --style-radius-s: 4px;
+  --style-radius-m: 6px;
+  --style-radius-l: 8px;
+
+  /* ── Couleurs de la marque (Mode Light) ── */
+  --bokengi-blue: #0033A0;
+  --bokengi-accent: #0055D4;
+  --bokengi-cyan: #0284C7;
+  --bokengi-cyan-subtle: rgba(2, 132, 199, 0.08);
+  --bokengi-blue-subtle: rgba(0, 85, 212, 0.06);
+  --bokengi-border-hover: rgba(0, 85, 212, 0.28);
+
+  /* ── Tokens de surface & élévation Payload (Light) ── */
+  --theme-bg: #F4F6FA;
+  --theme-input-bg: #FFFFFF;
+  --theme-elevation-0: #F4F6FA;
+  --theme-elevation-50: #FFFFFF;
+  --theme-elevation-100: #FFFFFF;
+  --theme-elevation-150: #EAF0F8;
+  --theme-elevation-200: #DEE6F2;
+  --theme-elevation-250: #CFDCED;
+  --theme-elevation-300: #BFD0E6;
+  --theme-elevation-350: #A8BFDD;
+  --theme-elevation-400: #5E6E88;
+  --theme-elevation-450: #4B5B77;
+  --theme-elevation-500: #3E4D68;
+  --theme-elevation-600: #0033A0;
+  --theme-elevation-700: #002270;
+  --theme-elevation-750: #0C1E4A;
+  --theme-elevation-800: #0C1E4A;
+  --theme-elevation-850: #081535;
+  --theme-elevation-900: #050E24;
+  --theme-elevation-950: #020713;
+  --theme-elevation-1000: #000000;
+
+  --theme-text: #334155;
+  --theme-border-color: rgba(12, 30, 74, 0.08);
+
+  /* ── États & Alertes ── */
+  --theme-success-50: #ECFDF5;
+  --theme-success-100: #D1FAE5;
+  --theme-success-500: #10B981;
+  --theme-success-600: #059669;
+  --theme-warning-50: #FFFBEB;
+  --theme-warning-100: #FEF3C7;
+  --theme-warning-500: #F59E0B;
+  --theme-warning-600: #D97706;
+  --theme-error-50: #FEF2F2;
+  --theme-error-100: #FEE2E2;
+  --theme-error-500: #EF4444;
+  --theme-error-600: #DC2626;
+
+  /* ── Ombres ── */
+  --bokengi-shadow-subtle: 0 1px 2px rgba(12, 30, 74, 0.04), 0 2px 4px rgba(12, 30, 74, 0.02);
+  --bokengi-shadow-card: 0 1px 3px rgba(12, 30, 74, 0.04), 0 8px 24px -4px rgba(12, 30, 74, 0.06);
+}
+
+html[data-theme='dark'],
+[data-theme='dark'] {
+  /* ── Couleurs de la marque (Mode Dark) ── */
+  --bokengi-blue: #0033A0;
+  --bokengi-accent: #0055D4;
+  --bokengi-cyan: #16B8F3;
+  --bokengi-cyan-subtle: rgba(22, 184, 243, 0.10);
+  --bokengi-blue-subtle: rgba(0, 85, 212, 0.12);
+  --bokengi-border-hover: rgba(22, 184, 243, 0.35);
+
+  /* ── Tokens de surface & élévation Payload (Dark) ── */
+  --theme-bg: #050914;
+  --theme-input-bg: #0A1020;
+  --theme-elevation-0: #050914;
+  --theme-elevation-50: #0A1020;
+  --theme-elevation-100: #0F172A;
+  --theme-elevation-150: #151F36;
+  --theme-elevation-200: #1E293B;
+  --theme-elevation-250: #25334D;
+  --theme-elevation-300: #334155;
+  --theme-elevation-350: #475569;
+  --theme-elevation-400: #64748B;
+  --theme-elevation-450: #788A9E;
+  --theme-elevation-500: #94A3B8;
+  --theme-elevation-600: #CBD5E1;
+  --theme-elevation-700: #E2E8F0;
+  --theme-elevation-750: #F1F5F9;
+  --theme-elevation-800: #F8FAFC;
+  --theme-elevation-850: #FAFCFE;
+  --theme-elevation-900: #FFFFFF;
+  --theme-elevation-950: #FFFFFF;
+  --theme-elevation-1000: #FFFFFF;
+
+  --theme-text: #E2E8F0;
+  --theme-border-color: rgba(255, 255, 255, 0.08);
+
+  /* ── États & Alertes (Dark) ── */
+  --theme-success-50: rgba(16, 185, 129, 0.12);
+  --theme-success-100: rgba(16, 185, 129, 0.18);
+  --theme-success-500: #10B981;
+  --theme-success-600: #34D399;
+  --theme-warning-50: rgba(245, 158, 11, 0.12);
+  --theme-warning-100: rgba(245, 158, 11, 0.18);
+  --theme-warning-500: #F59E0B;
+  --theme-warning-600: #FBBF24;
+  --theme-error-50: rgba(239, 68, 68, 0.12);
+  --theme-error-100: rgba(239, 68, 68, 0.18);
+  --theme-error-500: #EF4444;
+  --theme-error-600: #F87171;
+
+  /* ── Ombres (Dark) ── */
+  --bokengi-shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.35);
+  --bokengi-shadow-card: 0 4px 20px rgba(0, 0, 0, 0.45);
+}
+
+/* ==============================================================================
+   2. FONDATION GLOBALE & TYPOGRAPHIE
+   ============================================================================== */
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--theme-bg);
+  color: var(--theme-text);
+  line-height: 1.55;
+  letter-spacing: -0.011em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: var(--font-heading);
+  color: var(--theme-elevation-800);
+  font-weight: 700;
+  letter-spacing: -0.022em;
+  line-height: 1.2;
+}
+
+code, kbd, samp, pre, .font-mono {
+  font-family: var(--font-mono);
+}
+
+a {
+  color: var(--bokengi-accent);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+a:hover {
+  color: var(--bokengi-cyan);
+}
+
+/* ==============================================================================
+   3. BARRE SUPÉRIEURE (HEADER) & NAVIGATION
+   ============================================================================== */
+
+.app-header {
+  background-color: var(--theme-bg);
+  border-bottom: 1px solid var(--theme-border-color);
+  backdrop-filter: blur(8px);
+}
+
+.step-nav {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+}
+
+.step-nav a {
+  color: var(--theme-elevation-400);
+}
+
+.step-nav a:hover {
+  color: var(--theme-elevation-800);
+}
+
+/* ==============================================================================
+   4. SIDEBAR CORPORATE BOKENGI
+   ============================================================================== */
+
+.nav {
+  background-color: var(--theme-elevation-50);
+  border-right: 1px solid var(--theme-border-color);
+}
+
+.nav__wrap {
+  padding: 1.25rem 0.85rem;
+}
+
+.nav__header {
+  padding-bottom: 1.25rem;
+  margin-bottom: 1.25rem;
+  border-bottom: 1px solid var(--theme-border-color);
+}
+
+/* Titre des groupes de navigation */
+.nav-group__label,
+.nav-group__toggle {
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--theme-elevation-400);
+  margin-top: 1rem;
+  margin-bottom: 0.35rem;
+  padding: 0.25rem 0.5rem;
+}
+
+.nav-group__toggle:hover {
+  color: var(--theme-elevation-800);
+}
+
+/* Liens de collection dans la navigation */
+.nav__link {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--theme-text);
+  border-radius: var(--bokengi-radius-sm);
+  padding: 0.5rem 0.75rem;
+  margin-bottom: 2px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-left: 2px solid transparent;
+  transition: all 0.15s ease;
+}
+
+.nav__link:hover {
+  background-color: var(--theme-elevation-150);
+  color: var(--theme-elevation-800);
+}
+
+/* État actif sélectionné */
+.nav__link--active,
+.nav__link.active {
+  background-color: var(--bokengi-cyan-subtle);
+  color: var(--bokengi-cyan);
+  border-left: 2px solid var(--bokengi-cyan);
+  font-weight: 600;
+}
+
+/* ==============================================================================
+   5. BOUTONS BOKENGI (ZERO BOUTON PILULE MÉTIER)
+   ============================================================================== */
+
+.btn {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  border-radius: var(--bokengi-radius-sm) !important;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* Bouton principal (Primary) */
+.btn--style-primary {
+  background-color: var(--bokengi-blue) !important;
+  color: #FFFFFF !important;
+  border: 1px solid var(--bokengi-blue) !important;
+  box-shadow: 0 1px 2px rgba(0, 51, 160, 0.2);
+}
+
+.btn--style-primary:hover:not(:disabled) {
+  background-color: var(--bokengi-accent) !important;
+  border-color: var(--bokengi-accent) !important;
+  color: #FFFFFF !important;
+}
+
+.btn--style-primary:active:not(:disabled) {
+  background-color: #002270 !important;
+}
+
+/* Bouton secondaire (Secondary) */
+.btn--style-secondary {
+  background-color: transparent !important;
+  color: var(--theme-elevation-800) !important;
+  border: 1px solid var(--theme-border-color) !important;
+}
+
+.btn--style-secondary:hover:not(:disabled) {
+  background-color: var(--theme-elevation-150) !important;
+  border-color: var(--theme-elevation-300) !important;
+  color: var(--theme-elevation-800) !important;
+}
+
+/* Override systématique de style-pill vers rayon architectural */
+.btn--style-pill {
+  border-radius: var(--bokengi-radius-sm) !important;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--bokengi-cyan);
+  outline-offset: 2px;
+}
+
+/* ==============================================================================
+   6. FORMULAIRES & INPUTS ADMIN
+   ============================================================================== */
+
+label.field-label {
+  font-family: var(--font-body);
+  font-size: 0.815rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--theme-elevation-800);
+  margin-bottom: 0.35rem;
+}
+
+label.field-label .required {
+  color: var(--theme-error-500);
+  margin-left: 3px;
+}
+
+.field-description {
+  font-family: var(--font-body);
+  font-size: 0.775rem;
+  color: var(--theme-elevation-400);
+  margin-top: 0.3rem;
+}
+
+/* Champs textuels, textarea, select */
+input[type='text'],
+input[type='email'],
+input[type='password'],
+input[type='number'],
+input[type='date'],
+textarea,
+select,
+.input,
+.text-input {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--theme-elevation-800);
+  background-color: var(--theme-input-bg);
+  border: 1px solid var(--theme-border-color);
+  border-radius: var(--bokengi-radius-sm);
+  padding: 0.55rem 0.85rem;
+  min-height: 40px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+input[type='text']:hover,
+input[type='email']:hover,
+input[type='password']:hover,
+textarea:hover,
+select:hover {
+  border-color: var(--bokengi-border-hover);
+}
+
+input[type='text']:focus,
+input[type='email']:focus,
+input[type='password']:focus,
+input[type='number']:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--bokengi-cyan);
+  box-shadow: 0 0 0 3px var(--bokengi-cyan-subtle);
+  background-color: var(--theme-input-bg);
+}
+
+input:disabled,
+textarea:disabled,
+select:disabled {
+  background-color: var(--theme-elevation-150);
+  color: var(--theme-elevation-400);
+  cursor: not-allowed;
+  opacity: 0.75;
+}
+
+/* Checkbox */
+.checkbox-input__input {
+  border-radius: var(--bokengi-radius-xs);
+  border-color: var(--theme-border-color);
+  transition: all 0.15s ease;
+}
+
+.checkbox-input__input:hover {
+  border-color: var(--bokengi-accent);
+}
+
+/* ==============================================================================
+   7. TABLEAUX & LISTES PAYLOAD
+   ============================================================================== */
+
+.table,
+table {
+  font-family: var(--font-body);
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+}
+
+.table th,
+table th {
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--theme-elevation-400);
+  background-color: var(--theme-elevation-100);
+  border-bottom: 1px solid var(--theme-border-color);
+  padding: 0.75rem 1rem;
+  white-space: nowrap;
+}
+
+.table td,
+table td {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--theme-text);
+  border-bottom: 1px solid var(--theme-border-color);
+  padding: 0.85rem 1rem;
+  vertical-align: middle;
+}
+
+.table tr:hover td,
+table tr:hover td {
+  background-color: var(--theme-elevation-50);
+}
+
+/* ==============================================================================
+   8. CARTES & CONTENEURS (FONDATIONS DU COMMAND CENTER)
+   ============================================================================== */
+
+.card,
+.thumbnail-card {
+  background: var(--theme-input-bg);
+  border: 1px solid var(--theme-border-color);
+  border-radius: var(--bokengi-radius-md);
+  box-shadow: var(--bokengi-shadow-subtle);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card:hover,
+.thumbnail-card:hover {
+  border-color: var(--bokengi-border-hover);
+}
+
+/* Classes utilitaires propriétaires Bokengi */
+.bokengi-card {
+  background-color: var(--theme-input-bg);
+  border: 1px solid var(--theme-border-color);
+  border-radius: var(--bokengi-radius-md);
+  padding: 1.25rem;
+  box-shadow: var(--bokengi-shadow-subtle);
+  position: relative;
+  overflow: hidden;
+}
+
+.bokengi-card--interactive {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.bokengi-card--interactive:hover {
+  border-color: var(--bokengi-border-hover);
+  box-shadow: var(--bokengi-shadow-card);
+  transform: translateY(-1px);
+}
+
+/* ==============================================================================
+   9. MOTIF GRAPHIQUE OFFICIEL V1 AUTHENTIQUE (RÉSERVÉ AUX BANNIÈRES)
+   Strictement confiné à cette classe isolée.
+   INTERDICTION : body, main, sidebar, tableaux, formulaires ou grille permanente.
+   ============================================================================== */
+
+.bokengi-pattern-v1 {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, rgba(0, 85, 212, 0.28) 1.2px, transparent 1.2px);
+  background-size: 20px 20px;
+  background-position: right center;
+  -webkit-mask-image: radial-gradient(ellipse 65% 75% at 90% 50%, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.35) 45%, rgba(0, 0, 0, 0) 80%);
+  mask-image: radial-gradient(ellipse 65% 75% at 90% 50%, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.35) 45%, rgba(0, 0, 0, 0) 80%);
+  z-index: 1;
+}
+
+[data-theme='dark'] .bokengi-pattern-v1 {
+  background-image: radial-gradient(circle, rgba(22, 184, 243, 0.32) 1.2px, transparent 1.2px);
+}
+
+/* ==============================================================================
+   10. SCROLLBARS & FINITIONS
+   ============================================================================== */
+
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--theme-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--theme-elevation-200);
+  border-radius: var(--bokengi-radius-xs);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--theme-elevation-300);
+}
+
+/* Badges de statuts (fondation pour LeadStatusCell) */
+.bokengi-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.2rem 0.55rem;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1.2;
+  border-radius: var(--bokengi-radius-xs);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.bokengi-status-badge__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: currentColor;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.bokengi-status-badge--new {
+  background-color: var(--bokengi-cyan-subtle);
+  color: var(--bokengi-cyan);
+  border: 1px solid rgba(22, 184, 243, 0.25);
+}
+
+.bokengi-status-badge--contacted {
+  background-color: var(--theme-warning-50);
+  color: var(--theme-warning-600);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+}
+
+.bokengi-status-badge--qualified {
+  background-color: var(--bokengi-blue-subtle);
+  color: var(--bokengi-accent);
+  border: 1px solid rgba(0, 85, 212, 0.25);
+}
+
+[data-theme='dark'] .bokengi-status-badge--qualified {
+  color: #60A5FA;
+  border-color: rgba(96, 165, 250, 0.3);
+}
+
+.bokengi-status-badge--converted {
+  background-color: var(--theme-success-50);
+  color: var(--theme-success-600);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+.bokengi-status-badge--archived {
+  background-color: var(--theme-elevation-150);
+  color: var(--theme-elevation-400);
+  border: 1px solid var(--theme-border-color);
+}
+
+.bokengi-status-badge--default {
+  background-color: var(--theme-elevation-100);
+  color: var(--theme-elevation-500);
+  border: 1px solid var(--theme-border-color);
+}
+
+/* ==============================================================================
+   11. BOKENGI ADMIN BRANDING & GRAPHICS (PHASE 3.0-B)
+   ============================================================================== */
+
+/* Conteneur et dimensions du Logo Principal */
+.bokengi-admin-logo-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+  vertical-align: middle;
+}
+
+.bokengi-admin-logo {
+  height: 38px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  display: block;
+  transition: opacity 0.2s ease, filter 0.2s ease;
+}
+
+/* Gestion de l'affichage Light / Dark pour le Logo */
+.bokengi-admin-logo--light {
+  display: block !important;
+}
+
+.bokengi-admin-logo--dark {
+  display: none !important;
+}
+
+[data-theme='dark'] .bokengi-admin-logo--light,
+html[data-theme='dark'] .bokengi-admin-logo--light {
+  display: none !important;
+}
+
+[data-theme='dark'] .bokengi-admin-logo--dark,
+html[data-theme='dark'] .bokengi-admin-logo--dark {
+  display: block !important;
+}
+
+/* Ajustements contextuels du logo (Page de Connexion / Login) */
+.login__brand .bokengi-admin-logo-wrap {
+  margin-bottom: 0.5rem;
+}
+
+.login__brand .bokengi-admin-logo {
+  height: 44px;
+}
+
+/* Icône / Mark officiel Bokengi */
+.bokengi-admin-icon {
+  width: 100%;
+  height: 100%;
+  max-width: 28px;
+  max-height: 28px;
+  object-fit: contain;
+  display: block;
+  flex-shrink: 0;
+}
+
+/* Intégration dans le StepNav / Breadcrumb */
+.step-nav__home .bokengi-admin-icon {
+  width: 18px;
+  height: 18px;
+  max-width: 18px;
+  max-height: 18px;
+}
+
+/* ==============================================================================
+   12. BOKENGI DASHBOARD COMPONENTS — WELCOME BANNER & LIVE CLOCK (PHASE 3.0-D)
+   ============================================================================== */
+
+/* Welcome Banner Container */
+.bokengi-welcome-banner {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--theme-input-bg);
+  border: 1px solid var(--theme-border-color);
+  border-radius: var(--bokengi-radius-md);
+  box-shadow: var(--bokengi-shadow-subtle);
+  margin-bottom: 2rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.bokengi-welcome-banner:hover {
+  border-color: var(--bokengi-border-hover);
+}
+
+.bokengi-welcome-banner__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.75rem 2rem;
+}
+
+.bokengi-welcome-banner__main {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.bokengi-welcome-banner__kicker {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--bokengi-cyan);
+  margin-bottom: 0.4rem;
+}
+
+.bokengi-welcome-banner__title {
+  font-family: var(--font-heading);
+  font-size: 1.65rem;
+  font-weight: 700;
+  color: var(--theme-elevation-900);
+  line-height: 1.2;
+  margin: 0 0 0.35rem 0;
+}
+
+.bokengi-welcome-banner__subtitle {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--theme-elevation-400);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.bokengi-welcome-banner__aside {
+  flex-shrink: 0;
+}
+
+/* Live Clock Component */
+.bokengi-live-clock {
+  background-color: var(--theme-elevation-50);
+  border: 1px solid var(--theme-border-color);
+  border-radius: var(--bokengi-radius-sm);
+  padding: 0.85rem 1.15rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+  box-shadow: var(--bokengi-shadow-subtle);
+}
+
+.bokengi-live-clock__header {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.35rem;
+}
+
+.bokengi-live-clock__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--bokengi-cyan);
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.bokengi-live-clock__zone {
+  font-family: var(--font-heading);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--theme-elevation-400);
+}
+
+.bokengi-live-clock__time {
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--theme-elevation-900);
+  line-height: 1.15;
+  font-variant-numeric: tabular-nums;
+}
+
+.bokengi-live-clock__date {
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--theme-elevation-400);
+  margin-top: 0.35rem;
+}
+
+/* Responsive Welcome Banner & Live Clock */
+@media (max-width: 768px) {
+  .bokengi-welcome-banner__content {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.25rem 1.25rem;
+    gap: 1.25rem;
+  }
+
+  .bokengi-welcome-banner__title {
+    font-size: 1.35rem;
+  }
+
+  .bokengi-welcome-banner__aside {
+    width: 100%;
+  }
+
+  .bokengi-live-clock {
+    align-items: flex-start;
+    text-align: left;
+    width: 100%;
+  }
+}
+
+/* ==============================================================================
+   13. BOKENGI DASHBOARD COMPONENTS — KPI GRID (PHASE 3.0-E)
+   ============================================================================== */
+
+.bokengi-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 1280px) and (min-width: 840px) {
+  .bokengi-kpi-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 839px) and (min-width: 480px) {
+  .bokengi-kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+}
+
+@media (max-width: 479px) {
+  .bokengi-kpi-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+}
+
+.bokengi-kpi-card {
+  background-color: var(--theme-input-bg);
+  border: 1px solid var(--theme-border-color);
+  border-radius: var(--bokengi-radius-md);
+  padding: 1.15rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: var(--bokengi-shadow-subtle);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.bokengi-kpi-card:hover {
+  border-color: var(--bokengi-border-hover);
+}
+
+.bokengi-kpi-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.bokengi-kpi-card__label {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--theme-elevation-450);
+  line-height: 1.3;
+}
+
+.bokengi-kpi-card__badge {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.bokengi-kpi-card__value {
+  font-family: var(--font-heading);
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--theme-elevation-900);
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 0.35rem;
+}
+
+.bokengi-kpi-card__subtext {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: var(--theme-elevation-400);
+  line-height: 1.4;
+}
+
+.bokengi-kpi-card__unavailable {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--theme-elevation-400);
+  font-style: italic;
+  padding: 0.5rem 0;
+}
+
+/* Variantes sémantiques de la puce d'état */
+.bokengi-kpi-card--total .bokengi-kpi-card__badge {
+  background-color: var(--bokengi-blue);
+}
+
+.bokengi-kpi-card--new .bokengi-kpi-card__badge {
+  background-color: var(--bokengi-cyan);
+}
+
+.bokengi-kpi-card--contacted .bokengi-kpi-card__badge {
+  background-color: var(--theme-warning-500);
+}
+
+.bokengi-kpi-card--qualified .bokengi-kpi-card__badge {
+  background-color: var(--bokengi-accent);
+}
+
+.bokengi-kpi-card--converted .bokengi-kpi-card__badge {
+  background-color: var(--theme-success-500);
+}
+
+.bokengi-kpi-card--archived .bokengi-kpi-card__badge {
+  background-color: var(--theme-elevation-350);
+}
+
+/* État d'erreur global de la grille */
+.bokengi-kpi-error {
+  background-color: var(--theme-elevation-50);
+  border: 1px solid var(--theme-border-color);
+  border-radius: var(--bokengi-radius-md);
+  padding: 1.25rem;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--theme-elevation-450);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+}
+
+/* ==============================================================================
+   14. BOKENGI DASHBOARD COMPONENTS — ACTION REQUIRED & RECENT ACTIVITY (PHASE 3.0-F)
+   ============================================================================== */
+
+/* ── Carte ActionRequiredTable ── */
+.bokengi-action-table-card {
+  background-color: var(--theme-input-bg);
+  border: 1px solid var(--theme-border-color);
+  border-radius: var(--bokengi-radius-md);
+  box-shadow: var(--bokengi-shadow-subtle);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+}
+
+.bokengi-action-table-card:hover {
+  border-color: var(--bokengi-border-hover);
+}
+
+.bokengi-action-table-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.bokengi-action-table-card__title-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.bokengi-action-table-card__kicker {
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--bokengi-cyan);
+  margin-bottom: 0.25rem;
+  display: block;
+}
+
+.bokengi-action-table-card__title {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--theme-elevation-900);
+  margin: 0;
+  line-height: 1.25;
+}
+
+.bokengi-action-table-card__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.bokengi-action-table-card__badge {
+  background-color: var(--bokengi-cyan-subtle);
+  color: var(--bokengi-cyan);
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.6rem;
+  border-radius: var(--bokengi-radius-xs);
+  border: 1px solid rgba(2, 132, 199, 0.2);
+  white-space: nowrap;
+}
+
+.bokengi-action-table-card__view-all {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--theme-elevation-450);
+  text-decoration: none;
+  transition: color 0.15s ease;
+  white-space: nowrap;
+}
+
+.bokengi-action-table-card__view-all:hover {
+  color: var(--bokengi-cyan);
+  text-decoration: underline;
+}
+
+.bokengi-action-table-card__view-all:focus-visible {
+  outline: 2px solid var(--bokengi-cyan);
+  outline-offset: 2px;
+}
+
+/* ── Table des demandes ── */
+.bokengi-action-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.bokengi-action-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-family: var(--font-body);
+}
+
+.bokengi-action-table__th {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--theme-elevation-400);
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--theme-border-color);
+  background-color: var(--theme-elevation-50);
+  white-space: nowrap;
+}
+
+.bokengi-action-table__row {
+  border-bottom: 1px solid var(--theme-border-color);
+  transition: background-color 0.15s ease;
+}
+
+.bokengi-action-table__row:hover {
+  background-color: var(--theme-elevation-50);
+}
+
+.bokengi-action-table__row:last-child {
+  border-bottom: none;
+}
+
+.bokengi-action-table__td {
+  padding: 0.85rem 1rem;
+  vertical-align: middle;
+  font-size: 0.85rem;
+  color: var(--theme-elevation-900);
+}
+
+.bokengi-action-table__contact {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.bokengi-action-table__name {
+  font-weight: 600;
+  color: var(--theme-elevation-900);
+  line-height: 1.3;
+}
+
+.bokengi-action-table__email {
+  font-size: 0.75rem;
+  color: var(--theme-elevation-400);
+  line-height: 1.2;
+}
+
+.bokengi-action-table__company {
+  font-size: 0.85rem;
+  color: var(--theme-elevation-700);
+}
+
+.bokengi-action-table__muted {
+  color: var(--theme-elevation-350);
+}
+
+.bokengi-action-table__type-pill {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--theme-elevation-600);
+  background-color: var(--theme-elevation-100);
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--bokengi-radius-xs);
+  border: 1px solid var(--theme-border-color);
+  white-space: nowrap;
+}
+
+.bokengi-action-table__date {
+  font-size: 0.8rem;
+  color: var(--theme-elevation-450);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.bokengi-action-table__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--bokengi-cyan);
+  text-decoration: none;
+  padding: 0.35rem 0.7rem;
+  border-radius: var(--bokengi-radius-xs);
+  border: 1px solid rgba(2, 132, 199, 0.25);
+  background-color: var(--bokengi-cyan-subtle);
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.bokengi-action-table__btn:hover {
+  background-color: var(--bokengi-cyan);
+  color: #FFFFFF;
+  border-color: var(--bokengi-cyan);
+}
+
+.bokengi-action-table__btn:focus-visible {
+  outline: 2px solid var(--bokengi-cyan);
+  outline-offset: 2px;
+}
+
+/* ── États Vides et Erreurs (Table & Feed) ── */
+.bokengi-table-state {
+  padding: 2.25rem 1.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  border-radius: var(--bokengi-radius-sm);
+}
+
+.bokengi-table-state--empty {
+  background-color: var(--theme-elevation-50);
+  border: 1px dashed var(--theme-border-color);
+}
+
+.bokengi-table-state__check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: var(--theme-success-50);
+  color: var(--theme-success-500);
+  font-weight: bold;
+  font-size: 0.85rem;
+  margin-bottom: 0.25rem;
+}
+
+.bokengi-table-state__title {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--theme-elevation-900);
+  margin: 0;
+}
+
+.bokengi-table-state__sub {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: var(--theme-elevation-400);
+  margin: 0;
+  max-width: 380px;
+  line-height: 1.4;
+}
+
+.bokengi-table-state--error {
+  background-color: var(--theme-elevation-50);
+  border: 1px solid var(--theme-error-500);
+  color: var(--theme-error-600);
+}
+
+/* ── Carte RecentActivityFeed ── */
+.bokengi-activity-card {
+  background-color: var(--theme-input-bg);
+  border: 1px solid var(--theme-border-color);
+  border-radius: var(--bokengi-radius-md);
+  box-shadow: var(--bokengi-shadow-subtle);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+}
+
+.bokengi-activity-card:hover {
+  border-color: var(--bokengi-border-hover);
+}
+
+.bokengi-activity-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.bokengi-activity-card__title-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.bokengi-activity-card__kicker {
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--bokengi-cyan);
+  margin-bottom: 0.25rem;
+  display: block;
+}
+
+.bokengi-activity-card__title {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--theme-elevation-900);
+  margin: 0;
+  line-height: 1.25;
+}
+
+.bokengi-activity-card__header-link {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--theme-elevation-450);
+  text-decoration: none;
+  transition: color 0.15s ease;
+  white-space: nowrap;
+}
+
+.bokengi-activity-card__header-link:hover {
+  color: var(--bokengi-cyan);
+  text-decoration: underline;
+}
+
+.bokengi-activity-card__header-link:focus-visible {
+  outline: 2px solid var(--bokengi-cyan);
+  outline-offset: 2px;
+}
+
+/* ── Liste Timeline Récente ── */
+.bokengi-activity-list-wrap {
+  position: relative;
+}
+
+.bokengi-activity-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  position: relative;
+}
+
+.bokengi-activity-list::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: 6px;
+  width: 2px;
+  background-color: var(--theme-border-color);
+}
+
+.bokengi-activity-item {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+}
+
+.bokengi-activity-item__dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid var(--theme-input-bg);
+  background-color: var(--theme-elevation-350);
+  flex-shrink: 0;
+  margin-top: 3px;
+  position: relative;
+  z-index: 1;
+}
+
+.bokengi-activity-item__dot--new {
+  background-color: var(--bokengi-cyan);
+}
+
+.bokengi-activity-item__dot--contacted {
+  background-color: var(--theme-warning-500);
+}
+
+.bokengi-activity-item__dot--qualified {
+  background-color: var(--bokengi-accent);
+}
+
+.bokengi-activity-item__dot--converted {
+  background-color: var(--theme-success-500);
+}
+
+.bokengi-activity-item__dot--archived {
+  background-color: var(--theme-elevation-350);
+}
+
+.bokengi-activity-item__body {
+  flex: 1 1 auto;
+  min-width: 0;
+  background-color: var(--theme-elevation-50);
+  border: 1px solid var(--theme-border-color);
+  border-radius: var(--bokengi-radius-sm);
+  padding: 0.75rem 1rem;
+  transition: border-color 0.15s ease;
+}
+
+.bokengi-activity-item__body:hover {
+  border-color: var(--bokengi-border-hover);
+}
+
+.bokengi-activity-item__top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.bokengi-activity-item__name {
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: var(--theme-elevation-900);
+  line-height: 1.3;
+}
+
+.bokengi-activity-item__date {
+  font-size: 0.72rem;
+  color: var(--theme-elevation-400);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.bokengi-activity-item__meta {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.78rem;
+  color: var(--theme-elevation-500);
+  margin-bottom: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.bokengi-activity-item__type {
+  font-weight: 500;
+  color: var(--theme-elevation-600);
+}
+
+.bokengi-activity-item__sep {
+  color: var(--theme-elevation-350);
+}
+
+.bokengi-activity-item__company {
+  color: var(--theme-elevation-450);
+}
+
+.bokengi-activity-item__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.bokengi-activity-item__link {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--bokengi-cyan);
+  text-decoration: none;
+  transition: color 0.15s ease;
+  white-space: nowrap;
+}
+
+.bokengi-activity-item__link:hover {
+  text-decoration: underline;
+}
+
+.bokengi-activity-item__link:focus-visible {
+  outline: 2px solid var(--bokengi-cyan);
+  outline-offset: 2px;
+}
+
+/* ── Responsive Adaptations ── */
+@media (max-width: 768px) {
+  .bokengi-action-table-card__header,
+  .bokengi-activity-card__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .bokengi-action-table-card__actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .bokengi-action-table__th--company,
+  .bokengi-action-table__td--company {
+    display: none;
+  }
+}
+
+@media (max-width: 540px) {
+  .bokengi-action-table-card,
+  .bokengi-activity-card {
+    padding: 1rem;
+  }
+
+  .bokengi-action-table,
+  .bokengi-action-table thead,
+  .bokengi-action-table tbody,
+  .bokengi-action-table tr,
+  .bokengi-action-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .bokengi-action-table thead {
+    display: none;
+  }
+
+  .bokengi-action-table__row {
+    padding: 0.85rem 0;
+  }
+
+  .bokengi-action-table__td {
+    padding: 0.25rem 0;
+  }
+
+  .bokengi-action-table__td--action {
+    padding-top: 0.5rem;
+  }
+}
+
+/* ==============================================================================
+   15. BOKENGI COMMAND CENTER ASSEMBLY — CONTENT OVERVIEW & QUICK ACTIONS (PHASE 3.0-G)
+   ============================================================================== */
+
+/* Conteneur global du Command Center */
+.bokengi-command-center-wrap {
+  width: 100%;
+  padding: 0;
+}
+
+.bokengi-command-center {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 1.5rem 2rem 3rem 2rem;
+}
+
+@media (max-width: 768px) {
+  .bokengi-command-center {
+    padding: 1rem 1rem 2rem 1rem;
+  }
+}
+
+/* Grille scindée à deux colonnes : Activité récente (CRM) | État des contenus (CMS) */
+.bokengi-dashboard-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  align-items: start;
+}
+
+@media (max-width: 992px) {
+  .bokengi-dashboard-split {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}
+
+/* ── Carte État des contenus (ContentOverview) ── */
+.bokengi-content-overview-card {
+  background-color: var(--theme-input-bg);
+  border: 1px solid var(--theme-border-color);
+  border-radius: var(--bokengi-radius-md);
+  box-shadow: var(--bokengi-shadow-subtle);
+  padding: 1.5rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+}
+
+.bokengi-content-overview-card:hover {
+  border-color: var(--bokengi-border-hover);
+}
+
+.bokengi-content-overview-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.bokengi-content-overview-card__title-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.bokengi-content-overview-card__kicker {
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--bokengi-cyan);
+  margin-bottom: 0.25rem;
+  display: block;
+}
+
+.bokengi-content-overview-card__title {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--theme-elevation-900);
+  margin: 0;
+  line-height: 1.25;
+}
+
+.bokengi-content-overview-card__total-badge {
+  background-color: var(--theme-elevation-100);
+  color: var(--theme-elevation-600);
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.6rem;
+  border-radius: var(--bokengi-radius-xs);
+  border: 1px solid var(--theme-border-color);
+  white-space: nowrap;
+}
+
+.bokengi-content-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.bokengi-content-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 0.9rem;
+  background-color: var(--theme-elevation-50);
+  border: 1px solid var(--theme-border-color);
+  border-radius: var(--bokengi-radius-sm);
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.bokengi-content-item:hover {
+  border-color: var(--bokengi-border-hover);
+}
+
+.bokengi-content-item__main {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  min-width: 0;
+}
+
+.bokengi-content-item__count {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--theme-elevation-900);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  min-width: 32px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.bokengi-content-item__info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.bokengi-content-item__label {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--theme-elevation-900);
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bokengi-content-item__sub {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  color: var(--theme-elevation-400);
+  line-height: 1.2;
+}
+
+.bokengi-content-item__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-shrink: 0;
+}
+
+.bokengi-content-item__btn-view {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--theme-elevation-450);
+  background-color: transparent;
+  padding: 0.3rem 0.55rem;
+  border-radius: var(--bokengi-radius-xs);
+  border: 1px solid var(--theme-border-color);
+  text-decoration: none;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.bokengi-content-item__btn-view:hover {
+  color: var(--bokengi-cyan);
+  border-color: var(--bokengi-border-hover);
+  background-color: var(--bokengi-cyan-subtle);
+}
+
+.bokengi-content-item__btn-view:focus-visible {
+  outline: 2px solid var(--bokengi-cyan);
+  outline-offset: 2px;
+}
+
+.bokengi-content-item__btn-create {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--bokengi-cyan);
+  background-color: var(--bokengi-cyan-subtle);
+  padding: 0.3rem 0.6rem;
+  border-radius: var(--bokengi-radius-xs);
+  border: 1px solid rgba(2, 132, 199, 0.25);
+  text-decoration: none;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.bokengi-content-item__btn-create:hover {
+  background-color: var(--bokengi-cyan);
+  color: #FFFFFF;
+  border-color: var(--bokengi-cyan);
+}
+
+.bokengi-content-item__btn-create:focus-visible {
+  outline: 2px solid var(--bokengi-cyan);
+  outline-offset: 2px;
+}
+
+/* ── Carte Actions Rapides (QuickActionBar) ── */
+.bokengi-quick-action-card {
+  background-color: var(--theme-input-bg);
+  border: 1px solid var(--theme-border-color);
+  border-radius: var(--bokengi-radius-md);
+  box-shadow: var(--bokengi-shadow-subtle);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+}
+
+.bokengi-quick-action-card:hover {
+  border-color: var(--bokengi-border-hover);
+}
+
+.bokengi-quick-action-card__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.bokengi-quick-action-card__title-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.bokengi-quick-action-card__kicker {
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--bokengi-cyan);
+  margin-bottom: 0.25rem;
+  display: block;
+}
+
+.bokengi-quick-action-card__title {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--theme-elevation-900);
+  margin: 0;
+  line-height: 1.25;
+}
+
+.bokengi-quick-action-card__subtitle {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: var(--theme-elevation-400);
+}
+
+.bokengi-quick-action-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+}
+
+@media (max-width: 1200px) and (min-width: 768px) {
+  .bokengi-quick-action-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 767px) and (min-width: 480px) {
+  .bokengi-quick-action-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 479px) {
+  .bokengi-quick-action-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.bokengi-quick-action-item {
+  background-color: var(--theme-elevation-50);
+  border: 1px solid var(--theme-border-color);
+  border-radius: var(--bokengi-radius-sm);
+  padding: 1rem 1.15rem;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.bokengi-quick-action-item:hover {
+  border-color: var(--bokengi-cyan);
+  background-color: var(--theme-input-bg);
+  box-shadow: var(--bokengi-shadow-card);
+  transform: translateY(-2px);
+}
+
+.bokengi-quick-action-item:focus-visible {
+  outline: 2px solid var(--bokengi-cyan);
+  outline-offset: 2px;
+}
+
+.bokengi-quick-action-item__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.65rem;
+}
+
+.bokengi-quick-action-item__badge {
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--bokengi-cyan);
+}
+
+.bokengi-quick-action-item__arrow {
+  font-size: 0.85rem;
+  color: var(--theme-elevation-400);
+  transition: transform 0.15s ease, color 0.15s ease;
+}
+
+.bokengi-quick-action-item:hover .bokengi-quick-action-item__arrow {
+  transform: translateX(3px);
+  color: var(--bokengi-cyan);
+}
+
+.bokengi-quick-action-item__title {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--theme-elevation-900);
+  margin: 0 0 0.25rem 0;
+  line-height: 1.3;
+}
+
+.bokengi-quick-action-item__desc {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: var(--theme-elevation-400);
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* ==============================================================================
+   16. BOKENGI MEDIA LIBRARY / MÉDIATHÈQUE UI/UX (PHASE 3.0-I)
+   ============================================================================== */
+
+/* ── Zone de téléversement (Dropzone) ── */
+.dropzone {
+  border: 2px dashed var(--theme-border-color) !important;
+  border-radius: var(--bokengi-radius-md) !important;
+  background-color: var(--theme-elevation-50) !important;
+  padding: 2rem 1.5rem !important;
+  text-align: center !important;
+  transition: border-color 0.2s ease, background-color 0.2s ease !important;
+}
+
+.dropzone:hover,
+.dropzone.dropzone--drag-over {
+  border-color: var(--bokengi-cyan) !important;
+  background-color: var(--bokengi-cyan-subtle) !important;
+}
+
+/* ── Vignettes et prévisualisations (Thumbnails) ── */
+.thumbnail {
+  border-radius: var(--bokengi-radius-xs) !important;
+  overflow: hidden !important;
+  border: 1px solid var(--theme-border-color) !important;
+  background-color: var(--theme-elevation-100) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.thumbnail img {
+  object-fit: cover !important;
+  width: 100% !important;
+  height: 100% !important;
+  display: block !important;
+}
+
+/* Vignette dans les tableaux de liste */
+.table .thumbnail {
+  width: 48px !important;
+  height: 48px !important;
+  min-width: 48px !important;
+  border-radius: var(--bokengi-radius-xs) !important;
+}
+
+/* ── Détails du fichier (File Details) ── */
+.file-details {
+  font-family: var(--font-body) !important;
+  border-radius: var(--bokengi-radius-sm) !important;
+  border: 1px solid var(--theme-border-color) !important;
+  background-color: var(--theme-elevation-50) !important;
+  padding: 1rem 1.25rem !important;
+  margin-top: 1rem !important;
+}
+
+.file-details__main-detail {
+  font-family: var(--font-heading) !important;
+  font-weight: 600 !important;
+  color: var(--theme-elevation-900) !important;
+}
+
+.file-details__meta {
+  color: var(--theme-elevation-400) !important;
+  font-variant-numeric: tabular-nums !important;
+  font-size: 0.8rem !important;
+}
+
+/* ── Cartes d'upload (Upload Cards & Sélection) ── */
+.upload-field-card {
+  border: 1px solid var(--theme-border-color) !important;
+  border-radius: var(--bokengi-radius-sm) !important;
+  background-color: var(--theme-input-bg) !important;
+  box-shadow: var(--bokengi-shadow-subtle) !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease !important;
+}
+
+.upload-field-card:hover {
+  border-color: var(--bokengi-border-hover) !important;
+}
+
+.upload-field-card--selected {
+  border-color: var(--bokengi-cyan) !important;
+  box-shadow: 0 0 0 2px var(--bokengi-cyan) !important;
+}
+
+/* ── Tiroir de sélection média (Media Drawer) ── */
+.drawer--edit-upload .drawer__content {
+  background-color: var(--theme-input-bg) !important;
+}
+
+/* ── Boutons d'action upload ── */
+.file-field__upload-actions .btn {
+  font-family: var(--font-body) !important;
+  font-weight: 600 !important;
+  border-radius: var(--bokengi-radius-xs) !important;
+}
+
+.file-field__upload-actions .btn:focus-visible {
+  outline: 2px solid var(--bokengi-cyan) !important;
+  outline-offset: 2px !important;
+}

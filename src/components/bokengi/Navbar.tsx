@@ -8,10 +8,15 @@ import { useTheme } from '@/providers/Theme'
 
 export const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false)
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [mounted, setMounted] = useState(false)
   const pathname = usePathname()
   const { theme } = useTheme()
+
+  const dropdownWrapRef = React.useRef<HTMLLIElement>(null)
+  const triggerLinkRef = React.useRef<HTMLAnchorElement>(null)
+  const itemLinksRef = React.useRef<(HTMLAnchorElement | null)[]>([])
 
   useEffect(() => {
     setMounted(true)
@@ -24,9 +29,48 @@ export const Navbar: React.FC = () => {
 
   useEffect(() => {
     setIsOpen(false)
+    setIsDropdownOpen(false)
   }, [pathname])
 
   const toggleMenu = () => setIsOpen((prev) => !prev)
+
+  const handleTriggerKeyDown = (e: React.KeyboardEvent<HTMLAnchorElement>) => {
+    if (e.key === ' ' || e.key === 'ArrowDown') {
+      e.preventDefault()
+      setIsDropdownOpen(true)
+      setTimeout(() => {
+        itemLinksRef.current[0]?.focus()
+      }, 0)
+    } else if (e.key === 'Escape') {
+      setIsDropdownOpen(false)
+    }
+  }
+
+  const handleItemKeyDown = (index: number, e: React.KeyboardEvent<HTMLAnchorElement>) => {
+    if (e.key === 'Escape') {
+      e.preventDefault()
+      setIsDropdownOpen(false)
+      triggerLinkRef.current?.focus()
+    } else if (e.key === 'ArrowDown') {
+      e.preventDefault()
+      const next = (index + 1) % 5
+      itemLinksRef.current[next]?.focus()
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault()
+      if (index === 0) {
+        setIsDropdownOpen(false)
+        triggerLinkRef.current?.focus()
+      } else {
+        itemLinksRef.current[index - 1]?.focus()
+      }
+    }
+  }
+
+  const handleDropdownBlur = (e: React.FocusEvent<HTMLLIElement>) => {
+    if (!dropdownWrapRef.current?.contains(e.relatedTarget as Node)) {
+      setIsDropdownOpen(false)
+    }
+  }
 
   const isDark = mounted ? theme === 'dark' : false
 
@@ -68,16 +112,41 @@ export const Navbar: React.FC = () => {
               </Link>
             </li>
 
-            <li className="header-v4-dropdown-wrap">
+            <li
+              ref={dropdownWrapRef}
+              className={`header-v4-dropdown-wrap ${isDropdownOpen ? 'is-open' : ''}`}
+              onBlur={handleDropdownBlur}
+              onMouseEnter={() => setIsDropdownOpen(true)}
+              onMouseLeave={() => setIsDropdownOpen(false)}
+            >
               <Link
+                ref={triggerLinkRef}
                 href="/expertises"
                 className={`header-v4-link ${isExpertisesActive ? 'is-active' : ''}`}
+                aria-haspopup="true"
+                aria-expanded={isDropdownOpen}
+                aria-controls="expertises-dropdown-menu"
+                onKeyDown={handleTriggerKeyDown}
               >
                 Expertises
               </Link>
-              <div className="header-v4-dropdown-menu">
-                {expertises.map((exp) => (
-                  <Link key={exp.href} href={exp.href} className="header-v4-dropdown-item">
+              <div
+                id="expertises-dropdown-menu"
+                role="menu"
+                aria-label="Pôles d'expertise"
+                className="header-v4-dropdown-menu"
+              >
+                {expertises.map((exp, idx) => (
+                  <Link
+                    key={exp.href}
+                    ref={(el) => {
+                      itemLinksRef.current[idx] = el
+                    }}
+                    href={exp.href}
+                    role="menuitem"
+                    className="header-v4-dropdown-item"
+                    onKeyDown={(e) => handleItemKeyDown(idx, e)}
+                  >
                     <span className="dropdown-item-pole">{exp.name}</span>
                     <span className="dropdown-item-sub">{exp.sub}</span>
                   </Link>

@@ -75,8 +75,24 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="footer-v4-bottom flex flex-col sm:flex-row items-center justify-between gap-3">
-          <span>© {new Date().getFullYear()} Bokengi Group. Tous droits réservés.</span>
+        <div className="footer-v4-bottom flex flex-col md:flex-row items-center justify-between gap-3 text-center md:text-left">
+          <div className="flex flex-wrap items-center justify-center md:justify-start gap-x-3 gap-y-1">
+            <span>© {new Date().getFullYear()} Bokengi Group. Tous droits réservés.</span>
+            <span className="hidden sm:inline opacity-40" aria-hidden="true">·</span>
+            <Link
+              href="/mentions-legales"
+              className="text-inherit hover:text-[var(--ink-heading)] transition-colors underline-offset-4 hover:underline"
+            >
+              Mentions légales
+            </Link>
+            <span className="hidden sm:inline opacity-40" aria-hidden="true">·</span>
+            <Link
+              href="/confidentialite"
+              className="text-inherit hover:text-[var(--ink-heading)] transition-colors underline-offset-4 hover:underline"
+            >
+              Politique de confidentialité
+            </Link>
+          </div>
           <div className="flex items-center gap-4">
             <OpenStatusBadge />
             <span>Technology & Services</span>

@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
+import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 
 interface ContactFormProps {
@@ -29,6 +30,7 @@ export const ContactForm: React.FC<ContactFormProps> = () => {
     requestType: 'devis',
     message: '',
     website: '', // Honeypot anti-spam
+    consent: false,
   })
 
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
@@ -58,6 +60,12 @@ export const ContactForm: React.FC<ContactFormProps> = () => {
     setStatus('loading')
     setFeedbackMessage('')
 
+    if (!form.consent) {
+      setStatus('error')
+      setFeedbackMessage('Veuillez cocher la case attestant de la prise de connaissance de la Politique de confidentialité pour transmettre votre demande.')
+      return
+    }
+
     try {
       const res = await fetch('/api/leads', {
         method: 'POST',
@@ -83,6 +91,7 @@ export const ContactForm: React.FC<ContactFormProps> = () => {
         requestType: 'devis',
         message: '',
         website: '',
+        consent: false,
       })
     } catch (err: any) {
       setStatus('error')
@@ -309,7 +318,40 @@ export const ContactForm: React.FC<ContactFormProps> = () => {
         />
       </div>
 
-      {/* 8. Bouton d'envoi & Garanties */}
+      {/* 8. Information RGPD & Prise de connaissance */}
+      <div className="p-4 rounded-[var(--radius-xs)] bg-[var(--bg-elevated)]/60 border border-[var(--border-subtle)] space-y-3">
+        <div className="flex items-start gap-3">
+          <input
+            type="checkbox"
+            id="form-consent"
+            name="consent"
+            checked={form.consent}
+            onChange={(e) => setForm((prev) => ({ ...prev, consent: e.target.checked }))}
+            required
+            className="mt-0.5 h-4 w-4 rounded border-[var(--border-medium)] text-[var(--blue-cyan)] focus:ring-[var(--blue-cyan)] cursor-pointer shrink-0"
+          />
+          <label
+            htmlFor="form-consent"
+            className="text-xs text-[var(--ink-muted)] leading-relaxed cursor-pointer select-none"
+          >
+            J’ai pris connaissance de la{' '}
+            <Link
+              href="/confidentialite"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[var(--blue-cyan)] font-medium underline underline-offset-2 hover:opacity-80"
+            >
+              Politique de confidentialité
+            </Link>{' '}
+            de Bokengi Group et j’accepte que les informations saisies soient traitées dans le cadre de ma demande de devis ou de cadrage. <span className="text-[var(--blue-cyan)]">*</span>
+          </label>
+        </div>
+        <p className="text-[11px] text-[var(--ink-faint)] leading-relaxed sm:pl-7">
+          Base légale : exécution de démarches précontractuelles à votre demande (art. 6.1.b RGPD). Vos données ne sont cédées à aucun tiers à des fins publicitaires.
+        </p>
+      </div>
+
+      {/* 9. Bouton d'envoi & Garanties */}
       <div className="pt-4 border-t border-[var(--border-subtle)] flex flex-col sm:flex-row items-center justify-between gap-4">
         <button
           type="submit"

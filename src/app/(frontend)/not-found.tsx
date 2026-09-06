@@ -1,4 +1,4 @@
-﻿import React from 'react'
+import React from 'react'
 import Link from 'next/link'
 import { Navbar } from '@/components/bokengi/Navbar'
 import { Footer } from '@/components/bokengi/Footer'
@@ -9,7 +9,7 @@ export default function NotFound() {
     <div className="min-h-screen flex flex-col bg-[var(--bg-main)] text-[var(--ink-body)]">
       <Navbar />
 
-      <main className="flex-1 flex items-center justify-center py-28 relative overflow-hidden">
+      <main id="main-content" tabIndex={-1} className="flex-1 flex items-center justify-center py-28 relative overflow-hidden">
         <div className="pattern-dotted-radial-right" aria-hidden="true" />
         <div className="container-v4 text-center relative z-10 max-w-2xl mx-auto">
           <div className="font-mono text-7xl md:text-9xl font-extrabold text-[var(--blue-cyan)] mb-4 opacity-80">

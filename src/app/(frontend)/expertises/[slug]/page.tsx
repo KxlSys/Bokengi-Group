@@ -6,6 +6,7 @@ import { Navbar } from '@/components/bokengi/Navbar'
 import { Footer } from '@/components/bokengi/Footer'
 import { Kicker } from '@/components/bokengi/Kicker'
 import { getPoles, getPoleBySlug, getServices } from '@/lib/data'
+import { siteConfig } from '@/config/site'
 
 interface PageProps {
   params: Promise<{ slug: string }>
@@ -34,7 +35,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     openGraph: {
       title: pole.seo.title,
       description: pole.seo.description,
-      url: `https://bokengi.vercel.app/expertises/${pole.slug}`,
+      url: `${siteConfig.domains.production}/expertises/${pole.slug}`,
       siteName: 'Bokengi Group',
       images: [
         {
@@ -63,7 +64,7 @@ export default async function PoleDetailPage({ params }: PageProps) {
     <div className="min-h-screen flex flex-col bg-[var(--bg-main)] text-[var(--ink-body)]">
       <Navbar />
 
-      <main className="flex-1">
+      <main id="main-content" tabIndex={-1} className="flex-1">
         {/* ── EN-TÊTE DU PÔLE SPÉCIFIQUE ── */}
         <section className="py-24 border-b border-[var(--border-subtle)] relative overflow-hidden">
           <div className="pattern-dotted-radial-right" aria-hidden="true" />

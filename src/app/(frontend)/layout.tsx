@@ -78,6 +78,12 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         />
       </head>
       <body>
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:px-4 focus:py-2.5 focus:bg-[var(--bg-surface)] focus:text-[var(--ink-heading)] focus:font-semibold focus:text-sm focus:rounded-[var(--radius-xs)] focus:border-2 focus:border-[var(--blue-cyan)] focus:shadow-2xl focus:outline-none"
+        >
+          Aller au contenu principal
+        </a>
         <Providers>
           {children}
         </Providers>

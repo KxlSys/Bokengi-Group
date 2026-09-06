@@ -20,7 +20,7 @@ export default async function ExpertisesPage() {
     <div className="min-h-screen flex flex-col bg-[var(--bg-main)] text-[var(--ink-body)]">
       <Navbar />
 
-      <main className="flex-1">
+      <main id="main-content" tabIndex={-1} className="flex-1">
         {/* ── EN-TÊTE DE SECTION ── */}
         <section className="py-24 border-b border-[var(--border-subtle)] relative overflow-hidden">
           <div className="pattern-dotted-radial-right" aria-hidden="true" />

@@ -43,7 +43,7 @@ export const siteConfig = {
       return (
         process.env.NEXT_PUBLIC_SERVER_URL ||
         (process.env.NODE_ENV === 'production'
-          ? 'https://bokengi.vercel.app'
+          ? 'https://bokengi-group.com'
           : 'http://localhost:3000')
       )
     },

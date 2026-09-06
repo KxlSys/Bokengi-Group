@@ -375,7 +375,7 @@ body.dark-theme .header-v4.is-scrolled {
 }
 
 .header-v4-dropdown-wrap:hover .header-v4-dropdown-menu,
-.header-v4-dropdown-wrap:focus-within .header-v4-dropdown-menu {
+.header-v4-dropdown-wrap.is-open .header-v4-dropdown-menu {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
@@ -1213,3 +1213,23 @@ body.dark-theme .footer-v4-bottom {
     padding: 1.25rem 1rem;
   }
 }
+
+/* ── ACCESSIBILITÉ : FOCUS-VISIBLE ── */
+:focus-visible {
+  outline: 2px solid var(--blue-cyan);
+  outline-offset: 2px;
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--blue-cyan);
+  outline-offset: 2px;
+}
+
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--blue-cyan);
+  outline-offset: 1px;
+}
+

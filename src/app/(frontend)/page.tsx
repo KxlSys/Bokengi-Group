@@ -26,7 +26,7 @@ export default async function HomePage() {
     <div className="min-h-screen flex flex-col bg-[var(--bg-main)] text-[var(--ink-body)]">
       <Navbar />
 
-      <main className="flex-1">
+      <main id="main-content" tabIndex={-1} className="flex-1">
         {/* ── 01 HERO SECTION V4 OFFICIELLE ── */}
         <HeroV4 />
 

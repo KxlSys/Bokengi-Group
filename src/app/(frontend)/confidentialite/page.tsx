@@ -59,9 +59,7 @@ export default function ConfidentialitePage() {
                   </li>
                   <li className="flex flex-col sm:flex-row sm:items-baseline gap-2">
                     <span className="font-mono text-xs text-[var(--ink-muted)] sm:w-48 shrink-0">Siège social :</span>
-                    <span className="px-2 py-0.5 rounded bg-amber-500/10 text-amber-700 dark:text-amber-400 font-mono text-xs border border-amber-500/20">
-                      [À compléter : Adresse postale complète du siège social]
-                    </span>
+                    <span className="font-semibold text-[var(--ink-heading)]">Paris, France</span>
                   </li>
                   <li className="flex flex-col sm:flex-row sm:items-baseline gap-2">
                     <span className="font-mono text-xs text-[var(--ink-muted)] sm:w-48 shrink-0">Contact Référent Données / DPO :</span>
@@ -293,12 +291,6 @@ export default function ConfidentialitePage() {
                       <a href="mailto:contact@bokengi-group.com" className="text-[var(--blue-cyan)] hover:underline font-mono">
                         contact@bokengi-group.com
                       </a>
-                    </li>
-                    <li>
-                      Par courrier postal :{' '}
-                      <span className="px-2 py-0.5 rounded bg-amber-500/10 text-amber-700 dark:text-amber-400 font-mono text-xs border border-amber-500/20">
-                        [À compléter : Adresse postale du siège social]
-                      </span>
                     </li>
                   </ul>
                   <p className="text-xs text-[var(--ink-muted)] pt-2">

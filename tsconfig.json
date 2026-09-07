@@ -30,6 +30,9 @@
       "react": [
         "./node_modules/@types/react"
       ],
+      "sharp": [
+        "./node_modules/sharp"
+      ],
       "@/*": [
         "./src/*"
       ]

@@ -22,7 +22,10 @@ function isRateLimited(ip: string, limit = 5, windowMs = 60000): boolean {
 
 export async function POST(req: NextRequest) {
   try {
-    const ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown'
+    const ip =
+      req.headers.get('cf-connecting-ip')?.trim() ||
+      req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
+      'unknown'
 
     if (isRateLimited(ip, 6, 60000)) {
       return NextResponse.json(

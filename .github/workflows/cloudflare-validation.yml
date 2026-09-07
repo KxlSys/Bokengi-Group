@@ -4,6 +4,7 @@ on:
   workflow_dispatch:
   push:
     branches:
+      - main
       - migration/bokengi-2.0
     paths:
       - 'src/**'

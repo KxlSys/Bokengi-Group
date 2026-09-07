@@ -10,8 +10,8 @@ test.describe('Frontend', () => {
 
   test('can load homepage', async ({ page }) => {
     await page.goto('http://localhost:3000')
-    await expect(page).toHaveTitle(/Payload Website Template/)
+    await expect(page).toHaveTitle(/Bokengi Group/)
     const heading = page.locator('h1').first()
-    await expect(heading).toHaveText('Payload Website Template')
+    await expect(heading).toHaveText('Construire. Protéger. Développer.')
   })
 })

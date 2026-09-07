@@ -96,13 +96,13 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 export const revalidate = 300
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteConfig.domains.current),
+  metadataBase: new URL(siteConfig.domains.production),
   title: `${siteConfig.name} · ${siteConfig.tagline}`,
   description: siteConfig.description,
   openGraph: {
     title: `${siteConfig.name} · ${siteConfig.tagline}`,
     description: siteConfig.description,
-    url: siteConfig.domains.current,
+    url: siteConfig.domains.production,
     siteName: siteConfig.name,
     images: [
       {

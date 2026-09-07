@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   title: 'Mentions Légales · Bokengi Group',
   description:
     'Consultez les mentions légales, informations éditoriales, hébergement et propriété intellectuelle de la plateforme officielle Bokengi Group.',
+  alternates: {
+    canonical: '/mentions-legales',
+  },
 }
 
 export default function MentionsLegalesPage() {

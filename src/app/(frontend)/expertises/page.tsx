@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   title: 'Nos Expertises · Les 5 Pôles d’Ingénierie & Services — Bokengi Group',
   description:
     'Explorez l’ensemble des expertises de Bokengi Group : IT & Cybersécurité, Digital & Web, Business & ERP, Consulting Stratégique et Solutions Événementielles.',
+  alternates: {
+    canonical: '/expertises',
+  },
 }
 
 export default async function ExpertisesPage() {

@@ -13,8 +13,8 @@ export const HeroV4: React.FC = () => {
             <Kicker label="BOKENGI GROUP" />
 
             <h1 className="hero-v4-title">
-              <span className="hero-title-white">Construire.</span>
-              <span className="hero-title-blue">Protéger.</span>
+              <span className="hero-title-white">Construire.</span>{' '}
+              <span className="hero-title-blue">Protéger.</span>{' '}
               <span className="hero-title-white">Développer.</span>
             </h1>
 

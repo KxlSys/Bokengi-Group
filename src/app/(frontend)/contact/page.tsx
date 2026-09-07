@@ -11,11 +11,38 @@ export const metadata: Metadata = {
   title: 'Contact & Demande de Devis · Cadrage Technique — Bokengi Group',
   description:
     'Contactez la direction technique de Bokengi Group ou formulez votre demande de devis pour vos projets d’infrastructures, logiciels, digitalisation et événements.',
+  alternates: {
+    canonical: '/contact',
+  },
+}
+
+const contactPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ContactPage',
+  name: 'Contact & Demande de Devis — Bokengi Group',
+  description:
+    'Contactez la direction technique de Bokengi Group ou formulez votre demande de devis pour vos projets d’infrastructures, logiciels, digitalisation et événements.',
+  url: `${siteConfig.domains.production}/contact`,
+  mainEntity: {
+    '@type': 'Organization',
+    name: siteConfig.name,
+    url: siteConfig.domains.production,
+    contactPoint: {
+      '@type': 'ContactPoint',
+      contactType: 'customer service',
+      email: siteConfig.contact.email,
+      availableLanguage: ['French', 'English'],
+    },
+  },
 }
 
 export default function ContactPage() {
   return (
     <div className="min-h-screen flex flex-col bg-[var(--bg-main)] text-[var(--ink-body)]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(contactPageSchema) }}
+      />
       <Navbar />
 
       <main id="main-content" tabIndex={-1} className="flex-1">

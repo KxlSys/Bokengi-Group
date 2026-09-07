@@ -32,6 +32,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: pole.seo.title,
     description: pole.seo.description,
+    alternates: {
+      canonical: `/expertises/${pole.slug}`,
+    },
     openGraph: {
       title: pole.seo.title,
       description: pole.seo.description,
@@ -60,8 +63,26 @@ export default async function PoleDetailPage({ params }: PageProps) {
   const allPoles = await getPoles()
   const services = await getServices(slug)
 
+  const serviceSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: pole.name,
+    description: pole.description,
+    url: `${siteConfig.domains.production}/expertises/${pole.slug}`,
+    provider: {
+      '@type': 'Organization',
+      name: siteConfig.name,
+      url: siteConfig.domains.production,
+    },
+    serviceType: pole.domains,
+  }
+
   return (
     <div className="min-h-screen flex flex-col bg-[var(--bg-main)] text-[var(--ink-body)]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
       <Navbar />
 
       <main id="main-content" tabIndex={-1} className="flex-1">

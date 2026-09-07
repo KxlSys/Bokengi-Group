@@ -174,13 +174,19 @@ export const ContactForm: React.FC<ContactFormProps> = () => {
         <label className="block text-xs uppercase font-mono tracking-wider text-[var(--ink-heading)] mb-2 font-semibold">
           Pôle d’expertise sollicité <span className="text-[var(--blue-cyan)]">*</span>
         </label>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
+        <div
+          role="radiogroup"
+          aria-label="Sélectionnez un pôle d'expertise"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5"
+        >
           {POLES_OPTIONS.map((p) => {
             const isSelected = form.pole === p.id
             return (
               <button
                 key={p.id}
                 type="button"
+                role="radio"
+                aria-checked={isSelected}
                 onClick={() => setForm((prev) => ({ ...prev, pole: p.id }))}
                 className={`p-3 rounded-[var(--radius-xs)] text-left border transition-all ${
                   isSelected

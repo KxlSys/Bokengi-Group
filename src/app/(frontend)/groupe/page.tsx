@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   title: 'Le Groupe · Vision, Gouvernance & Pôles Intégrés — Bokengi Group',
   description:
     'Découvrez l’organisation et la vision de Bokengi Group : cinq expertises synergiques au service de la transformation technologique et de la souveraineté numérique.',
+  alternates: {
+    canonical: '/groupe',
+  },
 }
 
 export default async function GroupePage() {

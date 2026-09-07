@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   title: 'Réalisations & Études de Cas · Projets Déployés — Bokengi Group',
   description:
     'Découvrez les 5 réalisations d’ingénierie majeures de Bokengi Group : ESIIKA, Portail Kongama, Kongama Academy, BisoMapTech et FleetGuard.',
+  alternates: {
+    canonical: '/realisations',
+  },
 }
 
 export default async function RealisationsPage() {

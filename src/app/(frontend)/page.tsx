@@ -15,6 +15,9 @@ export const metadata: Metadata = {
   title: 'Bokengi Group · Ingénierie, Technologies & Services Professionnels',
   description:
     'Bokengi Group réunit cinq expertises technologiques et multisectorielles : Bokengi IT, Bokengi Digital, Bokengi Business, Bokengi Consulting et Bokengi Events.',
+  alternates: {
+    canonical: '/',
+  },
 }
 
 export default async function HomePage() {

@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   title: 'Politique de Confidentialité & RGPD · Bokengi Group',
   description:
     'Découvrez nos engagements en matière de protection des données personnelles, conformité RGPD, gestion des leads et sécurité des échanges.',
+  alternates: {
+    canonical: '/confidentialite',
+  },
 }
 
 export default function ConfidentialitePage() {

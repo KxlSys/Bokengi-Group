@@ -96,6 +96,17 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <span className="block text-xs text-[var(--ink-muted)] font-mono uppercase">
+                        Téléphone :
+                      </span>
+                      <a
+                        href="tel:+33758888434"
+                        className="font-mono text-sm text-[var(--blue-cyan)] hover:underline font-medium"
+                      >
+                        07 58 88 84 34
+                      </a>
+                    </div>
+                    <div>
+                      <span className="block text-xs text-[var(--ink-muted)] font-mono uppercase">
                         Délai moyen de réponse :
                       </span>
                       <span className="text-sm text-[var(--ink-heading)] font-medium">

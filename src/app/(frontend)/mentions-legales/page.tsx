@@ -59,33 +59,23 @@ export default function MentionsLegalesPage() {
                   </li>
                   <li className="flex flex-col sm:flex-row sm:items-baseline gap-2">
                     <span className="font-mono text-xs text-[var(--ink-muted)] sm:w-48 shrink-0">Forme juridique :</span>
-                    <span className="px-2 py-0.5 rounded bg-amber-500/10 text-amber-700 dark:text-amber-400 font-mono text-xs border border-amber-500/20">
-                      [À compléter : Forme juridique de la société, ex: SAS / SARL / SA]
-                    </span>
+                    <span className="font-semibold text-[var(--ink-heading)]">TPE</span>
                   </li>
                   <li className="flex flex-col sm:flex-row sm:items-baseline gap-2">
                     <span className="font-mono text-xs text-[var(--ink-muted)] sm:w-48 shrink-0">Capital social :</span>
-                    <span className="px-2 py-0.5 rounded bg-amber-500/10 text-amber-700 dark:text-amber-400 font-mono text-xs border border-amber-500/20">
-                      [À compléter : Montant du capital social en € ou devise d’enregistrement]
-                    </span>
+                    <span className="font-semibold text-[var(--ink-heading)]">7 500 €</span>
                   </li>
                   <li className="flex flex-col sm:flex-row sm:items-baseline gap-2">
                     <span className="font-mono text-xs text-[var(--ink-muted)] sm:w-48 shrink-0">Siège social :</span>
-                    <span className="px-2 py-0.5 rounded bg-amber-500/10 text-amber-700 dark:text-amber-400 font-mono text-xs border border-amber-500/20">
-                      [À compléter : Adresse postale complète du siège social]
-                    </span>
+                    <span className="font-semibold text-[var(--ink-heading)]">Paris, France</span>
                   </li>
                   <li className="flex flex-col sm:flex-row sm:items-baseline gap-2">
                     <span className="font-mono text-xs text-[var(--ink-muted)] sm:w-48 shrink-0">Immatriculation (RCS / SIREN) :</span>
-                    <span className="px-2 py-0.5 rounded bg-amber-500/10 text-amber-700 dark:text-amber-400 font-mono text-xs border border-amber-500/20">
-                      [À compléter : Numéro RCS / Registre du Commerce ou SIREN / SIRET]
-                    </span>
+                    <span className="text-[var(--ink-heading)]">En cours d’attribution (procédure d’immatriculation en cours)</span>
                   </li>
                   <li className="flex flex-col sm:flex-row sm:items-baseline gap-2">
                     <span className="font-mono text-xs text-[var(--ink-muted)] sm:w-48 shrink-0">N° TVA intracommunautaire :</span>
-                    <span className="px-2 py-0.5 rounded bg-amber-500/10 text-amber-700 dark:text-amber-400 font-mono text-xs border border-amber-500/20">
-                      [À compléter : Numéro de TVA intracommunautaire le cas échéant]
-                    </span>
+                    <span className="text-[var(--ink-heading)]">En cours d’attribution (demande en cours auprès de l’administration)</span>
                   </li>
                 </ul>
               </div>
@@ -99,10 +89,7 @@ export default function MentionsLegalesPage() {
               </h2>
               <div className="space-y-3 text-sm text-[var(--ink-body)] leading-relaxed pt-2">
                 <p>
-                  <strong>Directeur de la publication :</strong>{' '}
-                  <span className="px-2 py-0.5 rounded bg-amber-500/10 text-amber-700 dark:text-amber-400 font-mono text-xs border border-amber-500/20">
-                    [À compléter : Nom et prénom du représentant légal ou directeur de publication]
-                  </span>
+                  <strong>Directeur de la publication :</strong> Bientôt disponible
                 </p>
                 <p>
                   <strong>Contact éditorial :</strong>{' '}
@@ -169,12 +156,6 @@ export default function MentionsLegalesPage() {
                     <Link href="/contact" className="text-[var(--blue-cyan)] hover:underline">
                       Accéder au formulaire de contact
                     </Link>
-                  </li>
-                  <li>
-                    Par voie postale :{' '}
-                    <span className="px-2 py-0.5 rounded bg-amber-500/10 text-amber-700 dark:text-amber-400 font-mono text-xs border border-amber-500/20">
-                      [À compléter : Adresse postale officielle de correspondance]
-                    </span>
                   </li>
                 </ul>
               </div>

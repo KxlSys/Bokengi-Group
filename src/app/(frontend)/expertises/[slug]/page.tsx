@@ -85,7 +85,7 @@ export default async function PoleDetailPage({ params }: PageProps) {
             <p className="text-sm font-mono text-[var(--blue-cyan)] mb-6">
               {pole.domains}
             </p>
-            <p className="text-lg md:text-xl text-[var(--ink-muted)] leading-relaxed font-light">
+            <p className="text-lg md:text-xl text-[var(--ink-muted)] leading-relaxed font-light whitespace-pre-line">
               {pole.description}
             </p>
           </div>
@@ -120,7 +120,7 @@ export default async function PoleDetailPage({ params }: PageProps) {
                     <p className="text-sm text-[var(--ink-muted)] leading-relaxed mb-4">
                       {srv.shortDescription}
                     </p>
-                    <p className="text-sm text-[var(--ink-body)] leading-relaxed mb-6 font-light">
+                    <p className="text-sm text-[var(--ink-body)] leading-relaxed mb-6 font-light whitespace-pre-line">
                       {srv.content}
                     </p>
                   </div>

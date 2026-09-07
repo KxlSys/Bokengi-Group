@@ -1,4 +1,4 @@
-﻿import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from 'payload'
 import { anyone } from '../access/anyone'
 import { authenticated } from '../access/authenticated'
 import { seoFields } from '../fields/seo'
@@ -11,7 +11,7 @@ export const CaseStudies: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'title',
-    defaultColumns: ['title', 'clientName', 'category', 'featured', 'publishedDate'],
+    defaultColumns: ['title', 'clientName', 'category', 'status', 'featured', 'publishedDate'],
     group: 'Contenu Métier',
   },
   access: {
@@ -150,6 +150,20 @@ export const CaseStudies: CollectionConfig = {
       type: 'checkbox',
       defaultValue: false,
       label: 'Mettre en avant sur la page Réalisations & Accueil',
+      admin: {
+        position: 'sidebar',
+      },
+    },
+    {
+      name: 'status',
+      type: 'select',
+      defaultValue: 'published',
+      required: true,
+      label: 'Statut de publication',
+      options: [
+        { label: 'Brouillon', value: 'draft' },
+        { label: 'Publié', value: 'published' },
+      ],
       admin: {
         position: 'sidebar',
       },

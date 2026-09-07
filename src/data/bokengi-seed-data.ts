@@ -29,6 +29,15 @@ export interface ServiceData {
   technicalTags: { tag: string }[]
   featured: boolean
   order: number
+  status?: 'published' | 'draft'
+}
+
+export interface CaseStudyScreenshot {
+  url: string
+  alt?: string
+  caption?: string
+  width?: number
+  height?: number
 }
 
 export interface CaseStudyData {
@@ -46,6 +55,8 @@ export interface CaseStudyData {
   architecture: string
   featured: boolean
   publishedDate: string
+  status?: 'published' | 'draft'
+  screenshots?: CaseStudyScreenshot[]
   seo: {
     title: string
     description: string

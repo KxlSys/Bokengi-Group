@@ -32,11 +32,11 @@ export const siteConfig = {
    * Cartographie des domaines de la plateforme.
    */
   domains: {
-    /** Domaine canonique officiel de production finale */
+    /** Domaine officiel de production finale */
     production: 'https://bokengi-group.com',
 
-    /** Domaine technique Vercel pour la preview et les tests intermédiaires */
-    preview: 'https://bokengi.vercel.app',
+    /** Domaine de prévisualisation et tests */
+    preview: 'https://bokengi-group.com',
 
     /** Résolution de l'URL courante du serveur */
     get current(): string {

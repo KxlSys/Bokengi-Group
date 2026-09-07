@@ -85,7 +85,7 @@ export default async function RealisationsPage() {
                     <h4 className="text-sm font-bold text-[var(--ink-heading)] mb-2 flex items-center gap-2">
                       <span className="text-[var(--blue-cyan)] font-mono">01.</span> Contexte & Problématique
                     </h4>
-                    <p className="text-sm text-[var(--ink-muted)] leading-relaxed">
+                    <p className="text-sm text-[var(--ink-muted)] leading-relaxed whitespace-pre-line">
                       {cs.context}
                     </p>
                   </div>
@@ -95,7 +95,7 @@ export default async function RealisationsPage() {
                     <h4 className="text-sm font-bold text-[var(--ink-heading)] mb-2 flex items-center gap-2">
                       <span className="text-[var(--blue-cyan)] font-mono">02.</span> Défi technique & opérationnel
                     </h4>
-                    <p className="text-sm text-[var(--ink-muted)] leading-relaxed">
+                    <p className="text-sm text-[var(--ink-muted)] leading-relaxed whitespace-pre-line">
                       {cs.challenge}
                     </p>
                   </div>
@@ -105,7 +105,7 @@ export default async function RealisationsPage() {
                     <h4 className="text-sm font-bold text-[var(--ink-heading)] mb-2 flex items-center gap-2">
                       <span className="text-[var(--blue-cyan)] font-mono">03.</span> Solution déployée
                     </h4>
-                    <p className="text-sm text-[var(--ink-muted)] leading-relaxed">
+                    <p className="text-sm text-[var(--ink-muted)] leading-relaxed whitespace-pre-line">
                       {cs.solution}
                     </p>
                   </div>
@@ -115,7 +115,7 @@ export default async function RealisationsPage() {
                     <h4 className="text-sm font-bold text-[var(--ink-heading)] mb-2 flex items-center gap-2">
                       <span className="text-[var(--blue-cyan)] font-mono">04.</span> Résultats & Indicateurs
                     </h4>
-                    <p className="text-sm text-[var(--ink-muted)] leading-relaxed mb-3">
+                    <p className="text-sm text-[var(--ink-muted)] leading-relaxed mb-3 whitespace-pre-line">
                       {cs.results}
                     </p>
                     {cs.resultsList && cs.resultsList.length > 0 && (
@@ -130,6 +130,35 @@ export default async function RealisationsPage() {
                     )}
                   </div>
                 </div>
+
+                {/* Captures & Visuels d'ingénierie (si renseignés dans le CMS) */}
+                {cs.screenshots && cs.screenshots.length > 0 && (
+                  <div className="mb-10 pt-6 border-t border-[var(--border-subtle)]">
+                    <h4 className="text-xs uppercase tracking-wider font-mono text-[var(--blue-cyan)] mb-4">
+                      Captures & Visuels d&apos;ingénierie
+                    </h4>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      {cs.screenshots.map((s, sIdx) => (
+                        <figure
+                          key={sIdx}
+                          className="overflow-hidden rounded-[var(--radius-sm)] border border-[var(--border-subtle)] bg-[var(--bg-elevated)]/40"
+                        >
+                          <img
+                            src={s.url}
+                            alt={s.alt || `Capture d'écran ${cs.title} ${sIdx + 1}`}
+                            className="w-full h-auto object-cover max-h-80"
+                            loading="lazy"
+                          />
+                          {s.caption && (
+                            <figcaption className="p-3 text-xs text-[var(--ink-muted)] font-mono border-t border-[var(--border-subtle)]">
+                              {s.caption}
+                            </figcaption>
+                          )}
+                        </figure>
+                      ))}
+                    </div>
+                  </div>
+                )}
 
                 {/* Architecture technique & Technologies harmonisées */}
                 <div className="pt-6 border-t border-[var(--border-subtle)] flex flex-col md:flex-row md:items-center justify-between gap-6">

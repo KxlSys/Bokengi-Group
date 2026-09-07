@@ -1,4 +1,4 @@
-﻿import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from 'payload'
 import { anyone } from '../access/anyone'
 import { authenticated } from '../access/authenticated'
 import { seoFields } from '../fields/seo'
@@ -11,7 +11,7 @@ export const Services: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'title',
-    defaultColumns: ['title', 'pole', 'category', 'featured', 'order'],
+    defaultColumns: ['title', 'pole', 'category', 'status', 'featured', 'order'],
     group: 'Organisation',
   },
   access: {
@@ -107,6 +107,20 @@ export const Services: CollectionConfig = {
       type: 'number',
       defaultValue: 0,
       label: 'Ordre d\'affichage',
+      admin: {
+        position: 'sidebar',
+      },
+    },
+    {
+      name: 'status',
+      type: 'select',
+      defaultValue: 'published',
+      required: true,
+      label: 'Statut de publication',
+      options: [
+        { label: 'Brouillon', value: 'draft' },
+        { label: 'Publié', value: 'published' },
+      ],
       admin: {
         position: 'sidebar',
       },

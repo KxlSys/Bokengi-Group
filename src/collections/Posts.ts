@@ -1,8 +1,13 @@
-﻿import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from 'payload'
 import { anyone } from '../access/anyone'
 import { authenticated } from '../access/authenticated'
 import { seoFields } from '../fields/seo'
 
+/**
+ * Collection Posts — Réservoir éditorial Bokengi Group 2.0.
+ * Conçu pour accueillir les futures publications, actualités sectorielles et articles
+ * d'expertise technique (Thought Leadership) lors de l'activation du volet éditorial complet.
+ */
 export const Posts: CollectionConfig = {
   slug: 'posts',
   labels: {
@@ -13,6 +18,7 @@ export const Posts: CollectionConfig = {
     useAsTitle: 'title',
     defaultColumns: ['title', 'author', 'status', 'publishedAt'],
     group: 'Publications',
+    description: 'Réservoir éditorial pour les futures actualités sectorielles et articles de fond.',
   },
   access: {
     create: authenticated,

@@ -1,8 +1,13 @@
-﻿import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from 'payload'
 import { anyone } from '../access/anyone'
 import { authenticated } from '../access/authenticated'
 import { seoFields } from '../fields/seo'
 
+/**
+ * Collection Pages — Réservoir éditorial institutionnel Bokengi Group 2.0.
+ * Sert de base pour la création de pages institutionnelles sur-mesure, landing pages
+ * thématiques et futures extensions éditoriales sans impacter le schéma cœur.
+ */
 export const Pages: CollectionConfig = {
   slug: 'pages',
   labels: {
@@ -13,6 +18,7 @@ export const Pages: CollectionConfig = {
     useAsTitle: 'title',
     defaultColumns: ['title', 'slug', 'status', 'updatedAt'],
     group: 'Contenu Métier',
+    description: 'Réservoir éditorial pour les pages institutionnelles sur-mesure et futures extensions de contenu.',
   },
   access: {
     create: authenticated,

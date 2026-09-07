@@ -1,4 +1,4 @@
-﻿import configPromise from '@payload-config'
+import configPromise from '@payload-config'
 import { getPayload } from 'payload'
 import {
   POLES_SEED_DATA,
@@ -240,7 +240,7 @@ export async function runSeed() {
         contactEmail: process.env.CONTACT_EMAIL || '',
         domains: {
           production: 'https://bokengi-group.com',
-          preview: 'https://bokengi.vercel.app',
+          preview: 'https://bokengi-group.com',
         },
       },
     })

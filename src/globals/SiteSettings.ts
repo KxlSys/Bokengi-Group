@@ -1,4 +1,4 @@
-﻿import type { GlobalConfig } from 'payload'
+import type { GlobalConfig } from 'payload'
 import { anyone } from '../access/anyone'
 import { authenticated } from '../access/authenticated'
 
@@ -102,10 +102,10 @@ export const SiteSettings: GlobalConfig = {
         {
           name: 'preview',
           type: 'text',
-          defaultValue: 'https://bokengi.vercel.app',
-          label: 'Domaine technique Vercel (Preview/Staging)',
+          defaultValue: 'https://bokengi-group.com',
+          label: 'Domaine de prévisualisation / Staging',
           admin: {
-            description: 'Environnement technique intermédiaire.',
+            description: 'Environnement technique de prévisualisation.',
           },
         },
       ],

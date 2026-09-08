@@ -1,4 +1,4 @@
-﻿import type { GlobalConfig } from 'payload'
+import type { GlobalConfig } from 'payload'
 import { anyone } from '../access/anyone'
 import { authenticated } from '../access/authenticated'
 
@@ -6,7 +6,7 @@ export const Header: GlobalConfig = {
   slug: 'header',
   label: 'En-tête & Navigation',
   admin: {
-    group: 'Configuration',
+    group: 'Administration',
   },
   access: {
     read: anyone,

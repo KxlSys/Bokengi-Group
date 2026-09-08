@@ -23,7 +23,7 @@ export const Media: CollectionConfig = {
   admin: {
     useAsTitle: 'filename',
     defaultColumns: ['filename', 'alt', 'mimeType', 'filesize', 'updatedAt'],
-    group: 'Ressources & Médias',
+    group: 'Ressources',
     description: 'Centralisation des ressources visuelles, photographies et documents du Groupe Bokengi.',
   },
   access: {

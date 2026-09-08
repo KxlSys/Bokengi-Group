@@ -17,7 +17,7 @@ export const Pages: CollectionConfig = {
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'slug', 'status', 'updatedAt'],
-    group: 'Contenu Métier',
+    group: 'Administration',
     description: 'Réservoir éditorial pour les pages institutionnelles sur-mesure et futures extensions de contenu.',
   },
   access: {

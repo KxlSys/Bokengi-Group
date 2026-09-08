@@ -6,13 +6,13 @@ import { seoFields } from '../fields/seo'
 export const CaseStudies: CollectionConfig = {
   slug: 'case-studies',
   labels: {
-    singular: 'Étude de cas (Réalisation)',
-    plural: 'Études de cas (Réalisations)',
+    singular: 'Étude de cas',
+    plural: 'Études de cas',
   },
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'clientName', 'category', 'status', 'featured', 'publishedDate'],
-    group: 'Contenu Métier',
+    group: 'Réalisations',
   },
   access: {
     create: authenticated,

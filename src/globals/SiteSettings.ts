@@ -6,7 +6,7 @@ export const SiteSettings: GlobalConfig = {
   slug: 'site-settings',
   label: 'Paramètres Généraux',
   admin: {
-    group: 'Configuration',
+    group: 'Administration',
   },
   access: {
     read: anyone,

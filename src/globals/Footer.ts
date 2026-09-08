@@ -1,4 +1,4 @@
-﻿import type { GlobalConfig } from 'payload'
+import type { GlobalConfig } from 'payload'
 import { anyone } from '../access/anyone'
 import { authenticated } from '../access/authenticated'
 
@@ -6,7 +6,7 @@ export const Footer: GlobalConfig = {
   slug: 'footer',
   label: 'Pied de page (Footer)',
   admin: {
-    group: 'Configuration',
+    group: 'Administration',
   },
   access: {
     read: anyone,

@@ -106,6 +106,7 @@ export async function runSeed() {
             technicalTags: srv.technicalTags,
             featured: srv.featured,
             order: srv.order,
+            status: srv.status || 'published',
             seo: {
               title: `${srv.title} · Bokengi Group`,
               description: srv.shortDescription,
@@ -218,6 +219,7 @@ export async function runSeed() {
               },
             } as any,
             featured: cs.featured,
+            status: cs.status || 'published',
             publishedDate: cs.publishedDate,
             seo: {
               title: cs.seo.title,

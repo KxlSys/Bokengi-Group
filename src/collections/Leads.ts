@@ -2,6 +2,7 @@ import type { CollectionConfig, CollectionAfterChangeHook } from 'payload'
 import { anyone } from '../access/anyone'
 import { authenticated } from '../access/authenticated'
 import { sendLeadNotifications } from '../lib/notifications'
+import { protectLeadImmutability } from './hooks/protectLeadImmutability'
 
 const leadAfterChangeHook: CollectionAfterChangeHook = async ({ doc, operation, req }) => {
   if (operation === 'create') {
@@ -42,8 +43,8 @@ const leadAfterChangeHook: CollectionAfterChangeHook = async ({ doc, operation, 
 export const Leads: CollectionConfig = {
   slug: 'leads',
   labels: {
-    singular: 'Lead (Prospect)',
-    plural: 'Leads (Prospects)',
+    singular: 'Demande & Prospect',
+    plural: 'Demandes & Prospects',
   },
   admin: {
     useAsTitle: 'email',
@@ -59,6 +60,8 @@ export const Leads: CollectionConfig = {
     delete: authenticated,
   },
   hooks: {
+    beforeValidate: [protectLeadImmutability],
+    beforeChange: [protectLeadImmutability],
     afterChange: [leadAfterChangeHook],
   },
   fields: [
@@ -67,28 +70,48 @@ export const Leads: CollectionConfig = {
       type: 'text',
       required: true,
       label: 'Prénom',
+      admin: {
+        readOnly: true,
+        description: 'Prénom soumis par le prospect (strictement immuable).',
+      },
     },
     {
       name: 'lastname',
       type: 'text',
       required: true,
       label: 'Nom de famille',
+      admin: {
+        readOnly: true,
+        description: 'Nom de famille soumis par le prospect (strictement immuable).',
+      },
     },
     {
       name: 'company',
       type: 'text',
       label: 'Organisation / Entreprise',
+      admin: {
+        readOnly: true,
+        description: 'Organisation / Entreprise renseignée par le prospect (immuable).',
+      },
     },
     {
       name: 'email',
       type: 'email',
       required: true,
       label: 'Adresse e-mail professionnelle',
+      admin: {
+        readOnly: true,
+        description: 'Adresse e-mail originale fournie par le prospect (strictement immuable).',
+      },
     },
     {
       name: 'phone',
       type: 'text',
       label: 'Numéro de téléphone',
+      admin: {
+        readOnly: true,
+        description: 'Numéro de contact renseigné par le prospect (immuable).',
+      },
     },
     {
       name: 'requestType',
@@ -104,6 +127,8 @@ export const Leads: CollectionConfig = {
       ],
       admin: {
         position: 'sidebar',
+        readOnly: true,
+        description: 'Type de demande original choisi par le prospect (immuable).',
       },
     },
     {
@@ -113,7 +138,8 @@ export const Leads: CollectionConfig = {
       hasMany: false,
       label: 'Pôle d\'expertise concerné',
       admin: {
-        description: 'Pôle spécifique ciblé par la demande du prospect.',
+        readOnly: true,
+        description: 'Pôle d\'expertise ciblé par le prospect lors de la soumission (immuable).',
       },
     },
     {
@@ -121,6 +147,10 @@ export const Leads: CollectionConfig = {
       type: 'textarea',
       required: true,
       label: 'Description du projet & besoin',
+      admin: {
+        readOnly: true,
+        description: 'Message original transmis par le prospect (strictement immuable).',
+      },
     },
     {
       name: 'source',
@@ -130,6 +160,7 @@ export const Leads: CollectionConfig = {
       admin: {
         position: 'sidebar',
         readOnly: true,
+        description: 'Origine technique de la demande (immuable).',
       },
     },
     {

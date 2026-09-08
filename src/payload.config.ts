@@ -14,6 +14,7 @@ import { CaseStudies } from './collections/CaseStudies'
 import { Posts } from './collections/Posts'
 import { Leads } from './collections/Leads'
 import { Pages } from './collections/Pages'
+import { AccessRequests } from './collections/AccessRequests'
 import { SiteSettings } from './globals/SiteSettings'
 import { Header } from './globals/Header'
 import { Footer } from './globals/Footer'
@@ -32,6 +33,7 @@ export default buildConfig({
       // The `BeforeLogin` component renders a message that you see while logging into your admin panel.
       // Feel free to delete this at any time. Simply remove the line below.
       beforeLogin: ['@/components/BeforeLogin'],
+      beforeNavLinks: ['@/components/admin/navigation/DashboardNavLink'],
       graphics: {
         Logo: '@/components/admin/graphics/BokengiLogo',
         Icon: '@/components/admin/graphics/BokengiIcon',
@@ -190,6 +192,7 @@ export default buildConfig({
     Leads,
     Media,
     Users,
+    AccessRequests,
   ],
   cors: [getServerSideURL()].filter(Boolean),
   plugins: [

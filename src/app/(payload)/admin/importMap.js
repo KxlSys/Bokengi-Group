@@ -12,6 +12,7 @@ import { FixedToolbarFeatureClient as FixedToolbarFeatureClient_e70f5e05f09f93e0
 import { default as default_e18e0b1cd66492fa8bb12208e1fa6bd9 } from '@/components/admin/graphics/BokengiIcon'
 import { default as default_060a819ccb1adf5460dfbcd0b5072fba } from '@/components/admin/graphics/BokengiLogo'
 import { default as default_8a7ab0eb7ab5c511aba12e68480bfe5e } from '@/components/BeforeLogin'
+import { default as default_b8fcbe3615283b53ea965a7dd9540662 } from '@/components/admin/navigation/DashboardNavLink'
 import { R2ClientUploadHandler as R2ClientUploadHandler_85cc02ed84006fcc91d3aff39dda669d } from '@payloadcms/storage-r2/client'
 import { default as default_ee0378c15f777b7eafa53d279ac7db10 } from '@/components/admin/dashboard/CommandCenterView'
 import { CollectionCards as CollectionCards_f9c02e79a4aed9a3924487c0cd4cafb1 } from '@payloadcms/next/rsc'
@@ -32,6 +33,7 @@ export const importMap = {
   "@/components/admin/graphics/BokengiIcon#default": default_e18e0b1cd66492fa8bb12208e1fa6bd9,
   "@/components/admin/graphics/BokengiLogo#default": default_060a819ccb1adf5460dfbcd0b5072fba,
   "@/components/BeforeLogin#default": default_8a7ab0eb7ab5c511aba12e68480bfe5e,
+  "@/components/admin/navigation/DashboardNavLink#default": default_b8fcbe3615283b53ea965a7dd9540662,
   "@payloadcms/storage-r2/client#R2ClientUploadHandler": R2ClientUploadHandler_85cc02ed84006fcc91d3aff39dda669d,
   "@/components/admin/dashboard/CommandCenterView#default": default_ee0378c15f777b7eafa53d279ac7db10,
   "@payloadcms/next/rsc#CollectionCards": CollectionCards_f9c02e79a4aed9a3924487c0cd4cafb1

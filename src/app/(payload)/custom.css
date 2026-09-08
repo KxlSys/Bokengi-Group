@@ -215,6 +215,71 @@ a:hover {
   border-bottom: 1px solid var(--theme-border-color);
 }
 
+/* Bouton d'accès direct au Dashboard (beforeNavLinks) */
+.bokengi-nav-dashboard-wrap {
+  margin-bottom: 0.85rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid var(--theme-border-color);
+}
+
+.bokengi-nav-dashboard-link {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.55rem 0.75rem;
+  border-radius: var(--bokengi-radius-sm);
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--bokengi-accent, #0055D4);
+  background: var(--bokengi-blue-subtle, rgba(0, 85, 212, 0.06));
+  border: 1px solid rgba(0, 85, 212, 0.14);
+  transition: all 0.15s ease-in-out;
+}
+
+.bokengi-nav-dashboard-link:hover {
+  background: var(--bokengi-blue, #0033A0);
+  color: #FFFFFF;
+  border-color: var(--bokengi-blue, #0033A0);
+  box-shadow: var(--bokengi-shadow-subtle);
+}
+
+.bokengi-nav-dashboard-link--active {
+  background: var(--bokengi-blue, #0033A0);
+  color: #FFFFFF;
+  border-color: var(--bokengi-blue, #0033A0);
+  font-weight: 700;
+}
+
+.bokengi-nav-dashboard-arrow {
+  font-size: 1rem;
+  line-height: 1;
+  transition: transform 0.15s ease;
+}
+
+.bokengi-nav-dashboard-link:hover .bokengi-nav-dashboard-arrow {
+  transform: translateX(-3px);
+}
+
+[data-theme='dark'] .bokengi-nav-dashboard-link {
+  color: var(--bokengi-cyan, #16B8F3);
+  background: rgba(22, 184, 243, 0.08);
+  border-color: rgba(22, 184, 243, 0.2);
+}
+
+[data-theme='dark'] .bokengi-nav-dashboard-link:hover {
+  background: var(--bokengi-accent, #0055D4);
+  color: #FFFFFF;
+  border-color: var(--bokengi-accent, #0055D4);
+}
+
+[data-theme='dark'] .bokengi-nav-dashboard-link--active {
+  background: var(--bokengi-accent, #0055D4);
+  color: #FFFFFF;
+  border-color: var(--bokengi-accent, #0055D4);
+}
+
 /* Titre des groupes de navigation */
 .nav-group__label,
 .nav-group__toggle {
@@ -654,6 +719,26 @@ html[data-theme='dark'] .bokengi-admin-logo--dark {
   object-fit: contain;
   display: block;
   flex-shrink: 0;
+}
+
+.bokengi-admin-icon .bokengi-icon-primary {
+  fill: var(--bokengi-blue, #0033A0);
+  transition: fill 0.2s ease;
+}
+
+.bokengi-admin-icon .bokengi-icon-secondary {
+  fill: var(--bokengi-accent, #0055D4);
+  transition: fill 0.2s ease;
+}
+
+[data-theme='dark'] .bokengi-admin-icon .bokengi-icon-primary,
+html[data-theme='dark'] .bokengi-admin-icon .bokengi-icon-primary {
+  fill: #F1F5F9;
+}
+
+[data-theme='dark'] .bokengi-admin-icon .bokengi-icon-secondary,
+html[data-theme='dark'] .bokengi-admin-icon .bokengi-icon-secondary {
+  fill: var(--bokengi-cyan, #16B8F3);
 }
 
 /* Intégration dans le StepNav / Breadcrumb */

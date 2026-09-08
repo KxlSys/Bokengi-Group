@@ -333,6 +333,7 @@ export interface Service {
     | null;
   featured?: boolean | null;
   order?: number | null;
+  status: 'draft' | 'published';
   seo?: {
     /**
      * Titre spécifique pour les moteurs de recherche (laisser vide pour utiliser le titre par défaut).
@@ -471,6 +472,7 @@ export interface CaseStudy {
       }[]
     | null;
   featured?: boolean | null;
+  status: 'draft' | 'published';
   publishedDate?: string | null;
   seo?: {
     /**
@@ -789,6 +791,7 @@ export interface ServicesSelect<T extends boolean = true> {
       };
   featured?: T;
   order?: T;
+  status?: T;
   seo?:
     | T
     | {
@@ -828,6 +831,7 @@ export interface CaseStudiesSelect<T extends boolean = true> {
         id?: T;
       };
   featured?: T;
+  status?: T;
   publishedDate?: T;
   seo?:
     | T
@@ -1097,7 +1101,7 @@ export interface SiteSetting {
      */
     production?: string | null;
     /**
-     * Environnement technique intermédiaire.
+     * Environnement technique de prévisualisation.
      */
     preview?: string | null;
   };

@@ -14,7 +14,9 @@ export const AccessRequests: CollectionConfig = {
   admin: {
     useAsTitle: 'email',
     defaultColumns: ['email', 'firstName', 'lastName', 'requestedRole', 'status', 'createdAt'],
-    group: 'Administration',
+    group: 'Paramètres & Système',
+    hidden: ({ user }) => !isSuperAdmin(user),
+    description: 'Demandes d\'accès et habilitations en attente d\'approbation Super Admin.',
   },
   access: {
     // Interface d'administration : visible et manipulable exclusivement par le Super Administrateur ID 1

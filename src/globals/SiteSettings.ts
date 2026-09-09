@@ -1,12 +1,15 @@
 import type { GlobalConfig } from 'payload'
 import { anyone } from '../access/anyone'
 import { authenticated } from '../access/authenticated'
+import { isAdmin } from '../access/roles'
 
 export const SiteSettings: GlobalConfig = {
   slug: 'site-settings',
   label: 'Paramètres Généraux',
   admin: {
-    group: 'Administration',
+    group: 'Paramètres & Système',
+    hidden: ({ user }) => !isAdmin(user),
+    description: 'Identité corporative, coordonnées officielles, mentions légales et paramètres de facturation.',
   },
   access: {
     read: anyone,
@@ -21,17 +24,101 @@ export const SiteSettings: GlobalConfig = {
       label: 'Raison sociale / Nom de l\'organisation',
     },
     {
+      name: 'legalForm',
+      type: 'text',
+      defaultValue: 'SAS',
+      label: 'Forme juridique',
+      admin: {
+        description: 'Ex: SAS, SARL, SA...',
+      },
+    },
+    {
+      name: 'capital',
+      type: 'text',
+      defaultValue: '7 500 €',
+      label: 'Capital social',
+    },
+    {
+      name: 'rcs',
+      type: 'text',
+      label: 'Immatriculation RCS',
+      admin: {
+        placeholder: 'Ex: RCS Paris B ...',
+        description: 'Numéro d\'immatriculation au Registre du Commerce et des Sociétés.',
+      },
+    },
+    {
+      name: 'siren',
+      type: 'text',
+      label: 'Numéro SIREN',
+      admin: {
+        placeholder: 'Ex: 912 345 678',
+        description: 'Identifiant unique à 9 chiffres de l\'entreprise.',
+      },
+    },
+    {
+      name: 'siret',
+      type: 'text',
+      label: 'Numéro SIRET',
+      admin: {
+        placeholder: 'Ex: 912 345 678 00012',
+        description: 'Identifiant à 14 chiffres de l\'établissement.',
+      },
+    },
+    {
+      name: 'vatNumber',
+      type: 'text',
+      label: 'Numéro de TVA Intracommunautaire',
+      admin: {
+        placeholder: 'Ex: FR 12 ...',
+        description: 'Numéro d\'assujetti à la TVA pour la facturation.',
+      },
+    },
+    {
       name: 'contactEmail',
       type: 'text',
+      defaultValue: 'contact@bokengi-group.com',
       label: 'Adresse e-mail professionnelle de contact',
       admin: {
-        description: 'L\'adresse officielle cible est contact@bokengi-group.com (injectable également via CONTACT_EMAIL).',
+        description: 'Adresse officielle : contact@bokengi-group.com (injectable également via CONTACT_EMAIL).',
       },
     },
     {
       name: 'phone',
       type: 'text',
+      defaultValue: '07 58 88 84 34',
       label: 'Numéro de téléphone institutionnel',
+    },
+    {
+      name: 'bankDetails',
+      type: 'group',
+      label: 'Coordonnées Bancaires Officielles',
+      fields: [
+        {
+          name: 'bankName',
+          type: 'text',
+          label: 'Nom de l\'établissement bancaire',
+          admin: {
+            placeholder: 'Ex: Nom de la banque',
+          },
+        },
+        {
+          name: 'iban',
+          type: 'text',
+          label: 'IBAN',
+          admin: {
+            placeholder: 'Ex: FR76 ...',
+          },
+        },
+        {
+          name: 'bic',
+          type: 'text',
+          label: 'Code BIC / SWIFT',
+          admin: {
+            placeholder: 'Ex: BNPAFRPPXXX',
+          },
+        },
+      ],
     },
     {
       name: 'address',
@@ -46,11 +133,13 @@ export const SiteSettings: GlobalConfig = {
         {
           name: 'city',
           type: 'text',
+          defaultValue: 'Paris',
           label: 'Ville',
         },
         {
           name: 'country',
           type: 'text',
+          defaultValue: 'France',
           label: 'Pays',
         },
       ],

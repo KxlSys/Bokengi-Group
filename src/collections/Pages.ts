@@ -18,6 +18,7 @@ export const Pages: CollectionConfig = {
     useAsTitle: 'title',
     defaultColumns: ['title', 'slug', 'status', 'updatedAt'],
     group: 'Administration',
+    hidden: true,
     description: 'Réservoir éditorial pour les pages institutionnelles sur-mesure et futures extensions de contenu.',
   },
   access: {

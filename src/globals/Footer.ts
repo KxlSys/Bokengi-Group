@@ -1,12 +1,15 @@
 import type { GlobalConfig } from 'payload'
 import { anyone } from '../access/anyone'
 import { authenticated } from '../access/authenticated'
+import { isAdmin } from '../access/roles'
 
 export const Footer: GlobalConfig = {
   slug: 'footer',
   label: 'Pied de page (Footer)',
   admin: {
-    group: 'Administration',
+    group: 'Paramètres & Système',
+    hidden: ({ user }) => !isAdmin(user),
+    description: 'Colonnes de navigation, mentions légales et droits réservés de bas de page.',
   },
   access: {
     read: anyone,

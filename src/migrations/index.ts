@@ -6,6 +6,7 @@ import * as migration_20260907_020000_add_status_to_services_and_case_studies fr
 import * as migration_20260908_220000_add_users_rbac from './20260908_220000_add_users_rbac';
 import * as migration_20260908_230000_add_access_requests from './20260908_230000_add_access_requests';
 import * as migration_20260909_160000_add_access_requests_locked_documents_rel from './20260909_160000_add_access_requests_locked_documents_rel';
+import * as migration_20260909_180000_add_invoices_and_crm_fields from './20260909_180000_add_invoices_and_crm_fields';
 
 export const migrations = [
   {
@@ -47,6 +48,11 @@ export const migrations = [
     up: migration_20260909_160000_add_access_requests_locked_documents_rel.up,
     down: migration_20260909_160000_add_access_requests_locked_documents_rel.down,
     name: '20260909_160000_add_access_requests_locked_documents_rel'
+  },
+  {
+    up: migration_20260909_180000_add_invoices_and_crm_fields.up,
+    down: migration_20260909_180000_add_invoices_and_crm_fields.down,
+    name: '20260909_180000_add_invoices_and_crm_fields'
   },
 ];
 

@@ -15,7 +15,9 @@ export const Users: CollectionConfig = {
   admin: {
     defaultColumns: ['name', 'email', 'role', 'status'],
     useAsTitle: 'name',
-    group: 'Administration',
+    group: 'Paramètres & Système',
+    hidden: ({ user }) => !isAdmin(user),
+    description: 'Gestion des comptes collaborateurs et attributions des habilitations RBAC.',
   },
   access: {
     // Contrôle d'accès à l'interface d'administration

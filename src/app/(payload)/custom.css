@@ -660,6 +660,66 @@ table tr:hover td {
   border: 1px solid var(--theme-border-color);
 }
 
+/* Badges de priorité (LeadPriorityCell) */
+.bokengi-priority-badge--low {
+  background-color: rgba(148, 163, 184, 0.15);
+  color: #94a3b8;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+}
+
+.bokengi-priority-badge--medium {
+  background-color: var(--bokengi-cyan-subtle);
+  color: var(--bokengi-cyan);
+  border: 1px solid rgba(22, 184, 243, 0.25);
+}
+
+.bokengi-priority-badge--high {
+  background-color: rgba(245, 158, 11, 0.15);
+  color: #f59e0b;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.bokengi-priority-badge--urgent {
+  background-color: rgba(239, 68, 68, 0.18);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  font-weight: 700;
+}
+
+/* Badges de statuts Facturation (InvoiceStatusCell) */
+.bokengi-invoice-badge--draft {
+  background-color: var(--theme-elevation-150);
+  color: var(--theme-elevation-500);
+  border: 1px solid var(--theme-border-color);
+}
+
+.bokengi-invoice-badge--sent {
+  background-color: var(--bokengi-cyan-subtle);
+  color: var(--bokengi-cyan);
+  border: 1px solid rgba(22, 184, 243, 0.3);
+}
+
+.bokengi-invoice-badge--paid {
+  background-color: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  font-weight: 600;
+}
+
+.bokengi-invoice-badge--overdue {
+  background-color: rgba(239, 68, 68, 0.18);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  font-weight: 700;
+}
+
+.bokengi-invoice-badge--cancelled {
+  background-color: rgba(100, 116, 139, 0.12);
+  color: #64748b;
+  border: 1px solid rgba(100, 116, 139, 0.25);
+  text-decoration: line-through;
+}
+
 /* ==============================================================================
    11. BOKENGI ADMIN BRANDING & GRAPHICS (PHASE 3.0-B)
    ============================================================================== */

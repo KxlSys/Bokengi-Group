@@ -67,29 +67,38 @@ export interface Config {
   };
   blocks: {};
   collections: {
+    leads: Lead;
+    invoices: Invoice;
     poles: Pole;
     services: Service;
     'case-studies': CaseStudy;
     posts: Post;
     pages: Page;
-    leads: Lead;
     media: Media;
     users: User;
+    'access-requests': AccessRequest;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
-  collectionsJoins: {};
+  collectionsJoins: {
+    poles: {
+      leads: 'leads';
+      services: 'services';
+    };
+  };
   collectionsSelect: {
+    leads: LeadsSelect<false> | LeadsSelect<true>;
+    invoices: InvoicesSelect<false> | InvoicesSelect<true>;
     poles: PolesSelect<false> | PolesSelect<true>;
     services: ServicesSelect<false> | ServicesSelect<true>;
     'case-studies': CaseStudiesSelect<false> | CaseStudiesSelect<true>;
     posts: PostsSelect<false> | PostsSelect<true>;
     pages: PagesSelect<false> | PagesSelect<true>;
-    leads: LeadsSelect<false> | LeadsSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
+    'access-requests': AccessRequestsSelect<false> | AccessRequestsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -138,6 +147,68 @@ export interface UserAuthOperations {
   };
 }
 /**
+ * Dossiers prospects, demandes de devis et opportunités commerciales entrantes.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "leads".
+ */
+export interface Lead {
+  id: number;
+  /**
+   * Prénom soumis par le prospect (strictement immuable).
+   */
+  firstname: string;
+  /**
+   * Nom de famille soumis par le prospect (strictement immuable).
+   */
+  lastname: string;
+  /**
+   * Organisation / Entreprise renseignée par le prospect (immuable).
+   */
+  company?: string | null;
+  /**
+   * Adresse e-mail originale fournie par le prospect (strictement immuable).
+   */
+  email: string;
+  /**
+   * Numéro de contact renseigné par le prospect (immuable).
+   */
+  phone?: string | null;
+  /**
+   * Type de demande original choisi par le prospect (immuable).
+   */
+  requestType: 'devis' | 'cadrage' | 'partenariat' | 'autre';
+  /**
+   * Pôle d'expertise ciblé par le prospect lors de la soumission (immuable).
+   */
+  pole?: (number | null) | Pole;
+  /**
+   * Message original transmis par le prospect (strictement immuable).
+   */
+  message: string;
+  /**
+   * Origine technique de la demande (immuable).
+   */
+  source?: string | null;
+  status: 'new' | 'contacted' | 'qualified' | 'converted' | 'archived';
+  /**
+   * Urgence opérationnelle du prospect.
+   */
+  priority?: ('low' | 'medium' | 'high' | 'urgent') | null;
+  /**
+   * Membre de l'équipe en charge du traitement commercial.
+   */
+  assignedTo?: (number | null) | User;
+  /**
+   * Historique des échanges, qualifications et actions menées (interne Bokengi, strictement confidentiel).
+   */
+  internalNotes?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Pôles d'expertise métier constitutifs du Groupe Bokengi.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "poles".
  */
@@ -189,6 +260,22 @@ export interface Pole {
      * Image au format 1200x630px recommandée pour les aperçus sociaux.
      */
     image?: (number | null) | Media;
+  };
+  /**
+   * Ensemble des sollicitations commerciales et techniques transmises pour ce pôle.
+   */
+  leads?: {
+    docs?: (number | Lead)[];
+    hasNextPage?: boolean;
+    totalDocs?: number;
+  };
+  /**
+   * Offres et prestations rattachées à ce pôle d'expertise.
+   */
+  services?: {
+    docs?: (number | Service)[];
+    hasNextPage?: boolean;
+    totalDocs?: number;
   };
   updatedAt: string;
   createdAt: string;
@@ -288,6 +375,8 @@ export interface Media {
   };
 }
 /**
+ * Services et offres commerciales commercialisés par les pôles Bokengi.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "services".
  */
@@ -352,6 +441,99 @@ export interface Service {
   createdAt: string;
 }
 /**
+ * Gestion des comptes collaborateurs et attributions des habilitations RBAC.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "users".
+ */
+export interface User {
+  id: number;
+  name?: string | null;
+  /**
+   * Rôle d’habilitation système. Le rôle Super Administrateur est réservé exclusivement au compte sanctuarisé ID 1.
+   */
+  role: 'admin' | 'editor' | 'super-admin';
+  /**
+   * État d’activation du compte. Seuls les comptes "Actif" peuvent se connecter.
+   */
+  status: 'active' | 'pending' | 'suspended' | 'rejected';
+  updatedAt: string;
+  createdAt: string;
+  email: string;
+  resetPasswordToken?: string | null;
+  resetPasswordExpiration?: string | null;
+  salt?: string | null;
+  hash?: string | null;
+  loginAttempts?: number | null;
+  lockUntil?: string | null;
+  sessions?:
+    | {
+        id: string;
+        createdAt?: string | null;
+        expiresAt: string;
+      }[]
+    | null;
+  password?: string | null;
+  collection: 'users';
+}
+/**
+ * Module officiel de facturation, devis et gestion comptable Bokengi Group.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "invoices".
+ */
+export interface Invoice {
+  id: number;
+  /**
+   * Numéro légal généré automatiquement (format BOK-AAAA-XXXX).
+   */
+  invoiceNumber: string;
+  type: 'invoice' | 'quote' | 'credit_note';
+  status: 'draft' | 'sent' | 'paid' | 'overdue' | 'cancelled';
+  /**
+   * Calculé automatiquement à partir des lignes.
+   */
+  subtotalHT?: number | null;
+  /**
+   * Montant de taxe calculé automatiquement.
+   */
+  totalVAT?: number | null;
+  /**
+   * Montant total toutes taxes comprises.
+   */
+  totalTTC?: number | null;
+  /**
+   * Lier cette pièce à un prospect CRM pour pré-remplir les données client.
+   */
+  lead?: (number | null) | Lead;
+  clientName: string;
+  clientCompany?: string | null;
+  clientEmail?: string | null;
+  clientPhone?: string | null;
+  clientAddress?: string | null;
+  clientVatNumber?: string | null;
+  issueDate: string;
+  dueDate: string;
+  paymentMethod?: ('virement' | 'carte' | 'cheque' | 'autre') | null;
+  items: {
+    description: string;
+    quantity: number;
+    unitPriceHT: number;
+    vatRate: number;
+    totalHT?: number | null;
+    totalTTC?: number | null;
+    id?: string | null;
+  }[];
+  /**
+   * Mentions contractuelles et légales imprimées en bas de facture.
+   */
+  notes?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Études de cas, retours d'expérience et projets d'envergure menés par Bokengi.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "case-studies".
  */
@@ -492,6 +674,8 @@ export interface CaseStudy {
   createdAt: string;
 }
 /**
+ * Réservoir éditorial pour les futures actualités sectorielles et articles de fond.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "posts".
  */
@@ -558,32 +742,8 @@ export interface Post {
   createdAt: string;
 }
 /**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "users".
- */
-export interface User {
-  id: number;
-  name?: string | null;
-  updatedAt: string;
-  createdAt: string;
-  email: string;
-  resetPasswordToken?: string | null;
-  resetPasswordExpiration?: string | null;
-  salt?: string | null;
-  hash?: string | null;
-  loginAttempts?: number | null;
-  lockUntil?: string | null;
-  sessions?:
-    | {
-        id: string;
-        createdAt?: string | null;
-        expiresAt: string;
-      }[]
-    | null;
-  password?: string | null;
-  collection: 'users';
-}
-/**
+ * Réservoir éditorial pour les pages institutionnelles sur-mesure et futures extensions de contenu.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "pages".
  */
@@ -631,24 +791,33 @@ export interface Page {
   createdAt: string;
 }
 /**
+ * Demandes d'accès et habilitations en attente d'approbation Super Admin.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "leads".
+ * via the `definition` "access-requests".
  */
-export interface Lead {
+export interface AccessRequest {
   id: number;
-  firstname: string;
-  lastname: string;
-  company?: string | null;
+  firstName: string;
+  lastName: string;
   email: string;
-  phone?: string | null;
-  requestType: 'devis' | 'cadrage' | 'partenariat' | 'autre';
   /**
-   * Pôle spécifique ciblé par la demande du prospect.
+   * Préférence consultative exprimée par le demandeur.
    */
-  pole?: (number | null) | Pole;
-  message: string;
-  source?: string | null;
-  status: 'new' | 'contacted' | 'qualified' | 'converted' | 'archived';
+  requestedRole: 'editor' | 'admin';
+  justification: string;
+  /**
+   * Statut du cycle de vie de la demande.
+   */
+  status: 'pending' | 'approved' | 'rejected' | 'expired';
+  /**
+   * Rôle formellement attribué lors de l'approbation par le Super Administrateur.
+   */
+  assignedRole?: ('editor' | 'admin') | null;
+  adminNotes?: string | null;
+  processedAt?: string | null;
+  processedBy?: (number | null) | User;
+  expiresAt?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -677,6 +846,10 @@ export interface PayloadLockedDocument {
   id: number;
   document?:
     | ({
+        relationTo: 'leads';
+        value: number | Lead;
+      } | null)
+    | ({
         relationTo: 'poles';
         value: number | Pole;
       } | null)
@@ -697,16 +870,16 @@ export interface PayloadLockedDocument {
         value: number | Page;
       } | null)
     | ({
-        relationTo: 'leads';
-        value: number | Lead;
-      } | null)
-    | ({
         relationTo: 'media';
         value: number | Media;
       } | null)
     | ({
         relationTo: 'users';
         value: number | User;
+      } | null)
+    | ({
+        relationTo: 'access-requests';
+        value: number | AccessRequest;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -752,6 +925,63 @@ export interface PayloadMigration {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "leads_select".
+ */
+export interface LeadsSelect<T extends boolean = true> {
+  firstname?: T;
+  lastname?: T;
+  company?: T;
+  email?: T;
+  phone?: T;
+  requestType?: T;
+  pole?: T;
+  message?: T;
+  source?: T;
+  status?: T;
+  priority?: T;
+  assignedTo?: T;
+  internalNotes?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "invoices_select".
+ */
+export interface InvoicesSelect<T extends boolean = true> {
+  invoiceNumber?: T;
+  type?: T;
+  status?: T;
+  subtotalHT?: T;
+  totalVAT?: T;
+  totalTTC?: T;
+  lead?: T;
+  clientName?: T;
+  clientCompany?: T;
+  clientEmail?: T;
+  clientPhone?: T;
+  clientAddress?: T;
+  clientVatNumber?: T;
+  issueDate?: T;
+  dueDate?: T;
+  paymentMethod?: T;
+  items?:
+    | T
+    | {
+        description?: T;
+        quantity?: T;
+        unitPriceHT?: T;
+        vatRate?: T;
+        totalHT?: T;
+        totalTTC?: T;
+        id?: T;
+      };
+  notes?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "poles_select".
  */
 export interface PolesSelect<T extends boolean = true> {
@@ -769,6 +999,8 @@ export interface PolesSelect<T extends boolean = true> {
         description?: T;
         image?: T;
       };
+  leads?: T;
+  services?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -899,24 +1131,6 @@ export interface PagesSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "leads_select".
- */
-export interface LeadsSelect<T extends boolean = true> {
-  firstname?: T;
-  lastname?: T;
-  company?: T;
-  email?: T;
-  phone?: T;
-  requestType?: T;
-  pole?: T;
-  message?: T;
-  source?: T;
-  status?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "media_select".
  */
 export interface MediaSelect<T extends boolean = true> {
@@ -1014,6 +1228,8 @@ export interface MediaSelect<T extends boolean = true> {
  */
 export interface UsersSelect<T extends boolean = true> {
   name?: T;
+  role?: T;
+  status?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;
@@ -1030,6 +1246,25 @@ export interface UsersSelect<T extends boolean = true> {
         createdAt?: T;
         expiresAt?: T;
       };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "access-requests_select".
+ */
+export interface AccessRequestsSelect<T extends boolean = true> {
+  firstName?: T;
+  lastName?: T;
+  email?: T;
+  requestedRole?: T;
+  justification?: T;
+  status?: T;
+  assignedRole?: T;
+  adminNotes?: T;
+  processedAt?: T;
+  processedBy?: T;
+  expiresAt?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1072,6 +1307,8 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   createdAt?: T;
 }
 /**
+ * Identité corporative, coordonnées officielles, mentions légales et paramètres de facturation.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "site-settings".
  */
@@ -1079,10 +1316,24 @@ export interface SiteSetting {
   id: number;
   companyName: string;
   /**
+   * Ex: SAS, SARL, SA...
+   */
+  legalForm?: string | null;
+  capital?: string | null;
+  rcs?: string | null;
+  siren?: string | null;
+  siret?: string | null;
+  vatNumber?: string | null;
+  /**
    * L'adresse officielle cible est contact@bokengi-group.com (injectable également via CONTACT_EMAIL).
    */
   contactEmail?: string | null;
   phone?: string | null;
+  bankDetails?: {
+    bankName?: string | null;
+    iban?: string | null;
+    bic?: string | null;
+  };
   address?: {
     street?: string | null;
     city?: string | null;
@@ -1109,6 +1360,8 @@ export interface SiteSetting {
   createdAt?: string | null;
 }
 /**
+ * Liens du menu principal et bouton d'appel à l'action.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "header".
  */
@@ -1131,6 +1384,8 @@ export interface Header {
   createdAt?: string | null;
 }
 /**
+ * Colonnes de navigation, mentions légales et droits réservés de bas de page.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "footer".
  */
@@ -1167,8 +1422,21 @@ export interface Footer {
  */
 export interface SiteSettingsSelect<T extends boolean = true> {
   companyName?: T;
+  legalForm?: T;
+  capital?: T;
+  rcs?: T;
+  siren?: T;
+  siret?: T;
+  vatNumber?: T;
   contactEmail?: T;
   phone?: T;
+  bankDetails?:
+    | T
+    | {
+        bankName?: T;
+        iban?: T;
+        bic?: T;
+      };
   address?:
     | T
     | {

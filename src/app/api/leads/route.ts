@@ -140,6 +140,7 @@ export async function POST(req: NextRequest) {
           message: enrichedMessage,
           source: 'website-contact-form',
           status: 'new',
+          priority: 'medium',
         },
         disableTransaction: true,
       })

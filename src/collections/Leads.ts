@@ -48,8 +48,9 @@ export const Leads: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'email',
-    defaultColumns: ['lastname', 'firstname', 'company', 'requestType', 'status', 'createdAt'],
-    group: 'Commercial & CRM',
+    defaultColumns: ['lastname', 'firstname', 'company', 'pole', 'requestType', 'status', 'priority', 'createdAt'],
+    group: 'CRM & Opérations',
+    description: 'Dossiers prospects, demandes de devis et opportunités commerciales entrantes.',
   },
   access: {
     // Les visiteurs peuvent soumettre des demandes via formulaire public
@@ -66,52 +67,84 @@ export const Leads: CollectionConfig = {
   },
   fields: [
     {
-      name: 'firstname',
-      type: 'text',
-      required: true,
-      label: 'Prénom',
-      admin: {
-        readOnly: true,
-        description: 'Prénom soumis par le prospect (strictement immuable).',
-      },
+      type: 'row',
+      fields: [
+        {
+          name: 'firstname',
+          type: 'text',
+          required: true,
+          label: 'Prénom',
+          admin: {
+            width: '50%',
+            readOnly: true,
+            description: 'Prénom soumis par le prospect (strictement immuable).',
+          },
+        },
+        {
+          name: 'lastname',
+          type: 'text',
+          required: true,
+          label: 'Nom de famille',
+          admin: {
+            width: '50%',
+            readOnly: true,
+            description: 'Nom de famille soumis par le prospect (strictement immuable).',
+          },
+        },
+      ],
     },
     {
-      name: 'lastname',
-      type: 'text',
-      required: true,
-      label: 'Nom de famille',
-      admin: {
-        readOnly: true,
-        description: 'Nom de famille soumis par le prospect (strictement immuable).',
-      },
+      type: 'row',
+      fields: [
+        {
+          name: 'company',
+          type: 'text',
+          label: 'Organisation / Entreprise',
+          admin: {
+            width: '50%',
+            readOnly: true,
+            description: 'Organisation / Entreprise renseignée par le prospect (immuable).',
+          },
+        },
+        {
+          name: 'pole',
+          type: 'relationship',
+          relationTo: 'poles',
+          hasMany: false,
+          label: 'Pôle d\'expertise concerné',
+          admin: {
+            width: '50%',
+            readOnly: true,
+            description: 'Pôle d\'expertise ciblé par le prospect lors de la soumission (immuable).',
+          },
+        },
+      ],
     },
     {
-      name: 'company',
-      type: 'text',
-      label: 'Organisation / Entreprise',
-      admin: {
-        readOnly: true,
-        description: 'Organisation / Entreprise renseignée par le prospect (immuable).',
-      },
-    },
-    {
-      name: 'email',
-      type: 'email',
-      required: true,
-      label: 'Adresse e-mail professionnelle',
-      admin: {
-        readOnly: true,
-        description: 'Adresse e-mail originale fournie par le prospect (strictement immuable).',
-      },
-    },
-    {
-      name: 'phone',
-      type: 'text',
-      label: 'Numéro de téléphone',
-      admin: {
-        readOnly: true,
-        description: 'Numéro de contact renseigné par le prospect (immuable).',
-      },
+      type: 'row',
+      fields: [
+        {
+          name: 'email',
+          type: 'email',
+          required: true,
+          label: 'Adresse e-mail professionnelle',
+          admin: {
+            width: '50%',
+            readOnly: true,
+            description: 'Adresse e-mail originale fournie par le prospect (strictement immuable).',
+          },
+        },
+        {
+          name: 'phone',
+          type: 'text',
+          label: 'Numéro de téléphone',
+          admin: {
+            width: '50%',
+            readOnly: true,
+            description: 'Numéro de contact renseigné par le prospect (immuable).',
+          },
+        },
+      ],
     },
     {
       name: 'requestType',
@@ -132,23 +165,13 @@ export const Leads: CollectionConfig = {
       },
     },
     {
-      name: 'pole',
-      type: 'relationship',
-      relationTo: 'poles',
-      hasMany: false,
-      label: 'Pôle d\'expertise concerné',
-      admin: {
-        readOnly: true,
-        description: 'Pôle d\'expertise ciblé par le prospect lors de la soumission (immuable).',
-      },
-    },
-    {
       name: 'message',
       type: 'textarea',
       required: true,
       label: 'Description du projet & besoin',
       admin: {
         readOnly: true,
+        rows: 6,
         description: 'Message original transmis par le prospect (strictement immuable).',
       },
     },
@@ -181,6 +204,45 @@ export const Leads: CollectionConfig = {
         components: {
           Cell: '@/components/admin/leads/LeadStatusCell',
         },
+      },
+    },
+    {
+      name: 'priority',
+      type: 'select',
+      defaultValue: 'medium',
+      label: 'Priorité de traitement',
+      options: [
+        { label: 'Basse', value: 'low' },
+        { label: 'Moyenne', value: 'medium' },
+        { label: 'Haute', value: 'high' },
+        { label: 'Urgente', value: 'urgent' },
+      ],
+      admin: {
+        position: 'sidebar',
+        components: {
+          Cell: '@/components/admin/leads/LeadPriorityCell',
+        },
+        description: 'Urgence opérationnelle du prospect.',
+      },
+    },
+    {
+      name: 'assignedTo',
+      type: 'relationship',
+      relationTo: 'users',
+      hasMany: false,
+      label: 'Collaborateur assigné',
+      admin: {
+        position: 'sidebar',
+        description: 'Membre de l\'équipe en charge du traitement commercial.',
+      },
+    },
+    {
+      name: 'internalNotes',
+      type: 'textarea',
+      label: 'Notes internes & Suivi commercial',
+      admin: {
+        description: 'Historique des échanges, qualifications et actions menées (interne Bokengi, strictement confidentiel).',
+        placeholder: 'Renseignez ici les échanges téléphoniques, besoins affinés et prochaines étapes...',
       },
     },
   ],

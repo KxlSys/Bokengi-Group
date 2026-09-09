@@ -1,12 +1,15 @@
 import type { GlobalConfig } from 'payload'
 import { anyone } from '../access/anyone'
 import { authenticated } from '../access/authenticated'
+import { isAdmin } from '../access/roles'
 
 export const Header: GlobalConfig = {
   slug: 'header',
   label: 'En-tête & Navigation',
   admin: {
-    group: 'Administration',
+    group: 'Paramètres & Système',
+    hidden: ({ user }) => !isAdmin(user),
+    description: 'Liens du menu principal et bouton d\'appel à l\'action.',
   },
   access: {
     read: anyone,

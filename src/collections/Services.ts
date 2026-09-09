@@ -12,7 +12,8 @@ export const Services: CollectionConfig = {
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'pole', 'category', 'status', 'featured', 'order'],
-    group: 'Organisation',
+    group: 'Offres & Métiers',
+    description: 'Services et offres commerciales commercialisés par les pôles Bokengi.',
   },
   access: {
     create: authenticated,
@@ -42,23 +43,30 @@ export const Services: CollectionConfig = {
       },
     },
     {
-      name: 'pole',
-      type: 'relationship',
-      relationTo: 'poles',
-      required: true,
-      hasMany: false,
-      label: 'Pôle d\'expertise de rattachement',
-      admin: {
-        description: 'Sélectionnez le pôle auquel ce service est affilié.',
-      },
-    },
-    {
-      name: 'category',
-      type: 'text',
-      label: 'Catégorie fonctionnelle',
-      admin: {
-        placeholder: 'Ex: Cybersécurité, Développement, Gouvernance...',
-      },
+      type: 'row',
+      fields: [
+        {
+          name: 'pole',
+          type: 'relationship',
+          relationTo: 'poles',
+          required: true,
+          hasMany: false,
+          label: 'Pôle d\'expertise de rattachement',
+          admin: {
+            width: '50%',
+            description: 'Sélectionnez le pôle auquel ce service est affilié.',
+          },
+        },
+        {
+          name: 'category',
+          type: 'text',
+          label: 'Catégorie fonctionnelle',
+          admin: {
+            width: '50%',
+            placeholder: 'Ex: Cybersécurité, Développement, Gouvernance...',
+          },
+        },
+      ],
     },
     {
       name: 'shortDescription',

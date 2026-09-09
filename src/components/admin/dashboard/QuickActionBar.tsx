@@ -39,11 +39,11 @@ const QUICK_ACTIONS: QuickActionItem[] = [
     badge: 'Fichiers',
   },
   {
-    id: 'pages',
-    title: 'Pages du site',
-    description: 'Gérer les pages institutionnelles',
-    href: '/admin/collections/pages',
-    badge: 'Structure',
+    id: 'invoices',
+    title: 'Factures & Devis',
+    description: 'Émettre ou consulter les pièces comptables',
+    href: '/admin/collections/invoices',
+    badge: 'Finance',
   },
 ]
 

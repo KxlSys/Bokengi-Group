@@ -12,7 +12,8 @@ export const CaseStudies: CollectionConfig = {
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'clientName', 'category', 'status', 'featured', 'publishedDate'],
-    group: 'Réalisations',
+    group: 'Offres & Métiers',
+    description: 'Études de cas, retours d\'expérience et projets d\'envergure menés par Bokengi.',
   },
   access: {
     create: authenticated,
@@ -42,20 +43,27 @@ export const CaseStudies: CollectionConfig = {
       },
     },
     {
-      name: 'clientName',
-      type: 'text',
-      label: 'Client / Partenaire / Écosystème',
-      admin: {
-        placeholder: 'Ex: Kongama Group, Gouvernement, Entreprise...',
-      },
-    },
-    {
-      name: 'category',
-      type: 'text',
-      label: 'Catégorie / Domaine d\'application',
-      admin: {
-        placeholder: 'Ex: EdTech & E-learning, FinTech, Logistique & IoT...',
-      },
+      type: 'row',
+      fields: [
+        {
+          name: 'clientName',
+          type: 'text',
+          label: 'Client / Partenaire / Écosystème',
+          admin: {
+            width: '50%',
+            placeholder: 'Ex: Kongama Group, Gouvernement, Entreprise...',
+          },
+        },
+        {
+          name: 'category',
+          type: 'text',
+          label: 'Catégorie / Domaine d\'application',
+          admin: {
+            width: '50%',
+            placeholder: 'Ex: EdTech & E-learning, FinTech, Logistique & IoT...',
+          },
+        },
+      ],
     },
     {
       name: 'summary',

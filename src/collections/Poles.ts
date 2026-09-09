@@ -1,4 +1,4 @@
-﻿import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from 'payload'
 import { anyone } from '../access/anyone'
 import { authenticated } from '../access/authenticated'
 import { seoFields } from '../fields/seo'
@@ -12,7 +12,8 @@ export const Poles: CollectionConfig = {
   admin: {
     useAsTitle: 'name',
     defaultColumns: ['name', 'slug', 'order', 'status'],
-    group: 'Organisation',
+    group: 'Offres & Métiers',
+    description: 'Pôles d\'expertise métier constitutifs du Groupe Bokengi.',
   },
   access: {
     create: authenticated,
@@ -89,6 +90,29 @@ export const Poles: CollectionConfig = {
       },
     },
     seoFields,
+    {
+      name: 'leads',
+      type: 'join',
+      collection: 'leads',
+      on: 'pole',
+      label: 'Demandes & Prospects rattachés',
+      admin: {
+        allowCreate: false,
+        defaultColumns: ['lastname', 'firstname', 'company', 'requestType', 'status', 'createdAt'],
+        description: 'Ensemble des sollicitations commerciales et techniques transmises pour ce pôle.',
+      },
+    },
+    {
+      name: 'services',
+      type: 'join',
+      collection: 'services',
+      on: 'pole',
+      label: 'Services rattachés',
+      admin: {
+        defaultColumns: ['title', 'category', 'status', 'order'],
+        description: 'Offres et prestations rattachées à ce pôle d\'expertise.',
+      },
+    },
   ],
 }
 

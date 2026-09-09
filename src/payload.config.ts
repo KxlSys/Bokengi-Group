@@ -13,6 +13,7 @@ import { Services } from './collections/Services'
 import { CaseStudies } from './collections/CaseStudies'
 import { Posts } from './collections/Posts'
 import { Leads } from './collections/Leads'
+import { Invoices } from './collections/Invoices'
 import { Pages } from './collections/Pages'
 import { AccessRequests } from './collections/AccessRequests'
 import { SiteSettings } from './globals/SiteSettings'
@@ -184,12 +185,13 @@ export default buildConfig({
     return baseAdapter;
   })(),
   collections: [
+    Leads,
+    Invoices,
     Poles,
     Services,
     CaseStudies,
     Posts,
     Pages,
-    Leads,
     Media,
     Users,
     AccessRequests,

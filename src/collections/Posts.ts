@@ -17,7 +17,7 @@ export const Posts: CollectionConfig = {
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'author', 'status', 'publishedAt'],
-    group: 'Publications',
+    group: 'Offres & Métiers',
     description: 'Réservoir éditorial pour les futures actualités sectorielles et articles de fond.',
   },
   access: {

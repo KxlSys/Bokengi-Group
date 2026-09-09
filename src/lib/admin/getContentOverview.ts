@@ -56,11 +56,11 @@ export async function getContentOverview(payloadInstance?: Payload): Promise<Con
       payload = await getPayload({ config: configPromise })
     }
 
-    const [postsCount, caseStudiesCount, mediaCount, pagesCount] = await Promise.all([
+    const [postsCount, caseStudiesCount, mediaCount, servicesCount] = await Promise.all([
       countCollection(payload, 'posts'),
       countCollection(payload, 'case-studies'),
       countCollection(payload, 'media'),
-      countCollection(payload, 'pages'),
+      countCollection(payload, 'services'),
     ])
 
     const items: ContentItemCount[] = [
@@ -81,12 +81,12 @@ export async function getContentOverview(payloadInstance?: Payload): Promise<Con
         createUrl: '/admin/collections/case-studies/create',
       },
       {
-        slug: 'pages',
-        label: 'Pages institutionnelles',
-        singularLabel: 'Page',
-        count: pagesCount,
-        adminUrl: '/admin/collections/pages',
-        createUrl: '/admin/collections/pages/create',
+        slug: 'services',
+        label: 'Offres & Services',
+        singularLabel: 'Service',
+        count: servicesCount,
+        adminUrl: '/admin/collections/services',
+        createUrl: '/admin/collections/services/create',
       },
       {
         slug: 'media',
@@ -98,7 +98,7 @@ export async function getContentOverview(payloadInstance?: Payload): Promise<Con
       },
     ]
 
-    const totalContent = postsCount + caseStudiesCount + mediaCount + pagesCount
+    const totalContent = postsCount + caseStudiesCount + mediaCount + servicesCount
 
     return {
       data: {

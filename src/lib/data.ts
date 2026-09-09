@@ -2,10 +2,14 @@ import {
   POLES_SEED_DATA,
   SERVICES_SEED_DATA,
   CASE_STUDIES_SEED_DATA,
+  POSTS_SEED_DATA,
   PoleData,
   ServiceData,
   CaseStudyData,
   CaseStudyScreenshot,
+  PostData,
+  PostAuthor,
+  PostCoverImage,
 } from '@/data/bokengi-seed-data'
 
 /**
@@ -112,10 +116,25 @@ function mapScreenshots(rawScreenshots: any): CaseStudyScreenshot[] {
 }
 
 /**
+ * Détecte si une configuration de base de données est active (Cloudflare Hyperdrive ou variable d'environnement).
+ * Évite les tentatives de connexion avec timeout réseau dans les environnements de test unitaire ou hors-ligne.
+ */
+function hasDatabaseConfig(): boolean {
+  try {
+    const cf = (globalThis as any)[Symbol.for('__cloudflare-context__')]
+    if (cf?.env?.HYPERDRIVE?.connectionString || (globalThis as any).env?.HYPERDRIVE?.connectionString) {
+      return true
+    }
+  } catch {}
+  return Boolean(process.env.DATABASE_URI || process.env.POSTGRES_URL || process.env.DATABASE_URL)
+}
+
+/**
  * Récupère l'ensemble des 5 pôles Bokengi publiés.
  * Tente d'interroger Payload CMS en local avec fallback transparent sur les données de référence.
  */
 export async function getPoles(): Promise<PoleData[]> {
+  if (!hasDatabaseConfig()) return POLES_SEED_DATA
   try {
     const { getPayload } = await import('payload')
     const configPromise = (await import('@payload-config')).default
@@ -369,4 +388,199 @@ export async function getCaseStudyBySlug(slug: string): Promise<CaseStudyData | 
   }
 
   return CASE_STUDIES_SEED_DATA.find((c) => c.slug === slug) || null
+}
+
+/**
+ * Calcule une estimation du temps de lecture en minutes (base standard 200 mots/min).
+ */
+export function calculateReadingTime(text: string): number {
+  if (!text) return 1
+  const words = text.trim().split(/\s+/).filter(Boolean).length
+  return Math.max(1, Math.ceil(words / 200))
+}
+
+/**
+ * Formate une date ISO en chaîne française lisible (ex: 1 mars 2026).
+ */
+export function formatFrenchDate(dateStr?: string | null): string {
+  if (!dateStr) return ''
+  try {
+    const d = new Date(dateStr)
+    if (isNaN(d.getTime())) return dateStr
+    return new Intl.DateTimeFormat('fr-FR', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+    }).format(d)
+  } catch {
+    return dateStr
+  }
+}
+
+/**
+ * Normalise un document Post issu de Payload CMS en objet PostData typé et sécurisé.
+ */
+export function mapPayloadPostToPostData(doc: any): PostData {
+  let author: PostAuthor | null = null
+  if (doc.author && typeof doc.author === 'object') {
+    author = {
+      name: doc.author.name || doc.author.email || 'Rédaction Bokengi',
+      email: typeof doc.author.email === 'string' ? doc.author.email : undefined,
+      role: typeof doc.author.role === 'string' ? doc.author.role : undefined,
+    }
+  } else if (typeof doc.author === 'string') {
+    author = { name: doc.author }
+  }
+
+  let coverImage: PostCoverImage | null = null
+  if (doc.coverImage && typeof doc.coverImage === 'object') {
+    const img = doc.coverImage
+    const url = img.url || (img.filename ? `/api/media/file/${img.filename}` : '')
+    if (url) {
+      coverImage = {
+        url,
+        alt: typeof img.alt === 'string' ? img.alt : (doc.title || ''),
+        width: typeof img.width === 'number' ? img.width : undefined,
+        height: typeof img.height === 'number' ? img.height : undefined,
+      }
+    }
+  } else if (typeof doc.coverImage === 'string') {
+    coverImage = { url: doc.coverImage, alt: doc.title || '' }
+  }
+
+  const categories: string[] = Array.isArray(doc.categories)
+    ? doc.categories
+        .map((c: any) => (typeof c === 'string' ? c : c?.name))
+        .filter(Boolean)
+    : []
+
+  const tags: string[] = Array.isArray(doc.tags)
+    ? doc.tags
+        .map((t: any) => (typeof t === 'string' ? t : t?.tag))
+        .filter(Boolean)
+    : []
+
+  const contentText = extractLexicalText(doc.content) || doc.excerpt || ''
+  const readingTime = calculateReadingTime(contentText)
+  const publishedAt = doc.publishedAt || doc.createdAt || new Date().toISOString()
+
+  return {
+    id: doc.id,
+    title: doc.title || '',
+    slug: doc.slug || '',
+    excerpt: doc.excerpt || (contentText ? contentText.substring(0, 160) + '...' : ''),
+    content: contentText,
+    rawContent: doc.content || null,
+    author,
+    coverImage,
+    categories: categories.length > 0 ? categories : ['Actualité'],
+    tags,
+    publishedAt,
+    readingTime,
+    status: doc.status || 'published',
+    seo: {
+      title: doc.seo?.title || `${doc.title} — Bokengi Group`,
+      description: doc.seo?.description || doc.excerpt || (contentText ? contentText.substring(0, 160) : ''),
+      image: coverImage?.url || undefined,
+    },
+  }
+}
+
+/**
+ * Récupère l'ensemble des articles d'expertise / actualités publiés.
+ * Trié par date de publication décroissante.
+ * Filtre optionnel par catégorie et limite numérique.
+ */
+export async function getPosts(filter?: { category?: string; limit?: number }): Promise<PostData[]> {
+  const limit = filter?.limit || 50
+  if (hasDatabaseConfig()) {
+    try {
+      const { getPayload } = await import('payload')
+      const configPromise = (await import('@payload-config')).default
+      const payload = await getPayload({ config: configPromise })
+
+      const res = await payload.find({
+        collection: 'posts',
+        where: {
+          status: { equals: 'published' },
+        },
+        limit: 100,
+        sort: '-publishedAt',
+        depth: 2,
+      })
+
+      if (res.docs && res.docs.length > 0) {
+        let posts = res.docs.map((doc: any) => mapPayloadPostToPostData(doc))
+        if (filter?.category && filter.category !== 'all') {
+          const catLower = filter.category.toLowerCase()
+          posts = posts.filter((p) =>
+            p.categories.some((c) => c.toLowerCase() === catLower)
+          )
+        }
+        return posts.slice(0, limit)
+      }
+    } catch (_err) {
+      // Fallback silencieux sur les données de référence
+    }
+  }
+
+  let seedPosts = POSTS_SEED_DATA.filter((p) => p.status === 'published')
+  if (filter?.category && filter.category !== 'all') {
+    const catLower = filter.category.toLowerCase()
+    seedPosts = seedPosts.filter((p) =>
+      p.categories.some((c) => c.toLowerCase() === catLower)
+    )
+  }
+  seedPosts.sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())
+  return seedPosts.slice(0, limit)
+}
+
+/**
+ * Récupère un article d'expertise publié par son slug.
+ * Rejette strictement tout article au statut draft ou inexistant.
+ */
+export async function getPostBySlug(slug: string): Promise<PostData | null> {
+  if (!slug) return null
+  if (hasDatabaseConfig()) {
+    try {
+      const { getPayload } = await import('payload')
+      const configPromise = (await import('@payload-config')).default
+      const payload = await getPayload({ config: configPromise })
+
+      const res = await payload.find({
+        collection: 'posts',
+        where: {
+          slug: { equals: slug },
+          status: { equals: 'published' },
+        },
+        limit: 1,
+        depth: 2,
+      })
+
+      if (res.docs && res.docs.length > 0) {
+        const doc = res.docs[0]
+        if (doc.status !== 'published') return null
+        return mapPayloadPostToPostData(doc)
+      }
+    } catch (_err) {
+      // Fallback
+    }
+  }
+
+  const seed = POSTS_SEED_DATA.find((p) => p.slug === slug && p.status === 'published')
+  return seed || null
+}
+
+/**
+ * Récupère la liste de toutes les catégories distinctes des articles publiés.
+ */
+export async function getPostCategories(): Promise<string[]> {
+  const posts = await getPosts()
+  const set = new Set<string>()
+  for (const post of posts) {
+    for (const cat of post.categories) {
+      if (cat) set.add(cat)
+    }
+  }
+  return Array.from(set)
 }

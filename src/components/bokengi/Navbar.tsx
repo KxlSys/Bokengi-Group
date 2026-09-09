@@ -85,6 +85,7 @@ export const Navbar: React.FC = () => {
   const isGroupeActive = pathname === '/groupe'
   const isExpertisesActive = pathname === '/expertises' || pathname?.startsWith('/expertises/')
   const isRealisationsActive = pathname === '/realisations' || pathname?.startsWith('/realisations/')
+  const isActualitesActive = pathname === '/actualites' || pathname?.startsWith('/actualites/')
   const isContactActive = pathname === '/contact'
 
   return (
@@ -160,6 +161,15 @@ export const Navbar: React.FC = () => {
                 className={`header-v4-link ${isRealisationsActive ? 'is-active' : ''}`}
               >
                 Réalisations
+              </Link>
+            </li>
+
+            <li>
+              <Link
+                href="/actualites"
+                className={`header-v4-link ${isActualitesActive ? 'is-active' : ''}`}
+              >
+                Actualités
               </Link>
             </li>
 
@@ -256,6 +266,18 @@ export const Navbar: React.FC = () => {
                 }`}
               >
                 Réalisations
+              </Link>
+            </li>
+
+            <li>
+              <Link
+                href="/actualites"
+                onClick={() => setIsOpen(false)}
+                className={`block text-base font-medium transition-colors ${
+                  isActualitesActive ? 'text-[var(--blue-cyan)] font-semibold' : 'text-[var(--ink-heading)] hover:text-[var(--blue-cyan)]'
+                }`}
+              >
+                Actualités
               </Link>
             </li>
 

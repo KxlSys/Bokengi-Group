@@ -63,6 +63,41 @@ export interface CaseStudyData {
   }
 }
 
+export interface PostAuthor {
+  name: string
+  email?: string
+  role?: string
+}
+
+export interface PostCoverImage {
+  url: string
+  alt?: string
+  width?: number
+  height?: number
+}
+
+export interface PostData {
+  id?: number | string
+  title: string
+  slug: string
+  excerpt: string
+  content: string
+  rawContent?: any
+  author?: PostAuthor | null
+  coverImage?: PostCoverImage | null
+  categories: string[]
+  category?: string
+  tags: string[]
+  publishedAt: string
+  readingTime: number
+  status: 'published' | 'draft'
+  seo: {
+    title: string
+    description: string
+    image?: string
+  }
+}
+
 export const POLES_SEED_DATA: PoleData[] = [
   {
     name: 'Bokengi IT',
@@ -568,6 +603,146 @@ export const CASE_STUDIES_SEED_DATA: CaseStudyData[] = [
     seo: {
       title: 'Étude de cas FleetGuard · Télémétrie Maritime & IoT — Bokengi Group',
       description: 'Supervision des équipements de sécurité maritime avec alertes prédictives, télémétrie IoT et conformité réglementaire par Bokengi IT.',
+    },
+  },
+]
+
+export const POSTS_SEED_DATA: PostData[] = [
+  {
+    title: 'Les impératifs de la souveraineté numérique et de l\'hébergement résilient en Afrique centrale',
+    slug: 'souverainete-numerique-afrique',
+    category: 'Infrastructure & Cloud',
+    categories: ['Infrastructure & Cloud', 'Souveraineté IT'],
+    tags: ['Datacenter', 'Souveraineté', 'Cloud Privé', 'Résilience'],
+    publishedAt: '2026-03-01T08:00:00.000Z',
+    readingTime: 5,
+    status: 'published',
+    author: {
+      name: 'Kalel Damba',
+      role: 'Direction Technique & Systèmes',
+    },
+    coverImage: {
+      url: '/og-image.png',
+      alt: 'Souveraineté numérique et hébergement résilient en Afrique centrale',
+    },
+    excerpt:
+      'Face aux défis d\'interconnexion, de latence et d\'exfiltration des flux sensibles, la relocalisation des infrastructures informatiques et l\'adoption de clouds souverains constituent désormais la pierre angulaire de l\'indépendance économique des entreprises d\'Afrique centrale.',
+    content: `La transformation numérique du continent africain traverse un point d'inflexion stratégique. Longtemps tributaires de serveurs hébergés en Europe ou en Amérique du Nord, les entreprises et institutions publiques locales découvrent les limites concrètes de cette dépendance : temps de latence réseau dégradés lors de ruptures de câbles sous-marins, contraintes de conformité réglementaire sur la protection des données personnelles, et exposition aux aléas géopolitiques internationaux.
+
+1. Le coût réel de la dépendance aux infrastructures distantes
+Chaque paquet IP qui doit traverser les océans pour être traité par un serveur distant avant de revenir sur le terminal d'un collaborateur local représente non seulement un coût financier direct en bande passante internationale, mais aussi une vulnérabilité opérationnelle. Lorsque le câble WACS ou SAT-3 subit des coupures fortuites, ce sont des pans entiers de la productivité bancaire, logistique ou administrative qui se retrouvent paralysés.
+
+2. Les piliers d'un cloud hybride souverain
+Chez Bokengi Group, nous préconisons une architecture pragmatique :
+- Des nœuds de calcul locaux à haute disponibilité (Datacenters Tier III situés sur le territoire national).
+- Des passerelles Edge résilientes capables de continuer à fonctionner en mode dégradé hors ligne (Offline-First).
+- Une réplication chiffrée asynchrone vers des datacenters secondaires distribués pour le plan de reprise d'activité (PRA).
+
+3. Vers une autonomie technologique durable
+Bâtir une souveraineté numérique ne signifie pas s'isoler des standards mondiaux, mais maîtriser l'ensemble de la chaîne de valeur : du système d'exploitation Linux durci à la gouvernance des clés cryptographiques, jusqu'à la formation des ingénieurs locaux chargés de l'exploitation. C'est l'engagement quotidien que portent nos divisions d'ingénierie.`,
+    seo: {
+      title: 'Souveraineté Numérique & Hébergement Résilient en Afrique · Bokengi Group',
+      description:
+        'Analyse stratégique sur la souveraineté numérique, les infrastructures locales et la résilience cloud en Afrique centrale.',
+    },
+  },
+  {
+    title: 'Security by Design : intégrer la cryptographie et l\'audit continu dès la phase de cadrage',
+    slug: 'security-by-design-systemes-critiques',
+    category: 'Cybersécurité',
+    categories: ['Cybersécurité', 'Ingénierie Logicielle'],
+    tags: ['Security by Design', 'Pentest', 'E2E Encryption', 'DevSecOps'],
+    publishedAt: '2026-02-15T09:30:00.000Z',
+    readingTime: 6,
+    status: 'published',
+    author: {
+      name: 'Équipe Cybersécurité Bokengi',
+      role: 'Audit & Sécurité Offensive',
+    },
+    coverImage: {
+      url: '/og-image.png',
+      alt: 'Security by Design et cryptographie appliquée',
+    },
+    excerpt:
+      'Dans les secteurs bancaires, gouvernementaux et logistiques, la sécurité ne peut plus être un filtre tardif. Découverte de nos pratiques d\'ingénierie : chiffrement symétrique et asymétrique, contrôle strict des flux et audits continus de code.',
+    content: `Historiquement, la cybersécurité intervenait à la fin d'un projet informatique, sous la forme d'un test d'intrusion hâtif réalisé quelques jours avant la mise en production. Ce modèle est aujourd'hui obsolète et dangereux face à la sophistication des attaques actuelles.
+
+1. Le principe du Security by Design
+Intégrer la sécurité dès la phase de design architectural implique de poser trois questions fondamentales avant même d'écrire la première ligne de code :
+- Quelles données sensibles transitent et où résident-elles au repos (Data at Rest) ?
+- Quels sont les périmètres de confiance stricts (Zero Trust Architecture) entre chaque micro-service ?
+- Que se passe-t-il si un composant ou un tiers est compromis ?
+
+2. Chiffrement de bout en bout et divulgence nulle
+Sur des projets d'envergure tels que notre plateforme collaborative BisoMapTech, Bokengi met en œuvre le chiffrement de bout en bout directement au niveau du client web via l'API standard Web Cryptography (ECDH P-256 pour l'échange de clés, AES-GCM 256 bits pour les payloads). Les serveurs d'infrastructure ne détiennent jamais la clé de déchiffrement, garantissant une étanchéité absolue même en cas d'intrusion sur la base de données.
+
+3. Automatisation du pipeline DevSecOps
+La sécurité n'est pas un état figé, c'est un processus continu :
+- Analyse statique de code (SAST) et détection des secrets intégrées dans chaque Pull Request.
+- Scans réguliers de vulnérabilités sur l'ensemble de l'arbre des dépendances directes et transitives.
+- Revues de code par les pairs systématiques avec principe du moindre privilège appliqué à chaque rôle applicatif.`,
+    seo: {
+      title: 'Security by Design & Cryptographie Appliquée · Bokengi Group',
+      description:
+        'Méthodologie pour concevoir des architectures résilientes, sécurisées dès l\'origine et auditées en continu.',
+    },
+  },
+  {
+    title: 'Modernisation des systèmes d\'information : découplage, APIs et performance opérationnelle',
+    slug: 'modernisation-systemes-information-apis',
+    category: 'Transformation Digitale',
+    categories: ['Transformation Digitale', 'Architecture Logicielle'],
+    tags: ['Micro-services', 'APIs', 'Modernisation SI', 'Cloudflare Workers'],
+    publishedAt: '2026-01-20T10:00:00.000Z',
+    readingTime: 4,
+    status: 'published',
+    author: {
+      name: 'Direction Ingénierie Digitale',
+      role: 'Solutions Web & Produits',
+    },
+    coverImage: {
+      url: '/og-image.png',
+      alt: 'Modernisation des systèmes d information et architecture API',
+    },
+    excerpt:
+      'Comment migrer un parc applicatif hétérogène vers une architecture modulaire sans rupture d\'exploitation. Analyse des gains apportés par le découplage headless, les APIs sécurisées et les déploiements Edge.',
+    content: `Beaucoup d'organisations disposent d'un patrimoine logiciel éprouvé mais enfermé dans des architectures monolithiques rigides. L'ajout d'une fonctionnalité métier ou d'un nouveau canal numérique nécessite des semaines de recettage, avec un risque élevé de régression.
+
+1. L'approche Strangler Fig : moderniser sans tout casser
+Plutôt que d'envisager une réécriture totale « big bang » risquée et coûteuse, Bokengi applique le pattern Strangler Fig (étranglement progressif) :
+- Interposition d'une passerelle d'APIs moderne en amont du système hérité (legacy).
+- Réécriture progressive des domaines métiers isolables sous forme de services découplés.
+- Bascule transparente des flux utilisateur sans interruption de service.
+
+2. Les bénéfices de l'architecture Headless et de l'Edge Computing
+En séparant clairement la logique métier (CMS Headless, base de données distribuée) de la restitution visuelle (Next.js App Router, Cloudflare Workers), les performances de rendu sont multipliées et les coûts d'infrastructure divisés :
+- Temps de chargement inférieurs à 100 millisecondes grâce au routage Edge mondial.
+- Indépendance totale des équipes produit qui peuvent itérer sur l'interface sans toucher au cœur applicatif.
+- Résilience accrue : si un service tiers faiblit, le site et l'expérience utilisateur restent disponibles grâce à la mise en cache et à l'ISR (Incremental Static Regeneration).`,
+    seo: {
+      title: 'Modernisation des Systèmes d\'Information & Architecture API · Bokengi Group',
+      description:
+        'Stratégies de transition vers des architectures modulaires, performantes et interopérables.',
+    },
+  },
+  {
+    title: 'Note de recherche interne sur les réseaux Mesh (Brouillon non publié)',
+    slug: 'brouillon-interne-non-publie',
+    category: 'R&D',
+    categories: ['R&D', 'Réseaux'],
+    tags: ['Mesh', 'IoT'],
+    publishedAt: '2026-03-05T12:00:00.000Z',
+    readingTime: 3,
+    status: 'draft',
+    author: {
+      name: 'Laboratoire R&D Bokengi',
+      role: 'Recherche Appliquée',
+    },
+    excerpt: 'Document de cadrage préliminaire réservé aux équipes internes.',
+    content: 'Contenu en cours de rédaction. Ne doit pas être exposé sur le frontend public.',
+    seo: {
+      title: 'Brouillon R&D · Bokengi Group',
+      description: 'Document interne non public.',
     },
   },
 ]

@@ -4,6 +4,7 @@ import {
   POLES_SEED_DATA,
   SERVICES_SEED_DATA,
   CASE_STUDIES_SEED_DATA,
+  POSTS_SEED_DATA,
 } from '../data/bokengi-seed-data'
 
 export async function runSeed() {
@@ -233,7 +234,55 @@ export async function runSeed() {
       }
     }
 
-    // 4. Seed Site Settings
+    // 4. Seed des Publications / Actualités de référence (Dev)
+    console.log('📰 Injection des Publications de référence (Dev)...')
+    for (const post of POSTS_SEED_DATA) {
+      const existing = await payload.find({
+        collection: 'posts',
+        where: { slug: { equals: post.slug } },
+        limit: 1,
+      })
+
+      if (existing.docs.length === 0) {
+        await payload.create({
+          collection: 'posts',
+          data: {
+            title: post.title,
+            slug: post.slug,
+            excerpt: post.excerpt,
+            content: {
+              root: {
+                type: 'root',
+                children: [
+                  {
+                    type: 'paragraph',
+                    version: 1,
+                    children: [{ type: 'text', text: post.content, version: 1 }],
+                  },
+                ],
+                direction: 'ltr',
+                format: '',
+                indent: 0,
+                version: 1,
+              },
+            } as any,
+            categories: post.categories.map((c) => ({ name: c })),
+            tags: post.tags.map((t) => ({ tag: t })),
+            publishedAt: post.publishedAt,
+            status: post.status,
+            seo: {
+              title: post.seo.title,
+              description: post.seo.description,
+            },
+          },
+        })
+        console.log(`  ✓ Publication créée : ${post.title}`)
+      } else {
+        console.log(`  ℹ Publication existante : ${post.title}`)
+      }
+    }
+
+    // 5. Seed Site Settings
     console.log('⚙️ Configuration globale siteSettings...')
     await payload.updateGlobal({
       slug: 'site-settings',

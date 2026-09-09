@@ -1,10 +1,12 @@
-﻿'use client'
+'use client'
 
 import React from 'react'
 import { useAuth } from '@payloadcms/ui'
 import { LiveClock } from './LiveClock'
 
 export interface WelcomeBannerProps {
+  userName?: string | null
+  userEmail?: string | null
   user?: {
     name?: string | null
     email?: string | null
@@ -16,14 +18,27 @@ export interface WelcomeBannerProps {
 }
 
 export const WelcomeBanner: React.FC<WelcomeBannerProps> = ({
+  userName,
+  userEmail,
   user: userFromProps,
   className = '',
   showClock = true,
 }) => {
-  const auth = useAuth()
-  const user = userFromProps || auth?.user
+  let authUser: { name?: string | null; email?: string | null } | null = null
+  try {
+    const auth = useAuth()
+    authUser = (auth?.user as any) ?? null
+  } catch {
+    authUser = null
+  }
 
-  const rawName = typeof user?.name === 'string' ? user.name.trim() : ''
+  const effectiveName =
+    userName ??
+    (typeof userFromProps?.name === 'string' ? userFromProps.name : null) ??
+    (typeof authUser?.name === 'string' ? authUser.name : null) ??
+    ''
+
+  const rawName = effectiveName.trim()
   const firstName = rawName ? rawName.split(' ')[0] : ''
   const greeting = firstName ? `Bonjour, ${firstName}` : 'Bonjour'
 

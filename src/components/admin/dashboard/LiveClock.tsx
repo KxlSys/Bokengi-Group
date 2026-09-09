@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import React, { useEffect, useState } from 'react'
 
@@ -7,22 +7,6 @@ export interface LiveClockProps {
   showZone?: boolean
   [key: string]: unknown
 }
-
-const timeFormatter = new Intl.DateTimeFormat('fr-FR', {
-  timeZone: 'Europe/Paris',
-  hour: '2-digit',
-  minute: '2-digit',
-  second: '2-digit',
-  hour12: false,
-})
-
-const dateFormatter = new Intl.DateTimeFormat('fr-FR', {
-  timeZone: 'Europe/Paris',
-  weekday: 'long',
-  day: 'numeric',
-  month: 'long',
-  year: 'numeric',
-})
 
 export const LiveClock: React.FC<LiveClockProps> = ({
   className = '',
@@ -33,10 +17,63 @@ export const LiveClock: React.FC<LiveClockProps> = ({
   const [date, setDate] = useState('—')
 
   useEffect(() => {
+    let timeFormatter: Intl.DateTimeFormat | null = null
+    let dateFormatter: Intl.DateTimeFormat | null = null
+
+    try {
+      timeFormatter = new Intl.DateTimeFormat('fr-FR', {
+        timeZone: 'Europe/Paris',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false,
+      })
+    } catch {
+      try {
+        timeFormatter = new Intl.DateTimeFormat('fr-FR', {
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: false,
+        })
+      } catch {
+        timeFormatter = null
+      }
+    }
+
+    try {
+      dateFormatter = new Intl.DateTimeFormat('fr-FR', {
+        timeZone: 'Europe/Paris',
+        weekday: 'long',
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+      })
+    } catch {
+      try {
+        dateFormatter = new Intl.DateTimeFormat('fr-FR', {
+          weekday: 'long',
+          day: 'numeric',
+          month: 'long',
+          year: 'numeric',
+        })
+      } catch {
+        dateFormatter = null
+      }
+    }
+
     const update = () => {
       const now = new Date()
-      setTime(timeFormatter.format(now))
-      setDate(dateFormatter.format(now).toUpperCase())
+      if (timeFormatter) {
+        setTime(timeFormatter.format(now))
+      } else {
+        setTime(now.toLocaleTimeString())
+      }
+      if (dateFormatter) {
+        setDate(dateFormatter.format(now).toUpperCase())
+      } else {
+        setDate(now.toLocaleDateString().toUpperCase())
+      }
     }
 
     update()

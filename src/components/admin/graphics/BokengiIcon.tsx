@@ -12,7 +12,7 @@ export interface BokengiIconProps {
  * Reproduit le monogramme officiel 3D isométrique (hexagone / B) issu de la charte de marque.
  * S'adapte nativement aux thèmes clair et sombre sans requête HTTP ni asset externe.
  */
-export const BokengiIcon: React.FC<BokengiIconProps> = ({ className = '', fill, ...rest }) => {
+export const BokengiIcon: React.FC<BokengiIconProps> = ({ className = '', fill }) => {
   return (
     <svg
       viewBox="0 0 123 140"
@@ -22,7 +22,6 @@ export const BokengiIcon: React.FC<BokengiIconProps> = ({ className = '', fill, 
       width={28}
       height={28}
       aria-label="Bokengi Group"
-      {...rest}
     >
       <path
         d="M60.2569 118.758L18.9035 94.9917C18.4016 94.6917 18.067 94.1583 18.067 93.5583V56.825C18.067 56.1917 18.7696 55.7917 19.3049 56.0917L67.3164 83.6917C67.9855 84.0917 68.822 83.5917 68.822 82.825V64.925C68.822 64.225 68.4539 63.5583 67.8182 63.1917L10.0707 29.9917C9.56883 29.6917 8.89968 29.6917 8.39782 29.9917L0.836436 34.3583C0.334574 34.6583 0 35.1917 0 35.7917V104.025C0 104.625 0.334574 105.158 0.836436 105.458L60.1565 139.592C60.6583 139.892 61.3275 139.892 61.8293 139.592L111.647 110.925C112.317 110.525 112.317 109.592 111.647 109.192L96.1232 100.258C95.4875 99.8917 94.7515 99.8917 94.1158 100.258L61.9632 118.758C61.4613 119.058 60.7922 119.058 60.2903 118.758H60.2569Z"

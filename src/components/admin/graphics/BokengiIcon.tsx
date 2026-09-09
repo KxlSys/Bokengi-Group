@@ -7,12 +7,46 @@ export interface BokengiIconProps {
 }
 
 /**
- * BokengiIcon — Emblème vectoriel officiel Bokengi Group pour l'administration.
+ * BokengiIcon — Logo officiel complet pour le header supérieur de l'Admin Payload.
  *
- * Reproduit le monogramme officiel 3D isométrique (hexagone / B) issu de la charte de marque.
- * S'adapte nativement aux thèmes clair et sombre sans requête HTTP ni asset externe.
+ * Affiche le logo horizontal officiel Bokengi (clair et sombre adaptatifs)
+ * et bascule sur le monogramme officiel uniquement lorsque l'espace est restreint (mobile).
  */
-export const BokengiIcon: React.FC<BokengiIconProps> = ({ className = '', fill }) => {
+export const BokengiIcon: React.FC<BokengiIconProps> = ({ className = '' }) => {
+  return (
+    <span className={`graphic-icon bokengi-admin-header-brand ${className}`.trim()}>
+      <img
+        src="/bokengi-logo-horizontal.png"
+        alt="Bokengi Group"
+        className="bokengi-admin-header-logo bokengi-admin-header-logo--light"
+        width={1035}
+        height={240}
+        loading="eager"
+      />
+      <img
+        src="/bokengi-logo-horizontal-dark.png"
+        alt="Bokengi Group"
+        className="bokengi-admin-header-logo bokengi-admin-header-logo--dark"
+        width={1035}
+        height={240}
+        loading="eager"
+      />
+      <img
+        src="/bokengi-mark.png"
+        alt="Bokengi Group"
+        className="bokengi-admin-header-mark"
+        width={1024}
+        height={1024}
+        loading="eager"
+      />
+    </span>
+  )
+}
+
+/**
+ * BokengiMark — Monogramme officiel vectoriel Bokengi (conservé pour favicons et contextes ultra-compacts).
+ */
+export const BokengiMark: React.FC<BokengiIconProps> = ({ className = '', fill }) => {
   return (
     <svg
       viewBox="0 0 123 140"

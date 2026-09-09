@@ -770,7 +770,95 @@ html[data-theme='dark'] .bokengi-admin-logo--dark {
   height: 44px;
 }
 
-/* Icône / Mark officiel Bokengi */
+/* Header Bokengi — Support Logo Horizontal Officiel dans le Header Admin */
+.app-header .step-nav__home,
+.step-nav__home {
+  width: auto !important;
+  height: 32px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  text-decoration: none !important;
+  flex-shrink: 0 !important;
+}
+
+.app-header .step-nav__home > span,
+.step-nav__home > span {
+  max-width: none !important;
+  overflow: visible !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  height: 100% !important;
+}
+
+.bokengi-admin-header-brand {
+  display: inline-flex !important;
+  align-items: center !important;
+  line-height: 0;
+  vertical-align: middle;
+  height: 100%;
+}
+
+.bokengi-admin-header-logo {
+  height: 28px !important;
+  width: auto !important;
+  max-height: 30px !important;
+  max-width: 180px !important;
+  object-fit: contain !important;
+  display: block;
+  transition: opacity 0.15s ease;
+}
+
+.bokengi-admin-header-logo:hover {
+  opacity: 0.85;
+}
+
+/* Gestion du thème clair / sombre pour le header */
+.bokengi-admin-header-logo--light {
+  display: block !important;
+}
+
+.bokengi-admin-header-logo--dark {
+  display: none !important;
+}
+
+[data-theme='dark'] .bokengi-admin-header-logo--light,
+html[data-theme='dark'] .bokengi-admin-header-logo--light {
+  display: none !important;
+}
+
+[data-theme='dark'] .bokengi-admin-header-logo--dark,
+html[data-theme='dark'] .bokengi-admin-header-logo--dark {
+  display: block !important;
+}
+
+/* Monogramme Bokengi : masqué par défaut sur desktop */
+.bokengi-admin-header-mark {
+  display: none !important;
+  height: 26px !important;
+  width: 26px !important;
+  max-width: 26px !important;
+  max-height: 26px !important;
+  object-fit: contain !important;
+}
+
+/* Bascule responsive : sur écran mobile étroit (< 640px), bascule propre sur le monogramme officiel */
+@media (max-width: 640px) {
+  .bokengi-admin-header-logo,
+  .bokengi-admin-header-logo--light,
+  .bokengi-admin-header-logo--dark,
+  [data-theme='dark'] .bokengi-admin-header-logo--dark,
+  html[data-theme='dark'] .bokengi-admin-header-logo--dark,
+  [data-theme='dark'] .bokengi-admin-header-logo--light,
+  html[data-theme='dark'] .bokengi-admin-header-logo--light {
+    display: none !important;
+  }
+  .bokengi-admin-header-mark {
+    display: block !important;
+  }
+}
+
+/* Icône / Mark officiel vectoriel Bokengi (conservé pour favicons et petits conteneurs) */
 .bokengi-admin-icon {
   width: 100%;
   height: 100%;
@@ -799,14 +887,6 @@ html[data-theme='dark'] .bokengi-admin-icon .bokengi-icon-primary {
 [data-theme='dark'] .bokengi-admin-icon .bokengi-icon-secondary,
 html[data-theme='dark'] .bokengi-admin-icon .bokengi-icon-secondary {
   fill: var(--bokengi-cyan, #16B8F3);
-}
-
-/* Intégration dans le StepNav / Breadcrumb */
-.step-nav__home .bokengi-admin-icon {
-  width: 18px;
-  height: 18px;
-  max-width: 18px;
-  max-height: 18px;
 }
 
 /* ==============================================================================

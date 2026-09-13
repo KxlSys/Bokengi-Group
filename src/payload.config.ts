@@ -24,11 +24,17 @@ import { defaultLexical } from '@/fields/defaultLexical'
 import { getServerSideURL } from './utilities/getURL'
 import { r2Storage } from '@payloadcms/storage-r2'
 import { migrations } from './migrations'
+import { fr } from 'payload/i18n/fr'
+import { en } from 'payload/i18n/en'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
 export default buildConfig({
+  i18n: {
+    fallbackLanguage: 'fr',
+    supportedLanguages: { fr, en },
+  },
   admin: {
     components: {
       // The `BeforeLogin` component renders a message that you see while logging into your admin panel.

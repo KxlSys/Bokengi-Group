@@ -448,13 +448,47 @@ select:focus {
   background-color: var(--theme-input-bg);
 }
 
+/* ── Champs désactivés & Données en lecture seule (Consolidation CRM & WCAG AA) ── */
 input:disabled,
 textarea:disabled,
 select:disabled {
-  background-color: var(--theme-elevation-150);
-  color: var(--theme-elevation-400);
-  cursor: not-allowed;
-  opacity: 0.75;
+  background-color: var(--theme-elevation-100);
+  color: var(--theme-elevation-900) !important;
+  -webkit-text-fill-color: currentColor !important;
+  opacity: 1 !important;
+  cursor: text;
+  border-color: var(--theme-border-color);
+  font-weight: 500;
+}
+
+/* Traitement spécifique des conteneurs et champs Payload marqués read-only */
+.field-type.read-only,
+.field-type.read-only .textarea-outer,
+.field-type.read-only .input,
+.field-type.read-only input,
+.field-type.read-only textarea,
+.field-type.read-only select {
+  background-color: var(--theme-elevation-100) !important;
+  color: var(--theme-elevation-900) !important;
+  -webkit-text-fill-color: currentColor !important;
+  opacity: 1 !important;
+  cursor: text;
+  box-shadow: none !important;
+  border-color: var(--theme-border-color) !important;
+}
+
+.field-type.read-only .textarea-outer textarea {
+  background-color: transparent !important;
+  color: var(--theme-elevation-900) !important;
+  -webkit-text-fill-color: currentColor !important;
+  opacity: 1 !important;
+  line-height: 1.6;
+}
+
+.field-type.read-only input::selection,
+.field-type.read-only textarea::selection {
+  background-color: var(--bokengi-blue-subtle);
+  color: var(--bokengi-accent);
 }
 
 /* Checkbox */
@@ -619,71 +653,115 @@ table tr:hover td {
   flex-shrink: 0;
 }
 
+/* Badges de statuts (fondation pour LeadStatusCell) - Contrôle WCAG AA (>= 4.5:1) */
 .bokengi-status-badge--new {
   background-color: var(--bokengi-cyan-subtle);
-  color: var(--bokengi-cyan);
-  border: 1px solid rgba(22, 184, 243, 0.25);
+  color: #0369A1;
+  border: 1px solid rgba(2, 132, 199, 0.3);
+}
+
+[data-theme='dark'] .bokengi-status-badge--new {
+  background-color: rgba(22, 184, 243, 0.12);
+  color: #38BDF8;
+  border-color: rgba(56, 189, 248, 0.35);
 }
 
 .bokengi-status-badge--contacted {
   background-color: var(--theme-warning-50);
-  color: var(--theme-warning-600);
-  border: 1px solid rgba(245, 158, 11, 0.25);
+  color: #B45309;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+[data-theme='dark'] .bokengi-status-badge--contacted {
+  background-color: rgba(245, 158, 11, 0.15);
+  color: #FBBF24;
+  border-color: rgba(251, 191, 36, 0.35);
 }
 
 .bokengi-status-badge--qualified {
   background-color: var(--bokengi-blue-subtle);
-  color: var(--bokengi-accent);
-  border: 1px solid rgba(0, 85, 212, 0.25);
+  color: #0033A0;
+  border: 1px solid rgba(0, 51, 160, 0.3);
 }
 
 [data-theme='dark'] .bokengi-status-badge--qualified {
+  background-color: rgba(0, 85, 212, 0.15);
   color: #60A5FA;
-  border-color: rgba(96, 165, 250, 0.3);
+  border-color: rgba(96, 165, 250, 0.35);
 }
 
 .bokengi-status-badge--converted {
   background-color: var(--theme-success-50);
-  color: var(--theme-success-600);
-  border: 1px solid rgba(16, 185, 129, 0.25);
+  color: #047857;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+[data-theme='dark'] .bokengi-status-badge--converted {
+  background-color: rgba(16, 185, 129, 0.15);
+  color: #34D399;
+  border-color: rgba(52, 211, 153, 0.35);
 }
 
 .bokengi-status-badge--archived {
   background-color: var(--theme-elevation-150);
-  color: var(--theme-elevation-400);
+  color: var(--theme-elevation-600);
   border: 1px solid var(--theme-border-color);
 }
 
 .bokengi-status-badge--default {
   background-color: var(--theme-elevation-100);
-  color: var(--theme-elevation-500);
+  color: var(--theme-elevation-700);
   border: 1px solid var(--theme-border-color);
 }
 
-/* Badges de priorité (LeadPriorityCell) */
+/* Badges de priorité (LeadPriorityCell) - Contrôle WCAG AA (>= 4.5:1) */
 .bokengi-priority-badge--low {
+  background-color: rgba(100, 116, 139, 0.12);
+  color: #334155;
+  border: 1px solid rgba(100, 116, 139, 0.28);
+}
+
+[data-theme='dark'] .bokengi-priority-badge--low {
   background-color: rgba(148, 163, 184, 0.15);
-  color: #94a3b8;
-  border: 1px solid rgba(148, 163, 184, 0.25);
+  color: #CBD5E1;
+  border-color: rgba(203, 213, 225, 0.3);
 }
 
 .bokengi-priority-badge--medium {
   background-color: var(--bokengi-cyan-subtle);
-  color: var(--bokengi-cyan);
-  border: 1px solid rgba(22, 184, 243, 0.25);
+  color: #0369A1;
+  border: 1px solid rgba(2, 132, 199, 0.3);
+}
+
+[data-theme='dark'] .bokengi-priority-badge--medium {
+  background-color: rgba(22, 184, 243, 0.12);
+  color: #38BDF8;
+  border-color: rgba(56, 189, 248, 0.35);
 }
 
 .bokengi-priority-badge--high {
+  background-color: rgba(245, 158, 11, 0.12);
+  color: #B45309;
+  border: 1px solid rgba(217, 119, 6, 0.32);
+}
+
+[data-theme='dark'] .bokengi-priority-badge--high {
   background-color: rgba(245, 158, 11, 0.15);
-  color: #f59e0b;
-  border: 1px solid rgba(245, 158, 11, 0.3);
+  color: #FBBF24;
+  border-color: rgba(251, 191, 36, 0.35);
 }
 
 .bokengi-priority-badge--urgent {
-  background-color: rgba(239, 68, 68, 0.18);
-  color: #ef4444;
-  border: 1px solid rgba(239, 68, 68, 0.35);
+  background-color: rgba(239, 68, 68, 0.12);
+  color: #B91C1C;
+  border: 1px solid rgba(220, 38, 38, 0.35);
   font-weight: 700;
+}
+
+[data-theme='dark'] .bokengi-priority-badge--urgent {
+  background-color: rgba(239, 68, 68, 0.18);
+  color: #F87171;
+  border-color: rgba(248, 113, 113, 0.35);
 }
 
 /* Badges de statuts Facturation (InvoiceStatusCell) */
@@ -2188,3 +2266,555 @@ html[data-theme='dark'] .bokengi-admin-icon .bokengi-icon-secondary {
   outline: 2px solid var(--bokengi-cyan) !important;
   outline-offset: 2px !important;
 }
+
+/* ==============================================================================
+   17. BOKENGI CRM — DOSSIER LEAD CONSULTATION & CRM LEAD UX V2
+   ============================================================================== */
+
+/* ── En-tête synthétique du dossier (LeadHeaderSummary — 8 KPI) ── */
+.bokengi-lead-summary-card {
+  background-color: var(--theme-elevation-50);
+  border: 1px solid var(--theme-border-color);
+  border-radius: var(--bokengi-radius-md);
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--bokengi-shadow-subtle);
+  position: relative;
+  overflow: hidden;
+}
+
+.bokengi-lead-summary-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+  border-bottom: 1px solid var(--theme-border-color);
+  padding-bottom: 1rem;
+}
+
+.bokengi-lead-summary-card__title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.bokengi-lead-summary-card__kicker {
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--bokengi-cyan);
+}
+
+.bokengi-lead-summary-card__prospect {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--theme-elevation-900);
+  line-height: 1.25;
+  margin: 0;
+}
+
+.bokengi-lead-summary-card__badges {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+/* Grille des 8 indicateurs CRM */
+.bokengi-lead-summary-grid--8kpi {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem 1.5rem;
+}
+
+@media (max-width: 1024px) {
+  .bokengi-lead-summary-grid--8kpi {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 580px) {
+  .bokengi-lead-summary-grid--8kpi {
+    grid-template-columns: 1fr;
+  }
+}
+
+.bokengi-lead-summary-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.bokengi-lead-summary-item__label {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--theme-elevation-450);
+}
+
+.bokengi-lead-summary-item__value {
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--theme-elevation-900);
+  line-height: 1.35;
+  word-break: break-word;
+}
+
+.bokengi-lead-summary-item__value--date {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--theme-elevation-700);
+}
+
+/* Tags de Pôles dans le résumé */
+.bokengi-summary-pole-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--bokengi-radius-xs);
+  line-height: 1.2;
+}
+
+.bokengi-summary-pole-tag--initial {
+  background-color: var(--theme-elevation-150);
+  color: var(--theme-elevation-800);
+  border: 1px solid var(--theme-border-color);
+}
+
+.bokengi-summary-pole-tag--treatment {
+  background-color: var(--bokengi-blue-subtle);
+  color: var(--bokengi-accent);
+  border: 1px solid rgba(0, 85, 212, 0.25);
+}
+
+[data-theme='dark'] .bokengi-summary-pole-tag--treatment {
+  background-color: rgba(22, 184, 243, 0.12);
+  color: var(--bokengi-cyan);
+  border-color: rgba(22, 184, 243, 0.3);
+}
+
+.bokengi-summary-pole-tag--unassigned {
+  background-color: var(--theme-elevation-100);
+  color: var(--theme-elevation-450);
+  border: 1px dashed var(--theme-elevation-300);
+  font-style: italic;
+}
+
+/* ── Carte Project Brief / Message original (ProspectMessageCard) ── */
+.bokengi-project-brief-card,
+.bokengi-prospect-message-card {
+  background-color: var(--theme-elevation-50);
+  border: 1px solid var(--theme-border-color);
+  border-left: 4px solid var(--bokengi-blue);
+  border-radius: var(--bokengi-radius-sm);
+  padding: 1.5rem 1.75rem;
+  margin: 0 0 2rem 0;
+  box-shadow: var(--bokengi-shadow-subtle);
+  position: relative;
+}
+
+[data-theme='dark'] .bokengi-project-brief-card {
+  border-left-color: var(--bokengi-cyan);
+}
+
+.bokengi-project-brief-card__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.bokengi-project-brief-card__title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  flex: 1;
+  min-width: 260px;
+}
+
+.bokengi-project-brief-card__badge-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.bokengi-project-brief-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #0033A0;
+  background-color: rgba(0, 85, 212, 0.1);
+  border: 1px solid rgba(0, 85, 212, 0.25);
+  border-radius: var(--bokengi-radius-xs);
+  padding: 0.2rem 0.5rem;
+}
+
+[data-theme='dark'] .bokengi-project-brief-badge {
+  color: #16B8F3;
+  background-color: rgba(22, 184, 243, 0.15);
+  border-color: rgba(22, 184, 243, 0.35);
+}
+
+.bokengi-project-brief-meta {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--theme-elevation-450);
+}
+
+.bokengi-project-brief-card__title {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--theme-elevation-900);
+  margin: 0;
+}
+
+.bokengi-project-brief-card__subtitle {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  color: var(--theme-elevation-500);
+  margin: 0;
+}
+
+.bokengi-project-brief-card__copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--bokengi-accent);
+  background-color: var(--bokengi-blue-subtle);
+  border: 1px solid rgba(0, 85, 212, 0.22);
+  border-radius: var(--bokengi-radius-xs);
+  padding: 0.45rem 0.85rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.bokengi-project-brief-card__copy-btn:hover {
+  background-color: var(--bokengi-blue);
+  color: #FFFFFF;
+  border-color: var(--bokengi-blue);
+  box-shadow: 0 2px 8px rgba(0, 51, 160, 0.2);
+}
+
+[data-theme='dark'] .bokengi-project-brief-card__copy-btn {
+  color: var(--bokengi-cyan);
+  background-color: rgba(22, 184, 243, 0.12);
+  border-color: rgba(22, 184, 243, 0.3);
+}
+
+[data-theme='dark'] .bokengi-project-brief-card__copy-btn:hover {
+  background-color: var(--bokengi-cyan);
+  color: #050914;
+  border-color: var(--bokengi-cyan);
+}
+
+.bokengi-project-brief-card__copy-btn--copied {
+  background-color: #10B981 !important;
+  color: #FFFFFF !important;
+  border-color: #10B981 !important;
+}
+
+.bokengi-project-brief-card__content {
+  background-color: var(--theme-input-bg);
+  border: 1px solid var(--theme-border-color);
+  border-radius: var(--bokengi-radius-xs);
+  padding: 1.25rem 1.5rem;
+  max-height: 520px;
+  overflow-y: auto;
+  user-select: text;
+}
+
+.bokengi-project-brief-card__content:focus-visible {
+  outline: 2px solid var(--bokengi-accent);
+  outline-offset: 1px;
+}
+
+.bokengi-project-brief-card__text {
+  font-family: var(--font-body);
+  font-size: 0.96rem;
+  line-height: 1.75;
+  color: var(--theme-elevation-900);
+  white-space: pre-wrap;
+  word-break: break-word;
+  user-select: text;
+}
+
+.bokengi-project-brief-card__empty {
+  color: var(--theme-elevation-400);
+  font-size: 0.9rem;
+}
+
+.bokengi-project-brief-card__footer {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.bokengi-project-brief-card__immutable-note {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--theme-elevation-400);
+  letter-spacing: 0.02em;
+}
+
+/* ── Carte Coordonnées Prospect (ProspectInfoCard) ── */
+.bokengi-prospect-info-card {
+  background-color: var(--theme-elevation-50);
+  border: 1px solid var(--theme-border-color);
+  border-radius: var(--bokengi-radius-sm);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.bokengi-prospect-info-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.bokengi-prospect-info-card__title {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--theme-elevation-900);
+  margin: 0;
+}
+
+.bokengi-prospect-info-card__subtitle {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  color: var(--theme-elevation-500);
+  margin: 0.2rem 0 0 0;
+}
+
+.bokengi-prospect-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem 1.5rem;
+}
+
+@media (max-width: 680px) {
+  .bokengi-prospect-info-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.bokengi-prospect-info-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.bokengi-prospect-info-field__label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--theme-elevation-450);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.bokengi-prospect-info-field__value-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.bokengi-prospect-info-field__main-val {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--theme-elevation-900);
+}
+
+.bokengi-prospect-info-field__main-val--mono {
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+}
+
+.bokengi-prospect-info-field__empty {
+  font-size: 0.85rem;
+  color: var(--theme-elevation-400);
+  font-style: italic;
+}
+
+.bokengi-prospect-actions-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+/* Boutons d'action coordonnées */
+.bokengi-contact-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 0.25rem 0.6rem;
+  border-radius: var(--bokengi-radius-xs);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.bokengi-contact-action-btn--primary {
+  color: #FFFFFF;
+  background-color: var(--bokengi-accent);
+  border: 1px solid var(--bokengi-accent);
+}
+
+.bokengi-contact-action-btn--primary:hover {
+  background-color: var(--bokengi-blue);
+  border-color: var(--bokengi-blue);
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+[data-theme='dark'] .bokengi-contact-action-btn--primary {
+  color: #050914;
+  background-color: var(--bokengi-cyan);
+  border-color: var(--bokengi-cyan);
+}
+
+[data-theme='dark'] .bokengi-contact-action-btn--primary:hover {
+  background-color: #38bdf8;
+  border-color: #38bdf8;
+  color: #050914;
+}
+
+.bokengi-contact-action-btn--copy {
+  color: var(--theme-elevation-700);
+  background-color: var(--theme-elevation-150);
+  border: 1px solid var(--theme-border-color);
+}
+
+.bokengi-contact-action-btn--copy:hover {
+  background-color: var(--theme-elevation-200);
+  color: var(--theme-elevation-900);
+}
+
+/* Badges du pôle, type et origine */
+.bokengi-prospect-pole-badge {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--theme-elevation-900);
+}
+
+.bokengi-prospect-tag-initial {
+  display: inline-flex;
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.15rem 0.45rem;
+  border-radius: var(--bokengi-radius-xs);
+  background-color: var(--theme-elevation-150);
+  color: var(--theme-elevation-600);
+  border: 1px solid var(--theme-border-color);
+}
+
+.bokengi-prospect-type-badge {
+  display: inline-flex;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--theme-elevation-800);
+}
+
+.bokengi-prospect-source-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.74rem;
+  font-weight: 500;
+  color: var(--theme-elevation-500);
+  background-color: var(--theme-elevation-100);
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--bokengi-radius-xs);
+  border: 1px solid var(--theme-border-color);
+}
+
+/* ── En-tête Traitement Sidebar (SidebarTreatmentHeader) ── */
+.bokengi-treatment-sidebar-header,
+.bokengi-internal-section-divider {
+  background: linear-gradient(135deg, var(--theme-elevation-100) 0%, var(--theme-elevation-50) 100%);
+  border: 1px solid var(--theme-border-color);
+  border-left: 4px solid var(--bokengi-accent);
+  border-radius: var(--bokengi-radius-xs);
+  padding: 1rem 1.15rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--bokengi-shadow-subtle);
+}
+
+[data-theme='dark'] .bokengi-treatment-sidebar-header,
+[data-theme='dark'] .bokengi-internal-section-divider {
+  border-left-color: var(--bokengi-cyan);
+}
+
+.bokengi-treatment-sidebar-header__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--bokengi-accent);
+  margin-bottom: 0.35rem;
+}
+
+[data-theme='dark'] .bokengi-treatment-sidebar-header__badge {
+  color: var(--bokengi-cyan);
+}
+
+.bokengi-treatment-sidebar-header__title {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--theme-elevation-900);
+  margin: 0 0 0.25rem 0;
+  line-height: 1.25;
+}
+
+.bokengi-treatment-sidebar-header__subtitle {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  color: var(--theme-elevation-500);
+  margin: 0;
+  line-height: 1.35;
+}

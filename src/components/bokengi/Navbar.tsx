@@ -4,7 +4,9 @@ import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { ThemeToggle } from './ThemeToggle'
+import { LanguageToggle } from './LanguageToggle'
 import { useTheme } from '@/providers/Theme'
+import { useI18n } from '@/i18n'
 
 export const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -13,6 +15,7 @@ export const Navbar: React.FC = () => {
   const [mounted, setMounted] = useState(false)
   const pathname = usePathname()
   const { theme } = useTheme()
+  const { t } = useI18n()
 
   const dropdownWrapRef = React.useRef<HTMLLIElement>(null)
   const triggerLinkRef = React.useRef<HTMLAnchorElement>(null)
@@ -75,11 +78,11 @@ export const Navbar: React.FC = () => {
   const isDark = mounted ? theme === 'dark' : false
 
   const expertises = [
-    { href: '/expertises/it', name: '01 — BOKENGI IT', sub: 'Technologie, infrastructure & cybersécurité' },
-    { href: '/expertises/digital', name: '02 — BOKENGI DIGITAL', sub: 'Web, produits numériques & transformation' },
-    { href: '/expertises/business', name: '03 — BOKENGI BUSINESS', sub: 'Assistance administrative & organisation' },
-    { href: '/expertises/consulting', name: '04 — BOKENGI CONSULTING', sub: 'Conseil stratégique & audits IT' },
-    { href: '/expertises/events', name: '05 — BOKENGI EVENTS', sub: 'Événements professionnels & régie' },
+    { href: '/expertises/it', name: t.expertises.it.name, sub: t.expertises.it.sub },
+    { href: '/expertises/digital', name: t.expertises.digital.name, sub: t.expertises.digital.sub },
+    { href: '/expertises/business', name: t.expertises.business.name, sub: t.expertises.business.sub },
+    { href: '/expertises/consulting', name: t.expertises.consulting.name, sub: t.expertises.consulting.sub },
+    { href: '/expertises/events', name: t.expertises.events.name, sub: t.expertises.events.sub },
   ]
 
   const isGroupeActive = pathname === '/groupe'
@@ -92,7 +95,7 @@ export const Navbar: React.FC = () => {
     <header className={`header-v4 ${isScrolled ? 'is-scrolled' : ''}`}>
       <div className="container-v4 header-v4-inner">
         {/* Official Brand Logo */}
-        <Link href="/" className="header-v4-logo" aria-label="Bokengi Group · Retour à l'accueil">
+        <Link href="/" className="header-v4-logo" aria-label={`Bokengi Group · ${t.common.backToHome}`}>
           <img
             src={isDark ? '/bokengi-logo-horizontal-dark.png' : '/bokengi-logo-horizontal.png'}
             alt="Bokengi Group · Technology & Services"
@@ -109,7 +112,7 @@ export const Navbar: React.FC = () => {
                 href="/groupe"
                 className={`header-v4-link ${isGroupeActive ? 'is-active' : ''}`}
               >
-                Le Groupe
+                {t.nav.group}
               </Link>
             </li>
 
@@ -129,7 +132,7 @@ export const Navbar: React.FC = () => {
                 aria-controls="expertises-dropdown-menu"
                 onKeyDown={handleTriggerKeyDown}
               >
-                Expertises
+                {t.nav.expertises}
               </Link>
               <div
                 id="expertises-dropdown-menu"
@@ -160,7 +163,7 @@ export const Navbar: React.FC = () => {
                 href="/realisations"
                 className={`header-v4-link ${isRealisationsActive ? 'is-active' : ''}`}
               >
-                Réalisations
+                {t.nav.projects}
               </Link>
             </li>
 
@@ -169,7 +172,7 @@ export const Navbar: React.FC = () => {
                 href="/actualites"
                 className={`header-v4-link ${isActualitesActive ? 'is-active' : ''}`}
               >
-                Actualités
+                {t.nav.news}
               </Link>
             </li>
 
@@ -178,18 +181,19 @@ export const Navbar: React.FC = () => {
                 href="/contact"
                 className={`header-v4-link ${isContactActive ? 'is-active' : ''}`}
               >
-                Contact
+                {t.nav.contact}
               </Link>
             </li>
           </ul>
         </nav>
 
         {/* Header Actions */}
-        <div className="header-v4-actions">
+        <div className="header-v4-actions flex items-center gap-2">
+          <LanguageToggle />
           <ThemeToggle />
 
           <Link href="/contact?type=devis" className="btn-v4-primary hidden sm:inline-flex" style={{ height: '40px', padding: '0 1.25rem', fontSize: '0.85rem' }}>
-            Demander un devis →
+            {t.common.requestQuote} →
           </Link>
 
           {/* Mobile Hamburger */}
@@ -197,7 +201,7 @@ export const Navbar: React.FC = () => {
             type="button"
             className="md:hidden p-2 min-w-[44px] min-h-[44px] inline-flex items-center justify-center text-[var(--ink-heading)] cursor-pointer"
             onClick={toggleMenu}
-            aria-label={isOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
+            aria-label={isOpen ? t.nav.closeMenu : t.nav.openMenu}
             aria-expanded={isOpen}
           >
             <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -226,7 +230,7 @@ export const Navbar: React.FC = () => {
                   isGroupeActive ? 'text-[var(--blue-cyan)] font-semibold' : 'text-[var(--ink-heading)] hover:text-[var(--blue-cyan)]'
                 }`}
               >
-                Le Groupe
+                {t.nav.group}
               </Link>
             </li>
 
@@ -238,7 +242,7 @@ export const Navbar: React.FC = () => {
                   isExpertisesActive ? 'text-[var(--blue-cyan)] font-semibold' : 'text-[var(--ink-heading)] hover:text-[var(--blue-cyan)]'
                 }`}
               >
-                Expertises
+                {t.nav.expertises}
               </Link>
               <div className="mobile-poles-subgrid">
                 {expertises.map((exp) => {
@@ -265,7 +269,7 @@ export const Navbar: React.FC = () => {
                   isRealisationsActive ? 'text-[var(--blue-cyan)] font-semibold' : 'text-[var(--ink-heading)] hover:text-[var(--blue-cyan)]'
                 }`}
               >
-                Réalisations
+                {t.nav.projects}
               </Link>
             </li>
 
@@ -277,7 +281,7 @@ export const Navbar: React.FC = () => {
                   isActualitesActive ? 'text-[var(--blue-cyan)] font-semibold' : 'text-[var(--ink-heading)] hover:text-[var(--blue-cyan)]'
                 }`}
               >
-                Actualités
+                {t.nav.news}
               </Link>
             </li>
 
@@ -289,17 +293,22 @@ export const Navbar: React.FC = () => {
                   isContactActive ? 'text-[var(--blue-cyan)] font-semibold' : 'text-[var(--ink-heading)] hover:text-[var(--blue-cyan)]'
                 }`}
               >
-                Contact
+                {t.nav.contact}
               </Link>
             </li>
 
-            <li className="pt-3 border-t border-[var(--border-subtle)]">
+            <li className="pt-3 border-t border-[var(--border-subtle)] flex items-center justify-between">
+              <span className="text-sm font-medium text-[var(--ink-muted)]">{t.nav.language}</span>
+              <LanguageToggle showLabel={false} />
+            </li>
+
+            <li className="pt-2">
               <Link
                 href="/contact?type=devis"
                 onClick={() => setIsOpen(false)}
                 className="btn-v4-primary w-full text-center justify-center"
               >
-                Demander un devis →
+                {t.common.requestQuote} →
               </Link>
             </li>
           </ul>

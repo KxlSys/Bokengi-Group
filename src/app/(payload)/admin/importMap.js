@@ -1,3 +1,7 @@
+import { default as default_6855ccdb58a0e9dfeed31a4e2b412b9e } from '@/components/admin/leads/LeadHeaderSummary'
+import { default as default_0e944649f8b02f1ec15383b35ef8ea1e } from '@/components/admin/leads/ProspectMessageCard'
+import { default as default_7a8a414291ed8ae2409945d0b9f4451a } from '@/components/admin/leads/ProspectInfoCard'
+import { default as default_19240dde5a26185fc75989cf683420ce } from '@/components/admin/leads/SidebarTreatmentHeader'
 import { default as default_91dbfe0b9fd5cc15067552f80285fdad } from '@/components/admin/leads/LeadStatusCell'
 import { default as default_db9bf23a5b799950471a8905dab846b4 } from '@/components/admin/leads/LeadPriorityCell'
 import { default as default_e1232aa0eeb4b311c64715ae549cc775 } from '@/components/admin/invoices/InvoiceStatusCell'
@@ -22,6 +26,10 @@ import { CollectionCards as CollectionCards_f9c02e79a4aed9a3924487c0cd4cafb1 } f
 
 /** @type import('payload').ImportMap */
 export const importMap = {
+  "@/components/admin/leads/LeadHeaderSummary#default": default_6855ccdb58a0e9dfeed31a4e2b412b9e,
+  "@/components/admin/leads/ProspectMessageCard#default": default_0e944649f8b02f1ec15383b35ef8ea1e,
+  "@/components/admin/leads/ProspectInfoCard#default": default_7a8a414291ed8ae2409945d0b9f4451a,
+  "@/components/admin/leads/SidebarTreatmentHeader#default": default_19240dde5a26185fc75989cf683420ce,
   "@/components/admin/leads/LeadStatusCell#default": default_91dbfe0b9fd5cc15067552f80285fdad,
   "@/components/admin/leads/LeadPriorityCell#default": default_db9bf23a5b799950471a8905dab846b4,
   "@/components/admin/invoices/InvoiceStatusCell#default": default_e1232aa0eeb4b311c64715ae549cc775,

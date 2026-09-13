@@ -3,22 +3,18 @@
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
+import { useI18n } from '@/i18n'
 
 interface ContactFormProps {
   initialPole?: string
   initialType?: string
 }
 
-const POLES_OPTIONS = [
-  { id: 'it', name: 'Bokengi IT', num: '01', desc: 'Cybersécurité, Cloud & Infra' },
-  { id: 'digital', name: 'Bokengi Digital', num: '02', desc: 'Développement Web, Apps & UX' },
-  { id: 'business', name: 'Bokengi Business', num: '03', desc: 'Support opérationnel & Gestion' },
-  { id: 'consulting', name: 'Bokengi Consulting', num: '04', desc: 'Conseil stratégique & Audit' },
-  { id: 'events', name: 'Bokengi Events', num: '05', desc: 'Événements & Séminaires pro' },
-]
+const POLES_IDS = ['it', 'digital', 'business', 'consulting', 'events']
 
 export const ContactForm: React.FC<ContactFormProps> = () => {
   const searchParams = useSearchParams()
+  const { t, locale } = useI18n()
 
   const [form, setForm] = useState({
     firstname: '',
@@ -36,11 +32,19 @@ export const ContactForm: React.FC<ContactFormProps> = () => {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [feedbackMessage, setFeedbackMessage] = useState('')
 
+  const polesOptions = [
+    { id: 'it', name: t.expertises.it.name, num: '01', desc: t.expertises.it.sub },
+    { id: 'digital', name: t.expertises.digital.name, num: '02', desc: t.expertises.digital.sub },
+    { id: 'business', name: t.expertises.business.name, num: '03', desc: t.expertises.business.sub },
+    { id: 'consulting', name: t.expertises.consulting.name, num: '04', desc: t.expertises.consulting.sub },
+    { id: 'events', name: t.expertises.events.name, num: '05', desc: t.expertises.events.sub },
+  ]
+
   useEffect(() => {
     const qPole = searchParams.get('pole')
     const qType = searchParams.get('type')
 
-    if (qPole && POLES_OPTIONS.some((p) => p.id === qPole)) {
+    if (qPole && POLES_IDS.includes(qPole)) {
       setForm((prev) => ({ ...prev, pole: qPole }))
     }
     if (qType && ['devis', 'cadrage', 'support', 'partenariat', 'autre'].includes(qType)) {
@@ -62,7 +66,11 @@ export const ContactForm: React.FC<ContactFormProps> = () => {
 
     if (!form.consent) {
       setStatus('error')
-      setFeedbackMessage('Veuillez cocher la case attestant de la prise de connaissance de la Politique de confidentialité pour transmettre votre demande.')
+      setFeedbackMessage(
+        locale === 'en'
+          ? 'Please check the box confirming you have reviewed our Privacy Policy to submit your request.'
+          : 'Veuillez cocher la case attestant de la prise de connaissance de la Politique de confidentialité pour transmettre votre demande.'
+      )
       return
     }
 
@@ -76,11 +84,11 @@ export const ContactForm: React.FC<ContactFormProps> = () => {
       const data = await res.json()
 
       if (!res.ok) {
-        throw new Error(data.error || 'Une erreur est survenue lors de la transmission.')
+        throw new Error(data.error || (locale === 'en' ? 'An error occurred during submission.' : 'Une erreur est survenue lors de la transmission.'))
       }
 
       setStatus('success')
-      setFeedbackMessage(data.message || 'Votre demande a été transmise avec succès.')
+      setFeedbackMessage(data.message || t.contactForm.successDesc)
       setForm({
         firstname: '',
         lastname: '',
@@ -95,7 +103,7 @@ export const ContactForm: React.FC<ContactFormProps> = () => {
       })
     } catch (err: any) {
       setStatus('error')
-      setFeedbackMessage(err.message || 'Impossible de transmettre votre demande. Veuillez réessayer.')
+      setFeedbackMessage(err.message || (locale === 'en' ? 'Unable to submit your request. Please try again.' : 'Impossible de transmettre votre demande. Veuillez réessayer.'))
     }
   }
 
@@ -106,20 +114,20 @@ export const ContactForm: React.FC<ContactFormProps> = () => {
           ✓
         </div>
         <h3 className="text-2xl font-bold text-[var(--ink-heading)] mb-2">
-          Demande transmise avec succès !
+          {t.contactForm.successTitle}
         </h3>
         <p className="text-sm text-[var(--ink-muted)] max-w-md mx-auto mb-6 leading-relaxed">
-          {feedbackMessage}
+          {feedbackMessage || t.contactForm.successDesc}
         </p>
         <div className="p-4 rounded-[var(--radius-xs)] bg-[var(--bg-elevated)] text-xs font-mono text-[var(--ink-heading)] max-w-sm mx-auto mb-8 border border-[var(--border-subtle)]">
-          Délai de traitement estimé : <strong>24 à 48 heures ouvrées</strong>
+          {t.contactForm.estimatedDelay} <strong>{t.contactForm.delayHours}</strong>
         </div>
         <button
           type="button"
           onClick={() => setStatus('idle')}
           className="btn-v4-secondary inline-flex items-center gap-2"
         >
-          Envoyer une autre demande <span>→</span>
+          {t.contactForm.newRequestBtn} <span>→</span>
         </button>
       </div>
     )
@@ -132,10 +140,10 @@ export const ContactForm: React.FC<ContactFormProps> = () => {
     >
       <div className="border-b border-[var(--border-subtle)] pb-4 mb-4">
         <h3 className="text-xl font-bold text-[var(--ink-heading)]">
-          Formulaire de cadrage & devis
+          {t.contactForm.title}
         </h3>
         <p className="text-xs text-[var(--ink-muted)] mt-1">
-          Renseignez les détails de votre besoin pour être orienté vers nos spécialistes.
+          {t.contactForm.subtitle}
         </p>
       </div>
 
@@ -151,7 +159,7 @@ export const ContactForm: React.FC<ContactFormProps> = () => {
       {/* 1. Type de sollicitation */}
       <div>
         <label htmlFor="form-request-type" className="block text-xs uppercase font-mono tracking-wider text-[var(--ink-heading)] mb-2 font-semibold">
-          Type de demande <span className="text-[var(--blue-cyan)]">*</span>
+          {t.contactForm.requestType} <span className="text-[var(--blue-cyan)]">*</span>
         </label>
         <select
           id="form-request-type"
@@ -161,25 +169,25 @@ export const ContactForm: React.FC<ContactFormProps> = () => {
           required
           className="w-full px-4 py-2.5 rounded-[var(--radius-xs)] bg-[var(--bg-elevated)] border border-[var(--border-subtle)] text-[var(--ink-heading)] text-sm focus:outline-none focus:border-[var(--blue-cyan)]"
         >
-          <option value="devis">Demande de devis chiffré</option>
-          <option value="cadrage">Cadrage de projet & audit technique</option>
-          <option value="support">Support / Assistance technique</option>
-          <option value="partenariat">Partenariat institutionnel / commercial</option>
-          <option value="autre">Autre demande générale</option>
+          <option value="devis">{t.contactForm.types.devis}</option>
+          <option value="cadrage">{t.contactForm.types.cadrage}</option>
+          <option value="support">{t.contactForm.types.support}</option>
+          <option value="partenariat">{t.contactForm.types.partenariat}</option>
+          <option value="autre">{t.contactForm.types.autre}</option>
         </select>
       </div>
 
       {/* 2. Sélection du Pôle (Architectural Cards) */}
       <div>
         <label className="block text-xs uppercase font-mono tracking-wider text-[var(--ink-heading)] mb-2 font-semibold">
-          Pôle d’expertise sollicité <span className="text-[var(--blue-cyan)]">*</span>
+          {t.contactForm.pole} <span className="text-[var(--blue-cyan)]">*</span>
         </label>
         <div
           role="radiogroup"
-          aria-label="Sélectionnez un pôle d'expertise"
+          aria-label={t.contactForm.pole}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5"
         >
-          {POLES_OPTIONS.map((p) => {
+          {polesOptions.map((p) => {
             const isSelected = form.pole === p.id
             return (
               <button
@@ -214,13 +222,13 @@ export const ContactForm: React.FC<ContactFormProps> = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label htmlFor="form-firstname" className="block text-xs uppercase font-mono tracking-wider text-[var(--ink-heading)] mb-1 font-semibold">
-            Prénom <span className="text-[var(--blue-cyan)]">*</span>
+            {t.contactForm.firstname} <span className="text-[var(--blue-cyan)]">*</span>
           </label>
           <input
             type="text"
             id="form-firstname"
             name="firstname"
-            placeholder="Ex: Alexandre"
+            placeholder={t.contactForm.firstnamePlaceholder}
             value={form.firstname}
             onChange={handleChange}
             required
@@ -229,13 +237,13 @@ export const ContactForm: React.FC<ContactFormProps> = () => {
         </div>
         <div>
           <label htmlFor="form-lastname" className="block text-xs uppercase font-mono tracking-wider text-[var(--ink-heading)] mb-1 font-semibold">
-            Nom de famille <span className="text-[var(--blue-cyan)]">*</span>
+            {t.contactForm.lastname} <span className="text-[var(--blue-cyan)]">*</span>
           </label>
           <input
             type="text"
             id="form-lastname"
             name="lastname"
-            placeholder="Ex: Mabiala"
+            placeholder={t.contactForm.lastnamePlaceholder}
             value={form.lastname}
             onChange={handleChange}
             required
@@ -248,13 +256,13 @@ export const ContactForm: React.FC<ContactFormProps> = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label htmlFor="form-company" className="block text-xs uppercase font-mono tracking-wider text-[var(--ink-heading)] mb-1 font-semibold">
-            Organisation / Entreprise <span className="text-[var(--ink-muted)] text-[10px] lowercase">(optionnel)</span>
+            {t.contactForm.company} <span className="text-[var(--ink-muted)] text-[10px] lowercase">({locale === 'en' ? 'optional' : 'optionnel'})</span>
           </label>
           <input
             type="text"
             id="form-company"
             name="company"
-            placeholder="Ex: Ministère, Entreprise, Startup..."
+            placeholder={t.contactForm.companyPlaceholder}
             value={form.company}
             onChange={handleChange}
             className="w-full px-4 py-2 rounded-[var(--radius-xs)] bg-[var(--bg-elevated)] border border-[var(--border-subtle)] text-[var(--ink-heading)] text-sm focus:outline-none focus:border-[var(--blue-cyan)]"
@@ -262,13 +270,13 @@ export const ContactForm: React.FC<ContactFormProps> = () => {
         </div>
         <div>
           <label htmlFor="form-email" className="block text-xs uppercase font-mono tracking-wider text-[var(--ink-heading)] mb-1 font-semibold">
-            Email professionnel <span className="text-[var(--blue-cyan)]">*</span>
+            {t.contactForm.email} <span className="text-[var(--blue-cyan)]">*</span>
           </label>
           <input
             type="email"
             id="form-email"
             name="email"
-            placeholder="nom@organisation.com"
+            placeholder={t.contactForm.emailPlaceholder}
             value={form.email}
             onChange={handleChange}
             required
@@ -280,13 +288,13 @@ export const ContactForm: React.FC<ContactFormProps> = () => {
       {/* 5. Téléphone */}
       <div>
         <label htmlFor="form-phone" className="block text-xs uppercase font-mono tracking-wider text-[var(--ink-heading)] mb-1 font-semibold">
-          Numéro de téléphone <span className="text-[var(--ink-muted)] text-[10px] lowercase">(optionnel)</span>
+          {t.contactForm.phone} <span className="text-[var(--ink-muted)] text-[10px] lowercase">({locale === 'en' ? 'optional' : 'optionnel'})</span>
         </label>
         <input
           type="tel"
           id="form-phone"
           name="phone"
-          placeholder="Ex: +242 06 ... ou +33 6 ..."
+          placeholder={t.contactForm.phonePlaceholder}
           value={form.phone}
           onChange={handleChange}
           className="w-full px-4 py-2 rounded-[var(--radius-xs)] bg-[var(--bg-elevated)] border border-[var(--border-subtle)] text-[var(--ink-heading)] text-sm focus:outline-none focus:border-[var(--blue-cyan)]"
@@ -296,13 +304,13 @@ export const ContactForm: React.FC<ContactFormProps> = () => {
       {/* 6. Description du besoin */}
       <div>
         <label htmlFor="form-message" className="block text-xs uppercase font-mono tracking-wider text-[var(--ink-heading)] mb-1 font-semibold">
-          Description de votre projet ou besoin <span className="text-[var(--blue-cyan)]">*</span>
+          {t.contactForm.message} <span className="text-[var(--blue-cyan)]">*</span>
         </label>
         <textarea
           id="form-message"
           name="message"
           rows={5}
-          placeholder="Précisez votre contexte, vos objectifs, les livrables attendus, les délais envisagés..."
+          placeholder={t.contactForm.messagePlaceholder}
           value={form.message}
           onChange={handleChange}
           required
@@ -340,20 +348,25 @@ export const ContactForm: React.FC<ContactFormProps> = () => {
             htmlFor="form-consent"
             className="text-xs text-[var(--ink-muted)] leading-relaxed cursor-pointer select-none"
           >
-            J’ai pris connaissance de la{' '}
+            {t.contactForm.consentText}{' '}
             <Link
               href="/confidentialite"
               target="_blank"
               rel="noopener noreferrer"
               className="text-[var(--blue-cyan)] font-medium underline underline-offset-2 hover:opacity-80"
             >
-              Politique de confidentialité
+              {t.contactForm.privacyLink}
             </Link>{' '}
-            de Bokengi Group et j’accepte que les informations saisies soient traitées dans le cadre de ma demande de devis ou de cadrage. <span className="text-[var(--blue-cyan)]">*</span>
+            {locale === 'en'
+              ? 'of Bokengi Group and agree to the processing of submitted data for project estimation and scoping purposes.'
+              : 'de Bokengi Group et j’accepte que les informations saisies soient traitées dans le cadre de ma demande de devis ou de cadrage.'}{' '}
+            <span className="text-[var(--blue-cyan)]">*</span>
           </label>
         </div>
         <p className="text-[11px] text-[var(--ink-faint)] leading-relaxed sm:pl-7">
-          Base légale : exécution de démarches précontractuelles à votre demande (art. 6.1.b RGPD). Vos données ne sont cédées à aucun tiers à des fins publicitaires.
+          {locale === 'en'
+            ? 'Legal basis: Pre-contractual measures at your request (Art. 6.1.b GDPR). Your data is never transferred to any third party for commercial purposes.'
+            : 'Base légale : exécution de démarches précontractuelles à votre demande (art. 6.1.b RGPD). Vos données ne sont cédées à aucun tiers à des fins publicitaires.'}
         </p>
       </div>
 
@@ -367,11 +380,11 @@ export const ContactForm: React.FC<ContactFormProps> = () => {
           {status === 'loading' ? (
             <>
               <span className="animate-spin inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full" />
-              <span>Transmission en cours...</span>
+              <span>{t.contactForm.submitting}</span>
             </>
           ) : (
             <>
-              <span>Transmettre ma demande</span>
+              <span>{t.contactForm.submit}</span>
               <span>→</span>
             </>
           )}
@@ -379,7 +392,11 @@ export const ContactForm: React.FC<ContactFormProps> = () => {
 
         <div className="text-xs text-[var(--ink-muted)] flex items-center gap-2">
           <span>🔒</span>
-          <span>Transmission sécurisée · Données confidentielles</span>
+          <span>
+            {locale === 'en'
+              ? 'Secure transmission · Confidential data'
+              : 'Transmission sécurisée · Données confidentielles'}
+          </span>
         </div>
       </div>
     </form>

@@ -7,6 +7,60 @@ import {
   POSTS_SEED_DATA,
 } from '../data/bokengi-seed-data'
 
+export async function seedPoles(payload: any): Promise<Record<string, string | number>> {
+  console.log('📦 Injection des 5 Pôles...')
+  const poleMap: Record<string, string | number> = {}
+
+  for (const pole of POLES_SEED_DATA) {
+    const existing = await payload.find({
+      collection: 'poles',
+      where: { slug: { equals: pole.slug } },
+      limit: 1,
+    })
+
+    if (existing.docs.length === 0) {
+      const created = await payload.create({
+        collection: 'poles',
+        data: {
+          name: pole.name,
+          slug: pole.slug,
+          shortDescription: pole.shortDescription,
+          description: {
+            root: {
+              type: 'root',
+              children: [
+                {
+                  type: 'paragraph',
+                  version: 1,
+                  children: [{ type: 'text', text: pole.description, version: 1 }],
+                },
+              ],
+              direction: 'ltr',
+              format: '',
+              indent: 0,
+              version: 1,
+            },
+          } as any,
+          icon: pole.icon,
+          order: pole.order,
+          status: pole.status,
+          seo: {
+            title: pole.seo.title,
+            description: pole.seo.description,
+          },
+        },
+      })
+      poleMap[pole.slug] = created.id
+      console.log(`  ✓ Pôle créé : ${pole.name}`)
+    } else {
+      poleMap[pole.slug] = existing.docs[0].id
+      console.log(`  ℹ Pôle existant : ${pole.name}`)
+    }
+  }
+
+  return poleMap
+}
+
 export async function runSeed() {
   console.log('🌱 Démarrage du seed Bokengi Group 2.0...')
 
@@ -14,55 +68,7 @@ export async function runSeed() {
     const payload = await getPayload({ config: configPromise })
 
     // 1. Seed des 5 Pôles
-    console.log('📦 Injection des 5 Pôles...')
-    const poleMap: Record<string, string | number> = {}
-
-    for (const pole of POLES_SEED_DATA) {
-      const existing = await payload.find({
-        collection: 'poles',
-        where: { slug: { equals: pole.slug } },
-        limit: 1,
-      })
-
-      if (existing.docs.length === 0) {
-        const created = await payload.create({
-          collection: 'poles',
-          data: {
-            name: pole.name,
-            slug: pole.slug,
-            shortDescription: pole.shortDescription,
-            description: {
-              root: {
-                type: 'root',
-                children: [
-                  {
-                    type: 'paragraph',
-                    version: 1,
-                    children: [{ type: 'text', text: pole.description, version: 1 }],
-                  },
-                ],
-                direction: 'ltr',
-                format: '',
-                indent: 0,
-                version: 1,
-              },
-            } as any,
-            icon: pole.icon,
-            order: pole.order,
-            status: pole.status,
-            seo: {
-              title: pole.seo.title,
-              description: pole.seo.description,
-            },
-          },
-        })
-        poleMap[pole.slug] = created.id
-        console.log(`  ✓ Pôle créé : ${pole.name}`)
-      } else {
-        poleMap[pole.slug] = existing.docs[0].id
-        console.log(`  ℹ Pôle existant : ${pole.name}`)
-      }
-    }
+    const poleMap = await seedPoles(payload)
 
     // 2. Seed des Services
     console.log('⚙️ Injection des Services par Pôle...')

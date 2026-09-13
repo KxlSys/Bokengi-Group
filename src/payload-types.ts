@@ -107,7 +107,7 @@ export interface Config {
   db: {
     defaultIDType: number;
   };
-  fallbackLocale: null;
+  fallbackLocale: ('false' | 'none' | 'null') | false | null | ('fr' | 'en') | ('fr' | 'en')[];
   globals: {
     'site-settings': SiteSetting;
     header: Header;
@@ -118,7 +118,7 @@ export interface Config {
     header: HeaderSelect<false> | HeaderSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
   };
-  locale: null;
+  locale: 'fr' | 'en';
   widgets: {
     collections: CollectionsWidget;
   };
@@ -167,6 +167,10 @@ export interface Lead {
    */
   company?: string | null;
   /**
+   * Pôle d'expertise ciblé par le prospect lors de la soumission (immuable).
+   */
+  pole?: (number | null) | Pole;
+  /**
    * Adresse e-mail originale fournie par le prospect (strictement immuable).
    */
   email: string;
@@ -178,10 +182,6 @@ export interface Lead {
    * Type de demande original choisi par le prospect (immuable).
    */
   requestType: 'devis' | 'cadrage' | 'partenariat' | 'autre';
-  /**
-   * Pôle d'expertise ciblé par le prospect lors de la soumission (immuable).
-   */
-  pole?: (number | null) | Pole;
   /**
    * Message original transmis par le prospect (strictement immuable).
    */
@@ -199,6 +199,10 @@ export interface Lead {
    * Membre de l'équipe en charge du traitement commercial.
    */
   assignedTo?: (number | null) | User;
+  /**
+   * Pôle d'expertise Bokengi prenant en charge le traitement opérationnel du lead.
+   */
+  treatmentPole?: (number | null) | Pole;
   /**
    * Historique des échanges, qualifications et actions menées (interne Bokengi, strictement confidentiel).
    */
@@ -931,15 +935,16 @@ export interface LeadsSelect<T extends boolean = true> {
   firstname?: T;
   lastname?: T;
   company?: T;
+  pole?: T;
   email?: T;
   phone?: T;
   requestType?: T;
-  pole?: T;
   message?: T;
   source?: T;
   status?: T;
   priority?: T;
   assignedTo?: T;
+  treatmentPole?: T;
   internalNotes?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -1320,12 +1325,24 @@ export interface SiteSetting {
    */
   legalForm?: string | null;
   capital?: string | null;
+  /**
+   * Numéro d'immatriculation au Registre du Commerce et des Sociétés.
+   */
   rcs?: string | null;
+  /**
+   * Identifiant unique à 9 chiffres de l'entreprise.
+   */
   siren?: string | null;
+  /**
+   * Identifiant à 14 chiffres de l'établissement.
+   */
   siret?: string | null;
+  /**
+   * Numéro d'assujetti à la TVA pour la facturation.
+   */
   vatNumber?: string | null;
   /**
-   * L'adresse officielle cible est contact@bokengi-group.com (injectable également via CONTACT_EMAIL).
+   * Adresse officielle : contact@bokengi-group.com (injectable également via CONTACT_EMAIL).
    */
   contactEmail?: string | null;
   phone?: string | null;

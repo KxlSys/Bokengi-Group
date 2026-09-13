@@ -137,12 +137,28 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   `))
 
   // ---------------------------------------------------------------------------
-  // 4. EXTENSION DE LA TABLE LEADS (CHAMPS INTERNES CRM)
+  // 4. EXTENSION DE LA TABLE LEADS (CHAMPS INTERNES CRM & RELATION PÔLE DE TRAITEMENT)
   // ---------------------------------------------------------------------------
+  // Remplacement de l'ancien enum indépendant s'il existait
+  await db.execute(sql.raw(`
+    DO $$ BEGIN
+      IF EXISTS (
+        SELECT 1 FROM information_schema.columns 
+        WHERE table_schema = 'public' AND table_name = 'leads' AND column_name = 'treatment_pole'
+      ) THEN
+        ALTER TABLE "public"."leads" DROP COLUMN "treatment_pole";
+      END IF;
+      DROP TYPE IF EXISTS "public"."enum_leads_treatment_pole";
+    EXCEPTION
+      WHEN others THEN null;
+    END $$;
+  `))
+
   await db.execute(sql.raw(`
     ALTER TABLE "public"."leads"
     ADD COLUMN IF NOT EXISTS "priority" "public"."enum_leads_priority" DEFAULT 'medium' NOT NULL,
     ADD COLUMN IF NOT EXISTS "assigned_to_id" integer,
+    ADD COLUMN IF NOT EXISTS "treatment_pole_id" integer,
     ADD COLUMN IF NOT EXISTS "internal_notes" varchar;
   `))
 
@@ -162,8 +178,24 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   `))
 
   await db.execute(sql.raw(`
+    DO $$ BEGIN
+      IF NOT EXISTS (
+        SELECT 1 FROM pg_constraint WHERE conname = 'leads_treatment_pole_id_poles_id_fk'
+      ) THEN
+        ALTER TABLE "public"."leads"
+        ADD CONSTRAINT "leads_treatment_pole_id_poles_id_fk"
+        FOREIGN KEY ("treatment_pole_id") REFERENCES "public"."poles"("id")
+        ON DELETE set null ON UPDATE no action;
+      END IF;
+    EXCEPTION
+      WHEN duplicate_object THEN null;
+    END $$;
+  `))
+
+  await db.execute(sql.raw(`
     CREATE INDEX IF NOT EXISTS "leads_assigned_to_id_idx" ON "public"."leads" USING btree ("assigned_to_id");
     CREATE INDEX IF NOT EXISTS "leads_priority_idx" ON "public"."leads" USING btree ("priority");
+    CREATE INDEX IF NOT EXISTS "leads_treatment_pole_idx" ON "public"."leads" USING btree ("treatment_pole_id");
   `))
 
   // ---------------------------------------------------------------------------
@@ -235,12 +267,15 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
 
   // Rollback leads
   await db.execute(sql.raw(`
+    DROP INDEX IF EXISTS "public"."leads_treatment_pole_idx";
     DROP INDEX IF EXISTS "public"."leads_assigned_to_id_idx";
     DROP INDEX IF EXISTS "public"."leads_priority_idx";
+    ALTER TABLE "public"."leads" DROP CONSTRAINT IF EXISTS "leads_treatment_pole_id_poles_id_fk";
     ALTER TABLE "public"."leads" DROP CONSTRAINT IF EXISTS "leads_assigned_to_id_users_id_fk";
     ALTER TABLE "public"."leads"
     DROP COLUMN IF EXISTS "priority",
     DROP COLUMN IF EXISTS "assigned_to_id",
+    DROP COLUMN IF EXISTS "treatment_pole_id",
     DROP COLUMN IF EXISTS "internal_notes";
   `))
 

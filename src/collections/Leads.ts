@@ -48,7 +48,7 @@ export const Leads: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'email',
-    defaultColumns: ['lastname', 'firstname', 'company', 'pole', 'requestType', 'status', 'priority', 'createdAt'],
+    defaultColumns: ['lastname', 'firstname', 'company', 'pole', 'treatmentPole', 'requestType', 'status', 'priority', 'createdAt'],
     group: 'CRM & Opérations',
     description: 'Dossiers prospects, demandes de devis et opportunités commerciales entrantes.',
   },
@@ -111,7 +111,7 @@ export const Leads: CollectionConfig = {
           type: 'relationship',
           relationTo: 'poles',
           hasMany: false,
-          label: 'Pôle d\'expertise concerné',
+          label: 'Pôle d\'expertise demandé par le prospect',
           admin: {
             width: '50%',
             readOnly: true,
@@ -234,6 +234,34 @@ export const Leads: CollectionConfig = {
       admin: {
         position: 'sidebar',
         description: 'Membre de l\'équipe en charge du traitement commercial.',
+      },
+    },
+    {
+      name: 'treatmentPole',
+      type: 'relationship',
+      relationTo: 'poles',
+      hasMany: false,
+      label: 'Pôle de traitement',
+      admin: {
+        description: 'Pôle d\'expertise Bokengi prenant en charge le traitement opérationnel du lead.',
+      },
+      validate: async (val, { req }) => {
+        if (val === null || val === undefined || val === '') return true
+        const poleId = typeof val === 'object' && val !== null && 'id' in val ? (val as any).id : val
+        if (!poleId) return true
+        if (!req?.payload) return true
+        try {
+          const poleDoc = await req.payload.findByID({
+            collection: 'poles',
+            id: poleId,
+          })
+          if (!poleDoc) {
+            return 'Le pôle de traitement sélectionné n\'existe pas dans la collection Pôles.'
+          }
+        } catch (_err) {
+          return 'Le pôle de traitement sélectionné est invalide.'
+        }
+        return true
       },
     },
     {

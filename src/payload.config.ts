@@ -92,7 +92,7 @@ export default buildConfig({
     fallback: true,
   },
   i18n: {
-    supportedLanguages: { en, fr },
+    supportedLanguages: { fr, en },
     fallbackLanguage: 'fr',
   },
   db: (() => {

@@ -21,7 +21,7 @@ const leadAfterChangeHook: CollectionAfterChangeHook = async ({ doc, operation, 
       }
     }
 
-    // Exécution asynchrone non-bloquante
+    // Exécution asynchrone non-bloquante avec statut et priorité transmis
     void sendLeadNotifications({
       id: doc.id,
       firstname: doc.firstname,
@@ -33,6 +33,8 @@ const leadAfterChangeHook: CollectionAfterChangeHook = async ({ doc, operation, 
       poleName,
       message: doc.message,
       source: doc.source,
+      status: doc.status,
+      priority: doc.priority,
       createdAt: doc.createdAt,
     })
   }
@@ -48,7 +50,17 @@ export const Leads: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'email',
-    defaultColumns: ['lastname', 'firstname', 'company', 'pole', 'treatmentPole', 'requestType', 'status', 'priority', 'createdAt'],
+    defaultColumns: [
+      'lastname',
+      'firstname',
+      'company',
+      'pole',
+      'treatmentPole',
+      'requestType',
+      'status',
+      'priority',
+      'createdAt',
+    ],
     group: 'CRM & Opérations',
     description: 'Dossiers prospects, demandes de devis et opportunités commerciales entrantes.',
   },
@@ -66,6 +78,40 @@ export const Leads: CollectionConfig = {
     afterChange: [leadAfterChangeHook],
   },
   fields: [
+    // ═══════════════════════════════════════════════════════════════════
+    // ZONE A — EN-TÊTE SYNTHÉTIQUE ET DONNÉES ORIGINALES PROSPECT
+    // (Colonne principale sur Desktop / Ordre chronologique sur Mobile)
+    // ═══════════════════════════════════════════════════════════════════
+    {
+      name: 'leadHeaderSummary',
+      type: 'ui',
+      admin: {
+        position: 'default',
+        components: {
+          Field: '@/components/admin/leads/LeadHeaderSummary',
+        },
+      },
+    },
+    {
+      name: 'prospectMessageCard',
+      type: 'ui',
+      admin: {
+        position: 'default',
+        components: {
+          Field: '@/components/admin/leads/ProspectMessageCard',
+        },
+      },
+    },
+    {
+      name: 'prospectInfoCard',
+      type: 'ui',
+      admin: {
+        position: 'default',
+        components: {
+          Field: '@/components/admin/leads/ProspectInfoCard',
+        },
+      },
+    },
     {
       type: 'row',
       fields: [
@@ -111,11 +157,11 @@ export const Leads: CollectionConfig = {
           type: 'relationship',
           relationTo: 'poles',
           hasMany: false,
-          label: 'Pôle d\'expertise demandé par le prospect',
+          label: "Pôle d'expertise demandé par le prospect",
           admin: {
             width: '50%',
             readOnly: true,
-            description: 'Pôle d\'expertise ciblé par le prospect lors de la soumission (immuable).',
+            description: "Pôle d'expertise choisi initialement par le prospect (strictement immuable).",
           },
         },
       ],
@@ -147,43 +193,63 @@ export const Leads: CollectionConfig = {
       ],
     },
     {
-      name: 'requestType',
-      type: 'select',
-      required: true,
-      label: 'Type de sollicitation',
-      defaultValue: 'devis',
-      options: [
-        { label: 'Demande de devis', value: 'devis' },
-        { label: 'Cadrage de projet', value: 'cadrage' },
-        { label: 'Partenariat institutionnel', value: 'partenariat' },
-        { label: 'Autre demande', value: 'autre' },
+      type: 'row',
+      fields: [
+        {
+          name: 'requestType',
+          type: 'select',
+          required: true,
+          label: 'Type de sollicitation',
+          defaultValue: 'devis',
+          options: [
+            { label: 'Demande de devis', value: 'devis' },
+            { label: 'Cadrage de projet', value: 'cadrage' },
+            { label: 'Partenariat institutionnel', value: 'partenariat' },
+            { label: 'Autre demande', value: 'autre' },
+          ],
+          admin: {
+            width: '50%',
+            readOnly: true,
+            description: 'Type de demande original choisi par le prospect (immuable).',
+          },
+        },
+        {
+          name: 'source',
+          type: 'text',
+          defaultValue: 'website',
+          label: 'Origine technique de la demande',
+          admin: {
+            width: '50%',
+            readOnly: true,
+            description: 'Origine technique de la demande (immuable).',
+          },
+        },
       ],
-      admin: {
-        position: 'sidebar',
-        readOnly: true,
-        description: 'Type de demande original choisi par le prospect (immuable).',
-      },
     },
     {
       name: 'message',
       type: 'textarea',
       required: true,
-      label: 'Description du projet & besoin',
+      label: 'Description du projet & besoin (donnée brute DB)',
       admin: {
         readOnly: true,
-        rows: 6,
+        rows: 4,
         description: 'Message original transmis par le prospect (strictement immuable).',
       },
     },
+
+    // ═══════════════════════════════════════════════════════════════════
+    // ZONE B — TRAITEMENT INTERNE & SUIVI COMMERCIAL BOKENGI
+    // (Sidebar sur Desktop / Fin de flux sur Mobile)
+    // ═══════════════════════════════════════════════════════════════════
     {
-      name: 'source',
-      type: 'text',
-      defaultValue: 'website',
-      label: 'Origine de la demande',
+      name: 'sidebarTreatmentHeader',
+      type: 'ui',
       admin: {
         position: 'sidebar',
-        readOnly: true,
-        description: 'Origine technique de la demande (immuable).',
+        components: {
+          Field: '@/components/admin/leads/SidebarTreatmentHeader',
+        },
       },
     },
     {
@@ -204,6 +270,7 @@ export const Leads: CollectionConfig = {
         components: {
           Cell: '@/components/admin/leads/LeadStatusCell',
         },
+        description: 'Étape actuelle du cycle commercial.',
       },
     },
     {
@@ -222,18 +289,7 @@ export const Leads: CollectionConfig = {
         components: {
           Cell: '@/components/admin/leads/LeadPriorityCell',
         },
-        description: 'Urgence opérationnelle du prospect.',
-      },
-    },
-    {
-      name: 'assignedTo',
-      type: 'relationship',
-      relationTo: 'users',
-      hasMany: false,
-      label: 'Collaborateur assigné',
-      admin: {
-        position: 'sidebar',
-        description: 'Membre de l\'équipe en charge du traitement commercial.',
+        description: "Urgence opérationnelle d'intervention.",
       },
     },
     {
@@ -243,7 +299,8 @@ export const Leads: CollectionConfig = {
       hasMany: false,
       label: 'Pôle de traitement',
       admin: {
-        description: 'Pôle d\'expertise Bokengi prenant en charge le traitement opérationnel du lead.',
+        position: 'sidebar',
+        description: "Pôle d'expertise Bokengi prenant en charge le traitement opérationnel du lead.",
       },
       validate: async (val, { req }) => {
         if (val === null || val === undefined || val === '') return true
@@ -256,12 +313,23 @@ export const Leads: CollectionConfig = {
             id: poleId,
           })
           if (!poleDoc) {
-            return 'Le pôle de traitement sélectionné n\'existe pas dans la collection Pôles.'
+            return "Le pôle de traitement sélectionné n'existe pas dans la collection Pôles."
           }
         } catch (_err) {
-          return 'Le pôle de traitement sélectionné est invalide.'
+          return "Le pôle de traitement sélectionné est invalide."
         }
         return true
+      },
+    },
+    {
+      name: 'assignedTo',
+      type: 'relationship',
+      relationTo: 'users',
+      hasMany: false,
+      label: 'Collaborateur assigné',
+      admin: {
+        position: 'sidebar',
+        description: "Membre de l'équipe en charge du suivi commercial.",
       },
     },
     {
@@ -269,8 +337,10 @@ export const Leads: CollectionConfig = {
       type: 'textarea',
       label: 'Notes internes & Suivi commercial',
       admin: {
-        description: 'Historique des échanges, qualifications et actions menées (interne Bokengi, strictement confidentiel).',
-        placeholder: 'Renseignez ici les échanges téléphoniques, besoins affinés et prochaines étapes...',
+        position: 'sidebar',
+        rows: 6,
+        description: 'Historique des qualifications et échanges (interne Bokengi, strictement confidentiel).',
+        placeholder: "Renseignez ici les comptes-rendus d'appels, périmètres affinés et prochaines étapes...",
       },
     },
   ],

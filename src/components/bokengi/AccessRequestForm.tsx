@@ -1,8 +1,10 @@
 'use client'
 
 import React, { useState } from 'react'
+import { useI18n } from '@/i18n'
 
 export const AccessRequestForm: React.FC = () => {
+  const { t } = useI18n()
   const [form, setForm] = useState({
     firstName: '',
     lastName: '',
@@ -30,9 +32,7 @@ export const AccessRequestForm: React.FC = () => {
 
     if (!form.consent) {
       setStatus('error')
-      setFeedbackMessage(
-        'Veuillez cocher la case attestant de votre habilitation professionnelle pour transmettre votre demande.'
-      )
+      setFeedbackMessage(t.accessRequest.consentError)
       return
     }
 
@@ -46,14 +46,11 @@ export const AccessRequestForm: React.FC = () => {
       const data = await res.json()
 
       if (!res.ok) {
-        throw new Error(data.error || 'Une erreur est survenue lors de l’envoi de votre demande.')
+        throw new Error(data.error || t.accessRequest.genericError)
       }
 
       setStatus('success')
-      setFeedbackMessage(
-        data.message ||
-          'Votre demande d’accès a bien été transmise à la direction technique Bokengi Group. Un courriel d’activation vous sera adressé après validation.'
-      )
+      setFeedbackMessage(data.message || t.accessRequest.successMessage)
       setForm({
         firstName: '',
         lastName: '',
@@ -65,7 +62,7 @@ export const AccessRequestForm: React.FC = () => {
       })
     } catch (err: any) {
       setStatus('error')
-      setFeedbackMessage(err.message || 'Échec de transmission. Veuillez réessayer ultérieurement.')
+      setFeedbackMessage(err.message || t.accessRequest.genericError)
     }
   }
 
@@ -73,7 +70,7 @@ export const AccessRequestForm: React.FC = () => {
     <form onSubmit={handleSubmit} className="space-y-6">
       {/* ── CHAMP HONEYPOT INVISIBLE (ANTI-BOT) ── */}
       <div style={{ display: 'none' }} aria-hidden="true">
-        <label htmlFor="website">Ne pas remplir ce champ :</label>
+        <label htmlFor="website">{t.common.optional}</label>
         <input
           type="text"
           id="website"
@@ -89,7 +86,7 @@ export const AccessRequestForm: React.FC = () => {
         {/* Prénom */}
         <div>
           <label htmlFor="firstName" className="block text-sm font-medium text-[var(--ink-heading)] mb-2">
-            Prénom <span className="text-red-500">*</span>
+            {t.accessRequest.firstName} <span className="text-red-500">*</span>
           </label>
           <input
             type="text"
@@ -98,7 +95,7 @@ export const AccessRequestForm: React.FC = () => {
             required
             value={form.firstName}
             onChange={handleChange}
-            placeholder="Ex : Alexandre"
+            placeholder={t.accessRequest.firstName}
             className="w-full px-4 py-3 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-surface)] text-[var(--ink-body)] placeholder:text-[var(--ink-muted)]/50 focus:outline-none focus:ring-2 focus:ring-[var(--brand-primary)] transition"
           />
         </div>
@@ -106,7 +103,7 @@ export const AccessRequestForm: React.FC = () => {
         {/* Nom */}
         <div>
           <label htmlFor="lastName" className="block text-sm font-medium text-[var(--ink-heading)] mb-2">
-            Nom de famille <span className="text-red-500">*</span>
+            {t.accessRequest.lastName} <span className="text-red-500">*</span>
           </label>
           <input
             type="text"
@@ -115,7 +112,7 @@ export const AccessRequestForm: React.FC = () => {
             required
             value={form.lastName}
             onChange={handleChange}
-            placeholder="Ex : Mabiala"
+            placeholder={t.accessRequest.lastName}
             className="w-full px-4 py-3 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-surface)] text-[var(--ink-body)] placeholder:text-[var(--ink-muted)]/50 focus:outline-none focus:ring-2 focus:ring-[var(--brand-primary)] transition"
           />
         </div>
@@ -124,7 +121,7 @@ export const AccessRequestForm: React.FC = () => {
       {/* Email professionnel */}
       <div>
         <label htmlFor="email" className="block text-sm font-medium text-[var(--ink-heading)] mb-2">
-          Adresse email professionnelle <span className="text-red-500">*</span>
+          {t.accessRequest.email} <span className="text-red-500">*</span>
         </label>
         <input
           type="email"
@@ -133,18 +130,18 @@ export const AccessRequestForm: React.FC = () => {
           required
           value={form.email}
           onChange={handleChange}
-          placeholder="alexandre.mabiala@bokengi-group.com"
+          placeholder="contact@bokengi-group.com"
           className="w-full px-4 py-3 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-surface)] text-[var(--ink-body)] placeholder:text-[var(--ink-muted)]/50 focus:outline-none focus:ring-2 focus:ring-[var(--brand-primary)] transition"
         />
         <p className="text-xs text-[var(--ink-muted)] mt-1.5">
-          L’adresse doit correspondre à votre identifiant d’organisation ou professionnel vérifiable.
+          {t.accessRequest.emailHint}
         </p>
       </div>
 
       {/* Rôle souhaité */}
       <div>
         <label htmlFor="requestedRole" className="block text-sm font-medium text-[var(--ink-heading)] mb-2">
-          Rôle souhaité (consultatif) <span className="text-red-500">*</span>
+          {t.accessRequest.roleLabel} <span className="text-red-500">*</span>
         </label>
         <select
           id="requestedRole"
@@ -154,18 +151,18 @@ export const AccessRequestForm: React.FC = () => {
           onChange={handleChange}
           className="w-full px-4 py-3 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-surface)] text-[var(--ink-body)] focus:outline-none focus:ring-2 focus:ring-[var(--brand-primary)] transition"
         >
-          <option value="editor">Éditeur de contenu — Gestion des articles, études de cas et médias</option>
-          <option value="admin">Administrateur technique — Gestion des pôles, services et utilisateurs</option>
+          <option value="editor">{t.accessRequest.roleEditor}</option>
+          <option value="admin">{t.accessRequest.roleAdmin}</option>
         </select>
         <p className="text-xs text-[var(--ink-muted)] mt-1.5">
-          La décision finale d’habilitation est formellement arrêtée par la direction technique Super Administrateur.
+          {t.accessRequest.roleHint}
         </p>
       </div>
 
       {/* Justification */}
       <div>
         <label htmlFor="justification" className="block text-sm font-medium text-[var(--ink-heading)] mb-2">
-          Justification & Mission <span className="text-red-500">*</span>
+          {t.accessRequest.justification} <span className="text-red-500">*</span>
         </label>
         <textarea
           id="justification"
@@ -174,11 +171,11 @@ export const AccessRequestForm: React.FC = () => {
           rows={4}
           value={form.justification}
           onChange={handleChange}
-          placeholder="Précisez votre fonction au sein du groupe, votre pôle d’intervention et les motifs opérationnels justifiant l’ouverture d’un compte d’accès..."
+          placeholder={t.accessRequest.justificationPlaceholder}
           className="w-full px-4 py-3 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-surface)] text-[var(--ink-body)] placeholder:text-[var(--ink-muted)]/50 focus:outline-none focus:ring-2 focus:ring-[var(--brand-primary)] transition resize-y"
         />
         <p className="text-xs text-[var(--ink-muted)] mt-1.5">
-          Minimum 20 caractères. Aucune transmission de mot de passe n’est requise à cette étape.
+          {t.accessRequest.justificationHint}
         </p>
       </div>
 
@@ -193,7 +190,7 @@ export const AccessRequestForm: React.FC = () => {
           className="mt-1 h-4 w-4 rounded border-[var(--border-subtle)] text-[var(--brand-primary)] focus:ring-[var(--brand-primary)]"
         />
         <label htmlFor="consent" className="text-xs text-[var(--ink-muted)] leading-relaxed">
-          J’atteste sur l’honneur appartenir aux équipes ou aux partenaires dûment mandatés par Bokengi Group, et sollicite l’attribution d’un compte nominatif dans le respect des règles de sécurité et de confidentialité du groupe.
+          {t.accessRequest.consentText}
         </label>
       </div>
 
@@ -222,10 +219,10 @@ export const AccessRequestForm: React.FC = () => {
               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
               <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" />
             </svg>
-            <span>Enregistrement sécurisé en cours...</span>
+            <span>{t.accessRequest.submitting}</span>
           </>
         ) : (
-          <span>Transmettre ma demande d’accès</span>
+          <span>{t.accessRequest.submit}</span>
         )}
       </button>
     </form>

@@ -746,3 +746,680 @@ En séparant clairement la logique métier (CMS Headless, base de données distr
     },
   },
 ]
+
+// ============================================================================
+// ENGLISH SEED DATASETS (AUTHENTIC TRANSLATIONS - ZERO COMPROMISE)
+// ============================================================================
+
+export const POLES_SEED_DATA_EN: PoleData[] = [
+  {
+    name: 'Bokengi IT',
+    slug: 'it',
+    num: '01',
+    shortDescription: 'Critical infrastructure, cybersecurity, and systems ensuring continuous operational resilience.',
+    description:
+      'Bokengi IT designs, deploys, and monitors resilient IT infrastructure for demanding organizations. From perimeter defense to server fleet administration, we guarantee the integrity, high availability, and compliance of your digital assets.',
+    icon: 'server',
+    order: 1,
+    status: 'published',
+    domains: 'Infrastructure · Cybersecurity · Mission-Critical Systems',
+    seo: {
+      title: 'Bokengi IT · Cybersecurity, Systems & Infrastructure',
+      description: 'Expertise in IT engineering, vulnerability audits, network architectures, and high-availability managed services.',
+    },
+  },
+  {
+    name: 'Bokengi Digital',
+    slug: 'digital',
+    num: '02',
+    shortDescription: 'Modern web platforms, transactional architectures, and high-impact mobile applications.',
+    description:
+      'Bokengi Digital develops high-performance web and mobile applications engineered for African and international market conditions. We build decoupled architectures, e-commerce portals, and ultra-fast PWA solutions.',
+    icon: 'code',
+    order: 2,
+    status: 'published',
+    domains: 'Web Platforms · E-Commerce · Mobile Apps · PWA',
+    seo: {
+      title: 'Bokengi Digital · Web Platforms & Mobile Solutions',
+      description: 'Custom web platform engineering, Mobile Money integrations, and offline-first high-performance applications.',
+    },
+  },
+  {
+    name: 'Bokengi Business',
+    slug: 'business',
+    num: '03',
+    shortDescription: 'Operational workflow digitization, ERP, CRM, and real-time performance steering.',
+    description:
+      'Bokengi Business guides enterprise digital transformation by automating administrative workflows, integrating commercial management systems, and deploying real-time executive dashboards.',
+    icon: 'trending-up',
+    order: 3,
+    status: 'published',
+    domains: 'Operational Management · ERP & CRM · Workflow Automation',
+    seo: {
+      title: 'Bokengi Business · Operational Digitization & ERP',
+      description: 'Enterprise productivity optimization, paperless workflow transition, and business process automation.',
+    },
+  },
+  {
+    name: 'Bokengi Consulting',
+    slug: 'consulting',
+    num: '04',
+    shortDescription: 'Strategic advisory, digital maturity audits, regulatory compliance, and IT governance.',
+    description:
+      'Bokengi Consulting advises executive and technical leadership on strategic digital master plans, IT risk assessments, data sovereignty, and regulatory compliance frameworks.',
+    icon: 'compass',
+    order: 4,
+    status: 'published',
+    domains: 'Strategic Advisory · Audit & Risk · Data Sovereignty',
+    seo: {
+      title: 'Bokengi Consulting · Strategic Advisory & Master Plans',
+      description: 'Project ownership assistance, data governance, business continuity planning (BCP), and IT risk management.',
+    },
+  },
+  {
+    name: 'Bokengi Events',
+    slug: 'events',
+    num: '05',
+    shortDescription: 'Institutional events, technical coordination, and hybrid conference production.',
+    description:
+      'Bokengi Events delivers comprehensive technical solutions for summits, professional trade shows, and major conferences: multi-camera production, secure HD live streaming, sound engineering, and custom registration platforms.',
+    icon: 'calendar',
+    order: 5,
+    status: 'published',
+    domains: 'Hybrid Events · Live Streaming Production · Technical Solutions',
+    seo: {
+      title: 'Bokengi Events · Professional Events & Technical Production',
+      description: 'Multi-channel live broadcasting, conference technical coordination, and event accreditation platforms.',
+    },
+  },
+]
+
+export const SERVICES_SEED_DATA_EN: ServiceData[] = [
+  // ── SERVICES BOKENGI IT (EN) ──
+  {
+    title: 'Cybersecurity & Systems Resilience',
+    slug: 'cybersecurite-resilience',
+    poleSlug: 'it',
+    category: 'Offensive & Defensive Security',
+    shortDescription: 'Perimeter protection, vulnerability audits, immutable backups, and strict access governance.',
+    content: 'Penetration testing, Linux server hardening, least-privilege policy implementation, and air-gapped backup strategies guaranteeing immediate disaster recovery.',
+    technicalTags: [{ tag: 'Pentest Audit' }, { tag: 'Linux Hardening' }, { tag: 'AES Encryption' }, { tag: 'Immutable Backups' }],
+    featured: true,
+    order: 1,
+  },
+  {
+    title: 'Network Infrastructure & Cloud Servers',
+    slug: 'systemes-reseaux-cloud',
+    poleSlug: 'it',
+    category: 'Systems Architecture',
+    shortDescription: 'Local and remote network architecture, high-availability servers, encrypted VPNs, and continuous managed services.',
+    content: 'Deployment of on-premise and hybrid server environments, secure interconnection of remote sites via WireGuard/IPsec VPNs, real-time telemetry, and load balancing.',
+    technicalTags: [{ tag: 'VPN Networks' }, { tag: 'Docker & Microservices' }, { tag: 'Nginx HA' }, { tag: 'PostgreSQL Cluster' }],
+    featured: true,
+    order: 2,
+  },
+  {
+    title: 'Software Engineering & API Architectures',
+    slug: 'ingenierie-logicielle-api',
+    poleSlug: 'it',
+    category: 'Backend Engineering',
+    shortDescription: 'Custom business software design, robust RESTful APIs, relational database modeling, and enduring integrations.',
+    content: 'High-performance backend design, data flow encryption, application decoupling, and third-party API integrations with active latency monitoring.',
+    technicalTags: [{ tag: 'Node.js / TypeScript' }, { tag: 'Python' }, { tag: 'PostgreSQL' }, { tag: 'RESTful API' }],
+    featured: false,
+    order: 3,
+  },
+  {
+    title: 'IT Monitoring & Maintenance (MCO)',
+    slug: 'maintenance-support-it',
+    poleSlug: 'it',
+    category: 'Operations & Managed Services',
+    shortDescription: 'Proactive maintenance contracts, rapid technical support, and continuous fleet telemetry.',
+    content: 'Predictive monitoring of servers and networks, rigorous security patch management, tier 2/3 engineering support, and guaranteed recovery time commitments (RTO/SLA).',
+    technicalTags: [{ tag: '24/7 Monitoring' }, { tag: 'Grafana & Prometheus' }, { tag: 'SLA / GTR' }, { tag: 'Dedicated Support' }],
+    featured: false,
+    order: 4,
+  },
+
+  // ── SERVICES BOKENGI DIGITAL (EN) ──
+  {
+    title: 'Web Platforms & High-Performance Portals',
+    slug: 'plateformes-web-portails',
+    poleSlug: 'digital',
+    category: 'Web Engineering',
+    shortDescription: 'Design of institutional portals and tailored web applications combining speed and organic SEO visibility.',
+    content: 'Modern Next.js architectures featuring Server-Side Rendering (SSR), Headless content management, and strict optimization for bandwidth-constrained networks.',
+    technicalTags: [{ tag: 'Next.js 16' }, { tag: 'React 19' }, { tag: 'Tailwind CSS' }, { tag: 'Headless CMS' }],
+    featured: true,
+    order: 1,
+  },
+  {
+    title: 'E-Commerce & Mobile Money Integration',
+    slug: 'ecommerce-paiements-africains',
+    poleSlug: 'digital',
+    category: 'Digital Commerce',
+    shortDescription: 'Online stores optimized for African payment gateways: Mobile Money, Airtel Money, and bank cards.',
+    content: 'Frictionless checkout flows, dynamic cart state, financial transaction encryption, automated delivery fee calculation, and real-time inventory management.',
+    technicalTags: [{ tag: 'Airtel Money' }, { tag: 'MTN Mobile Money' }, { tag: 'Card Gateway' }, { tag: 'Fraud Prevention' }],
+    featured: true,
+    order: 2,
+  },
+  {
+    title: 'Mobile Applications & Offline PWAs',
+    slug: 'applications-mobiles-pwa',
+    poleSlug: 'digital',
+    category: 'Mobile Development',
+    shortDescription: 'Mobile applications and Progressive Web Apps functioning seamlessly with or without internet connectivity.',
+    content: 'Mobile-first user interfaces with automatic background synchronization upon network recovery and push notification capabilities.',
+    technicalTags: [{ tag: 'Progressive Web App' }, { tag: 'Service Workers' }, { tag: 'Offline Storage' }, { tag: 'Cross-platform' }],
+    featured: false,
+    order: 3,
+  },
+  {
+    title: 'Application Modernization & UX/UI Audit',
+    slug: 'modernisation-refonte-applicative',
+    poleSlug: 'digital',
+    category: 'Design & Modernization',
+    shortDescription: 'Legacy systems migration, latency reduction, and coherent enterprise design system creation.',
+    content: 'Accessibility audits, legacy code refactoring, unified design system implementation, and measurable conversion rate improvements.',
+    technicalTags: [{ tag: 'Design System' }, { tag: 'Web Vitals Audit' }, { tag: 'Accessibility' }, { tag: 'Refactoring' }],
+    featured: false,
+    order: 4,
+  },
+
+  // ── SERVICES BOKENGI BUSINESS (EN) ──
+  {
+    title: 'Process Digitization & Paperless Transition',
+    slug: 'digitalisation-processus-metiers',
+    poleSlug: 'business',
+    category: 'Automation',
+    shortDescription: 'Approval workflow automation, document paperless transition, and elimination of manual repetitive tasks.',
+    content: 'Business process mapping, smart form deployment with electronic signatures, and secure document archiving.',
+    technicalTags: [{ tag: 'BPM Workflow' }, { tag: 'Electronic Signature' }, { tag: 'Secure Archiving' }],
+    featured: false,
+    order: 1,
+  },
+  {
+    title: 'ERP Integration & Commercial Management',
+    slug: 'integration-erp-crm',
+    poleSlug: 'business',
+    category: 'Enterprise Management',
+    shortDescription: 'Centralization of quotes, invoicing, customer follow-up, and inventory within a single unified workspace.',
+    content: 'Configuration and integration of tailored CRM/ERP systems to eliminate duplicate entries and ensure accounting integrity.',
+    technicalTags: [{ tag: 'Integrated CRM' }, { tag: 'Invoicing Management' }, { tag: 'Cash Flow Tracking' }],
+    featured: false,
+    order: 2,
+  },
+  {
+    title: 'Executive Dashboards & Business Intelligence',
+    slug: 'business-intelligence-tableaux-bord',
+    poleSlug: 'business',
+    category: 'Analytics & Steering',
+    shortDescription: 'Clear real-time Key Performance Indicator (KPI) visualization to inform executive decision-making.',
+    content: 'Aggregation of disparate data sources, automated financial and operational indicators, and threshold alert automation.',
+    technicalTags: [{ tag: 'Real-Time KPIs' }, { tag: 'Data Visualization' }, { tag: 'Multi-Format Export' }],
+    featured: false,
+    order: 3,
+  },
+  {
+    title: 'Change Management & Team Enablement',
+    slug: 'assistance-conduite-changement',
+    poleSlug: 'business',
+    category: 'Organizational Coaching',
+    shortDescription: 'Tailored training sessions and proven methodology to ensure rapid adoption of new digital platforms.',
+    content: 'Clear operational user guides, hands-on workshops, user adoption tracking, and ongoing staff support.',
+    technicalTags: [{ tag: 'Role Workshops' }, { tag: 'Practical Guides' }, { tag: 'User Support' }],
+    featured: false,
+    order: 4,
+  },
+
+  // ── SERVICES BOKENGI CONSULTING (EN) ──
+  {
+    title: 'IT Master Plan & Digital Maturity Audit',
+    slug: 'audit-maturite-schema-directeur',
+    poleSlug: 'consulting',
+    category: 'Digital Strategy',
+    shortDescription: 'Comprehensive diagnostic of your IT systems and formulation of a 3-year strategic technology roadmap.',
+    content: 'Technical strengths and weaknesses analysis, IT investment alignment with corporate strategy, and high-ROI initiative prioritization.',
+    technicalTags: [{ tag: '360° Diagnostic' }, { tag: 'Strategic Roadmap' }, { tag: 'Budget Optimization' }],
+    featured: false,
+    order: 1,
+  },
+  {
+    title: 'Data Sovereignty & Regulatory Compliance',
+    slug: 'conformite-souverainete-donnees',
+    poleSlug: 'consulting',
+    category: 'Governance & Legal',
+    shortDescription: 'Sensitive data protection, sovereign hosting compliance, and alignment with national privacy frameworks.',
+    content: 'Personal data flow mapping, IT security charter authoring, data retention policies, and subcontractor contract audits.',
+    technicalTags: [{ tag: 'Data Compliance' }, { tag: 'Sovereign Cloud' }, { tag: 'Internal Charters' }],
+    featured: false,
+    order: 2,
+  },
+  {
+    title: 'Business Continuity & Disaster Recovery (BCP/DRP)',
+    slug: 'gestion-risques-pca-pra',
+    poleSlug: 'consulting',
+    category: 'Crisis Management',
+    shortDescription: 'Disaster recovery strategies to preserve vital operational capabilities during outages or cyber incidents.',
+    content: 'Business Impact Analysis (BIA), target recovery time and data loss thresholds (RTO/RPO), and tested emergency procedures.',
+    technicalTags: [{ tag: 'Operational BCP' }, { tag: 'Crisis Scenarios' }, { tag: 'RTO / RPO Drills' }],
+    featured: false,
+    order: 3,
+  },
+  {
+    title: 'Project Ownership Assistance (AMOA)',
+    slug: 'assistance-maitrise-ouvrage-amoa',
+    poleSlug: 'consulting',
+    category: 'Project Steering',
+    shortDescription: 'Impartial scoping of technical tenders, vendor selection, and rigorous deliverable validation.',
+    content: 'Precision functional requirements documentation, objective vendor bid evaluation matrix, and independent technical arbitration.',
+    technicalTags: [{ tag: 'Requirements Specs' }, { tag: 'Bid Evaluation' }, { tag: 'Acceptance Testing' }],
+    featured: false,
+    order: 4,
+  },
+
+  // ── SERVICES BOKENGI EVENTS (EN) ──
+  {
+    title: 'Multi-Camera Filming & HD Live Production',
+    slug: 'captation-regie-streaming',
+    poleSlug: 'events',
+    category: 'Audiovisual Engineering',
+    shortDescription: 'Broadcast-grade technical production for high-definition live streaming of conferences and summits.',
+    content: 'Professional camera deployment, branded graphics overlay, anti-feedback acoustic tuning, and secure multi-destination streaming.',
+    technicalTags: [{ tag: 'HD Streaming' }, { tag: 'Multi-Camera' }, { tag: 'Pro Audio' }, { tag: '4G/5G Failover' }],
+    featured: false,
+    order: 1,
+  },
+  {
+    title: 'Hybrid Event Technical Coordination',
+    slug: 'coordination-evenements-hybrides',
+    poleSlug: 'events',
+    category: 'Event Logistics',
+    shortDescription: 'Comprehensive technical orchestration connecting in-person audiences with remote international speakers.',
+    content: 'Stage return display management, online attendee Q&A moderation, simultaneous interpretation routing, and end-to-end technical oversight.',
+    technicalTags: [{ tag: 'Hybrid Events' }, { tag: 'Audience Interactivity' }, { tag: 'Stage Management' }],
+    featured: false,
+    order: 2,
+  },
+  {
+    title: 'Event Platforms & QR Code Ticketing',
+    slug: 'plateformes-evenementielles-dediees',
+    poleSlug: 'events',
+    category: 'Digital Event Tools',
+    shortDescription: 'Attendee registration portals, secure online ticketing, and instant on-site check-in via QR code scanning.',
+    content: 'Dedicated event microsite creation, automated dynamic badge generation with unique QR codes, and real-time attendance dashboards.',
+    technicalTags: [{ tag: 'QR Badges' }, { tag: 'Fast Check-In' }, { tag: 'Dedicated Ticketing' }],
+    featured: false,
+    order: 3,
+  },
+  {
+    title: 'Media Content Production & Aftermovies',
+    slug: 'production-contenus-medias',
+    poleSlug: 'events',
+    category: 'Post-Event Media',
+    shortDescription: 'Professional photography, high-energy event recap videos (aftermovies), and social media highlight clips.',
+    content: 'Same-day fast turnaround editing, executive interviews, and complete delivery of royalty-free high-definition media libraries.',
+    technicalTags: [{ tag: '4K Aftermovie' }, { tag: 'Social Reels' }, { tag: 'HD Photography' }],
+    featured: false,
+    order: 4,
+  },
+]
+
+export const CASE_STUDIES_SEED_DATA_EN: CaseStudyData[] = [
+  {
+    title: 'ESIIKA Platform — Congo-Brazzaville Marketplace',
+    slug: 'esiika',
+    clientName: 'ESIIKA Ecosystem · Central African E-Commerce',
+    category: 'Bokengi Digital & IT · E-Commerce & Full-Stack',
+    summary:
+      'Design and deployment of a resilient fashion and electronics marketplace featuring Mobile Money payments, dynamic inventory, and Brazzaville delivery logistics.',
+    context:
+      'The ESIIKA initiative addressed the surging demand for structured e-commerce in the Republic of the Congo. The legacy architecture was constrained by a monolithic frontend and a PHP backend exposed to brute-force vectors and lacking order processing reliability.',
+    challenge:
+      'It was crucial to deliver a fluid, hardened platform capable of flawless financial transactions, withstanding frequent network drops, and scaling to thousands of product SKUs with dynamic inventory variations.',
+    solution:
+      'Bokengi rebuilt the system using a decoupled architecture: an ultra-responsive React/TypeScript mobile-optimized frontend backed by a secured REST API with rate-limiting, bcrypt hashing, CSRF protection, and strict input validation. Docker containerization behind Nginx with automated SSL and Mobile Money gateways (Airtel Money and MTN).',
+    results:
+      'The marketplace is live on esiika.com. The customer journey is completely digitized: dynamic catalog, persistent shopping cart, secure Mobile Money checkout, and a full merchant back-office.',
+    resultsList: [
+      'Platform live in active production on esiika.com',
+      'Full transaction flow: authentication, cart, Mobile Money & Visa checkout',
+      'Hardened backend: CSRF protection, rate limiting, and zero secrets in Git',
+      'Page load time slashed by over 55% compared to the legacy version',
+    ],
+    technologies: [
+      { name: 'React' },
+      { name: 'TypeScript' },
+      { name: 'Node.js' },
+      { name: 'PostgreSQL' },
+      { name: 'Docker' },
+      { name: 'Nginx' },
+      { name: 'Airtel Money API' },
+    ],
+    architecture:
+      'Decoupled micro-service architecture running under Docker Compose. Nginx reverse-proxy terminating SSL and managing static asset caching. PostgreSQL relational database with optimized indexing for product discovery. Secure webhook pipeline for payment confirmations.',
+    featured: true,
+    publishedDate: '2026-06-15',
+    seo: {
+      title: 'ESIIKA Case Study · Congo-Brazzaville Marketplace — Bokengi Group',
+      description: 'Explore how Bokengi Group engineered and secured the ESIIKA marketplace with Mobile Money integration and Docker infrastructure.',
+    },
+  },
+  {
+    title: 'Kongama Portal — Administration & Operations Management System',
+    slug: 'portail-kongama',
+    clientName: 'Kongama Group · Operations Directorate',
+    category: 'Bokengi Digital & Business · Information Systems & Operations',
+    summary:
+      'Digitization of administrative document workflows, automated approvals, and centralized internal operations for the Kongama ecosystem.',
+    context:
+      'Kongama Group previously handled budget authorizations, shipping manifests, and document archiving through manual paperwork and fragmented spreadsheets, resulting in substantial delays and accounting attribution risks.',
+    challenge:
+      'Build a unified, hardened portal with Role-Based Access Control (RBAC), enabling dozens of officers to collaborate without bottlenecks while maintaining an immutable signature audit trail.',
+    solution:
+      'Bokengi engineered a responsive administration portal using TypeScript and Next.js, integrated with an Express/Node.js automation backend and PostgreSQL database. A Redis cache cluster was deployed to accelerate heavy dashboards and manage concurrent sessions.',
+    results:
+      'The Kongama Portal reduced document review turnaround from several days to mere hours, backed by a tamper-proof audit log.',
+    resultsList: [
+      '65% measured reduction in administrative document processing time',
+      '100% auditable logging across all workflow actions and approvals',
+      'Granular permission management tailored to organizational roles (executive, accounting, logistics)',
+      '100% staff adoption within the first month of production rollout',
+    ],
+    technologies: [
+      { name: 'TypeScript' },
+      { name: 'Next.js' },
+      { name: 'Node.js / Express' },
+      { name: 'PostgreSQL' },
+      { name: 'Redis' },
+      { name: 'Tailwind CSS' },
+    ],
+    architecture:
+      'Layered architecture with end-to-end typed TypeScript REST APIs. Session security based on encrypted Redis in-memory storage. Normalized PostgreSQL schema guaranteeing document and approval referential integrity.',
+    featured: true,
+    publishedDate: '2025-11-20',
+    seo: {
+      title: 'Kongama Portal Case Study · Operational Digitization — Bokengi Group',
+      description: 'Discover how the Kongama Portal streamlined internal document workflows using TypeScript, Redis, and PostgreSQL.',
+    },
+  },
+  {
+    title: 'Kongama Academy — Digital Education & E-Learning Platform',
+    slug: 'kongama-academy',
+    clientName: 'Kongama Academy · Digital Education',
+    category: 'Bokengi Digital & IT · EdTech & Professional Training',
+    summary:
+      'Digital learning ecosystem connecting instructors and students, designed with an offline-first mobile PWA architecture optimized for Africa.',
+    context:
+      'Kongama Academy aimed to provide world-class engineering and digital technology education to students frequently facing unstable mobile internet connections and limited data packages.',
+    challenge:
+      'Deliver an engaging, high-speed educational interface capable of functioning smoothly in offline mode without compromising on interactive course material.',
+    solution:
+      'Bokengi designed a leading-edge Progressive Web App (PWA) using React and TypeScript (Vite/Next.js), leveraging accessible components from Tailwind and shadcn/ui. Textual lessons and exercises are cached locally via Service Workers and silently synced upon reconnection.',
+    results:
+      'The platform is live on kongama.com. It delivers an outstanding learning experience with instant navigation and student retention rates well above standard e-learning platforms.',
+    resultsList: [
+      'Active online educational platform deployed on kongama.com',
+      'Complete PWA architecture with home-screen installation and offline mode',
+      'Initial load time under 1.2 seconds over 3G/4G cellular connections',
+      'Automated student progress tracking and verifiable certificate issuance',
+    ],
+    technologies: [
+      { name: 'React' },
+      { name: 'TypeScript' },
+      { name: 'Tailwind CSS' },
+      { name: 'Vite / Next.js' },
+      { name: 'shadcn/ui' },
+      { name: 'PWA / Service Workers' },
+    ],
+    architecture:
+      'Modern PWA frontend featuring granular asset and data caching via the Cache API and IndexedDB. Learning module code-splitting. Decoupled API maintaining lightweight JSON payloads.',
+    featured: true,
+    publishedDate: '2026-01-10',
+    seo: {
+      title: 'Kongama Academy Case Study · E-Learning PWA — Bokengi Group',
+      description: 'Engineering the Kongama Academy ecosystem: mobile-first digital education, offline-capable PWA, and seamless learning UX.',
+    },
+  },
+  {
+    title: 'BisoMapTech — Congo Tech Mapping & Secure Network',
+    slug: 'bisomaptech',
+    clientName: 'Open Source Initiative · Congo IT Community',
+    category: 'Bokengi IT & Cybersecurity · GIS & End-to-End Encryption',
+    summary:
+      'Interactive open-source platform mapping and connecting IT professionals across the Republic of the Congo with end-to-end encrypted messaging.',
+    context:
+      'The Congolese tech ecosystem lacked unified visibility, with developers, system administrators, and cybersecurity specialists operating in silos without a sovereign, secure communications channel.',
+    challenge:
+      'Accurately map tech talent and tech hubs nationwide while providing a direct communication channel impervious to interception or surveillance.',
+    solution:
+      'Bokengi developed an interactive geolocated map using Leaflet with automated GitHub profile synchronization. An in-browser end-to-end encrypted (E2E) messaging protocol was implemented via the Web Cryptography API (asymmetric ECDH P-256 key exchange with symmetric AES-GCM 256-bit encryption).',
+    results:
+      'BisoMapTech references hundreds of tech profiles across Brazzaville, Pointe-Noire, and the diaspora, establishing itself as the open-source benchmark for Congolese tech.',
+    resultsList: [
+      'Interactive GIS mapping with multi-criteria filtering and geolocation',
+      'Zero-knowledge end-to-end encrypted messaging (ECDH P-256 + AES-GCM)',
+      'Secure authentication, community moderation console, and dark/light themes',
+      'Fully auditable source code released under an open-source license for the community',
+    ],
+    technologies: [
+      { name: 'React' },
+      { name: 'TypeScript' },
+      { name: 'Supabase / PostgreSQL' },
+      { name: 'Leaflet GIS' },
+      { name: 'Web Crypto API' },
+      { name: 'Zustand' },
+    ],
+    architecture:
+      'Zero-knowledge client-side architecture: private keys never leave the user browser. Distributed Supabase/PostgreSQL database with Row-Level Security (RLS) enforcement. Vector tile rendering optimized for low-bandwidth networks.',
+    featured: true,
+    publishedDate: '2025-09-05',
+    seo: {
+      title: 'BisoMapTech Case Study · Congo Tech Ecosystem Mapping — Bokengi Group',
+      description: 'Discover BisoMapTech: open-source interactive mapping and E2E encrypted messaging for Congolese tech talent.',
+    },
+  },
+  {
+    title: 'FleetGuard — Maritime Safety Equipment Telemetry & Fleet Monitoring',
+    slug: 'fleetguard',
+    clientName: 'Maritime Operator & Fleet Management',
+    category: 'Bokengi IT & Infrastructure · IoT Monitoring & Asset Supervision',
+    summary:
+      'Embedded IoT and cloud monitoring system tracking real-time compliance of critical safety assets on board vessels with proactive expiration alerts.',
+    context:
+      'The tracking of maritime life-saving and fire safety equipment (extinguishers, life rafts, EPIRB distress beacons) was historically logged on paper, exposing vessel operators to severe regulatory penalties upon certificate expiration.',
+    challenge:
+      'Maintain continuous traceability for hundreds of safety items aboard vessels operating at sea, with reliable periodic synchronization to shore teams whenever satellite or port connectivity is available.',
+    solution:
+      'Bokengi engineered an IoT telemetry architecture uniting Python micro-services with an MQTT message broker on Linux Server. An interactive dashboard built with Chart.js and Grafana enables shipmasters and fleet managers to instantly assess equipment status by color code and generate certified compliance reports.',
+    results:
+      'FleetGuard achieves 100% compliance across international maritime audits, eliminating costly vessel detentions caused by expired safety gear.',
+    resultsList: [
+      'Multi-device secure telemetry and data synchronization architecture',
+      'Automated predictive alert engine with color-coded risk assessment (green, orange, red)',
+      'Instant regulatory compliance report generation meeting international maritime codes',
+      'Total operational resilience: standalone operation at sea with automated dockside sync',
+    ],
+    technologies: [
+      { name: 'Python' },
+      { name: 'MQTT Broker' },
+      { name: 'Linux Server' },
+      { name: 'Upstash Redis / PostgreSQL' },
+      { name: 'Chart.js' },
+      { name: 'Grafana' },
+    ],
+    architecture:
+      'Resilient IoT edge architecture: on-board local gateway communicating over lightweight MQTT. Local data buffering during satellite link dropouts. Idempotent cloud sync upon connection re-establishment. Decoupled analytics visualization.',
+    featured: true,
+    publishedDate: '2025-07-30',
+    seo: {
+      title: 'FleetGuard Case Study · Maritime Telemetry & IoT — Bokengi Group',
+      description: 'Maritime safety equipment supervision with predictive alerts, IoT telemetry, and regulatory compliance by Bokengi IT.',
+    },
+  },
+]
+
+export const POSTS_SEED_DATA_EN: PostData[] = [
+  {
+    title: 'The Imperatives of Digital Sovereignty and Resilient Cloud Infrastructure in Central Africa',
+    slug: 'souverainete-numerique-afrique',
+    category: 'Infrastructure & Cloud',
+    categories: ['Infrastructure & Cloud', 'IT Sovereignty'],
+    tags: ['Datacenter', 'Sovereignty', 'Private Cloud', 'Resilience'],
+    publishedAt: '2026-03-01T08:00:00.000Z',
+    readingTime: 5,
+    status: 'published',
+    author: {
+      name: 'Kalel Damba',
+      role: 'Technical Systems Directorate',
+    },
+    coverImage: {
+      url: '/og-image.png',
+      alt: 'Digital sovereignty and resilient cloud infrastructure in Central Africa',
+    },
+    excerpt:
+      'Facing interconnection challenges, latency bottlenecks, and sensitive data exposure, localizing IT infrastructure and adopting sovereign cloud architectures have become the cornerstone of economic resilience for Central African organizations.',
+    content: `Africa's digital transformation has reached a pivotal strategic juncture. Having long relied on infrastructure hosted in Western Europe or North America, regional enterprises and public institutions are confronting the tangible limits of offshore dependency: latency spikes during submarine cable cuts, cross-border compliance hurdles under data privacy regulations, and exposure to international geopolitical volatility.
+
+1. The True Cost of Remote Infrastructure Reliance
+Every IP packet that traverses undersea cables to be processed by an offshore server before returning to a local workstation introduces both bandwidth costs and operational vulnerabilities. When the WACS or SAT-3 cables experience accidental cuts, entire segments of banking, logistics, and governmental operations grind to a halt.
+
+2. Pillars of a Resilient Sovereign Hybrid Cloud
+At Bokengi Group, our engineering teams champion a pragmatic architecture:
+- High-availability local compute nodes (Tier III datacenters within national boundaries).
+- Resilient Edge gateways capable of running in an offline-first degraded mode.
+- Asynchronous encrypted replication across geographically distributed secondary datacenters for Disaster Recovery (DRP).
+
+3. Towards Sustainable Technological Autonomy
+Achieving digital sovereignty does not mean disconnecting from global standards; it means mastering every tier of the stack: from hardened Linux operating systems to cryptographic key governance and training local engineering talent to operate and evolve the systems.`,
+    seo: {
+      title: 'Digital Sovereignty & Resilient Hosting in Africa · Bokengi Group',
+      description:
+        'Strategic analysis of digital sovereignty, local infrastructure, and cloud resilience in Central Africa.',
+    },
+  },
+  {
+    title: 'Security by Design: Integrating Cryptography and Continuous Auditing from Scoping',
+    slug: 'security-by-design-systemes-critiques',
+    category: 'Cybersecurity',
+    categories: ['Cybersecurity', 'Software Architecture'],
+    tags: ['Pentest', 'Cryptography', 'Hardening', 'Security by Design'],
+    publishedAt: '2026-02-14T09:30:00.000Z',
+    readingTime: 6,
+    status: 'published',
+    author: {
+      name: 'Bokengi IT Cybersecurity Team',
+      role: 'Audit & Defensive Engineering',
+    },
+    coverImage: {
+      url: '/og-image.png',
+      alt: 'Security by design and applied cryptography',
+    },
+    excerpt:
+      'Why treating security as an afterthought in production invites disaster. Methodological insights into designing hardened, resilient architectures that withstand threats from day one.',
+    content: `In the modern threat landscape, attempting to bolt security onto a software product right before deployment is both ineffective and prohibitively expensive. True cyber resilience must be woven into the very fabric of architecture from the earliest scoping discussions.
+
+1. Threat Modeling at the Inception Stage
+Before a single line of application code is written, our security engineers map attack surfaces:
+- Identifying critical data assets, operational flows, and ingress points.
+- Applying STRIDE threat modeling to anticipate unauthorized privilege escalations and data tampering.
+- Enforcing defense-in-depth where every component assumes adjacent services may be compromised.
+
+2. Applied Cryptography Without Compromise
+Security relies on mathematics, not obscurity:
+- High-grade end-to-end encryption using vetted algorithms (AES-256-GCM, ECDH P-256).
+- Zero-knowledge key management where passwords and sensitive secrets are never stored in plaintext.
+- Strict hardware-bound cryptographic security where possible.
+
+3. Continuous Verification as Standard Operating Procedure
+Security is not a static milestone, but an ongoing discipline:
+- Static Application Security Testing (SAST) and automated secret detection integrated into every Pull Request.
+- Routine vulnerability scanning across direct and transitive dependency trees.
+- Systematic peer reviews with least-privilege principles enforced at every layer.`,
+    seo: {
+      title: 'Security by Design & Applied Cryptography · Bokengi Group',
+      description:
+        'Methodology for engineering resilient, secure architectures audited from inception.',
+    },
+  },
+  {
+    title: 'Information Systems Modernization: Decoupling, APIs, and Operational Performance',
+    slug: 'modernisation-systemes-information-apis',
+    category: 'Digital Transformation',
+    categories: ['Digital Transformation', 'Software Architecture'],
+    tags: ['Microservices', 'APIs', 'IS Modernization', 'Cloudflare Workers'],
+    publishedAt: '2026-01-20T10:00:00.000Z',
+    readingTime: 4,
+    status: 'published',
+    author: {
+      name: 'Digital Engineering Directorate',
+      role: 'Web Solutions & Products',
+    },
+    coverImage: {
+      url: '/og-image.png',
+      alt: 'Information systems modernization and API architecture',
+    },
+    excerpt:
+      'How to migrate heterogeneous legacy software fleets toward modular architectures without service disruption. An analysis of gains unlocked by headless decoupling, secure APIs, and Edge computing.',
+    content: `Many organizations operate established software assets trapped within rigid monolithic architectures. Adding a new business feature or rolling out a digital channel often demands weeks of regression testing with substantial operational risk.
+
+1. The Strangler Fig Pattern: Modernize Without Disruption
+Rather than risking an expensive big-bang rewrite, Bokengi applies the Strangler Fig pattern:
+- Introducing a modern API gateway upstream of the legacy monolith.
+- Progressively carving out isolated business domains as decoupled services.
+- Seamlessly routing user traffic to modern endpoints without downtime.
+
+2. The Power of Headless Architecture and Edge Computing
+By strictly separating business logic (Headless CMS, distributed databases) from presentation layers (Next.js App Router, Cloudflare Workers), rendering performance multiplies while infrastructure costs decrease:
+- Sub-100ms response times powered by global Edge routing.
+- Product teams iterate freely on user interfaces without altering backend transactional core systems.
+- Heightened operational resilience: cached fallbacks and ISR ensure high availability even when upstream services fluctuate.`,
+    seo: {
+      title: 'Information Systems Modernization & API Architecture · Bokengi Group',
+      description:
+        'Transition strategies towards modular, high-performance, and interoperable software architectures.',
+    },
+  },
+  {
+    title: 'Internal Research Note on Mesh Networks (Unpublished Draft)',
+    slug: 'brouillon-interne-non-publie',
+    category: 'R&D',
+    categories: ['R&D', 'Networks'],
+    tags: ['Mesh', 'IoT'],
+    publishedAt: '2026-03-05T12:00:00.000Z',
+    readingTime: 3,
+    status: 'draft',
+    author: {
+      name: 'Bokengi R&D Lab',
+      role: 'Applied Research',
+    },
+    excerpt: 'Preliminary internal scoping document reserved for internal teams.',
+    content: 'Work in progress draft. Must not be exposed on the public frontend.',
+    seo: {
+      title: 'R&D Draft · Bokengi Group',
+      description: 'Internal non-public document.',
+    },
+  },
+]
+
+// ============================================================================
+// BILINGUAL ACCESS HELPERS
+// ============================================================================
+
+export function getPolesSeedData(locale: string = 'fr'): PoleData[] {
+  return locale === 'en' ? POLES_SEED_DATA_EN : POLES_SEED_DATA
+}
+
+export function getServicesSeedData(locale: string = 'fr'): ServiceData[] {
+  return locale === 'en' ? SERVICES_SEED_DATA_EN : SERVICES_SEED_DATA
+}
+
+export function getCaseStudiesSeedData(locale: string = 'fr'): CaseStudyData[] {
+  return locale === 'en' ? CASE_STUDIES_SEED_DATA_EN : CASE_STUDIES_SEED_DATA
+}
+
+export function getPostsSeedData(locale: string = 'fr'): PostData[] {
+  return locale === 'en' ? POSTS_SEED_DATA_EN : POSTS_SEED_DATA
+}
+

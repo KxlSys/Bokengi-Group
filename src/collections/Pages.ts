@@ -32,6 +32,7 @@ export const Pages: CollectionConfig = {
       name: 'title',
       type: 'text',
       required: true,
+      localized: true,
       label: 'Titre de la page',
       admin: {
         placeholder: 'Ex: Le Groupe, Mentions Légales...',
@@ -51,6 +52,7 @@ export const Pages: CollectionConfig = {
     {
       name: 'content',
       type: 'richText',
+      localized: true,
       label: 'Contenu éditorial de la page',
       admin: {
         description: 'Corps de texte structuré de la page institutionnelle.',

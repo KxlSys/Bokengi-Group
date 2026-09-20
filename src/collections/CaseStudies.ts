@@ -26,6 +26,7 @@ export const CaseStudies: CollectionConfig = {
       name: 'title',
       type: 'text',
       required: true,
+      localized: true,
       label: 'Nom du projet / Titre de la réalisation',
       admin: {
         placeholder: 'Ex: ESIIKA, Portail Kongama, FleetGuard...',
@@ -57,6 +58,7 @@ export const CaseStudies: CollectionConfig = {
         {
           name: 'category',
           type: 'text',
+          localized: true,
           label: 'Catégorie / Domaine d\'application',
           admin: {
             width: '50%',
@@ -68,6 +70,7 @@ export const CaseStudies: CollectionConfig = {
     {
       name: 'summary',
       type: 'textarea',
+      localized: true,
       label: 'Résumé exécutif',
       admin: {
         description: 'Synthèse concise pour les cartes de présentation et les pages listes.',
@@ -76,6 +79,7 @@ export const CaseStudies: CollectionConfig = {
     {
       name: 'context',
       type: 'richText',
+      localized: true,
       label: '1. Contexte & Problématique',
       admin: {
         description: 'Environnement du projet, contraintes de départ et attentes initiales.',
@@ -84,6 +88,7 @@ export const CaseStudies: CollectionConfig = {
     {
       name: 'challenge',
       type: 'richText',
+      localized: true,
       label: '2. Défi technique & opérationnel',
       admin: {
         description: 'Obstacles critiques résolus (scalabilité, latence, cybersécurité, intégration legacy).',
@@ -92,6 +97,7 @@ export const CaseStudies: CollectionConfig = {
     {
       name: 'solution',
       type: 'richText',
+      localized: true,
       label: '3. Solution déployée par Bokengi',
       admin: {
         description: 'Architecture, choix d\'ingénierie et méthodologie mise en œuvre.',
@@ -100,6 +106,7 @@ export const CaseStudies: CollectionConfig = {
     {
       name: 'results',
       type: 'richText',
+      localized: true,
       label: '4. Résultats & Indicateurs d\'impact',
       admin: {
         description: 'Gains qualitatifs et quantitatifs (performances, adoption, sécurité, rentabilité).',
@@ -125,6 +132,7 @@ export const CaseStudies: CollectionConfig = {
     {
       name: 'architecture',
       type: 'richText',
+      localized: true,
       label: 'Schéma & Détails d\'architecture technique',
       admin: {
         description: 'Détails des flux de données, micro-services, sécurité réseau et infrastructure.',

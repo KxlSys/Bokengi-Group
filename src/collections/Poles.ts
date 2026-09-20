@@ -45,6 +45,7 @@ export const Poles: CollectionConfig = {
     {
       name: 'shortDescription',
       type: 'textarea',
+      localized: true,
       label: 'Description synthétique (accroche)',
       admin: {
         description: 'Présentation concise utilisée sur la page d\'accueil et les cartes d\'aperçu.',
@@ -53,6 +54,7 @@ export const Poles: CollectionConfig = {
     {
       name: 'description',
       type: 'richText',
+      localized: true,
       label: 'Description détaillée',
       admin: {
         description: 'Présentation complète des missions, de la vision et de la proposition de valeur du pôle.',

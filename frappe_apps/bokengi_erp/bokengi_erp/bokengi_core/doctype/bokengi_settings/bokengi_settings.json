@@ -1,0 +1,88 @@
+{
+  "actions": [],
+  "creation": "2026-09-20 18:00:00.000000",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "field_order": [
+    "company_name",
+    "contact_email",
+    "phone",
+    "production_url",
+    "preview_url",
+    "linkedin_url",
+    "github_url",
+    "twitter_url"
+  ],
+  "fields": [
+    {
+      "default": "Bokengi Group",
+      "fieldname": "company_name",
+      "fieldtype": "Data",
+      "label": "Raison Sociale",
+      "reqd": 1
+    },
+    {
+      "default": "contact@bokengi-group.com",
+      "fieldname": "contact_email",
+      "fieldtype": "Data",
+      "label": "Email officiel"
+    },
+    {
+      "default": "07 58 88 84 34",
+      "fieldname": "phone",
+      "fieldtype": "Data",
+      "label": "Téléphone"
+    },
+    {
+      "default": "https://bokengi-group.com",
+      "fieldname": "production_url",
+      "fieldtype": "Data",
+      "label": "URL Production"
+    },
+    {
+      "default": "https://bokengi-group.com",
+      "fieldname": "preview_url",
+      "fieldtype": "Data",
+      "label": "URL Preview / Staging"
+    },
+    {
+      "fieldname": "linkedin_url",
+      "fieldtype": "Data",
+      "label": "Lien LinkedIn"
+    },
+    {
+      "fieldname": "github_url",
+      "fieldtype": "Data",
+      "label": "Lien GitHub"
+    },
+    {
+      "fieldname": "twitter_url",
+      "fieldtype": "Data",
+      "label": "Lien Twitter / X"
+    }
+  ],
+  "issingle": 1,
+  "links": [],
+  "modified": "2026-09-20 18:00:00.000000",
+  "modified_by": "Administrator",
+  "module": "Bokengi Core",
+  "name": "Bokengi Settings",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 0,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "states": []
+}

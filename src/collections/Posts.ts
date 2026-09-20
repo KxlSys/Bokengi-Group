@@ -31,6 +31,7 @@ export const Posts: CollectionConfig = {
       name: 'title',
       type: 'text',
       required: true,
+      localized: true,
       label: 'Titre de l\'article',
       admin: {
         placeholder: 'Ex: Les défis de la souveraineté numérique en Afrique centrale...',
@@ -50,6 +51,7 @@ export const Posts: CollectionConfig = {
     {
       name: 'excerpt',
       type: 'textarea',
+      localized: true,
       label: 'Extrait introductif (chapeau)',
       admin: {
         description: 'Bref aperçu affiché dans les flux RSS et les cartes d\'articles.',
@@ -58,6 +60,7 @@ export const Posts: CollectionConfig = {
     {
       name: 'content',
       type: 'richText',
+      localized: true,
       label: 'Corps de l\'article',
       admin: {
         description: 'Contenu éditorial complet rédigé avec l\'éditeur Lexical.',

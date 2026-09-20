@@ -1,4 +1,4 @@
-﻿import type { Field } from 'payload'
+import type { Field } from 'payload'
 
 export const seoFields: Field = {
   name: 'seo',
@@ -8,6 +8,7 @@ export const seoFields: Field = {
     {
       name: 'title',
       type: 'text',
+      localized: true,
       label: 'Titre SEO',
       admin: {
         description: 'Titre spécifique pour les moteurs de recherche (laisser vide pour utiliser le titre par défaut).',
@@ -16,6 +17,7 @@ export const seoFields: Field = {
     {
       name: 'description',
       type: 'textarea',
+      localized: true,
       label: 'Description SEO',
       admin: {
         description: 'Description pour les moteurs de recherche et les partages sociaux (150-160 caractères recommandés).',

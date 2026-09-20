@@ -1,0 +1,104 @@
+[
+  {
+    "doctype": "Custom Field",
+    "name": "Lead-custom_payload_id",
+    "dt": "Lead",
+    "fieldname": "custom_payload_id",
+    "label": "ID Payload d'origine",
+    "fieldtype": "Data",
+    "insert_after": "lead_name",
+    "read_only": 1,
+    "unique": 0
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Lead-custom_request_type",
+    "dt": "Lead",
+    "fieldname": "custom_request_type",
+    "label": "Type de sollicitation",
+    "fieldtype": "Select",
+    "options": "devis\ncadrage\npartenariat\nautre",
+    "default": "devis",
+    "insert_after": "custom_payload_id",
+    "read_only": 1
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Lead-custom_requested_pole",
+    "dt": "Lead",
+    "fieldname": "custom_requested_pole",
+    "label": "Pôle d'expertise demandé par le prospect",
+    "fieldtype": "Link",
+    "options": "Bokengi Pole",
+    "insert_after": "custom_request_type",
+    "read_only": 1
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Lead-custom_treatment_pole",
+    "dt": "Lead",
+    "fieldname": "custom_treatment_pole",
+    "label": "Pôle de traitement opérationnel",
+    "fieldtype": "Link",
+    "options": "Bokengi Pole",
+    "insert_after": "custom_requested_pole",
+    "read_only": 0
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Lead-custom_priority",
+    "dt": "Lead",
+    "fieldname": "custom_priority",
+    "label": "Priorité de traitement",
+    "fieldtype": "Select",
+    "options": "low\nmedium\nhigh\nurgent",
+    "default": "medium",
+    "insert_after": "status"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Lead-custom_original_message",
+    "dt": "Lead",
+    "fieldname": "custom_original_message",
+    "label": "Message original du prospect",
+    "fieldtype": "Small Text",
+    "insert_after": "notes",
+    "read_only": 1
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "File-custom_alt_fr",
+    "dt": "File",
+    "fieldname": "custom_alt_fr",
+    "label": "Texte Alternatif Alt (FR)",
+    "fieldtype": "Data",
+    "insert_after": "is_private"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "File-custom_alt_en",
+    "dt": "File",
+    "fieldname": "custom_alt_en",
+    "label": "Texte Alternatif Alt (EN)",
+    "fieldtype": "Data",
+    "insert_after": "custom_alt_fr"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "File-custom_caption_fr",
+    "dt": "File",
+    "fieldname": "custom_caption_fr",
+    "label": "Légende de l'image (FR)",
+    "fieldtype": "Small Text",
+    "insert_after": "custom_alt_en"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "File-custom_caption_en",
+    "dt": "File",
+    "fieldname": "custom_caption_en",
+    "label": "Légende de l'image (EN)",
+    "fieldtype": "Small Text",
+    "insert_after": "custom_caption_fr"
+  }
+]

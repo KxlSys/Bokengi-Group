@@ -1,8 +1,14 @@
+'use client'
+
 import React from 'react'
 import Link from 'next/link'
 import { Kicker } from './Kicker'
+import { useI18n } from '@/i18n'
 
 export const HeroV4: React.FC = () => {
+  const { locale, t } = useI18n()
+  const getHref = (path: string) => `/${locale}${path === '/' ? '' : path}`
+
   return (
     <section className="hero-v4">
       <div className="pattern-dotted-radial-right" aria-hidden="true" />
@@ -13,25 +19,25 @@ export const HeroV4: React.FC = () => {
             <Kicker label="BOKENGI GROUP" />
 
             <h1 className="hero-v4-title">
-              <span className="hero-title-white">Construire.</span>{' '}
-              <span className="hero-title-blue">Protéger.</span>{' '}
-              <span className="hero-title-white">Développer.</span>
+              <span className="hero-title-white">{t.home.heroTitleWord1}</span>{' '}
+              <span className="hero-title-blue">{t.home.heroTitleWord2}</span>{' '}
+              <span className="hero-title-white">{t.home.heroTitleWord3}</span>
             </h1>
 
             <p className="hero-v4-lead">
-              Technologie, sécurité et services pour faire avancer les organisations.
+              {t.home.heroLead}
             </p>
 
             <p className="hero-v4-sub">
-              Bokengi Group conçoit, sécurise et accompagne les infrastructures, les solutions numériques et les projets professionnels.
+              {t.home.heroSub}
             </p>
 
             <div className="hero-v4-actions">
-              <Link href="/contact?type=devis" className="btn-v4-primary">
-                Parler de votre projet →
+              <Link href={getHref('/contact?type=devis')} className="btn-v4-primary">
+                {t.home.heroCtaPrimary} →
               </Link>
-              <Link href="/expertises" className="btn-v4-secondary">
-                Découvrir nos expertises
+              <Link href={getHref('/expertises')} className="btn-v4-secondary">
+                {t.home.heroCtaSecondary}
               </Link>
             </div>
           </div>
@@ -97,7 +103,7 @@ export const HeroV4: React.FC = () => {
             {/* Official Brand Vector Mark */}
             <img
               src="/bokengi-mark.png"
-              alt="Emblème officiel Bokengi Group"
+              alt={t.home.heroArtAlt}
               className="hero-brand-symbol"
             />
           </div>

@@ -12,6 +12,34 @@ export interface Dictionary {
     allRightsReserved: string
     estimatedResponseTime: string
     hoursWorking: string
+    talkAboutProject: string
+    discoverExpertises: string
+    viewAllProjects: string
+    viewAllPublications: string
+    readFullArticle: string
+    readFullCaseStudy: string
+    secureTransmission: string
+    requiredField: string
+    optional: string
+    errorPrefix: string
+    success: string
+    operationalSystems: string
+    statusBadgeAria: string
+    close: string
+    previous: string
+    next: string
+    morePages: string
+    all: string
+    filter: string
+    minuteShort: string
+    author: string
+    editorialDirection: string
+    keyMetrics: string
+    publishedOn: string
+    clientContext: string
+    technologies: string
+    translationMissing: string
+    translationMissingNotice: string
   }
   nav: {
     home: string
@@ -28,6 +56,10 @@ export interface Dictionary {
     english: string
     openMenu: string
     closeMenu: string
+    mainNavigation: string
+    polesMenu: string
+    skipToContent: string
+    breadcrumb: string
   }
   expertises: {
     it: { name: string; sub: string }
@@ -35,6 +67,162 @@ export interface Dictionary {
     business: { name: string; sub: string }
     consulting: { name: string; sub: string }
     events: { name: string; sub: string }
+  }
+  home: {
+    heroKicker: string
+    heroTitleWord1: string
+    heroTitleWord2: string
+    heroTitleWord3: string
+    heroLead: string
+    heroSub: string
+    heroCtaPrimary: string
+    heroCtaSecondary: string
+    heroArtAlt: string
+    groupKicker: string
+    groupTitle: string
+    groupText1: string
+    groupText2: string
+    expertisesKicker: string
+    expertisesTitle: string
+    itFocusKicker: string
+    itFocusTitle: string
+    itFocusLead: string
+    itFocusCta: string
+    projectsKicker: string
+    projectsTitle: string
+    projectsCta: string
+    ctaKicker: string
+    ctaTitle: string
+    ctaLead: string
+    ctaBtnPrimary: string
+    ctaBtnSecondary: string
+  }
+  about: {
+    metaTitle: string
+    metaDescription: string
+    kicker: string
+    title: string
+    lead: string
+    badgeDivisions: string
+    badgeSovereignty: string
+    badgeEngineering: string
+    missionKicker: string
+    missionTitle: string
+    missionText: string
+    visionKicker: string
+    visionTitle: string
+    visionText: string
+    orgKicker: string
+    orgTitle: string
+    orgLead: string
+    discoverPole: string
+    valuesKicker: string
+    valuesTitle: string
+    valuesLead: string
+    pillar1Title: string
+    pillar1Desc: string
+    pillar2Title: string
+    pillar2Desc: string
+    pillar3Title: string
+    pillar3Desc: string
+    pillar4Title: string
+    pillar4Desc: string
+    commitmentsKicker: string
+    commitmentsTitle: string
+    commitmentsLead: string
+    presenceKicker: string
+    presenceTitle: string
+    presenceLead: string
+  }
+  poles: {
+    metaTitle: string
+    metaDescription: string
+    kicker: string
+    title: string
+    lead: string
+    divisionBadge: string
+    poleDetails: string
+    servicesTitle: string
+    poleNumberPrefix: string
+    allPoles: string
+  }
+  services: {
+    metaTitle: string
+    metaDescription: string
+    kicker: string
+    title: string
+    servicesAndDeliverables: string
+    technicalStack: string
+    requestQuote: string
+    backToExpertises: string
+  }
+  caseStudies: {
+    metaTitle: string
+    metaDescription: string
+    kicker: string
+    title: string
+    lead: string
+    projectNumber: string
+    executiveSummary: string
+    contextTitle: string
+    challengeTitle: string
+    solutionTitle: string
+    resultsTitle: string
+    architectureTitle: string
+    technologiesTitle: string
+    resultsLabel: string
+    contextLabel: string
+  }
+  news: {
+    metaTitle: string
+    metaDescription: string
+    kicker: string
+    title: string
+    lead: string
+    filterTheme: string
+    allPosts: string
+    readingTime: string
+    readMore: string
+    noPosts: string
+    viewAll: string
+    featuredBadge: string
+    latestTitle: string
+    latestKicker: string
+    readFullPublication: string
+    backToNews: string
+    keywordsLabel: string
+    editorialDirector: string
+    relatedTitle: string
+    publicationDefault: string
+  }
+  contact: {
+    metaTitle: string
+    metaDescription: string
+    kicker: string
+    title: string
+    lead: string
+    directExchangeKicker: string
+    directExchangeTitle: string
+    directExchangeLead: string
+    officialCoordinates: string
+    officialEmail: string
+    phone: string
+    headquarters: string
+    headquartersCity: string
+    secondaryOffices: string
+    secondaryCities: string
+    coverageZone: string
+    coverageCountries: string
+    calKicker: string
+    calStandbyBadge: string
+    calActiveBadge: string
+    calTitle: string
+    calDesc: string
+    calNote: string
+    calOpenBtn: string
+    calActiveTitle: string
+    calActiveDesc: string
+    calIframeTitle: string
   }
   contactForm: {
     title: string
@@ -62,6 +250,12 @@ export interface Dictionary {
     messagePlaceholder: string
     consentText: string
     privacyLink: string
+    consentSuffix: string
+    gdprNotice: string
+    securityBadge: string
+    consentRequiredError: string
+    genericError: string
+    submissionFailed: string
     submit: string
     submitting: string
     successTitle: string
@@ -70,7 +264,73 @@ export interface Dictionary {
     estimatedDelay: string
     delayHours: string
   }
+  legal: {
+    mentionsTitle: string
+    mentionsDesc: string
+    mentionsMetaTitle: string
+    mentionsMetaDesc: string
+    privacyTitle: string
+    privacyDesc: string
+    privacyMetaTitle: string
+    privacyMetaDesc: string
+    breadcrumb: string
+    editorKicker: string
+    editorTitle: string
+    hostingKicker: string
+    hostingTitle: string
+    ipKicker: string
+    ipTitle: string
+    securityKicker: string
+    securityTitle: string
+    dpoKicker: string
+    dpoTitle: string
+    cookiesKicker: string
+    cookiesTitle: string
+    applicableLawKicker: string
+    applicableLawTitle: string
+  }
+  accessRequest: {
+    metaTitle: string
+    metaDescription: string
+    kicker: string
+    title: string
+    lead: string
+    protocolTitle: string
+    protocolDesc: string
+    firstName: string
+    lastName: string
+    email: string
+    roleLabel: string
+    roleEditor: string
+    roleAdmin: string
+    roleLeadManager: string
+    justification: string
+    justificationPlaceholder: string
+    justificationHint: string
+    emailHint: string
+    roleHint: string
+    consentText: string
+    submit: string
+    submitting: string
+    successTitle: string
+    securityNotice: string
+    consentError: string
+    genericError: string
+    successMessage: string
+  }
+  errors: {
+    notFoundCode: string
+    notFoundKicker: string
+    notFoundTitle: string
+    notFoundDesc: string
+    backToHome: string
+    exploreExpertises: string
+    errorTitle: string
+    errorDesc: string
+    retry: string
+  }
   footer: {
+    ariaLabel: string
     baseline: string
     description: string
     navigationTitle: string
@@ -81,5 +341,12 @@ export interface Dictionary {
     privacyPolicy: string
     securityCharter: string
     clientAccess: string
+    tagline: string
+  }
+  seo: {
+    siteTitle: string
+    siteDescription: string
+    ogLocale: string
+    languageCode: string
   }
 }

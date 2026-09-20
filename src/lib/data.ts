@@ -3,6 +3,10 @@ import {
   SERVICES_SEED_DATA,
   CASE_STUDIES_SEED_DATA,
   POSTS_SEED_DATA,
+  getPolesSeedData,
+  getServicesSeedData,
+  getCaseStudiesSeedData,
+  getPostsSeedData,
   PoleData,
   ServiceData,
   CaseStudyData,
@@ -11,6 +15,7 @@ import {
   PostAuthor,
   PostCoverImage,
 } from '@/data/bokengi-seed-data'
+import type { Locale } from '@/i18n/types'
 
 /**
  * Parseur récursif léger et robuste pour extraire du texte brut ou structuré
@@ -133,8 +138,8 @@ function hasDatabaseConfig(): boolean {
  * Récupère l'ensemble des 5 pôles Bokengi publiés.
  * Tente d'interroger Payload CMS en local avec fallback transparent sur les données de référence.
  */
-export async function getPoles(): Promise<PoleData[]> {
-  if (!hasDatabaseConfig()) return POLES_SEED_DATA
+export async function getPoles(locale: Locale = 'fr'): Promise<PoleData[]> {
+  if (!hasDatabaseConfig()) return getPolesSeedData(locale)
   try {
     const { getPayload } = await import('payload')
     const configPromise = (await import('@payload-config')).default
@@ -142,6 +147,7 @@ export async function getPoles(): Promise<PoleData[]> {
 
     const res = await payload.find({
       collection: 'poles',
+      locale,
       limit: 10,
       sort: 'order',
       where: {
@@ -170,14 +176,14 @@ export async function getPoles(): Promise<PoleData[]> {
     // Fallback silencieux sur les données de référence
   }
 
-  return POLES_SEED_DATA
+  return getPolesSeedData(locale)
 }
 
 /**
  * Récupère un pôle spécifique par son slug ('it', 'digital', 'business', 'consulting', 'events').
  * Filtre uniquement les pôles avec statut 'published'.
  */
-export async function getPoleBySlug(slug: string): Promise<PoleData | null> {
+export async function getPoleBySlug(slug: string, locale: Locale = 'fr'): Promise<PoleData | null> {
   try {
     const { getPayload } = await import('payload')
     const configPromise = (await import('@payload-config')).default
@@ -185,6 +191,7 @@ export async function getPoleBySlug(slug: string): Promise<PoleData | null> {
 
     const res = await payload.find({
       collection: 'poles',
+      locale,
       where: {
         slug: { equals: slug },
         status: { equals: 'published' },
@@ -214,13 +221,13 @@ export async function getPoleBySlug(slug: string): Promise<PoleData | null> {
     // Fallback
   }
 
-  return POLES_SEED_DATA.find((p) => p.slug === slug) || null
+  return getPolesSeedData(locale).find((p) => p.slug === slug) || null
 }
 
 /**
  * Récupère les services publiés d'un pôle donné ou tous les services publiés.
  */
-export async function getServices(poleSlug?: string): Promise<ServiceData[]> {
+export async function getServices(poleSlug?: string, locale: Locale = 'fr'): Promise<ServiceData[]> {
   try {
     const { getPayload } = await import('payload')
     const configPromise = (await import('@payload-config')).default
@@ -234,6 +241,7 @@ export async function getServices(poleSlug?: string): Promise<ServiceData[]> {
       // Rechercher par relation pôle publié
       const poleRes = await payload.find({
         collection: 'poles',
+        locale,
         where: {
           slug: { equals: poleSlug },
           status: { equals: 'published' },
@@ -247,6 +255,7 @@ export async function getServices(poleSlug?: string): Promise<ServiceData[]> {
 
     const res = await payload.find({
       collection: 'services',
+      locale,
       where: whereClause,
       limit: 50,
       sort: 'order',
@@ -270,16 +279,17 @@ export async function getServices(poleSlug?: string): Promise<ServiceData[]> {
     // Fallback
   }
 
+  const seed = getServicesSeedData(locale)
   if (poleSlug) {
-    return SERVICES_SEED_DATA.filter((s) => s.poleSlug === poleSlug)
+    return seed.filter((s) => s.poleSlug === poleSlug)
   }
-  return SERVICES_SEED_DATA
+  return seed
 }
 
 /**
  * Récupère l'ensemble des études de cas / réalisations techniques publiées.
  */
-export async function getCaseStudies(featuredOnly: boolean = false): Promise<CaseStudyData[]> {
+export async function getCaseStudies(featuredOnly: boolean = false, locale: Locale = 'fr'): Promise<CaseStudyData[]> {
   try {
     const { getPayload } = await import('payload')
     const configPromise = (await import('@payload-config')).default
@@ -294,13 +304,15 @@ export async function getCaseStudies(featuredOnly: boolean = false): Promise<Cas
 
     const res = await payload.find({
       collection: 'case-studies',
+      locale,
       where: whereClause,
       limit: 20,
     })
 
     if (res.docs && res.docs.length > 0) {
+      const seedData = getCaseStudiesSeedData(locale)
       return res.docs.map((doc: any) => {
-        const seedFallback = CASE_STUDIES_SEED_DATA.find((c) => c.slug === doc.slug)
+        const seedFallback = seedData.find((c) => c.slug === doc.slug)
         return {
           title: doc.title,
           slug: doc.slug,
@@ -331,16 +343,17 @@ export async function getCaseStudies(featuredOnly: boolean = false): Promise<Cas
     // Fallback
   }
 
+  const seed = getCaseStudiesSeedData(locale)
   if (featuredOnly) {
-    return CASE_STUDIES_SEED_DATA.filter((c) => c.featured)
+    return seed.filter((c) => c.featured)
   }
-  return CASE_STUDIES_SEED_DATA
+  return seed
 }
 
 /**
  * Récupère une étude de cas publiée par son slug.
  */
-export async function getCaseStudyBySlug(slug: string): Promise<CaseStudyData | null> {
+export async function getCaseStudyBySlug(slug: string, locale: Locale = 'fr'): Promise<CaseStudyData | null> {
   try {
     const { getPayload } = await import('payload')
     const configPromise = (await import('@payload-config')).default
@@ -348,6 +361,7 @@ export async function getCaseStudyBySlug(slug: string): Promise<CaseStudyData | 
 
     const res = await payload.find({
       collection: 'case-studies',
+      locale,
       where: {
         slug: { equals: slug },
         status: { equals: 'published' },
@@ -357,7 +371,7 @@ export async function getCaseStudyBySlug(slug: string): Promise<CaseStudyData | 
 
     if (res.docs && res.docs.length > 0) {
       const doc = res.docs[0] as any
-      const seedFallback = CASE_STUDIES_SEED_DATA.find((c) => c.slug === doc.slug)
+      const seedFallback = getCaseStudiesSeedData(locale).find((c) => c.slug === doc.slug)
       return {
         title: doc.title,
         slug: doc.slug,
@@ -387,7 +401,7 @@ export async function getCaseStudyBySlug(slug: string): Promise<CaseStudyData | 
     // Fallback
   }
 
-  return CASE_STUDIES_SEED_DATA.find((c) => c.slug === slug) || null
+  return getCaseStudiesSeedData(locale).find((c) => c.slug === slug) || null
 }
 
 /**
@@ -400,14 +414,14 @@ export function calculateReadingTime(text: string): number {
 }
 
 /**
- * Formate une date ISO en chaîne française lisible (ex: 1 mars 2026).
+ * Formate une date ISO selon la locale choisie (ex: 1 mars 2026 en FR, March 1, 2026 en EN).
  */
-export function formatFrenchDate(dateStr?: string | null): string {
+export function formatDate(dateStr?: string | null, locale: Locale = 'fr'): string {
   if (!dateStr) return ''
   try {
     const d = new Date(dateStr)
     if (isNaN(d.getTime())) return dateStr
-    return new Intl.DateTimeFormat('fr-FR', {
+    return new Intl.DateTimeFormat(locale === 'en' ? 'en-US' : 'fr-FR', {
       day: 'numeric',
       month: 'long',
       year: 'numeric',
@@ -415,6 +429,13 @@ export function formatFrenchDate(dateStr?: string | null): string {
   } catch {
     return dateStr
   }
+}
+
+/**
+ * Rétrocompatibilité : Formate une date ISO en chaîne française lisible.
+ */
+export function formatFrenchDate(dateStr?: string | null): string {
+  return formatDate(dateStr, 'fr')
 }
 
 /**
@@ -491,7 +512,7 @@ export function mapPayloadPostToPostData(doc: any): PostData {
  * Trié par date de publication décroissante.
  * Filtre optionnel par catégorie et limite numérique.
  */
-export async function getPosts(filter?: { category?: string; limit?: number }): Promise<PostData[]> {
+export async function getPosts(filter?: { category?: string; limit?: number }, locale: Locale = 'fr'): Promise<PostData[]> {
   const limit = filter?.limit || 50
   if (hasDatabaseConfig()) {
     try {
@@ -501,6 +522,7 @@ export async function getPosts(filter?: { category?: string; limit?: number }): 
 
       const res = await payload.find({
         collection: 'posts',
+        locale,
         where: {
           status: { equals: 'published' },
         },
@@ -524,7 +546,7 @@ export async function getPosts(filter?: { category?: string; limit?: number }): 
     }
   }
 
-  let seedPosts = POSTS_SEED_DATA.filter((p) => p.status === 'published')
+  let seedPosts = getPostsSeedData(locale).filter((p) => p.status === 'published')
   if (filter?.category && filter.category !== 'all') {
     const catLower = filter.category.toLowerCase()
     seedPosts = seedPosts.filter((p) =>
@@ -539,7 +561,7 @@ export async function getPosts(filter?: { category?: string; limit?: number }): 
  * Récupère un article d'expertise publié par son slug.
  * Rejette strictement tout article au statut draft ou inexistant.
  */
-export async function getPostBySlug(slug: string): Promise<PostData | null> {
+export async function getPostBySlug(slug: string, locale: Locale = 'fr'): Promise<PostData | null> {
   if (!slug) return null
   if (hasDatabaseConfig()) {
     try {
@@ -549,6 +571,7 @@ export async function getPostBySlug(slug: string): Promise<PostData | null> {
 
       const res = await payload.find({
         collection: 'posts',
+        locale,
         where: {
           slug: { equals: slug },
           status: { equals: 'published' },
@@ -567,15 +590,15 @@ export async function getPostBySlug(slug: string): Promise<PostData | null> {
     }
   }
 
-  const seed = POSTS_SEED_DATA.find((p) => p.slug === slug && p.status === 'published')
+  const seed = getPostsSeedData(locale).find((p) => p.slug === slug && p.status === 'published')
   return seed || null
 }
 
 /**
  * Récupère la liste de toutes les catégories distinctes des articles publiés.
  */
-export async function getPostCategories(): Promise<string[]> {
-  const posts = await getPosts()
+export async function getPostCategories(locale: Locale = 'fr'): Promise<string[]> {
+  const posts = await getPosts(undefined, locale)
   const set = new Set<string>()
   for (const post of posts) {
     for (const cat of post.categories) {

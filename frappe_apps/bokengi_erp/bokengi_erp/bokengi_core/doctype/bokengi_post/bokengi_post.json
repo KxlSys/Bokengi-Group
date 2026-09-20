@@ -1,0 +1,208 @@
+{
+  "actions": [],
+  "autoname": "field:slug",
+  "creation": "2026-09-20 18:00:00.000000",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "field_order": [
+    "slug",
+    "custom_payload_id",
+    "author",
+    "author_name_override",
+    "cover_image",
+    "published_at",
+    "status",
+    "reading_time_minutes",
+    "categories",
+    "tags",
+    "tab_fr",
+    "title_fr",
+    "excerpt_fr",
+    "content_fr",
+    "seo_title_fr",
+    "seo_description_fr",
+    "tab_en",
+    "title_en",
+    "excerpt_en",
+    "content_en",
+    "seo_title_en",
+    "seo_description_en"
+  ],
+  "fields": [
+    {
+      "fieldname": "slug",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Slug URL",
+      "reqd": 1,
+      "unique": 1
+    },
+    {
+      "fieldname": "custom_payload_id",
+      "fieldtype": "Data",
+      "label": "ID Payload d'origine",
+      "read_only": 1,
+      "unique": 1
+    },
+    {
+      "fieldname": "author",
+      "fieldtype": "Link",
+      "label": "Auteur (Compte ERPNext)",
+      "options": "User"
+    },
+    {
+      "fieldname": "author_name_override",
+      "fieldtype": "Data",
+      "label": "Nom auteur affiché"
+    },
+    {
+      "fieldname": "cover_image",
+      "fieldtype": "Attach",
+      "label": "Image de couverture"
+    },
+    {
+      "fieldname": "published_at",
+      "fieldtype": "Datetime",
+      "in_list_view": 1,
+      "label": "Date & Heure de publication"
+    },
+    {
+      "default": "Published",
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "in_list_view": 1,
+      "label": "Statut",
+      "options": "Draft\nPublished",
+      "reqd": 1
+    },
+    {
+      "default": "5",
+      "fieldname": "reading_time_minutes",
+      "fieldtype": "Int",
+      "label": "Temps de lecture (minutes)"
+    },
+    {
+      "fieldname": "categories",
+      "fieldtype": "Table",
+      "label": "Catégories",
+      "options": "Bokengi Category Item"
+    },
+    {
+      "fieldname": "tags",
+      "fieldtype": "Table",
+      "label": "Mots-clés (Tags)",
+      "options": "Bokengi Tag Item"
+    },
+    {
+      "fieldname": "tab_fr",
+      "fieldtype": "Tab Break",
+      "label": "Contenu Français (FR)"
+    },
+    {
+      "fieldname": "title_fr",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Titre de l'article (FR)",
+      "reqd": 1
+    },
+    {
+      "fieldname": "excerpt_fr",
+      "fieldtype": "Small Text",
+      "label": "Extrait introductif (FR)"
+    },
+    {
+      "fieldname": "content_fr",
+      "fieldtype": "Text Editor",
+      "label": "Corps de l'article (FR)"
+    },
+    {
+      "fieldname": "seo_title_fr",
+      "fieldtype": "Data",
+      "label": "Titre SEO (FR)"
+    },
+    {
+      "fieldname": "seo_description_fr",
+      "fieldtype": "Small Text",
+      "label": "Description SEO (FR)"
+    },
+    {
+      "fieldname": "tab_en",
+      "fieldtype": "Tab Break",
+      "label": "Contenu Anglais (EN)"
+    },
+    {
+      "fieldname": "title_en",
+      "fieldtype": "Data",
+      "label": "Titre de l'article (EN)",
+      "reqd": 1
+    },
+    {
+      "fieldname": "excerpt_en",
+      "fieldtype": "Small Text",
+      "label": "Extrait introductif (EN)"
+    },
+    {
+      "fieldname": "content_en",
+      "fieldtype": "Text Editor",
+      "label": "Corps de l'article (EN)"
+    },
+    {
+      "fieldname": "seo_title_en",
+      "fieldtype": "Data",
+      "label": "Titre SEO (EN)"
+    },
+    {
+      "fieldname": "seo_description_en",
+      "fieldtype": "Small Text",
+      "label": "Description SEO (EN)"
+    }
+  ],
+  "links": [],
+  "modified": "2026-09-20 18:00:00.000000",
+  "modified_by": "Administrator",
+  "module": "Bokengi Core",
+  "name": "Bokengi Post",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    },
+    {
+      "create": 1,
+      "delete": 0,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "Bokengi Content Editor",
+      "share": 0,
+      "write": 1
+    },
+    {
+      "create": 0,
+      "delete": 0,
+      "email": 0,
+      "export": 0,
+      "print": 0,
+      "read": 1,
+      "report": 0,
+      "role": "All",
+      "share": 0,
+      "write": 0
+    }
+  ],
+  "sort_field": "published_at",
+  "sort_order": "DESC",
+  "states": [],
+  "track_changes": 1
+}

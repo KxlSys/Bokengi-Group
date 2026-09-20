@@ -26,6 +26,7 @@ export const Services: CollectionConfig = {
       name: 'title',
       type: 'text',
       required: true,
+      localized: true,
       label: 'Titre du service',
       admin: {
         placeholder: 'Ex: Audit de sécurité & Pentest, Infrastructure Cloud...',
@@ -60,6 +61,7 @@ export const Services: CollectionConfig = {
         {
           name: 'category',
           type: 'text',
+          localized: true,
           label: 'Catégorie fonctionnelle',
           admin: {
             width: '50%',
@@ -71,6 +73,7 @@ export const Services: CollectionConfig = {
     {
       name: 'shortDescription',
       type: 'textarea',
+      localized: true,
       label: 'Description courte',
       admin: {
         description: 'Résumé synthétique pour les grilles et listes de services.',
@@ -79,6 +82,7 @@ export const Services: CollectionConfig = {
     {
       name: 'content',
       type: 'richText',
+      localized: true,
       label: 'Détail de l\'offre & livrables',
       admin: {
         description: 'Description détaillée de la prestation, méthodologie et livrables attendus.',

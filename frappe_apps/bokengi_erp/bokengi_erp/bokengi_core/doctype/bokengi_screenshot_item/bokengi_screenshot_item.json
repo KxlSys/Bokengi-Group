@@ -1,0 +1,43 @@
+{
+  "actions": [],
+  "creation": "2026-09-20 18:00:00.000000",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "image_url",
+    "caption_fr",
+    "caption_en"
+  ],
+  "fields": [
+    {
+      "fieldname": "image_url",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "URL Image (R2 / CDN)",
+      "reqd": 1
+    },
+    {
+      "fieldname": "caption_fr",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Légende (FR)"
+    },
+    {
+      "fieldname": "caption_en",
+      "fieldtype": "Data",
+      "label": "Légende (EN)"
+    }
+  ],
+  "istable": 1,
+  "links": [],
+  "modified": "2026-09-20 18:00:00.000000",
+  "modified_by": "Administrator",
+  "module": "Bokengi Core",
+  "name": "Bokengi Screenshot Item",
+  "owner": "Administrator",
+  "permissions": [],
+  "sort_field": "idx",
+  "sort_order": "ASC",
+  "states": []
+}

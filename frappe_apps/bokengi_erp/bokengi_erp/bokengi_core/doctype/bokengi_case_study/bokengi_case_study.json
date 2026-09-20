@@ -1,0 +1,271 @@
+{
+  "actions": [],
+  "autoname": "field:slug",
+  "creation": "2026-09-20 18:00:00.000000",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "field_order": [
+    "slug",
+    "custom_payload_id",
+    "client_name",
+    "customer",
+    "project",
+    "published_date",
+    "featured",
+    "status",
+    "technologies",
+    "screenshots",
+    "tab_fr",
+    "title_fr",
+    "category_fr",
+    "summary_fr",
+    "context_fr",
+    "challenge_fr",
+    "solution_fr",
+    "results_fr",
+    "architecture_fr",
+    "seo_title_fr",
+    "seo_description_fr",
+    "tab_en",
+    "title_en",
+    "category_en",
+    "summary_en",
+    "context_en",
+    "challenge_en",
+    "solution_en",
+    "results_en",
+    "architecture_en",
+    "seo_title_en",
+    "seo_description_en"
+  ],
+  "fields": [
+    {
+      "fieldname": "slug",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Slug URL",
+      "reqd": 1,
+      "unique": 1
+    },
+    {
+      "fieldname": "custom_payload_id",
+      "fieldtype": "Data",
+      "label": "ID Payload d'origine",
+      "read_only": 1,
+      "unique": 1
+    },
+    {
+      "fieldname": "client_name",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Nom Client / Contexte"
+    },
+    {
+      "fieldname": "customer",
+      "fieldtype": "Link",
+      "label": "Client ERPNext (Liaison CRM)",
+      "options": "Customer"
+    },
+    {
+      "fieldname": "project",
+      "fieldtype": "Link",
+      "label": "Projet ERPNext (Liaison Opérations)",
+      "options": "Project"
+    },
+    {
+      "fieldname": "published_date",
+      "fieldtype": "Date",
+      "in_list_view": 1,
+      "label": "Date de livraison / publication"
+    },
+    {
+      "default": "0",
+      "fieldname": "featured",
+      "fieldtype": "Check",
+      "in_list_view": 1,
+      "label": "En avant sur l'accueil"
+    },
+    {
+      "default": "Published",
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "in_list_view": 1,
+      "label": "Statut",
+      "options": "Draft\nPublished",
+      "reqd": 1
+    },
+    {
+      "fieldname": "technologies",
+      "fieldtype": "Table",
+      "label": "Technologies utilisées",
+      "options": "Bokengi Technology Item"
+    },
+    {
+      "fieldname": "screenshots",
+      "fieldtype": "Table",
+      "label": "Captures d'écran & Visuels",
+      "options": "Bokengi Screenshot Item"
+    },
+    {
+      "fieldname": "tab_fr",
+      "fieldtype": "Tab Break",
+      "label": "Contenu Français (FR)"
+    },
+    {
+      "fieldname": "title_fr",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Titre du projet (FR)",
+      "reqd": 1
+    },
+    {
+      "fieldname": "category_fr",
+      "fieldtype": "Data",
+      "label": "Catégorie métier (FR)"
+    },
+    {
+      "fieldname": "summary_fr",
+      "fieldtype": "Small Text",
+      "label": "Résumé exécutif (FR)"
+    },
+    {
+      "fieldname": "context_fr",
+      "fieldtype": "Text Editor",
+      "label": "1. Contexte & Problématique (FR)"
+    },
+    {
+      "fieldname": "challenge_fr",
+      "fieldtype": "Text Editor",
+      "label": "2. Défi technique (FR)"
+    },
+    {
+      "fieldname": "solution_fr",
+      "fieldtype": "Text Editor",
+      "label": "3. Solution Bokengi (FR)"
+    },
+    {
+      "fieldname": "results_fr",
+      "fieldtype": "Text Editor",
+      "label": "4. Résultats & Impact (FR)"
+    },
+    {
+      "fieldname": "architecture_fr",
+      "fieldtype": "Text Editor",
+      "label": "5. Architecture technique (FR)"
+    },
+    {
+      "fieldname": "seo_title_fr",
+      "fieldtype": "Data",
+      "label": "Titre SEO (FR)"
+    },
+    {
+      "fieldname": "seo_description_fr",
+      "fieldtype": "Small Text",
+      "label": "Description SEO (FR)"
+    },
+    {
+      "fieldname": "tab_en",
+      "fieldtype": "Tab Break",
+      "label": "Contenu Anglais (EN)"
+    },
+    {
+      "fieldname": "title_en",
+      "fieldtype": "Data",
+      "label": "Titre du projet (EN)",
+      "reqd": 1
+    },
+    {
+      "fieldname": "category_en",
+      "fieldtype": "Data",
+      "label": "Catégorie métier (EN)"
+    },
+    {
+      "fieldname": "summary_en",
+      "fieldtype": "Small Text",
+      "label": "Résumé exécutif (EN)"
+    },
+    {
+      "fieldname": "context_en",
+      "fieldtype": "Text Editor",
+      "label": "1. Contexte & Problématique (EN)"
+    },
+    {
+      "fieldname": "challenge_en",
+      "fieldtype": "Text Editor",
+      "label": "2. Défi technique (EN)"
+    },
+    {
+      "fieldname": "solution_en",
+      "fieldtype": "Text Editor",
+      "label": "3. Solution Bokengi (EN)"
+    },
+    {
+      "fieldname": "results_en",
+      "fieldtype": "Text Editor",
+      "label": "4. Résultats & Impact (EN)"
+    },
+    {
+      "fieldname": "architecture_en",
+      "fieldtype": "Text Editor",
+      "label": "5. Architecture technique (EN)"
+    },
+    {
+      "fieldname": "seo_title_en",
+      "fieldtype": "Data",
+      "label": "Titre SEO (EN)"
+    },
+    {
+      "fieldname": "seo_description_en",
+      "fieldtype": "Small Text",
+      "label": "Description SEO (EN)"
+    }
+  ],
+  "links": [],
+  "modified": "2026-09-20 18:00:00.000000",
+  "modified_by": "Administrator",
+  "module": "Bokengi Core",
+  "name": "Bokengi Case Study",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    },
+    {
+      "create": 1,
+      "delete": 0,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "Bokengi Content Editor",
+      "share": 0,
+      "write": 1
+    },
+    {
+      "create": 0,
+      "delete": 0,
+      "email": 0,
+      "export": 0,
+      "print": 0,
+      "read": 1,
+      "report": 0,
+      "role": "All",
+      "share": 0,
+      "write": 0
+    }
+  ],
+  "sort_field": "published_date",
+  "sort_order": "DESC",
+  "states": [],
+  "track_changes": 1
+}

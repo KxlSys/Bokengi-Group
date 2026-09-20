@@ -1,7 +1,7 @@
 'use client'
 
-import React from 'react'
-import { useI18n } from '@/i18n'
+import { usePathname, useRouter } from 'next/navigation'
+import { useI18n, type Locale } from '@/i18n'
 
 export interface LanguageToggleProps {
   className?: string
@@ -13,6 +13,24 @@ export const LanguageToggle: React.FC<LanguageToggleProps> = ({
   showLabel = true,
 }) => {
   const { locale, setLocale, t } = useI18n()
+  const pathname = usePathname()
+  const router = useRouter()
+
+  const handleSelectLocale = (targetLocale: Locale) => {
+    setLocale(targetLocale)
+
+    if (pathname) {
+      const segments = pathname.split('/')
+      if (segments[1] === 'fr' || segments[1] === 'en') {
+        segments[1] = targetLocale
+        const newPath = segments.join('/') || `/${targetLocale}`
+        router.push(newPath)
+      } else {
+        const cleanPath = pathname === '/' ? '' : pathname
+        router.push(`/${targetLocale}${cleanPath}`)
+      }
+    }
+  }
 
   return (
     <div
@@ -31,7 +49,7 @@ export const LanguageToggle: React.FC<LanguageToggleProps> = ({
       <div className="inline-flex items-center p-0.5 rounded-[var(--radius-xs)] bg-[var(--bg-elevated)] border border-[var(--border-subtle)]">
         <button
           type="button"
-          onClick={() => setLocale('fr')}
+          onClick={() => handleSelectLocale('fr')}
           className={`px-2 py-1 rounded-[2px] text-xs transition-all font-semibold cursor-pointer ${
             locale === 'fr'
               ? 'bg-[var(--blue-primary)] text-white shadow-xs'
@@ -46,7 +64,7 @@ export const LanguageToggle: React.FC<LanguageToggleProps> = ({
 
         <button
           type="button"
-          onClick={() => setLocale('en')}
+          onClick={() => handleSelectLocale('en')}
           className={`px-2 py-1 rounded-[2px] text-xs transition-all font-semibold cursor-pointer ${
             locale === 'en'
               ? 'bg-[var(--blue-primary)] text-white shadow-xs'

@@ -89,7 +89,7 @@ export default buildConfig({
       },
     ],
     defaultLocale: 'fr',
-    fallback: true,
+    fallback: false,
   },
   i18n: {
     supportedLanguages: { fr, en },

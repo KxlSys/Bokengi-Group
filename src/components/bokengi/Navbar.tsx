@@ -15,7 +15,9 @@ export const Navbar: React.FC = () => {
   const [mounted, setMounted] = useState(false)
   const pathname = usePathname()
   const { theme } = useTheme()
-  const { t } = useI18n()
+  const { locale, t } = useI18n()
+
+  const getHref = (path: string) => `/${locale}${path === '/' ? '' : path}`
 
   const dropdownWrapRef = React.useRef<HTMLLIElement>(null)
   const triggerLinkRef = React.useRef<HTMLAnchorElement>(null)
@@ -78,24 +80,24 @@ export const Navbar: React.FC = () => {
   const isDark = mounted ? theme === 'dark' : false
 
   const expertises = [
-    { href: '/expertises/it', name: t.expertises.it.name, sub: t.expertises.it.sub },
-    { href: '/expertises/digital', name: t.expertises.digital.name, sub: t.expertises.digital.sub },
-    { href: '/expertises/business', name: t.expertises.business.name, sub: t.expertises.business.sub },
-    { href: '/expertises/consulting', name: t.expertises.consulting.name, sub: t.expertises.consulting.sub },
-    { href: '/expertises/events', name: t.expertises.events.name, sub: t.expertises.events.sub },
+    { href: getHref('/expertises/it'), name: t.expertises.it.name, sub: t.expertises.it.sub },
+    { href: getHref('/expertises/digital'), name: t.expertises.digital.name, sub: t.expertises.digital.sub },
+    { href: getHref('/expertises/business'), name: t.expertises.business.name, sub: t.expertises.business.sub },
+    { href: getHref('/expertises/consulting'), name: t.expertises.consulting.name, sub: t.expertises.consulting.sub },
+    { href: getHref('/expertises/events'), name: t.expertises.events.name, sub: t.expertises.events.sub },
   ]
 
-  const isGroupeActive = pathname === '/groupe'
-  const isExpertisesActive = pathname === '/expertises' || pathname?.startsWith('/expertises/')
-  const isRealisationsActive = pathname === '/realisations' || pathname?.startsWith('/realisations/')
-  const isActualitesActive = pathname === '/actualites' || pathname?.startsWith('/actualites/')
-  const isContactActive = pathname === '/contact'
+  const isGroupeActive = pathname === getHref('/groupe') || pathname === '/groupe'
+  const isExpertisesActive = pathname === getHref('/expertises') || pathname?.startsWith(getHref('/expertises/')) || pathname === '/expertises' || pathname?.startsWith('/expertises/')
+  const isRealisationsActive = pathname === getHref('/realisations') || pathname?.startsWith(getHref('/realisations/')) || pathname === '/realisations' || pathname?.startsWith('/realisations/')
+  const isActualitesActive = pathname === getHref('/actualites') || pathname?.startsWith(getHref('/actualites/')) || pathname === '/actualites' || pathname?.startsWith('/actualites/')
+  const isContactActive = pathname === getHref('/contact') || pathname === '/contact'
 
   return (
     <header className={`header-v4 ${isScrolled ? 'is-scrolled' : ''}`}>
       <div className="container-v4 header-v4-inner">
         {/* Official Brand Logo */}
-        <Link href="/" className="header-v4-logo" aria-label={`Bokengi Group · ${t.common.backToHome}`}>
+        <Link href={getHref('/')} className="header-v4-logo" aria-label={`Bokengi Group · ${t.common.backToHome}`}>
           <img
             src={isDark ? '/bokengi-logo-horizontal-dark.png' : '/bokengi-logo-horizontal.png'}
             alt="Bokengi Group · Technology & Services"
@@ -105,11 +107,11 @@ export const Navbar: React.FC = () => {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="header-v4-nav hidden md:flex" aria-label="Navigation principale">
+        <nav className="header-v4-nav hidden md:flex" aria-label={t.nav.mainNavigation}>
           <ul className="header-v4-links">
             <li>
               <Link
-                href="/groupe"
+                href={getHref('/groupe')}
                 className={`header-v4-link ${isGroupeActive ? 'is-active' : ''}`}
               >
                 {t.nav.group}
@@ -125,7 +127,7 @@ export const Navbar: React.FC = () => {
             >
               <Link
                 ref={triggerLinkRef}
-                href="/expertises"
+                href={getHref('/expertises')}
                 className={`header-v4-link ${isExpertisesActive ? 'is-active' : ''}`}
                 aria-haspopup="true"
                 aria-expanded={isDropdownOpen}
@@ -137,7 +139,7 @@ export const Navbar: React.FC = () => {
               <div
                 id="expertises-dropdown-menu"
                 role="menu"
-                aria-label="Pôles d'expertise"
+                aria-label={t.footer.expertisesTitle}
                 className="header-v4-dropdown-menu"
               >
                 {expertises.map((exp, idx) => (
@@ -160,7 +162,7 @@ export const Navbar: React.FC = () => {
 
             <li>
               <Link
-                href="/realisations"
+                href={getHref('/realisations')}
                 className={`header-v4-link ${isRealisationsActive ? 'is-active' : ''}`}
               >
                 {t.nav.projects}
@@ -169,7 +171,7 @@ export const Navbar: React.FC = () => {
 
             <li>
               <Link
-                href="/actualites"
+                href={getHref('/actualites')}
                 className={`header-v4-link ${isActualitesActive ? 'is-active' : ''}`}
               >
                 {t.nav.news}
@@ -178,7 +180,7 @@ export const Navbar: React.FC = () => {
 
             <li>
               <Link
-                href="/contact"
+                href={getHref('/contact')}
                 className={`header-v4-link ${isContactActive ? 'is-active' : ''}`}
               >
                 {t.nav.contact}
@@ -192,7 +194,7 @@ export const Navbar: React.FC = () => {
           <LanguageToggle />
           <ThemeToggle />
 
-          <Link href="/contact?type=devis" className="btn-v4-primary hidden sm:inline-flex" style={{ height: '40px', padding: '0 1.25rem', fontSize: '0.85rem' }}>
+          <Link href={getHref('/contact?type=devis')} className="btn-v4-primary hidden sm:inline-flex" style={{ height: '40px', padding: '0 1.25rem', fontSize: '0.85rem' }}>
             {t.common.requestQuote} →
           </Link>
 
@@ -224,7 +226,7 @@ export const Navbar: React.FC = () => {
           <ul className="flex flex-col gap-3 list-none p-0 m-0">
             <li>
               <Link
-                href="/groupe"
+                href={getHref('/groupe')}
                 onClick={() => setIsOpen(false)}
                 className={`block text-base font-medium transition-colors ${
                   isGroupeActive ? 'text-[var(--blue-cyan)] font-semibold' : 'text-[var(--ink-heading)] hover:text-[var(--blue-cyan)]'
@@ -236,7 +238,7 @@ export const Navbar: React.FC = () => {
 
             <li>
               <Link
-                href="/expertises"
+                href={getHref('/expertises')}
                 onClick={() => setIsOpen(false)}
                 className={`block text-base font-medium transition-colors ${
                   isExpertisesActive ? 'text-[var(--blue-cyan)] font-semibold' : 'text-[var(--ink-heading)] hover:text-[var(--blue-cyan)]'
@@ -263,7 +265,7 @@ export const Navbar: React.FC = () => {
 
             <li>
               <Link
-                href="/realisations"
+                href={getHref('/realisations')}
                 onClick={() => setIsOpen(false)}
                 className={`block text-base font-medium transition-colors ${
                   isRealisationsActive ? 'text-[var(--blue-cyan)] font-semibold' : 'text-[var(--ink-heading)] hover:text-[var(--blue-cyan)]'
@@ -275,7 +277,7 @@ export const Navbar: React.FC = () => {
 
             <li>
               <Link
-                href="/actualites"
+                href={getHref('/actualites')}
                 onClick={() => setIsOpen(false)}
                 className={`block text-base font-medium transition-colors ${
                   isActualitesActive ? 'text-[var(--blue-cyan)] font-semibold' : 'text-[var(--ink-heading)] hover:text-[var(--blue-cyan)]'
@@ -287,7 +289,7 @@ export const Navbar: React.FC = () => {
 
             <li>
               <Link
-                href="/contact"
+                href={getHref('/contact')}
                 onClick={() => setIsOpen(false)}
                 className={`block text-base font-medium transition-colors ${
                   isContactActive ? 'text-[var(--blue-cyan)] font-semibold' : 'text-[var(--ink-heading)] hover:text-[var(--blue-cyan)]'
@@ -304,7 +306,7 @@ export const Navbar: React.FC = () => {
 
             <li className="pt-2">
               <Link
-                href="/contact?type=devis"
+                href={getHref('/contact?type=devis')}
                 onClick={() => setIsOpen(false)}
                 className="btn-v4-primary w-full text-center justify-center"
               >

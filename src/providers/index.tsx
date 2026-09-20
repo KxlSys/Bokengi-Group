@@ -2,15 +2,16 @@ import React from 'react'
 
 import { HeaderThemeProvider } from './HeaderTheme'
 import { ThemeProvider } from './Theme'
-import { I18nProvider } from '@/i18n'
+import { I18nProvider, type Locale } from '@/i18n'
 
 export const Providers: React.FC<{
   children: React.ReactNode
-}> = ({ children }) => {
+  initialLocale?: Locale
+}> = ({ children, initialLocale = 'fr' }) => {
   return (
     <ThemeProvider>
       <HeaderThemeProvider>
-        <I18nProvider>{children}</I18nProvider>
+        <I18nProvider initialLocale={initialLocale}>{children}</I18nProvider>
       </HeaderThemeProvider>
     </ThemeProvider>
   )

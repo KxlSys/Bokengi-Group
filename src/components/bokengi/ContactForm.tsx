@@ -14,7 +14,7 @@ const POLES_IDS = ['it', 'digital', 'business', 'consulting', 'events']
 
 export const ContactForm: React.FC<ContactFormProps> = () => {
   const searchParams = useSearchParams()
-  const { t, locale } = useI18n()
+  const { t, getHref } = useI18n()
 
   const [form, setForm] = useState({
     firstname: '',
@@ -66,11 +66,7 @@ export const ContactForm: React.FC<ContactFormProps> = () => {
 
     if (!form.consent) {
       setStatus('error')
-      setFeedbackMessage(
-        locale === 'en'
-          ? 'Please check the box confirming you have reviewed our Privacy Policy to submit your request.'
-          : 'Veuillez cocher la case attestant de la prise de connaissance de la Politique de confidentialité pour transmettre votre demande.'
-      )
+      setFeedbackMessage(t.contactForm.consentRequiredError)
       return
     }
 
@@ -84,7 +80,7 @@ export const ContactForm: React.FC<ContactFormProps> = () => {
       const data = await res.json()
 
       if (!res.ok) {
-        throw new Error(data.error || (locale === 'en' ? 'An error occurred during submission.' : 'Une erreur est survenue lors de la transmission.'))
+        throw new Error(data.error || t.contactForm.genericError)
       }
 
       setStatus('success')
@@ -103,7 +99,7 @@ export const ContactForm: React.FC<ContactFormProps> = () => {
       })
     } catch (err: any) {
       setStatus('error')
-      setFeedbackMessage(err.message || (locale === 'en' ? 'Unable to submit your request. Please try again.' : 'Impossible de transmettre votre demande. Veuillez réessayer.'))
+      setFeedbackMessage(err.message || t.contactForm.submissionFailed)
     }
   }
 
@@ -152,7 +148,7 @@ export const ContactForm: React.FC<ContactFormProps> = () => {
           role="alert"
           className="p-4 rounded-[var(--radius-xs)] bg-red-500/10 border border-red-500/30 text-red-500 text-xs leading-relaxed"
         >
-          <strong>Erreur : </strong> {feedbackMessage}
+          <strong>{t.common.errorPrefix} : </strong> {feedbackMessage}
         </div>
       )}
 
@@ -256,7 +252,7 @@ export const ContactForm: React.FC<ContactFormProps> = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label htmlFor="form-company" className="block text-xs uppercase font-mono tracking-wider text-[var(--ink-heading)] mb-1 font-semibold">
-            {t.contactForm.company} <span className="text-[var(--ink-muted)] text-[10px] lowercase">({locale === 'en' ? 'optional' : 'optionnel'})</span>
+            {t.contactForm.company} <span className="text-[var(--ink-muted)] text-[10px] lowercase">({t.common.optional})</span>
           </label>
           <input
             type="text"
@@ -288,7 +284,7 @@ export const ContactForm: React.FC<ContactFormProps> = () => {
       {/* 5. Téléphone */}
       <div>
         <label htmlFor="form-phone" className="block text-xs uppercase font-mono tracking-wider text-[var(--ink-heading)] mb-1 font-semibold">
-          {t.contactForm.phone} <span className="text-[var(--ink-muted)] text-[10px] lowercase">({locale === 'en' ? 'optional' : 'optionnel'})</span>
+          {t.contactForm.phone} <span className="text-[var(--ink-muted)] text-[10px] lowercase">({t.common.optional})</span>
         </label>
         <input
           type="tel"
@@ -320,7 +316,7 @@ export const ContactForm: React.FC<ContactFormProps> = () => {
 
       {/* 7. HONEYPOT ANTI-SPAM (Masqué aux humains) */}
       <div style={{ display: 'none' }} aria-hidden="true">
-        <label htmlFor="form-website">Ne pas remplir ce champ :</label>
+        <label htmlFor="form-website">{t.common.optional}</label>
         <input
           type="text"
           id="form-website"
@@ -350,23 +346,19 @@ export const ContactForm: React.FC<ContactFormProps> = () => {
           >
             {t.contactForm.consentText}{' '}
             <Link
-              href="/confidentialite"
+              href={getHref('/confidentialite')}
               target="_blank"
               rel="noopener noreferrer"
               className="text-[var(--blue-cyan)] font-medium underline underline-offset-2 hover:opacity-80"
             >
               {t.contactForm.privacyLink}
             </Link>{' '}
-            {locale === 'en'
-              ? 'of Bokengi Group and agree to the processing of submitted data for project estimation and scoping purposes.'
-              : 'de Bokengi Group et j’accepte que les informations saisies soient traitées dans le cadre de ma demande de devis ou de cadrage.'}{' '}
+            {t.contactForm.consentSuffix}{' '}
             <span className="text-[var(--blue-cyan)]">*</span>
           </label>
         </div>
         <p className="text-[11px] text-[var(--ink-faint)] leading-relaxed sm:pl-7">
-          {locale === 'en'
-            ? 'Legal basis: Pre-contractual measures at your request (Art. 6.1.b GDPR). Your data is never transferred to any third party for commercial purposes.'
-            : 'Base légale : exécution de démarches précontractuelles à votre demande (art. 6.1.b RGPD). Vos données ne sont cédées à aucun tiers à des fins publicitaires.'}
+          {t.contactForm.gdprNotice}
         </p>
       </div>
 
@@ -392,11 +384,7 @@ export const ContactForm: React.FC<ContactFormProps> = () => {
 
         <div className="text-xs text-[var(--ink-muted)] flex items-center gap-2">
           <span>🔒</span>
-          <span>
-            {locale === 'en'
-              ? 'Secure transmission · Confidential data'
-              : 'Transmission sécurisée · Données confidentielles'}
-          </span>
+          <span>{t.contactForm.securityBadge}</span>
         </div>
       </div>
     </form>

@@ -1,6 +1,9 @@
+'use client'
+
 import React from 'react'
 import Link from 'next/link'
 import { Kicker } from './Kicker'
+import { useI18n } from '@/i18n'
 import type { CaseStudyData } from '@/data/bokengi-seed-data'
 
 interface ProjectsSectionV4Props {
@@ -10,6 +13,9 @@ interface ProjectsSectionV4Props {
 const TARGET_SLUGS = ['esiika', 'portail-kongama', 'fleetguard']
 
 export const ProjectsSectionV4: React.FC<ProjectsSectionV4Props> = ({ caseStudies }) => {
+  const { locale, t } = useI18n()
+  const getHref = (path: string) => `/${locale}${path === '/' ? '' : path}`
+
   // Sélectionner dynamiquement les 3 projets cibles par slug
   const matchedProjects = TARGET_SLUGS
     .map((slug) => caseStudies.find((cs) => cs.slug === slug))
@@ -23,11 +29,11 @@ export const ProjectsSectionV4: React.FC<ProjectsSectionV4Props> = ({ caseStudie
       <div className="container-v4">
         <div className="projects-v4-header">
           <div>
-            <Kicker>RÉALISATIONS & ÉTUDES DE CAS</Kicker>
-            <h2 className="projects-v4-title">Des architectures déployées avec rigueur.</h2>
+            <Kicker>{t.home.projectsKicker}</Kicker>
+            <h2 className="projects-v4-title">{t.home.projectsTitle}</h2>
           </div>
-          <Link href="/realisations" className="btn-v4-secondary">
-            Voir tous les projets →
+          <Link href={getHref('/realisations')} className="btn-v4-secondary">
+            {t.home.projectsCta}
           </Link>
         </div>
 

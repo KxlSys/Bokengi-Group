@@ -1,0 +1,30 @@
+{
+  "actions": [],
+  "creation": "2026-09-20 18:00:00.000000",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "category_name"
+  ],
+  "fields": [
+    {
+      "fieldname": "category_name",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Nom de catégorie",
+      "reqd": 1
+    }
+  ],
+  "istable": 1,
+  "links": [],
+  "modified": "2026-09-20 18:00:00.000000",
+  "modified_by": "Administrator",
+  "module": "Bokengi Core",
+  "name": "Bokengi Category Item",
+  "owner": "Administrator",
+  "permissions": [],
+  "sort_field": "idx",
+  "sort_order": "ASC",
+  "states": []
+}

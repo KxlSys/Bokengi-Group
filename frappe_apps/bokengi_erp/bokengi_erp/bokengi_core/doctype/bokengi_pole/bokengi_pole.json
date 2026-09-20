@@ -1,0 +1,200 @@
+{
+  "actions": [],
+  "autoname": "field:slug",
+  "creation": "2026-09-20 18:00:00.000000",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "field_order": [
+    "slug",
+    "custom_payload_id",
+    "icon",
+    "order",
+    "status",
+    "department",
+    "tab_fr",
+    "pole_name_fr",
+    "short_description_fr",
+    "description_fr",
+    "domains_fr",
+    "seo_title_fr",
+    "seo_description_fr",
+    "tab_en",
+    "pole_name_en",
+    "short_description_en",
+    "description_en",
+    "domains_en",
+    "seo_title_en",
+    "seo_description_en"
+  ],
+  "fields": [
+    {
+      "fieldname": "slug",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Identifiant URL (Slug)",
+      "reqd": 1,
+      "unique": 1
+    },
+    {
+      "fieldname": "custom_payload_id",
+      "fieldtype": "Data",
+      "label": "ID Payload d'origine",
+      "read_only": 1,
+      "unique": 1
+    },
+    {
+      "default": "server",
+      "fieldname": "icon",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Code Icône SVG"
+    },
+    {
+      "default": "0",
+      "fieldname": "order",
+      "fieldtype": "Int",
+      "in_list_view": 1,
+      "label": "Ordre d'affichage"
+    },
+    {
+      "default": "Published",
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "in_list_view": 1,
+      "label": "Statut",
+      "options": "Draft\nPublished",
+      "reqd": 1
+    },
+    {
+      "fieldname": "department",
+      "fieldtype": "Link",
+      "label": "Département ERP (Liaison RH / Comptable)",
+      "options": "Department"
+    },
+    {
+      "fieldname": "tab_fr",
+      "fieldtype": "Tab Break",
+      "label": "Contenu Français (FR)"
+    },
+    {
+      "fieldname": "pole_name_fr",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Nom du pôle (FR)",
+      "reqd": 1
+    },
+    {
+      "fieldname": "short_description_fr",
+      "fieldtype": "Small Text",
+      "label": "Description courte (FR)",
+      "reqd": 1
+    },
+    {
+      "fieldname": "description_fr",
+      "fieldtype": "Text Editor",
+      "label": "Description détaillée (FR)",
+      "reqd": 1
+    },
+    {
+      "fieldname": "domains_fr",
+      "fieldtype": "Data",
+      "label": "Domaines d'intervention (FR)"
+    },
+    {
+      "fieldname": "seo_title_fr",
+      "fieldtype": "Data",
+      "label": "Titre SEO (FR)"
+    },
+    {
+      "fieldname": "seo_description_fr",
+      "fieldtype": "Small Text",
+      "label": "Description SEO (FR)"
+    },
+    {
+      "fieldname": "tab_en",
+      "fieldtype": "Tab Break",
+      "label": "Contenu Anglais (EN)"
+    },
+    {
+      "fieldname": "pole_name_en",
+      "fieldtype": "Data",
+      "label": "Nom du pôle (EN)",
+      "reqd": 1
+    },
+    {
+      "fieldname": "short_description_en",
+      "fieldtype": "Small Text",
+      "label": "Description courte (EN)",
+      "reqd": 1
+    },
+    {
+      "fieldname": "description_en",
+      "fieldtype": "Text Editor",
+      "label": "Description détaillée (EN)",
+      "reqd": 1
+    },
+    {
+      "fieldname": "domains_en",
+      "fieldtype": "Data",
+      "label": "Domaines d'intervention (EN)"
+    },
+    {
+      "fieldname": "seo_title_en",
+      "fieldtype": "Data",
+      "label": "Titre SEO (EN)"
+    },
+    {
+      "fieldname": "seo_description_en",
+      "fieldtype": "Small Text",
+      "label": "Description SEO (EN)"
+    }
+  ],
+  "links": [],
+  "modified": "2026-09-20 18:00:00.000000",
+  "modified_by": "Administrator",
+  "module": "Bokengi Core",
+  "name": "Bokengi Pole",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    },
+    {
+      "create": 1,
+      "delete": 0,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "Bokengi Content Editor",
+      "share": 0,
+      "write": 1
+    },
+    {
+      "create": 0,
+      "delete": 0,
+      "email": 0,
+      "export": 0,
+      "print": 0,
+      "read": 1,
+      "report": 0,
+      "role": "All",
+      "share": 0,
+      "write": 0
+    }
+  ],
+  "sort_field": "order",
+  "sort_order": "ASC",
+  "states": [],
+  "track_changes": 1
+}

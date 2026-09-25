@@ -1,0 +1,36 @@
+{
+  "role_definition": {
+    "role_name": "Bokengi Migration Service",
+    "description": "Rôle de service à moindre privilège dédié aux opérations d'ingestion et de synchronisation Payload -> ERPNext.",
+    "is_custom": 1,
+    "desk_access": 1
+  },
+  "permissions_matrix": [
+    { "doctype": "Bokengi Pole", "read": 1, "write": 1, "create": 1, "delete": 0, "submit": 0, "cancel": 0, "amend": 0 },
+    { "doctype": "Bokengi Service", "read": 1, "write": 1, "create": 1, "delete": 0, "submit": 0, "cancel": 0, "amend": 0 },
+    { "doctype": "Bokengi Technical Tag", "read": 1, "write": 1, "create": 1, "delete": 0, "submit": 0, "cancel": 0, "amend": 0 },
+    { "doctype": "Bokengi Case Study", "read": 1, "write": 1, "create": 1, "delete": 0, "submit": 0, "cancel": 0, "amend": 0 },
+    { "doctype": "Bokengi Technology Item", "read": 1, "write": 1, "create": 1, "delete": 0, "submit": 0, "cancel": 0, "amend": 0 },
+    { "doctype": "Bokengi Screenshot Item", "read": 1, "write": 1, "create": 1, "delete": 0, "submit": 0, "cancel": 0, "amend": 0 },
+    { "doctype": "Bokengi Post", "read": 1, "write": 1, "create": 1, "delete": 0, "submit": 0, "cancel": 0, "amend": 0 },
+    { "doctype": "Bokengi Category Item", "read": 1, "write": 1, "create": 1, "delete": 0, "submit": 0, "cancel": 0, "amend": 0 },
+    { "doctype": "Bokengi Tag Item", "read": 1, "write": 1, "create": 1, "delete": 0, "submit": 0, "cancel": 0, "amend": 0 },
+    { "doctype": "Bokengi Web Page", "read": 1, "write": 1, "create": 1, "delete": 0, "submit": 0, "cancel": 0, "amend": 0 },
+    { "doctype": "Bokengi Access Request", "read": 1, "write": 1, "create": 1, "delete": 0, "submit": 0, "cancel": 0, "amend": 0 },
+    { "doctype": "Bokengi Site Settings", "read": 1, "write": 1, "create": 1, "delete": 0, "submit": 0, "cancel": 0, "amend": 0 },
+    { "doctype": "Item", "read": 1, "write": 1, "create": 1, "delete": 0, "submit": 0, "cancel": 0, "amend": 0 },
+    { "doctype": "Customer", "read": 1, "write": 1, "create": 1, "delete": 0, "submit": 0, "cancel": 0, "amend": 0 },
+    { "doctype": "Contact", "read": 1, "write": 1, "create": 1, "delete": 0, "submit": 0, "cancel": 0, "amend": 0 },
+    { "doctype": "Lead", "read": 1, "write": 1, "create": 1, "delete": 0, "submit": 0, "cancel": 0, "amend": 0 },
+    { "doctype": "Quotation", "read": 1, "write": 1, "create": 1, "delete": 0, "submit": 1, "cancel": 0, "amend": 0 },
+    { "doctype": "Sales Invoice", "read": 1, "write": 1, "create": 1, "delete": 0, "submit": 1, "cancel": 0, "amend": 0 },
+    { "doctype": "File", "read": 1, "write": 1, "create": 1, "delete": 0, "submit": 0, "cancel": 0, "amend": 0 },
+    { "doctype": "User", "read": 1, "write": 0, "create": 0, "delete": 0, "submit": 0, "cancel": 0, "amend": 0 }
+  ],
+  "security_constraints": {
+    "system_manager_excluded": true,
+    "user_deletion_prohibited": true,
+    "database_raw_query_prohibited": true,
+    "secret_management": "Utilisation exclusive de en-têtes Authorization: token api_key:api_secret transmises via HTTPS TLS 1.3"
+  }
+}

@@ -1,0 +1,296 @@
+{
+  "manifestVersion": "1.0.0",
+  "timestampUtc": "2026-09-20T18:41:20.980Z",
+  "gitCommit": "515efddf0ba5672346ed56dbc3e18c9ea163479f",
+  "environment": "PRODUCTION_ARCHIVE",
+  "payloadVersion": "3.88.0",
+  "frameworkVersion": "Next.js 15.3.1 / OpenNext Cloudflare",
+  "archivedFilesCount": 45,
+  "databaseDump": {
+    "filename": "payload_postgres_cold_dump_20260920.sql",
+    "compressedFilename": "payload_postgres_cold_dump_20260920.sql.gz",
+    "uncompressedSizeBytes": 54298,
+    "compressedSizeBytes": 15320,
+    "uncompressedSha256": "4b5bb2288943b0b4b7ef69f92b8f609df8e2dd3bdd770bd4c4fdcd357212e375",
+    "compressedSha256": "24a3397d2874744880534c92c92a90767d5df05a8e9a61a25c85b7b0c27f795c",
+    "format": "SQL_PG_DUMP_GZIP"
+  },
+  "archivedFiles": [
+    {
+      "relativePath": "config/payload.config.ts",
+      "originalPath": "docs/archive/payload/config/payload.config.ts",
+      "sizeBytes": 8754,
+      "sha256": "29f1414e244e40c97f24a81d13d1410f095e5322ab9be30171efc01dbc6421dc"
+    },
+    {
+      "relativePath": "config/package.json",
+      "originalPath": "docs/archive/payload/config/package.json",
+      "sizeBytes": 3728,
+      "sha256": "e18576a52f9c42dc7e2cef7d10428f118d7f90d1a1716798c46fe025c66dbb37"
+    },
+    {
+      "relativePath": "schemas/collections/AccessRequests.ts",
+      "originalPath": "docs/archive/payload/schemas/collections/AccessRequests.ts",
+      "sizeBytes": 3873,
+      "sha256": "b8bc61f9c39f27c065fa0c9445d70a188c93fa54d18eb096671e3cf40603324a"
+    },
+    {
+      "relativePath": "schemas/collections/CaseStudies.ts",
+      "originalPath": "docs/archive/payload/schemas/collections/CaseStudies.ts",
+      "sizeBytes": 5064,
+      "sha256": "c130c5c44d12a038fabe09e52cf4d9c7610b60d15d50f1a3c252fa8c5c7ab224"
+    },
+    {
+      "relativePath": "schemas/collections/hooks/protectAccessRequest.ts",
+      "originalPath": "docs/archive/payload/schemas/collections/hooks/protectAccessRequest.ts",
+      "sizeBytes": 9784,
+      "sha256": "42176ffbc32012e61a8008a8afa7adadf1f9a31eb903dff61957b8c6c1035b1a"
+    },
+    {
+      "relativePath": "schemas/collections/hooks/protectLeadImmutability.ts",
+      "originalPath": "docs/archive/payload/schemas/collections/hooks/protectLeadImmutability.ts",
+      "sizeBytes": 3631,
+      "sha256": "ce8b78515a64f8cb1a1e99f862fe62a7489b8e114cf459ba490760111805ca44"
+    },
+    {
+      "relativePath": "schemas/collections/hooks/protectUserSecurity.ts",
+      "originalPath": "docs/archive/payload/schemas/collections/hooks/protectUserSecurity.ts",
+      "sizeBytes": 7197,
+      "sha256": "e17f1c0fa45d8b703ee5d55690fa09839dc4d1354c6e2cc66d7196170bcb32ce"
+    },
+    {
+      "relativePath": "schemas/collections/Invoices.ts",
+      "originalPath": "docs/archive/payload/schemas/collections/Invoices.ts",
+      "sizeBytes": 11596,
+      "sha256": "7e05a7d3fe84ac9ce0ac12207e94c12003f875662610e1914bc0ecc8bf2bef9e"
+    },
+    {
+      "relativePath": "schemas/collections/Leads.ts",
+      "originalPath": "docs/archive/payload/schemas/collections/Leads.ts",
+      "sizeBytes": 10962,
+      "sha256": "a51ac8c62264971d9cd92e86b0cf576039635d4b3ed396d959c72798ae498956"
+    },
+    {
+      "relativePath": "schemas/collections/Media.ts",
+      "originalPath": "docs/archive/payload/schemas/collections/Media.ts",
+      "sizeBytes": 2094,
+      "sha256": "8e144f7290ff5a7c7b5104287de46cf3ff1ad390d2bdc847f0a20e522c050279"
+    },
+    {
+      "relativePath": "schemas/collections/Pages.ts",
+      "originalPath": "docs/archive/payload/schemas/collections/Pages.ts",
+      "sizeBytes": 2103,
+      "sha256": "08a3b64ed53ed4976486693265d0676d766d8dd2fae72b5ea01cf4b8af1ec4c4"
+    },
+    {
+      "relativePath": "schemas/collections/Poles.ts",
+      "originalPath": "docs/archive/payload/schemas/collections/Poles.ts",
+      "sizeBytes": 3209,
+      "sha256": "eca3deffcf788bb28ec2764666314c50b0b9fbc09e51022ced5ac7c05c8d00ce"
+    },
+    {
+      "relativePath": "schemas/collections/Posts.ts",
+      "originalPath": "docs/archive/payload/schemas/collections/Posts.ts",
+      "sizeBytes": 3455,
+      "sha256": "804eac98c24b81944d29948d2da54505aa2ff65627366fc45475dcb0b2e833bb"
+    },
+    {
+      "relativePath": "schemas/collections/Services.ts",
+      "originalPath": "docs/archive/payload/schemas/collections/Services.ts",
+      "sizeBytes": 3513,
+      "sha256": "423f3510c7ff365b78ecf5a77fe2295b4518ec7b16a45ef684727aadc4816eb4"
+    },
+    {
+      "relativePath": "schemas/collections/Users/index.ts",
+      "originalPath": "docs/archive/payload/schemas/collections/Users/index.ts",
+      "sizeBytes": 4372,
+      "sha256": "e84b643e8cb9507ee5aab3aa029b1a75c731df65d5500270ecc305828eecb299"
+    },
+    {
+      "relativePath": "schemas/globals/Footer.ts",
+      "originalPath": "docs/archive/payload/schemas/globals/Footer.ts",
+      "sizeBytes": 2428,
+      "sha256": "b2fdd139801e51fd82c4936a2997562d2b50b480bd1cd681abde488a2e3f913a"
+    },
+    {
+      "relativePath": "schemas/globals/Header.ts",
+      "originalPath": "docs/archive/payload/schemas/globals/Header.ts",
+      "sizeBytes": 1845,
+      "sha256": "7229bf722c26a75c0d637b3c974229b73fbf0c65dc04ded46a1e1a7dc1261966"
+    },
+    {
+      "relativePath": "schemas/globals/SiteSettings.ts",
+      "originalPath": "docs/archive/payload/schemas/globals/SiteSettings.ts",
+      "sizeBytes": 5392,
+      "sha256": "76313e0df92289981ae1b0e33f9c6b6d7c1a8efcba043c3398823f215a5f6c5b"
+    },
+    {
+      "relativePath": "schemas/fields/defaultLexical.ts",
+      "originalPath": "docs/archive/payload/schemas/fields/defaultLexical.ts",
+      "sizeBytes": 1393,
+      "sha256": "5d6f4c6cfcc929340cb4d690fe06820d654f60f7b4200eaee950fa78dab415f8"
+    },
+    {
+      "relativePath": "schemas/fields/seo.ts",
+      "originalPath": "docs/archive/payload/schemas/fields/seo.ts",
+      "sizeBytes": 936,
+      "sha256": "965e7f3dcbe4b89c681f22b90f7b8bbefecc5af038533d43c19d8976a1e52b97"
+    },
+    {
+      "relativePath": "config/plugins/index.ts",
+      "originalPath": "docs/archive/payload/config/plugins/index.ts",
+      "sizeBytes": 75,
+      "sha256": "2905a370af9569789e31ef980be679dfb1129d4d04a01cd9babfad5282ceb242"
+    },
+    {
+      "relativePath": "migrations/20260409_155721_initial.json",
+      "originalPath": "docs/archive/payload/migrations/20260409_155721_initial.json",
+      "sizeBytes": 261031,
+      "sha256": "422e9a8a4cb40b6602c03213d365072355b7e293e64f457ee54e3b59095ceebf"
+    },
+    {
+      "relativePath": "migrations/20260409_155721_initial.ts",
+      "originalPath": "docs/archive/payload/migrations/20260409_155721_initial.ts",
+      "sizeBytes": 74781,
+      "sha256": "f7e6e302876e1d64cb78b267f291dd0535f1778462776fec70ccb42862fbfdb3"
+    },
+    {
+      "relativePath": "migrations/20260904_150606_add_collections.json",
+      "originalPath": "docs/archive/payload/migrations/20260904_150606_add_collections.json",
+      "sizeBytes": 103641,
+      "sha256": "9cd323b5bad39d432acfb39accc2fd9666063cdff116396be31df26d85addab9"
+    },
+    {
+      "relativePath": "migrations/20260904_150606_add_collections.ts",
+      "originalPath": "docs/archive/payload/migrations/20260904_150606_add_collections.ts",
+      "sizeBytes": 13693,
+      "sha256": "62352f2fe903b097a8a0184c49985eb568ada20ddfdb4ca48cf2e47cf15c6b9f"
+    },
+    {
+      "relativePath": "migrations/20260905_034500_add_posts_categories_tags.ts",
+      "originalPath": "docs/archive/payload/migrations/20260905_034500_add_posts_categories_tags.ts",
+      "sizeBytes": 3346,
+      "sha256": "c8c34dae9ee1067aa9ff1a6c26756760b110c5ec1cf3bfa4912e87298bb18f6c"
+    },
+    {
+      "relativePath": "migrations/20260905_060000_align_posts_schema.ts",
+      "originalPath": "docs/archive/payload/migrations/20260905_060000_align_posts_schema.ts",
+      "sizeBytes": 9590,
+      "sha256": "5a542e3641974e6ad0b26491e4c9c9018b963a4a5dee80a37e2f9ecb164b8564"
+    },
+    {
+      "relativePath": "migrations/20260907_020000_add_status_to_services_and_case_studies.ts",
+      "originalPath": "docs/archive/payload/migrations/20260907_020000_add_status_to_services_and_case_studies.ts",
+      "sizeBytes": 3267,
+      "sha256": "4cf6dbaa4c7c0f6329e6d0aabf91ddfc26ab752fa5da7743b1478537f10a926d"
+    },
+    {
+      "relativePath": "migrations/20260908_220000_add_users_rbac.ts",
+      "originalPath": "docs/archive/payload/migrations/20260908_220000_add_users_rbac.ts",
+      "sizeBytes": 3826,
+      "sha256": "dee33a7ca8e3ba739dcf4a5838d14476aa848f53a30f95e377fb2fcb2ba26a0a"
+    },
+    {
+      "relativePath": "migrations/20260908_230000_add_access_requests.ts",
+      "originalPath": "docs/archive/payload/migrations/20260908_230000_add_access_requests.ts",
+      "sizeBytes": 5264,
+      "sha256": "f4f0d64b255b0ceaf6bce4e59024e69c135c537e16fbc1af49525e47217b7417"
+    },
+    {
+      "relativePath": "migrations/20260909_160000_add_access_requests_locked_documents_rel.ts",
+      "originalPath": "docs/archive/payload/migrations/20260909_160000_add_access_requests_locked_documents_rel.ts",
+      "sizeBytes": 2587,
+      "sha256": "1d0d0fd53be5fd2329024b6003c84b016ea7553d49b2d280f8ab17d8a90ce6a7"
+    },
+    {
+      "relativePath": "migrations/20260909_180000_add_invoices_and_crm_fields.ts",
+      "originalPath": "docs/archive/payload/migrations/20260909_180000_add_invoices_and_crm_fields.ts",
+      "sizeBytes": 11744,
+      "sha256": "757fd7cde3a3679e7160ed450797728e3fb1b88c3ad939f162f6ec23ec6af4cb"
+    },
+    {
+      "relativePath": "migrations/index.ts",
+      "originalPath": "docs/archive/payload/migrations/index.ts",
+      "sizeBytes": 2786,
+      "sha256": "c28f87ceaff0e761d5bbc0e8adf0b80b1f5e54d92a83498bff3ba62d73db0b82"
+    },
+    {
+      "relativePath": "scripts/seed.ts",
+      "originalPath": "docs/archive/payload/scripts/seed.ts",
+      "sizeBytes": 9732,
+      "sha256": "a93e242d2adf06c2cd9a77f21b56767c639039c8aec866cac128deab70c29403"
+    },
+    {
+      "relativePath": "scripts/bokengi-seed-data.ts",
+      "originalPath": "docs/archive/payload/scripts/bokengi-seed-data.ts",
+      "sizeBytes": 43739,
+      "sha256": "5f0b04093a46f7df379674ef813d44cbd8cbc6a1b790f7c8647dd99acbe4ebea"
+    },
+    {
+      "relativePath": "scripts/erpnext_schemas/custom_fields.json",
+      "originalPath": "docs/archive/payload/scripts/erpnext_schemas/custom_fields.json",
+      "sizeBytes": 3277,
+      "sha256": "42827b492141dbffa2f9d87e419e72a1d4c03ee847d82bd2da0833c90b69ee4e"
+    },
+    {
+      "relativePath": "scripts/erpnext_schemas/doctypes.json",
+      "originalPath": "docs/archive/payload/scripts/erpnext_schemas/doctypes.json",
+      "sizeBytes": 16990,
+      "sha256": "389ded8f3e0d83fbcda939a029c313cc8bb96649a65156676d85b445b326b3bb"
+    },
+    {
+      "relativePath": "scripts/erpnext_schemas/roles_and_permissions.json",
+      "originalPath": "docs/archive/payload/scripts/erpnext_schemas/roles_and_permissions.json",
+      "sizeBytes": 3042,
+      "sha256": "f18a9b0350298b6e8e0663acb30ede16113555651072c8344d8ad71f707979b3"
+    },
+    {
+      "relativePath": "reports/PAYLOAD_TO_ERPNEXT_7DAY_WARRANTY_REPORT.md",
+      "originalPath": "docs/archive/payload/reports/PAYLOAD_TO_ERPNEXT_7DAY_WARRANTY_REPORT.md",
+      "sizeBytes": 6806,
+      "sha256": "1dde92bfe3a70aaaeb985e1c5099098f31588b190a9f134b52be9c56273bda1c"
+    },
+    {
+      "relativePath": "reports/PAYLOAD_TO_ERPNEXT_FINAL_DECOMMISSIONING_AUDIT.md",
+      "originalPath": "docs/archive/payload/reports/PAYLOAD_TO_ERPNEXT_FINAL_DECOMMISSIONING_AUDIT.md",
+      "sizeBytes": 8598,
+      "sha256": "55ef84bd86eb5fc1bf8d8c92d6dfa5519b8fb19bbedd58be221f425c37617a77"
+    },
+    {
+      "relativePath": "reports/PAYLOAD_TO_ERPNEXT_POST_CUTOVER_STABILIZATION_001.md",
+      "originalPath": "docs/archive/payload/reports/PAYLOAD_TO_ERPNEXT_POST_CUTOVER_STABILIZATION_001.md",
+      "sizeBytes": 5760,
+      "sha256": "b458c4a027346ffa1d1453cf2cc5a0caf7b16e6a4c58769b0bfc4b1c7eb979a5"
+    },
+    {
+      "relativePath": "reports/PAYLOAD_TO_ERPNEXT_PRODUCTION_CUTOVER_001.md",
+      "originalPath": "docs/archive/payload/reports/PAYLOAD_TO_ERPNEXT_PRODUCTION_CUTOVER_001.md",
+      "sizeBytes": 7665,
+      "sha256": "aa915bb576502708f44d124b69e98f2488c559e2c12f84148459aea439ebfd50"
+    },
+    {
+      "relativePath": "reports/PAYLOAD_TO_ERPNEXT_PRODUCTION_POST_MIGRATION_VALIDATION_001.md",
+      "originalPath": "docs/archive/payload/reports/PAYLOAD_TO_ERPNEXT_PRODUCTION_POST_MIGRATION_VALIDATION_001.md",
+      "sizeBytes": 17787,
+      "sha256": "a03d0532b5fddbcf8de3d1a7df050425538e92ca06b2b2ecb669f275c1d6a31e"
+    },
+    {
+      "relativePath": "database/payload_postgres_cold_dump_20260920.sql",
+      "originalPath": "docs/archive/payload/database/payload_postgres_cold_dump_20260920.sql",
+      "sizeBytes": 54298,
+      "sha256": "4b5bb2288943b0b4b7ef69f92b8f609df8e2dd3bdd770bd4c4fdcd357212e375"
+    },
+    {
+      "relativePath": "database/payload_postgres_cold_dump_20260920.sql.gz",
+      "originalPath": "docs/archive/payload/database/payload_postgres_cold_dump_20260920.sql.gz",
+      "sizeBytes": 15320,
+      "sha256": "24a3397d2874744880534c92c92a90767d5df05a8e9a61a25c85b7b0c27f795c"
+    }
+  ],
+  "cloudflareResources": {
+    "hyperdriveBinding": "HYPERDRIVE",
+    "r2MediaBucket": "pub-media.bokengi-group.com",
+    "workerRuntimeContext": "DATA_SOURCE=erpnext (Primary) / fallback=payload"
+  },
+  "verificationStatus": "ALL_CHECKSUMS_VERIFIED_100_PERCENT"
+}

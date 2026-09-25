@@ -1,0 +1,740 @@
+[
+  {
+    "step": 1,
+    "collection": "users",
+    "sourceId": 1,
+    "sourceSlug": "superadmin@bokengi-group.com",
+    "targetDocType": "User",
+    "targetName": "superadmin@bokengi-group.com",
+    "operation": "CREATED",
+    "customPayloadId": "user-1",
+    "customPayloadSlug": "superadmin@bokengi-group.com",
+    "relationsResolved": {
+      "role_profile": "Bokengi Super Admin"
+    },
+    "checksum": "4ef6075b7daebec7c55a3635d03d487d2a033259ae38e0f8e35982c18da5d969",
+    "status": "SUCCESS"
+  },
+  {
+    "step": 1,
+    "collection": "users",
+    "sourceId": 2,
+    "sourceSlug": "admin.tech@bokengi-group.com",
+    "targetDocType": "User",
+    "targetName": "admin.tech@bokengi-group.com",
+    "operation": "CREATED",
+    "customPayloadId": "user-2",
+    "customPayloadSlug": "admin.tech@bokengi-group.com",
+    "relationsResolved": {
+      "role_profile": "Bokengi Admin"
+    },
+    "checksum": "a1b91ae365426cd7e7f7f5ef3c003f55f1549927ff2a6c9b945480f11d8644df",
+    "status": "SUCCESS"
+  },
+  {
+    "step": 1,
+    "collection": "users",
+    "sourceId": 3,
+    "sourceSlug": "redacteur@bokengi-group.com",
+    "targetDocType": "User",
+    "targetName": "redacteur@bokengi-group.com",
+    "operation": "CREATED",
+    "customPayloadId": "user-3",
+    "customPayloadSlug": "redacteur@bokengi-group.com",
+    "relationsResolved": {
+      "role_profile": "Bokengi Content Editor"
+    },
+    "checksum": "e051c15fd26225ea858f28504e9d9798fa0d04c4abe6670380c7f9dc82084280",
+    "status": "SUCCESS"
+  },
+  {
+    "step": 2,
+    "collection": "media",
+    "sourceId": 1,
+    "sourceSlug": "bokengi-logo.png",
+    "targetDocType": "File",
+    "targetName": "bokengi-logo.png",
+    "operation": "CREATED",
+    "customPayloadId": "media-1",
+    "customPayloadSlug": "bokengi-logo.png",
+    "relationsResolved": {
+      "storage_bucket": "bokengi-media"
+    },
+    "checksum": "c4c7951724668f36c1a599dce32a6c5a4260c4973f3263f51493a3a3139f96d2",
+    "status": "SUCCESS"
+  },
+  {
+    "step": 2,
+    "collection": "media",
+    "sourceId": 2,
+    "sourceSlug": "og-image.png",
+    "targetDocType": "File",
+    "targetName": "og-image.png",
+    "operation": "CREATED",
+    "customPayloadId": "media-2",
+    "customPayloadSlug": "og-image.png",
+    "relationsResolved": {
+      "storage_bucket": "bokengi-media"
+    },
+    "checksum": "6c3c0bd25c55cbaa67e105b758156fc080bd0c14bf7fb755208b9b9eac4ba191",
+    "status": "SUCCESS"
+  },
+  {
+    "step": 2,
+    "collection": "media",
+    "sourceId": 3,
+    "sourceSlug": "bokengi-bimi.svg",
+    "targetDocType": "File",
+    "targetName": "bokengi-bimi.svg",
+    "operation": "CREATED",
+    "customPayloadId": "media-3",
+    "customPayloadSlug": "bokengi-bimi.svg",
+    "relationsResolved": {
+      "storage_bucket": "bokengi-media"
+    },
+    "checksum": "d9d82ff360cd7d96be2b362cfcce99a4841c16e305a902a75c056eeba14b9360",
+    "status": "SUCCESS"
+  },
+  {
+    "step": 2,
+    "collection": "media",
+    "sourceId": 4,
+    "sourceSlug": "website-template-OG.webp",
+    "targetDocType": "File",
+    "targetName": "website-template-OG.webp",
+    "operation": "CREATED",
+    "customPayloadId": "media-4",
+    "customPayloadSlug": "website-template-OG.webp",
+    "relationsResolved": {
+      "storage_bucket": "bokengi-media"
+    },
+    "checksum": "e9bf787ba49a5d14513ef4e539fbb107f9f75cac9c20733a65ba54a969a06a83",
+    "status": "SUCCESS"
+  },
+  {
+    "step": 3,
+    "collection": "poles",
+    "sourceId": "pole-it",
+    "sourceSlug": "it",
+    "targetDocType": "Bokengi Pole",
+    "targetName": "POL-it",
+    "operation": "CREATED",
+    "customPayloadId": "pole-it",
+    "customPayloadSlug": "it",
+    "relationsResolved": {},
+    "checksum": "78688db60df65cb70142cfe6577921cdba3a189093af15046d019770d57febba",
+    "status": "SUCCESS"
+  },
+  {
+    "step": 3,
+    "collection": "poles",
+    "sourceId": "pole-digital",
+    "sourceSlug": "digital",
+    "targetDocType": "Bokengi Pole",
+    "targetName": "POL-digital",
+    "operation": "CREATED",
+    "customPayloadId": "pole-digital",
+    "customPayloadSlug": "digital",
+    "relationsResolved": {},
+    "checksum": "af8f5e13086ec2703961ebeea424f78571f7f62acbdfcbf41057194a1bcab47c",
+    "status": "SUCCESS"
+  },
+  {
+    "step": 3,
+    "collection": "poles",
+    "sourceId": "pole-business",
+    "sourceSlug": "business",
+    "targetDocType": "Bokengi Pole",
+    "targetName": "POL-business",
+    "operation": "CREATED",
+    "customPayloadId": "pole-business",
+    "customPayloadSlug": "business",
+    "relationsResolved": {},
+    "checksum": "605d5fd5d79fa6ab379411af8ab31c72d7cb232913f6f7301d397e13efb1ecce",
+    "status": "SUCCESS"
+  },
+  {
+    "step": 3,
+    "collection": "poles",
+    "sourceId": "pole-consulting",
+    "sourceSlug": "consulting",
+    "targetDocType": "Bokengi Pole",
+    "targetName": "POL-consulting",
+    "operation": "CREATED",
+    "customPayloadId": "pole-consulting",
+    "customPayloadSlug": "consulting",
+    "relationsResolved": {},
+    "checksum": "5c13b0df7cd48f8ffc312881abcb6e10239bec0b95486078629d5e118843cdb2",
+    "status": "SUCCESS"
+  },
+  {
+    "step": 3,
+    "collection": "poles",
+    "sourceId": "pole-events",
+    "sourceSlug": "events",
+    "targetDocType": "Bokengi Pole",
+    "targetName": "POL-events",
+    "operation": "CREATED",
+    "customPayloadId": "pole-events",
+    "customPayloadSlug": "events",
+    "relationsResolved": {},
+    "checksum": "3b845e809a445fe6fb9bc40ce475d53486953597fa391ab88141d061cb0a9fe5",
+    "status": "SUCCESS"
+  },
+  {
+    "step": 4,
+    "collection": "services",
+    "sourceId": "srv-cybersecurite-resilience",
+    "sourceSlug": "cybersecurite-resilience",
+    "targetDocType": "Bokengi Service",
+    "targetName": "SRV-cybersecurite-resilience",
+    "operation": "CREATED",
+    "customPayloadId": "srv-cybersecurite-resilience",
+    "customPayloadSlug": "cybersecurite-resilience",
+    "relationsResolved": {
+      "pole": "POL-it"
+    },
+    "checksum": "7b96a7217f19450f6a82e70286930fc1f56f11cf5b202b0392eb6d8f7e79dfb0",
+    "status": "SUCCESS"
+  },
+  {
+    "step": 4,
+    "collection": "services",
+    "sourceId": "srv-systemes-reseaux-cloud",
+    "sourceSlug": "systemes-reseaux-cloud",
+    "targetDocType": "Bokengi Service",
+    "targetName": "SRV-systemes-reseaux-cloud",
+    "operation": "CREATED",
+    "customPayloadId": "srv-systemes-reseaux-cloud",
+    "customPayloadSlug": "systemes-reseaux-cloud",
+    "relationsResolved": {
+      "pole": "POL-it"
+    },
+    "checksum": "25ead2270305311dc4225a846c7e63702176799b4e413ce3895419e35dc24275",
+    "status": "SUCCESS"
+  },
+  {
+    "step": 4,
+    "collection": "services",
+    "sourceId": "srv-ingenierie-logicielle-api",
+    "sourceSlug": "ingenierie-logicielle-api",
+    "targetDocType": "Bokengi Service",
+    "targetName": "SRV-ingenierie-logicielle-api",
+    "operation": "CREATED",
+    "customPayloadId": "srv-ingenierie-logicielle-api",
+    "customPayloadSlug": "ingenierie-logicielle-api",
+    "relationsResolved": {
+      "pole": "POL-it"
+    },
+    "checksum": "80cd846e283ae96482d3ca1a1d2431521b564716943dd6b7f3a62b8d370efb1f",
+    "status": "SUCCESS"
+  },
+  {
+    "step": 4,
+    "collection": "services",
+    "sourceId": "srv-maintenance-support-it",
+    "sourceSlug": "maintenance-support-it",
+    "targetDocType": "Bokengi Service",
+    "targetName": "SRV-maintenance-support-it",
+    "operation": "CREATED",
+    "customPayloadId": "srv-maintenance-support-it",
+    "customPayloadSlug": "maintenance-support-it",
+    "relationsResolved": {
+      "pole": "POL-it"
+    },
+    "checksum": "709d20b7ebc647fbcf30006798d311c4aef0ea302fdb2f572b03b4bbadc94d65",
+    "status": "SUCCESS"
+  },
+  {
+    "step": 4,
+    "collection": "services",
+    "sourceId": "srv-plateformes-web-portails",
+    "sourceSlug": "plateformes-web-portails",
+    "targetDocType": "Bokengi Service",
+    "targetName": "SRV-plateformes-web-portails",
+    "operation": "CREATED",
+    "customPayloadId": "srv-plateformes-web-portails",
+    "customPayloadSlug": "plateformes-web-portails",
+    "relationsResolved": {
+      "pole": "POL-digital"
+    },
+    "checksum": "6b24214bfcdbd672b90bf22bd52a4c810c6029d85e316224bcf4ae777728aa09",
+    "status": "SUCCESS"
+  },
+  {
+    "step": 4,
+    "collection": "services",
+    "sourceId": "srv-ecommerce-paiements-africains",
+    "sourceSlug": "ecommerce-paiements-africains",
+    "targetDocType": "Bokengi Service",
+    "targetName": "SRV-ecommerce-paiements-africains",
+    "operation": "CREATED",
+    "customPayloadId": "srv-ecommerce-paiements-africains",
+    "customPayloadSlug": "ecommerce-paiements-africains",
+    "relationsResolved": {
+      "pole": "POL-digital"
+    },
+    "checksum": "f308475058cc4eab7ddc971aaf86c364befc723e50b4acf80f1165b8fdd62930",
+    "status": "SUCCESS"
+  },
+  {
+    "step": 4,
+    "collection": "services",
+    "sourceId": "srv-applications-mobiles-pwa",
+    "sourceSlug": "applications-mobiles-pwa",
+    "targetDocType": "Bokengi Service",
+    "targetName": "SRV-applications-mobiles-pwa",
+    "operation": "CREATED",
+    "customPayloadId": "srv-applications-mobiles-pwa",
+    "customPayloadSlug": "applications-mobiles-pwa",
+    "relationsResolved": {
+      "pole": "POL-digital"
+    },
+    "checksum": "f3baef5fa380af712232c66e55e51f18cbec08239d2365f711a2b403875a9623",
+    "status": "SUCCESS"
+  },
+  {
+    "step": 4,
+    "collection": "services",
+    "sourceId": "srv-modernisation-refonte-applicative",
+    "sourceSlug": "modernisation-refonte-applicative",
+    "targetDocType": "Bokengi Service",
+    "targetName": "SRV-modernisation-refonte-applicative",
+    "operation": "CREATED",
+    "customPayloadId": "srv-modernisation-refonte-applicative",
+    "customPayloadSlug": "modernisation-refonte-applicative",
+    "relationsResolved": {
+      "pole": "POL-digital"
+    },
+    "checksum": "36f53a54b0d7d4feb2560c396726780b7b8e323b0d5c2ab499b89472f28b096c",
+    "status": "SUCCESS"
+  },
+  {
+    "step": 4,
+    "collection": "services",
+    "sourceId": "srv-digitalisation-processus-metiers",
+    "sourceSlug": "digitalisation-processus-metiers",
+    "targetDocType": "Bokengi Service",
+    "targetName": "SRV-digitalisation-processus-metiers",
+    "operation": "CREATED",
+    "customPayloadId": "srv-digitalisation-processus-metiers",
+    "customPayloadSlug": "digitalisation-processus-metiers",
+    "relationsResolved": {
+      "pole": "POL-business"
+    },
+    "checksum": "d14d6f59f923e175613102f39b9896583e0410fd8c193cd262e08a3daeaecad2",
+    "status": "SUCCESS"
+  },
+  {
+    "step": 4,
+    "collection": "services",
+    "sourceId": "srv-integration-erp-crm",
+    "sourceSlug": "integration-erp-crm",
+    "targetDocType": "Bokengi Service",
+    "targetName": "SRV-integration-erp-crm",
+    "operation": "CREATED",
+    "customPayloadId": "srv-integration-erp-crm",
+    "customPayloadSlug": "integration-erp-crm",
+    "relationsResolved": {
+      "pole": "POL-business"
+    },
+    "checksum": "a40050a73d0d508c2498b69642f529855a48f4de7097bc2437f9a2b2bae4acf8",
+    "status": "SUCCESS"
+  },
+  {
+    "step": 4,
+    "collection": "services",
+    "sourceId": "srv-business-intelligence-tableaux-bord",
+    "sourceSlug": "business-intelligence-tableaux-bord",
+    "targetDocType": "Bokengi Service",
+    "targetName": "SRV-business-intelligence-tableaux-bord",
+    "operation": "CREATED",
+    "customPayloadId": "srv-business-intelligence-tableaux-bord",
+    "customPayloadSlug": "business-intelligence-tableaux-bord",
+    "relationsResolved": {
+      "pole": "POL-business"
+    },
+    "checksum": "216fefbc309961e3da0ab47285c45872e642b72e9281887dc78e501cfcdac205",
+    "status": "SUCCESS"
+  },
+  {
+    "step": 4,
+    "collection": "services",
+    "sourceId": "srv-assistance-conduite-changement",
+    "sourceSlug": "assistance-conduite-changement",
+    "targetDocType": "Bokengi Service",
+    "targetName": "SRV-assistance-conduite-changement",
+    "operation": "CREATED",
+    "customPayloadId": "srv-assistance-conduite-changement",
+    "customPayloadSlug": "assistance-conduite-changement",
+    "relationsResolved": {
+      "pole": "POL-business"
+    },
+    "checksum": "3935ac40759745d72f4775c395deabc9eb03a3c24369f6781fae23183fedefda",
+    "status": "SUCCESS"
+  },
+  {
+    "step": 4,
+    "collection": "services",
+    "sourceId": "srv-audit-maturite-schema-directeur",
+    "sourceSlug": "audit-maturite-schema-directeur",
+    "targetDocType": "Bokengi Service",
+    "targetName": "SRV-audit-maturite-schema-directeur",
+    "operation": "CREATED",
+    "customPayloadId": "srv-audit-maturite-schema-directeur",
+    "customPayloadSlug": "audit-maturite-schema-directeur",
+    "relationsResolved": {
+      "pole": "POL-consulting"
+    },
+    "checksum": "c1ddc42c0095e5a2314b11fe807695a02322d4c5fcbdd10858e5566817c54b02",
+    "status": "SUCCESS"
+  },
+  {
+    "step": 4,
+    "collection": "services",
+    "sourceId": "srv-conformite-souverainete-donnees",
+    "sourceSlug": "conformite-souverainete-donnees",
+    "targetDocType": "Bokengi Service",
+    "targetName": "SRV-conformite-souverainete-donnees",
+    "operation": "CREATED",
+    "customPayloadId": "srv-conformite-souverainete-donnees",
+    "customPayloadSlug": "conformite-souverainete-donnees",
+    "relationsResolved": {
+      "pole": "POL-consulting"
+    },
+    "checksum": "23ce13b975ee0c9311a0f788eca76fd7bc2eabc44436175fb995271923d30c71",
+    "status": "SUCCESS"
+  },
+  {
+    "step": 4,
+    "collection": "services",
+    "sourceId": "srv-gestion-risques-pca-pra",
+    "sourceSlug": "gestion-risques-pca-pra",
+    "targetDocType": "Bokengi Service",
+    "targetName": "SRV-gestion-risques-pca-pra",
+    "operation": "CREATED",
+    "customPayloadId": "srv-gestion-risques-pca-pra",
+    "customPayloadSlug": "gestion-risques-pca-pra",
+    "relationsResolved": {
+      "pole": "POL-consulting"
+    },
+    "checksum": "1e15d2635bcd06f918286b61a3bc1c4666cea87d12772bae7f710e7ce0564ed4",
+    "status": "SUCCESS"
+  },
+  {
+    "step": 4,
+    "collection": "services",
+    "sourceId": "srv-assistance-maitrise-ouvrage-amoa",
+    "sourceSlug": "assistance-maitrise-ouvrage-amoa",
+    "targetDocType": "Bokengi Service",
+    "targetName": "SRV-assistance-maitrise-ouvrage-amoa",
+    "operation": "CREATED",
+    "customPayloadId": "srv-assistance-maitrise-ouvrage-amoa",
+    "customPayloadSlug": "assistance-maitrise-ouvrage-amoa",
+    "relationsResolved": {
+      "pole": "POL-consulting"
+    },
+    "checksum": "f6769213b676cfd789a2f5f434a6859d64b1dc9da05b56bbfe7d5ee239b0db27",
+    "status": "SUCCESS"
+  },
+  {
+    "step": 4,
+    "collection": "services",
+    "sourceId": "srv-captation-regie-streaming",
+    "sourceSlug": "captation-regie-streaming",
+    "targetDocType": "Bokengi Service",
+    "targetName": "SRV-captation-regie-streaming",
+    "operation": "CREATED",
+    "customPayloadId": "srv-captation-regie-streaming",
+    "customPayloadSlug": "captation-regie-streaming",
+    "relationsResolved": {
+      "pole": "POL-events"
+    },
+    "checksum": "d2468a14021e2779fae873298fb2ed9adbafc7d85f9886ebce98692f584a8cf3",
+    "status": "SUCCESS"
+  },
+  {
+    "step": 4,
+    "collection": "services",
+    "sourceId": "srv-coordination-evenements-hybrides",
+    "sourceSlug": "coordination-evenements-hybrides",
+    "targetDocType": "Bokengi Service",
+    "targetName": "SRV-coordination-evenements-hybrides",
+    "operation": "CREATED",
+    "customPayloadId": "srv-coordination-evenements-hybrides",
+    "customPayloadSlug": "coordination-evenements-hybrides",
+    "relationsResolved": {
+      "pole": "POL-events"
+    },
+    "checksum": "91f984f1243c3ea5884b1ee07417345e602aa46fe0dab45582cd335059705cdf",
+    "status": "SUCCESS"
+  },
+  {
+    "step": 4,
+    "collection": "services",
+    "sourceId": "srv-plateformes-evenementielles-dediees",
+    "sourceSlug": "plateformes-evenementielles-dediees",
+    "targetDocType": "Bokengi Service",
+    "targetName": "SRV-plateformes-evenementielles-dediees",
+    "operation": "CREATED",
+    "customPayloadId": "srv-plateformes-evenementielles-dediees",
+    "customPayloadSlug": "plateformes-evenementielles-dediees",
+    "relationsResolved": {
+      "pole": "POL-events"
+    },
+    "checksum": "14ab95d4316bd2bfedb1b9e8ec1aa1638fb5fa2a9c84cdfbf42de58236a9d1b1",
+    "status": "SUCCESS"
+  },
+  {
+    "step": 4,
+    "collection": "services",
+    "sourceId": "srv-production-contenus-medias",
+    "sourceSlug": "production-contenus-medias",
+    "targetDocType": "Bokengi Service",
+    "targetName": "SRV-production-contenus-medias",
+    "operation": "CREATED",
+    "customPayloadId": "srv-production-contenus-medias",
+    "customPayloadSlug": "production-contenus-medias",
+    "relationsResolved": {
+      "pole": "POL-events"
+    },
+    "checksum": "ba3252cc9bdb03448c5e9a14ce5fc3c95674f1b9baaa94b137817788d33f860f",
+    "status": "SUCCESS"
+  },
+  {
+    "step": 5,
+    "collection": "case-studies",
+    "sourceId": "cs-esiika",
+    "sourceSlug": "esiika",
+    "targetDocType": "Bokengi Case Study",
+    "targetName": "CS-esiika",
+    "operation": "CREATED",
+    "customPayloadId": "cs-esiika",
+    "customPayloadSlug": "esiika",
+    "relationsResolved": {
+      "tech_items_count": "7"
+    },
+    "checksum": "a46cc5fe55758b8f28b8baee9db3409b8f51748233897b157f0970d332f39408",
+    "status": "SUCCESS"
+  },
+  {
+    "step": 5,
+    "collection": "case-studies",
+    "sourceId": "cs-portail-kongama",
+    "sourceSlug": "portail-kongama",
+    "targetDocType": "Bokengi Case Study",
+    "targetName": "CS-portail-kongama",
+    "operation": "CREATED",
+    "customPayloadId": "cs-portail-kongama",
+    "customPayloadSlug": "portail-kongama",
+    "relationsResolved": {
+      "tech_items_count": "6"
+    },
+    "checksum": "d73ae401132af69508b8899c031ab32c63d64d8a9caa56ae6c43f78c6b74a54d",
+    "status": "SUCCESS"
+  },
+  {
+    "step": 5,
+    "collection": "case-studies",
+    "sourceId": "cs-kongama-academy",
+    "sourceSlug": "kongama-academy",
+    "targetDocType": "Bokengi Case Study",
+    "targetName": "CS-kongama-academy",
+    "operation": "CREATED",
+    "customPayloadId": "cs-kongama-academy",
+    "customPayloadSlug": "kongama-academy",
+    "relationsResolved": {
+      "tech_items_count": "6"
+    },
+    "checksum": "c87eb2c440540dcb2f3794cd8ff6beea625313b6aeea9e799c80bf87c64c7d1a",
+    "status": "SUCCESS"
+  },
+  {
+    "step": 5,
+    "collection": "case-studies",
+    "sourceId": "cs-bisomaptech",
+    "sourceSlug": "bisomaptech",
+    "targetDocType": "Bokengi Case Study",
+    "targetName": "CS-bisomaptech",
+    "operation": "CREATED",
+    "customPayloadId": "cs-bisomaptech",
+    "customPayloadSlug": "bisomaptech",
+    "relationsResolved": {
+      "tech_items_count": "6"
+    },
+    "checksum": "434d477570d07f345c21332b07a83f89cf3ef3c476d83c9861bcea8ceaf95b46",
+    "status": "SUCCESS"
+  },
+  {
+    "step": 5,
+    "collection": "case-studies",
+    "sourceId": "cs-fleetguard",
+    "sourceSlug": "fleetguard",
+    "targetDocType": "Bokengi Case Study",
+    "targetName": "CS-fleetguard",
+    "operation": "CREATED",
+    "customPayloadId": "cs-fleetguard",
+    "customPayloadSlug": "fleetguard",
+    "relationsResolved": {
+      "tech_items_count": "6"
+    },
+    "checksum": "5de40933731c5e5d9efd8fb9d93938f736e69949f72e79c368d287b491b62fe6",
+    "status": "SUCCESS"
+  },
+  {
+    "step": 6,
+    "collection": "posts",
+    "sourceId": "post-souverainete-numerique-afrique",
+    "sourceSlug": "souverainete-numerique-afrique",
+    "targetDocType": "Bokengi Post",
+    "targetName": "POST-souverainete-numerique-afrique",
+    "operation": "CREATED",
+    "customPayloadId": "post-souverainete-numerique-afrique",
+    "customPayloadSlug": "souverainete-numerique-afrique",
+    "relationsResolved": {
+      "author": "Kalel Damba"
+    },
+    "checksum": "c39ce66ef0cb2b8c62aba1a8c181ef5a9e7046927013657f96257a54d836ba38",
+    "status": "SUCCESS"
+  },
+  {
+    "step": 6,
+    "collection": "posts",
+    "sourceId": "post-security-by-design-systemes-critiques",
+    "sourceSlug": "security-by-design-systemes-critiques",
+    "targetDocType": "Bokengi Post",
+    "targetName": "POST-security-by-design-systemes-critiques",
+    "operation": "CREATED",
+    "customPayloadId": "post-security-by-design-systemes-critiques",
+    "customPayloadSlug": "security-by-design-systemes-critiques",
+    "relationsResolved": {
+      "author": "Kalel Damba"
+    },
+    "checksum": "bb6d7f2510660c4adf31254e554fbc7c39b3fb3ef0e8ed6b59b8f2bcfaa2ff19",
+    "status": "SUCCESS"
+  },
+  {
+    "step": 6,
+    "collection": "posts",
+    "sourceId": "post-modernisation-systemes-information-apis",
+    "sourceSlug": "modernisation-systemes-information-apis",
+    "targetDocType": "Bokengi Post",
+    "targetName": "POST-modernisation-systemes-information-apis",
+    "operation": "CREATED",
+    "customPayloadId": "post-modernisation-systemes-information-apis",
+    "customPayloadSlug": "modernisation-systemes-information-apis",
+    "relationsResolved": {
+      "author": "Kalel Damba"
+    },
+    "checksum": "a6f37dc8767410524e725a1f87fd38756efcff4ba4b4565192295939b54b56c0",
+    "status": "SUCCESS"
+  },
+  {
+    "step": 6,
+    "collection": "posts",
+    "sourceId": "post-brouillon-interne-non-publie",
+    "sourceSlug": "brouillon-interne-non-publie",
+    "targetDocType": "Bokengi Post",
+    "targetName": "POST-brouillon-interne-non-publie",
+    "operation": "CREATED",
+    "customPayloadId": "post-brouillon-interne-non-publie",
+    "customPayloadSlug": "brouillon-interne-non-publie",
+    "relationsResolved": {
+      "author": "Kalel Damba"
+    },
+    "checksum": "35943c666678671b035e7208126b6e7de0b342750a456967e2e1f5ad5ce3ff7b",
+    "status": "SUCCESS"
+  },
+  {
+    "step": 8,
+    "collection": "leads",
+    "sourceId": 101,
+    "sourceSlug": "a.makosso@snd-congo.cg",
+    "targetDocType": "Lead",
+    "targetName": "LEAD-101",
+    "operation": "CREATED",
+    "customPayloadId": "lead-101",
+    "customPayloadSlug": "a.makosso@snd-congo.cg",
+    "relationsResolved": {
+      "custom_pole": "POL-it"
+    },
+    "checksum": "f806635a01a220f0ab8a72b5c28caafbb64c96365f15cf243835f3d30e179607",
+    "status": "SUCCESS"
+  },
+  {
+    "step": 8,
+    "collection": "leads",
+    "sourceId": 102,
+    "sourceSlug": "claire@edtech-brazza.com",
+    "targetDocType": "Lead",
+    "targetName": "LEAD-102",
+    "operation": "CREATED",
+    "customPayloadId": "lead-102",
+    "customPayloadSlug": "claire@edtech-brazza.com",
+    "relationsResolved": {
+      "custom_pole": "POL-digital"
+    },
+    "checksum": "cb2ba82d6b6b3e0b9b7f48264c7cf4658ac7d43b6fc2dc45f5ea6e77b948b935",
+    "status": "SUCCESS"
+  },
+  {
+    "step": 9,
+    "collection": "invoices",
+    "sourceId": 501,
+    "sourceSlug": "BOK-2026-0001",
+    "targetDocType": "Quotation",
+    "targetName": "BOK-2026-0001",
+    "operation": "CREATED",
+    "customPayloadId": "inv-501",
+    "customPayloadSlug": "BOK-2026-0001",
+    "relationsResolved": {
+      "party": "Société Nationale de Distribution"
+    },
+    "checksum": "68abaffbe74811f50d1a272155c9d8882c7efc5ebc2b227eaee1dae7a175f81a",
+    "status": "SUCCESS"
+  },
+  {
+    "step": 9,
+    "collection": "invoices",
+    "sourceId": 502,
+    "sourceSlug": "BOK-2026-0002",
+    "targetDocType": "Sales Invoice",
+    "targetName": "BOK-2026-0002",
+    "operation": "CREATED",
+    "customPayloadId": "inv-502",
+    "customPayloadSlug": "BOK-2026-0002",
+    "relationsResolved": {
+      "party": "EdTech Initiatives"
+    },
+    "checksum": "1f0caa201b141a63542e9a24404e49c631247952d8660e06e36e4e415f377aa6",
+    "status": "SUCCESS"
+  },
+  {
+    "step": 10,
+    "collection": "access-requests",
+    "sourceId": 901,
+    "sourceSlug": "jl.massamba@partner.cg",
+    "targetDocType": "Bokengi Access Request",
+    "targetName": "REQ-901",
+    "operation": "CREATED",
+    "customPayloadId": "ar-901",
+    "customPayloadSlug": "jl.massamba@partner.cg",
+    "relationsResolved": {},
+    "checksum": "d5c8e318dfd593bd1582927e70a42914ddae91e26fe06bdccc51d37b68e15667",
+    "status": "SUCCESS"
+  },
+  {
+    "step": 11,
+    "collection": "globals/site-settings",
+    "sourceId": "site-settings",
+    "sourceSlug": "site-settings",
+    "targetDocType": "Bokengi Site Settings",
+    "targetName": "Bokengi Site Settings",
+    "operation": "UPDATED",
+    "customPayloadId": "global-site-settings",
+    "customPayloadSlug": "site-settings",
+    "relationsResolved": {},
+    "checksum": "ff9744bdddec76ff6519c1e3c7afc6bff95c8d6ec1efc817c0e1f9d09ea79db4",
+    "status": "SUCCESS"
+  }
+]

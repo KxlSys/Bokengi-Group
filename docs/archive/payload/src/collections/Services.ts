@@ -1,0 +1,144 @@
+import type { CollectionConfig } from 'payload'
+import { anyone } from '../access/anyone'
+import { authenticated } from '../access/authenticated'
+import { seoFields } from '../fields/seo'
+
+export const Services: CollectionConfig = {
+  slug: 'services',
+  labels: {
+    singular: 'Service',
+    plural: 'Services',
+  },
+  admin: {
+    useAsTitle: 'title',
+    defaultColumns: ['title', 'pole', 'category', 'status', 'featured', 'order'],
+    group: 'Offres & Métiers',
+    description: 'Services et offres commerciales commercialisés par les pôles Bokengi.',
+  },
+  access: {
+    create: authenticated,
+    delete: authenticated,
+    read: anyone,
+    update: authenticated,
+  },
+  fields: [
+    {
+      name: 'title',
+      type: 'text',
+      required: true,
+      localized: true,
+      label: 'Titre du service',
+      admin: {
+        placeholder: 'Ex: Audit de sécurité & Pentest, Infrastructure Cloud...',
+      },
+    },
+    {
+      name: 'slug',
+      type: 'text',
+      required: true,
+      unique: true,
+      index: true,
+      admin: {
+        position: 'sidebar',
+        description: 'Slug URL (ex: audit-securite-pentest).',
+      },
+    },
+    {
+      type: 'row',
+      fields: [
+        {
+          name: 'pole',
+          type: 'relationship',
+          relationTo: 'poles',
+          required: true,
+          hasMany: false,
+          label: 'Pôle d\'expertise de rattachement',
+          admin: {
+            width: '50%',
+            description: 'Sélectionnez le pôle auquel ce service est affilié.',
+          },
+        },
+        {
+          name: 'category',
+          type: 'text',
+          localized: true,
+          label: 'Catégorie fonctionnelle',
+          admin: {
+            width: '50%',
+            placeholder: 'Ex: Cybersécurité, Développement, Gouvernance...',
+          },
+        },
+      ],
+    },
+    {
+      name: 'shortDescription',
+      type: 'textarea',
+      localized: true,
+      label: 'Description courte',
+      admin: {
+        description: 'Résumé synthétique pour les grilles et listes de services.',
+      },
+    },
+    {
+      name: 'content',
+      type: 'richText',
+      localized: true,
+      label: 'Détail de l\'offre & livrables',
+      admin: {
+        description: 'Description détaillée de la prestation, méthodologie et livrables attendus.',
+      },
+    },
+    {
+      name: 'technicalTags',
+      type: 'array',
+      label: 'Tags techniques & méthodologies',
+      labels: {
+        singular: 'Tag',
+        plural: 'Tags',
+      },
+      fields: [
+        {
+          name: 'tag',
+          type: 'text',
+          required: true,
+          label: 'Libellé du tag (ex: ISO 27001, Kubernetes, Next.js)',
+        },
+      ],
+    },
+    {
+      name: 'featured',
+      type: 'checkbox',
+      defaultValue: false,
+      label: 'Mettre en avant sur la page d\'accueil',
+      admin: {
+        position: 'sidebar',
+      },
+    },
+    {
+      name: 'order',
+      type: 'number',
+      defaultValue: 0,
+      label: 'Ordre d\'affichage',
+      admin: {
+        position: 'sidebar',
+      },
+    },
+    {
+      name: 'status',
+      type: 'select',
+      defaultValue: 'published',
+      required: true,
+      label: 'Statut de publication',
+      options: [
+        { label: 'Brouillon', value: 'draft' },
+        { label: 'Publié', value: 'published' },
+      ],
+      admin: {
+        position: 'sidebar',
+      },
+    },
+    seoFields,
+  ],
+}
+
+export default Services

@@ -1,0 +1,248 @@
+{
+  "app_name": "bokengi_erp",
+  "version": "1.0.0",
+  "doctypes": [
+    {
+      "name": "Bokengi Pole",
+      "module": "Bokengi Core",
+      "custom": 1,
+      "is_submittable": 0,
+      "istable": 0,
+      "autoname": "format:POL-{slug_fr}",
+      "fields": [
+        { "fieldname": "pole_name_fr", "fieldtype": "Data", "label": "Nom du pôle (FR)", "reqd": 1, "in_list_view": 1 },
+        { "fieldname": "pole_name_en", "fieldtype": "Data", "label": "Pole Name (EN)" },
+        { "fieldname": "slug_fr", "fieldtype": "Data", "label": "Slug URL (FR)", "reqd": 1, "unique": 1, "in_list_view": 1 },
+        { "fieldname": "slug_en", "fieldtype": "Data", "label": "Slug URL (EN)" },
+        { "fieldname": "short_description_fr", "fieldtype": "Small Text", "label": "Description courte (FR)" },
+        { "fieldname": "short_description_en", "fieldtype": "Small Text", "label": "Short Description (EN)" },
+        { "fieldname": "description_fr", "fieldtype": "Text Editor", "label": "Description détaillée (FR)" },
+        { "fieldname": "description_en", "fieldtype": "Text Editor", "label": "Detailed Description (EN)" },
+        { "fieldname": "icon_code", "fieldtype": "Data", "label": "Code icône SVG" },
+        { "fieldname": "display_order", "fieldtype": "Int", "label": "Ordre d'affichage", "default": "0", "in_list_view": 1 },
+        { "fieldname": "status", "fieldtype": "Select", "label": "Statut", "options": "Draft\nPublished", "default": "Published", "in_list_view": 1 },
+        { "fieldname": "seo_section", "fieldtype": "Section Break", "label": "Métadonnées SEO" },
+        { "fieldname": "seo_title_fr", "fieldtype": "Data", "label": "Titre SEO (FR)" },
+        { "fieldname": "seo_title_en", "fieldtype": "Data", "label": "SEO Title (EN)" },
+        { "fieldname": "seo_description_fr", "fieldtype": "Small Text", "label": "Description SEO (FR)" },
+        { "fieldname": "seo_description_en", "fieldtype": "Small Text", "label": "SEO Description (EN)" },
+        { "fieldname": "migration_section", "fieldtype": "Section Break", "label": "Traçabilité Technique" },
+        { "fieldname": "custom_payload_id", "fieldtype": "Data", "label": "ID Payload d'origine", "unique": 1, "read_only": 1 },
+        { "fieldname": "custom_payload_slug", "fieldtype": "Data", "label": "Slug Payload d'origine", "read_only": 1 }
+      ]
+    },
+    {
+      "name": "Bokengi Technical Tag",
+      "module": "Bokengi Core",
+      "custom": 1,
+      "istable": 1,
+      "fields": [
+        { "fieldname": "tag_name", "fieldtype": "Data", "label": "Libellé du tag", "reqd": 1, "in_list_view": 1 }
+      ]
+    },
+    {
+      "name": "Bokengi Service",
+      "module": "Bokengi Core",
+      "custom": 1,
+      "is_submittable": 0,
+      "istable": 0,
+      "autoname": "format:SRV-{slug_fr}",
+      "fields": [
+        { "fieldname": "title_fr", "fieldtype": "Data", "label": "Titre du service (FR)", "reqd": 1, "in_list_view": 1 },
+        { "fieldname": "title_en", "fieldtype": "Data", "label": "Service Title (EN)" },
+        { "fieldname": "slug_fr", "fieldtype": "Data", "label": "Slug URL (FR)", "reqd": 1, "unique": 1, "in_list_view": 1 },
+        { "fieldname": "slug_en", "fieldtype": "Data", "label": "Slug URL (EN)" },
+        { "fieldname": "pole", "fieldtype": "Link", "label": "Pôle de rattachement", "options": "Bokengi Pole", "reqd": 1, "in_list_view": 1 },
+        { "fieldname": "item", "fieldtype": "Link", "label": "Article de facturation", "options": "Item" },
+        { "fieldname": "category_fr", "fieldtype": "Data", "label": "Catégorie fonctionnelle (FR)", "in_list_view": 1 },
+        { "fieldname": "category_en", "fieldtype": "Data", "label": "Functional Category (EN)" },
+        { "fieldname": "short_description_fr", "fieldtype": "Small Text", "label": "Description courte (FR)" },
+        { "fieldname": "short_description_en", "fieldtype": "Small Text", "label": "Short Description (EN)" },
+        { "fieldname": "content_fr", "fieldtype": "Text Editor", "label": "Détail de l'offre (FR)" },
+        { "fieldname": "content_en", "fieldtype": "Text Editor", "label": "Service Content (EN)" },
+        { "fieldname": "technical_tags", "fieldtype": "Table", "label": "Tags techniques", "options": "Bokengi Technical Tag" },
+        { "fieldname": "featured", "fieldtype": "Check", "label": "Mis en avant", "default": "0" },
+        { "fieldname": "display_order", "fieldtype": "Int", "label": "Ordre d'affichage", "default": "0" },
+        { "fieldname": "status", "fieldtype": "Select", "label": "Statut", "options": "Draft\nPublished", "default": "Published", "in_list_view": 1 },
+        { "fieldname": "custom_payload_id", "fieldtype": "Data", "label": "ID Payload d'origine", "unique": 1, "read_only": 1 },
+        { "fieldname": "custom_payload_slug", "fieldtype": "Data", "label": "Slug Payload d'origine", "read_only": 1 }
+      ]
+    },
+    {
+      "name": "Bokengi Technology Item",
+      "module": "Bokengi Core",
+      "custom": 1,
+      "istable": 1,
+      "fields": [
+        { "fieldname": "tech_name", "fieldtype": "Data", "label": "Technologie / Outil", "reqd": 1, "in_list_view": 1 }
+      ]
+    },
+    {
+      "name": "Bokengi Screenshot Item",
+      "module": "Bokengi Core",
+      "custom": 1,
+      "istable": 1,
+      "fields": [
+        { "fieldname": "image_file", "fieldtype": "Attach", "label": "Capture d'écran", "reqd": 1, "in_list_view": 1 },
+        { "fieldname": "caption_fr", "fieldtype": "Data", "label": "Légende (FR)" },
+        { "fieldname": "caption_en", "fieldtype": "Data", "label": "Caption (EN)" }
+      ]
+    },
+    {
+      "name": "Bokengi Case Study",
+      "module": "Bokengi Core",
+      "custom": 1,
+      "is_submittable": 0,
+      "istable": 0,
+      "autoname": "format:CS-{slug_fr}",
+      "fields": [
+        { "fieldname": "title_fr", "fieldtype": "Data", "label": "Titre de la réalisation (FR)", "reqd": 1, "in_list_view": 1 },
+        { "fieldname": "title_en", "fieldtype": "Data", "label": "Case Study Title (EN)" },
+        { "fieldname": "slug_fr", "fieldtype": "Data", "label": "Slug URL (FR)", "reqd": 1, "unique": 1, "in_list_view": 1 },
+        { "fieldname": "slug_en", "fieldtype": "Data", "label": "Slug URL (EN)" },
+        { "fieldname": "client_name", "fieldtype": "Data", "label": "Client / Partenaire", "in_list_view": 1 },
+        { "fieldname": "category_fr", "fieldtype": "Data", "label": "Catégorie métier (FR)" },
+        { "fieldname": "category_en", "fieldtype": "Data", "label": "Category (EN)" },
+        { "fieldname": "summary_fr", "fieldtype": "Small Text", "label": "Résumé exécutif (FR)" },
+        { "fieldname": "summary_en", "fieldtype": "Small Text", "label": "Executive Summary (EN)" },
+        { "fieldname": "context_fr", "fieldtype": "Text Editor", "label": "1. Contexte & Problématique (FR)" },
+        { "fieldname": "context_en", "fieldtype": "Text Editor", "label": "1. Context & Problem (EN)" },
+        { "fieldname": "challenge_fr", "fieldtype": "Text Editor", "label": "2. Défi technique (FR)" },
+        { "fieldname": "challenge_en", "fieldtype": "Text Editor", "label": "2. Technical Challenge (EN)" },
+        { "fieldname": "solution_fr", "fieldtype": "Text Editor", "label": "3. Solution déployée (FR)" },
+        { "fieldname": "solution_en", "fieldtype": "Text Editor", "label": "3. Deployed Solution (EN)" },
+        { "fieldname": "results_fr", "fieldtype": "Text Editor", "label": "4. Résultats & Impact (FR)" },
+        { "fieldname": "results_en", "fieldtype": "Text Editor", "label": "4. Results & Impact (EN)" },
+        { "fieldname": "architecture_fr", "fieldtype": "Text Editor", "label": "Architecture technique (FR)" },
+        { "fieldname": "architecture_en", "fieldtype": "Text Editor", "label": "Technical Architecture (EN)" },
+        { "fieldname": "technologies", "fieldtype": "Table", "label": "Stack technologique", "options": "Bokengi Technology Item" },
+        { "fieldname": "screenshots", "fieldtype": "Table", "label": "Captures d'illustration", "options": "Bokengi Screenshot Item" },
+        { "fieldname": "published_date", "fieldtype": "Date", "label": "Date de livraison", "in_list_view": 1 },
+        { "fieldname": "featured", "fieldtype": "Check", "label": "Mettre en avant", "default": "0" },
+        { "fieldname": "status", "fieldtype": "Select", "label": "Statut", "options": "Draft\nPublished", "default": "Published", "in_list_view": 1 },
+        { "fieldname": "custom_payload_id", "fieldtype": "Data", "label": "ID Payload d'origine", "unique": 1, "read_only": 1 },
+        { "fieldname": "custom_payload_slug", "fieldtype": "Data", "label": "Slug Payload d'origine", "read_only": 1 }
+      ]
+    },
+    {
+      "name": "Bokengi Category Item",
+      "module": "Bokengi Core",
+      "custom": 1,
+      "istable": 1,
+      "fields": [
+        { "fieldname": "category_name", "fieldtype": "Data", "label": "Nom de la catégorie", "reqd": 1, "in_list_view": 1 }
+      ]
+    },
+    {
+      "name": "Bokengi Tag Item",
+      "module": "Bokengi Core",
+      "custom": 1,
+      "istable": 1,
+      "fields": [
+        { "fieldname": "tag_name", "fieldtype": "Data", "label": "Tag / Mot-clé", "reqd": 1, "in_list_view": 1 }
+      ]
+    },
+    {
+      "name": "Bokengi Post",
+      "module": "Bokengi Core",
+      "custom": 1,
+      "is_submittable": 0,
+      "istable": 0,
+      "autoname": "format:POST-{slug_fr}",
+      "fields": [
+        { "fieldname": "title_fr", "fieldtype": "Data", "label": "Titre de l'article (FR)", "reqd": 1, "in_list_view": 1 },
+        { "fieldname": "title_en", "fieldtype": "Data", "label": "Article Title (EN)" },
+        { "fieldname": "slug_fr", "fieldtype": "Data", "label": "Slug URL (FR)", "reqd": 1, "unique": 1, "in_list_view": 1 },
+        { "fieldname": "slug_en", "fieldtype": "Data", "label": "Slug URL (EN)" },
+        { "fieldname": "excerpt_fr", "fieldtype": "Small Text", "label": "Extrait introductif (FR)" },
+        { "fieldname": "excerpt_en", "fieldtype": "Small Text", "label": "Excerpt (EN)" },
+        { "fieldname": "content_fr", "fieldtype": "Text Editor", "label": "Corps de l'article (FR)" },
+        { "fieldname": "content_en", "fieldtype": "Text Editor", "label": "Article Content (EN)" },
+        { "fieldname": "author", "fieldtype": "Link", "label": "Auteur", "options": "User", "in_list_view": 1 },
+        { "fieldname": "cover_image", "fieldtype": "Attach", "label": "Image de couverture" },
+        { "fieldname": "categories", "fieldtype": "Table", "label": "Catégories", "options": "Bokengi Category Item" },
+        { "fieldname": "tags", "fieldtype": "Table", "label": "Tags d'indexation", "options": "Bokengi Tag Item" },
+        { "fieldname": "published_at", "fieldtype": "Datetime", "label": "Date de publication", "in_list_view": 1 },
+        { "fieldname": "reading_time", "fieldtype": "Int", "label": "Temps de lecture (min)", "default": "3" },
+        { "fieldname": "status", "fieldtype": "Select", "label": "Statut", "options": "Draft\nPublished", "default": "Published", "in_list_view": 1 },
+        { "fieldname": "seo_title_fr", "fieldtype": "Data", "label": "Titre SEO (FR)" },
+        { "fieldname": "seo_title_en", "fieldtype": "Data", "label": "SEO Title (EN)" },
+        { "fieldname": "seo_description_fr", "fieldtype": "Small Text", "label": "Description SEO (FR)" },
+        { "fieldname": "seo_description_en", "fieldtype": "Small Text", "label": "SEO Description (EN)" },
+        { "fieldname": "custom_payload_id", "fieldtype": "Data", "label": "ID Payload d'origine", "unique": 1, "read_only": 1 },
+        { "fieldname": "custom_payload_slug", "fieldtype": "Data", "label": "Slug Payload d'origine", "read_only": 1 }
+      ]
+    },
+    {
+      "name": "Bokengi Web Page",
+      "module": "Bokengi Core",
+      "custom": 1,
+      "is_submittable": 0,
+      "istable": 0,
+      "autoname": "format:PAGE-{slug_fr}",
+      "fields": [
+        { "fieldname": "page_title_fr", "fieldtype": "Data", "label": "Titre de la page (FR)", "reqd": 1, "in_list_view": 1 },
+        { "fieldname": "page_title_en", "fieldtype": "Data", "label": "Page Title (EN)" },
+        { "fieldname": "slug_fr", "fieldtype": "Data", "label": "Slug URL (FR)", "reqd": 1, "unique": 1, "in_list_view": 1 },
+        { "fieldname": "slug_en", "fieldtype": "Data", "label": "Slug URL (EN)" },
+        { "fieldname": "content_fr", "fieldtype": "Text Editor", "label": "Contenu structuré (FR)" },
+        { "fieldname": "content_en", "fieldtype": "Text Editor", "label": "Page Content (EN)" },
+        { "fieldname": "status", "fieldtype": "Select", "label": "Statut", "options": "Draft\nPublished", "default": "Draft", "in_list_view": 1 },
+        { "fieldname": "seo_title_fr", "fieldtype": "Data", "label": "Titre SEO (FR)" },
+        { "fieldname": "seo_title_en", "fieldtype": "Data", "label": "SEO Title (EN)" },
+        { "fieldname": "seo_description_fr", "fieldtype": "Small Text", "label": "Description SEO (FR)" },
+        { "fieldname": "seo_description_en", "fieldtype": "Small Text", "label": "SEO Description (EN)" },
+        { "fieldname": "custom_payload_id", "fieldtype": "Data", "label": "ID Payload d'origine", "unique": 1, "read_only": 1 }
+      ]
+    },
+    {
+      "name": "Bokengi Access Request",
+      "module": "Bokengi Core",
+      "custom": 1,
+      "is_submittable": 0,
+      "istable": 0,
+      "fields": [
+        { "fieldname": "first_name", "fieldtype": "Data", "label": "Prénom", "reqd": 1, "in_list_view": 1 },
+        { "fieldname": "last_name", "fieldtype": "Data", "label": "Nom", "reqd": 1, "in_list_view": 1 },
+        { "fieldname": "email", "fieldtype": "Data", "label": "Email professionnel", "reqd": 1, "in_list_view": 1 },
+        { "fieldname": "requested_role", "fieldtype": "Select", "label": "Rôle souhaité", "options": "editor\nadmin", "default": "editor" },
+        { "fieldname": "justification", "fieldtype": "Small Text", "label": "Justification", "reqd": 1 },
+        { "fieldname": "status", "fieldtype": "Select", "label": "Statut", "options": "pending\napproved\nrejected\nexpired", "default": "pending", "in_list_view": 1 },
+        { "fieldname": "assigned_role", "fieldtype": "Select", "label": "Rôle attribué", "options": "editor\nadmin" },
+        { "fieldname": "admin_notes", "fieldtype": "Small Text", "label": "Notes de décision" },
+        { "fieldname": "processed_at", "fieldtype": "Datetime", "label": "Date de traitement", "read_only": 1 },
+        { "fieldname": "processed_by", "fieldtype": "Link", "label": "Traité par", "options": "User", "read_only": 1 },
+        { "fieldname": "expires_at", "fieldtype": "Datetime", "label": "Date d'expiration", "read_only": 1 },
+        { "fieldname": "custom_payload_id", "fieldtype": "Data", "label": "ID Payload d'origine", "unique": 1, "read_only": 1 }
+      ]
+    },
+    {
+      "name": "Bokengi Site Settings",
+      "module": "Bokengi Core",
+      "custom": 1,
+      "issingle": 1,
+      "fields": [
+        { "fieldname": "company_name", "fieldtype": "Data", "label": "Raison Sociale", "default": "Bokengi Group" },
+        { "fieldname": "legal_form", "fieldtype": "Data", "label": "Forme Juridique", "default": "SAS" },
+        { "fieldname": "capital", "fieldtype": "Data", "label": "Capital Social", "default": "7 500 €" },
+        { "fieldname": "rcs", "fieldtype": "Data", "label": "RCS" },
+        { "fieldname": "siren", "fieldtype": "Data", "label": "SIREN" },
+        { "fieldname": "siret", "fieldtype": "Data", "label": "SIRET" },
+        { "fieldname": "vat_number", "fieldtype": "Data", "label": "N° TVA Intracommunautaire" },
+        { "fieldname": "contact_email", "fieldtype": "Data", "label": "Email officiel de contact", "default": "contact@bokengi-group.com" },
+        { "fieldname": "phone", "fieldtype": "Data", "label": "Téléphone institutionnel", "default": "07 58 88 84 34" },
+        { "fieldname": "bank_section", "fieldtype": "Section Break", "label": "Coordonnées Bancaires" },
+        { "fieldname": "bank_name", "fieldtype": "Data", "label": "Banque" },
+        { "fieldname": "iban", "fieldtype": "Data", "label": "IBAN" },
+        { "fieldname": "bic", "fieldtype": "Data", "label": "Code BIC / SWIFT" },
+        { "fieldname": "address_section", "fieldtype": "Section Break", "label": "Siège Social" },
+        { "fieldname": "address_street", "fieldtype": "Data", "label": "Adresse" },
+        { "fieldname": "address_city", "fieldtype": "Data", "label": "Ville", "default": "Paris" },
+        { "fieldname": "address_country", "fieldtype": "Data", "label": "Pays", "default": "France" },
+        { "fieldname": "navigation_section", "fieldtype": "Section Break", "label": "Navigation & Footer" },
+        { "fieldname": "navigation_json", "fieldtype": "Code", "options": "JSON", "label": "Menu Header (JSON)" },
+        { "fieldname": "footer_json", "fieldtype": "Code", "options": "JSON", "label": "Colonnes Footer (JSON)" }
+      ]
+    }
+  ]
+}

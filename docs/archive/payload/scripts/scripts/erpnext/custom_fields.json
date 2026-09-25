@@ -1,0 +1,33 @@
+{
+  "custom_fields": {
+    "Lead": [
+      { "fieldname": "custom_payload_id", "fieldtype": "Data", "label": "ID Payload d'origine", "unique": 1, "read_only": 1, "insert_after": "lead_name" },
+      { "fieldname": "custom_request_type", "fieldtype": "Select", "label": "Type de sollicitation", "options": "devis\ncadrage\nsupport\npartenariat\nautre", "default": "devis", "insert_after": "custom_payload_id" },
+      { "fieldname": "custom_pole", "fieldtype": "Link", "label": "Pôle d'expertise demandé", "options": "Bokengi Pole", "insert_after": "custom_request_type" },
+      { "fieldname": "custom_treatment_pole", "fieldtype": "Link", "label": "Pôle de traitement interne", "options": "Bokengi Pole", "insert_after": "custom_pole" },
+      { "fieldname": "custom_priority", "fieldtype": "Select", "label": "Priorité de traitement", "options": "low\nmedium\nhigh\nurgent", "default": "medium", "insert_after": "custom_treatment_pole" },
+      { "fieldname": "custom_message_raw", "fieldtype": "Text", "label": "Message original du prospect", "read_only": 1, "insert_after": "notes" },
+      { "fieldname": "custom_internal_notes", "fieldtype": "Small Text", "label": "Notes internes de suivi", "insert_after": "custom_message_raw" }
+    ],
+    "File": [
+      { "fieldname": "custom_payload_id", "fieldtype": "Data", "label": "ID Payload d'origine", "unique": 1, "read_only": 1, "insert_after": "file_name" },
+      { "fieldname": "custom_alt_fr", "fieldtype": "Data", "label": "Texte Alternatif (FR)", "insert_after": "custom_payload_id" },
+      { "fieldname": "custom_alt_en", "fieldtype": "Data", "label": "Alt Text (EN)", "insert_after": "custom_alt_fr" },
+      { "fieldname": "custom_caption_fr", "fieldtype": "Small Text", "label": "Légende (FR)", "insert_after": "custom_alt_en" },
+      { "fieldname": "custom_caption_en", "fieldtype": "Small Text", "label": "Caption (EN)", "insert_after": "custom_caption_fr" },
+      { "fieldname": "custom_mime_type", "fieldtype": "Data", "label": "MIME Type", "insert_after": "custom_caption_en" },
+      { "fieldname": "custom_width", "fieldtype": "Int", "label": "Largeur (px)", "insert_after": "custom_mime_type" },
+      { "fieldname": "custom_height", "fieldtype": "Int", "label": "Hauteur (px)", "insert_after": "custom_width" }
+    ],
+    "Quotation": [
+      { "fieldname": "custom_payload_id", "fieldtype": "Data", "label": "ID Payload d'origine", "unique": 1, "read_only": 1, "insert_after": "naming_series" },
+      { "fieldname": "custom_invoice_number", "fieldtype": "Data", "label": "Numéro de pièce légal", "unique": 1, "insert_after": "custom_payload_id" },
+      { "fieldname": "custom_lead_link", "fieldtype": "Link", "label": "Prospect d'origine", "options": "Lead", "insert_after": "party_name" }
+    ],
+    "Sales Invoice": [
+      { "fieldname": "custom_payload_id", "fieldtype": "Data", "label": "ID Payload d'origine", "unique": 1, "read_only": 1, "insert_after": "naming_series" },
+      { "fieldname": "custom_invoice_number", "fieldtype": "Data", "label": "Numéro de facture légal", "unique": 1, "insert_after": "custom_payload_id" },
+      { "fieldname": "custom_lead_link", "fieldtype": "Link", "label": "Prospect d'origine", "options": "Lead", "insert_after": "customer" }
+    ]
+  }
+}

@@ -1,6 +1,9 @@
 name: Cloudflare Worker Production Deployment
 
 on:
+  push:
+    branches:
+      - main
   workflow_dispatch:
     inputs:
       environment:
@@ -63,7 +66,7 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID || 'e07a615d8ecb49aa764fcd9c192590e6' }}
 
       - name: Deploy to Cloudflare Workers (Production)
-        if: ${{ github.event.inputs.environment == 'production' || github.event_name == 'workflow_dispatch' && github.event.inputs.environment == '' }}
+        if: ${{ github.event_name == 'push' || github.event.inputs.environment == 'production' || (github.event_name == 'workflow_dispatch' && github.event.inputs.environment == '') }}
         run: pnpm wrangler deploy
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}

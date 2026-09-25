@@ -16,12 +16,6 @@
       "bucket_name": "bokengi-media"
     }
   ],
-  "hyperdrive": [
-    {
-      "binding": "HYPERDRIVE",
-      "id": "67e941a48c744118b9faa0adf0affa79"
-    }
-  ],
   "env": {
     "preview": {
       "name": "bokengi-group-preview",
@@ -33,12 +27,6 @@
         {
           "binding": "MEDIA_BUCKET",
           "bucket_name": "bokengi-media-preview"
-        }
-      ],
-      "hyperdrive": [
-        {
-          "binding": "HYPERDRIVE",
-          "id": "3b28e5bf5151410480fd9505eb7413fe"
         }
       ]
     }

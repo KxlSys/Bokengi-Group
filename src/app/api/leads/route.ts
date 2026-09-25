@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { submitLeadToERPNext } from '@/lib/erpnext-client'
 
-// Cache mémoire simple pour limitation des abus (fenêtre glissante par IP)
 const rateLimitMap = new Map<string, { count: number; lastReset: number }>()
 
 function isRateLimited(ip: string, limit = 5, windowMs = 60000): boolean {
@@ -49,18 +49,14 @@ export async function POST(req: NextRequest) {
       requestType,
       pole,
       message,
-      website, // Honeypot anti-spam
+      website, 
     } = body
 
-    // 1. HONEYPOT ANTI-SPAM
-    // Si un robot a rempli le champ caché "website", on feint le succès sans rien enregistrer
     if (website && typeof website === 'string' && website.trim().length > 0) {
       console.warn(`[Anti-Spam] Bot piégé via honeypot depuis l'IP ${ip}`)
       return NextResponse.json({ success: true, message: 'Demande transmise avec succès.' }, { status: 200 })
     }
 
-    // 2. VALIDATION STRICTE DES CHAMPS
-    // Gestion du nom complet ou découpé
     let safeFirstname = typeof firstname === 'string' ? firstname.trim() : ''
     let safeLastname = typeof lastname === 'string' ? lastname.trim() : ''
 
@@ -95,63 +91,28 @@ export async function POST(req: NextRequest) {
     const validRequestTypes = ['devis', 'cadrage', 'support', 'partenariat', 'autre']
     const safeType = validRequestTypes.includes(requestType) ? requestType : 'devis'
 
-    // 3. PERSISTANCE DANS PAYLOAD CMS
     let createdLeadId: string | number | null = null
 
     try {
-      const { getPayload } = await import('payload')
-      const configPromise = (await import('@payload-config')).default
-      const payload = await getPayload({ config: configPromise })
-
-      // Résolution du pôle si slug fourni
-      let resolvedPoleId: string | number | undefined = undefined
-      if (pole && typeof pole === 'string') {
-        const poleDoc = await payload.find({
-          collection: 'poles',
-          where: {
-            or: [
-              { slug: { equals: pole } },
-              { name: { equals: pole } },
-            ],
-          },
-          limit: 1,
-        })
-        if (poleDoc.docs.length > 0) {
-          resolvedPoleId = poleDoc.docs[0].id
-        }
-      }
-
-      // Compatibilité DB sans migration schema: 'support' est persisté sous 'autre' avec tag explicite
-      const payloadRequestType = safeType === 'support' ? 'autre' : safeType
       const enrichedMessage = safeType === 'support'
-        ? `[Demande de type: Support / Assistance technique]\n\n${safeMessage}`
+        ? `[Demande de type: Support / Assistance technique]\n\n` + safeMessage
         : safeMessage
 
-      const leadDoc = await payload.create({
-        collection: 'leads',
-        data: {
-          firstname: safeFirstname,
-          lastname: safeLastname,
-          company: typeof company === 'string' ? company.trim().slice(0, 150) : null,
-          email: safeEmail,
-          phone: typeof phone === 'string' ? phone.trim().slice(0, 50) : null,
-          requestType: payloadRequestType as any,
-          pole: resolvedPoleId as any,
-          message: enrichedMessage,
-          source: 'website-contact-form',
-          status: 'new',
-          priority: 'medium',
-        },
-        disableTransaction: true,
+      createdLeadId = await submitLeadToERPNext({
+        firstname: safeFirstname,
+        lastname: safeLastname,
+        company: typeof company === 'string' ? company.trim().slice(0, 150) : '',
+        email: safeEmail,
+        phone: typeof phone === 'string' ? phone.trim().slice(0, 50) : '',
+        requestType: safeType,
+        pole: pole && typeof pole === 'string' ? pole : '',
+        message: enrichedMessage,
+        source: 'website-contact-form',
       })
-
-      createdLeadId = leadDoc.id
-      console.info(`[CRM Leads] Nouveau lead créé avec succès dans Payload (ID: ${createdLeadId}) pour ${safeEmail}`)
+      console.info(`[CRM Leads] Nouveau lead créé avec succès dans ERPNext (ID: ${createdLeadId}) pour ${safeEmail}`)
     } catch (dbError) {
-      // Résilience : Si la base PostgreSQL n'est pas joignable (ex: test local sans DB),
-      // nous enregistrons le lead dans les logs de l'application et ne rejetons JAMAIS le visiteur.
-      console.warn('[CRM Leads] Persistance Payload différée (base non active) :', dbError)
-      createdLeadId = `offline-${Date.now()}`
+      console.warn('[CRM Leads] Persistance ERPNext différée (base non active) :', dbError)
+      createdLeadId = `offline-` + Date.now()
     }
 
     return NextResponse.json(

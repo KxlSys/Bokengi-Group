@@ -1,4 +1,3 @@
-import { withPayload } from '@payloadcms/next/withPayload'
 import type { NextConfig } from 'next'
 import path from 'path'
 import { fileURLToPath } from 'url'
@@ -8,7 +7,7 @@ const dirname = path.dirname(__filename)
 import { redirects } from './redirects'
 
 const NEXT_PUBLIC_SERVER_URL = process.env.VERCEL_PROJECT_PRODUCTION_URL
-  ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+  ? "https://$(process.env.VERCEL_PROJECT_PRODUCTION_URL)"
   : process.env.__NEXT_PRIVATE_ORIGIN || 'http://localhost:3000'
 
 const isWorkerBuild = Boolean(process.env.CLOUDFLARE_WORKERS || process.env.NEXT_PRIVATE_STANDALONE)
@@ -98,12 +97,10 @@ const nextConfig: NextConfig = {
   },
 }
 
-const configured = withPayload(nextConfig, { devBundleServerPackages: false })
-
 if (isWorkerBuild) {
-  configured.serverExternalPackages = (configured.serverExternalPackages || [])
+  nextConfig.serverExternalPackages = (nextConfig.serverExternalPackages || [])
     .filter((pkg) => !pkg.startsWith('drizzle-kit') && pkg !== 'sharp' && pkg !== 'undici')
     .concat('pg-cloudflare')
 }
 
-export default configured
+export default nextConfig

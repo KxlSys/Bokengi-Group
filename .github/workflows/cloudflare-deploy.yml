@@ -1,0 +1,70 @@
+name: Cloudflare Worker Production Deployment
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Target Deployment Environment'
+        required: true
+        default: 'production'
+        type: choice
+        options:
+          - production
+          - preview
+
+concurrency:
+  group: cloudflare-deploy-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  deploy-worker:
+    name: Build & Deploy OpenNext Cloudflare Worker (Ubuntu Linux)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.33.0
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: TypeScript Typecheck
+        run: pnpm tsc --noEmit
+
+      - name: Build OpenNext Worker
+        run: pnpm run build:worker
+        env:
+          CLOUDFLARE_WORKERS: 'true'
+
+      - name: Verify build artifacts
+        run: |
+          if [ ! -f .open-next/worker.js ]; then
+            echo "❌ .open-next/worker.js missing!"
+            exit 1
+          fi
+          echo "✅ Worker build artifacts verified."
+
+      - name: Deploy to Cloudflare Workers (Preview)
+        if: ${{ github.event.inputs.environment == 'preview' }}
+        run: pnpm wrangler deploy --env preview
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID || 'e07a615d8ecb49aa764fcd9c192590e6' }}
+
+      - name: Deploy to Cloudflare Workers (Production)
+        if: ${{ github.event.inputs.environment == 'production' || github.event_name == 'workflow_dispatch' && github.event.inputs.environment == '' }}
+        run: pnpm wrangler deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID || 'e07a615d8ecb49aa764fcd9c192590e6' }}

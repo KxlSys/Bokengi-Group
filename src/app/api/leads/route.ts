@@ -98,17 +98,16 @@ export async function POST(req: NextRequest) {
         ? `[Demande de type: Support / Assistance technique]\n\n` + safeMessage
         : safeMessage
 
-      createdLeadId = await submitLeadToERPNext({
-        firstname: safeFirstname,
-        lastname: safeLastname,
-        company: typeof company === 'string' ? company.trim().slice(0, 150) : '',
-        email: safeEmail,
+      const result = await submitLeadToERPNext({
+        lead_name: `${safeFirstname} ${safeLastname}`.trim(),
+        company_name: typeof company === 'string' ? company.trim().slice(0, 150) : '',
+        email_id: safeEmail,
         phone: typeof phone === 'string' ? phone.trim().slice(0, 50) : '',
-        requestType: safeType,
-        pole: pole && typeof pole === 'string' ? pole : '',
-        message: enrichedMessage,
-        source: 'website-contact-form',
+        custom_pole: pole && typeof pole === 'string' ? pole : '',
+        custom_payload_message_raw: enrichedMessage,
       })
+      
+      createdLeadId = result.name || `erpnext-generated-${Date.now()}`
       console.info(`[CRM Leads] Nouveau lead créé avec succès dans ERPNext (ID: ${createdLeadId}) pour ${safeEmail}`)
     } catch (dbError) {
       console.warn('[CRM Leads] Persistance ERPNext différée (base non active) :', dbError)

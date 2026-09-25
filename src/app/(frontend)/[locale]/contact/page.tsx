@@ -126,14 +126,6 @@ export default async function ContactPage({ params }: PageProps) {
                     </div>
                     <div className="pt-2 border-t border-[var(--border-subtle)]">
                       <span className="block text-xs text-[var(--ink-muted)] font-mono uppercase">
-                        {t.contact.headquarters}
-                      </span>
-                      <strong className="text-[var(--ink-heading)] block font-medium">
-                        {t.contact.headquartersCity}
-                      </strong>
-                    </div>
-                    <div className="pt-2 border-t border-[var(--border-subtle)]">
-                      <span className="block text-xs text-[var(--ink-muted)] font-mono uppercase">
                         {t.contact.coverageZone}
                       </span>
                       <span className="text-[var(--ink-heading)] block text-xs">

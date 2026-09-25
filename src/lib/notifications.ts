@@ -93,13 +93,12 @@ export function buildLeadNotificationContent(lead: LeadNotificationData): {
   const priorityLabel = (lead.priority && PRIORITY_LABELS[lead.priority]) || lead.priority || 'Moyenne'
   const formattedDate = formatParisDate(lead.createdAt)
 
-  const serverUrl =
-    process.env.NEXT_PUBLIC_SERVER_URL ||
-    (process.env.NODE_ENV === 'production' ? 'https://bokengi-group.com' : 'http://localhost:3000')
+  const erpnextUrl =
+    process.env.ERPNEXT_API_URL || 'https://erp.bokengi-group.com'
 
   const adminLeadUrl = lead.id
-    ? `${serverUrl}/admin/collections/leads/${lead.id}`
-    : `${serverUrl}/admin/collections/leads`
+    ? `${erpnextUrl}/app/lead/${encodeURIComponent(String(lead.id))}`
+    : `${erpnextUrl}/app/lead`
 
   const teamSubject = formatLeadEmailSubject(lead)
 
@@ -190,13 +189,13 @@ export function buildLeadNotificationContent(lead: LeadNotificationData): {
 
             <div class="cta-wrap">
               <a href="${adminLeadUrl}" class="cta-button" target="_blank" rel="noopener noreferrer">
-                Consulter le dossier dans l'Admin →
+                Consulter le dossier dans ERPNext Desk →
               </a>
             </div>
           </div>
           <div class="footer">
             Notification automatique envoyée à l'équipe Bokengi Group.<br>
-            Plateforme officielle : <a href="${serverUrl}" style="color: #0055D4; text-decoration: none;">bokengi-group.com</a>
+            ERP officiel : <a href="${erpnextUrl}" style="color: #0055D4; text-decoration: none;">erp.bokengi-group.com</a>
           </div>
         </div>
       </body>
@@ -226,7 +225,7 @@ export function buildLeadNotificationContent(lead: LeadNotificationData): {
     `------------------------------`,
     lead.message,
     ``,
-    `ACCÉDER AU DOSSIER DANS PAYLOAD ADMIN :`,
+    `ACCÉDER AU DOSSIER DANS ERPNEXT DESK :`,
     adminLeadUrl,
     ``,
     `------------------------------------------------------`,

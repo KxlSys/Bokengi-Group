@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { submitLeadToERPNext } from '@/lib/erpnext-client'
+import { sendLeadNotifications } from '@/lib/notifications'
 
 const rateLimitMap = new Map<string, { count: number; lastReset: number }>()
 
@@ -109,6 +110,22 @@ export async function POST(req: NextRequest) {
       
       createdLeadId = result.name || `erpnext-generated-${Date.now()}`
       console.info(`[CRM Leads] Nouveau lead créé avec succès dans ERPNext (ID: ${createdLeadId}) pour ${safeEmail}`)
+
+      // Déclenchement asynchrone non-bloquant de la notification email (si clé configurée)
+      sendLeadNotifications({
+        id: createdLeadId,
+        firstname: safeFirstname,
+        lastname: safeLastname,
+        company: typeof company === 'string' ? company.trim() : null,
+        email: safeEmail,
+        phone: typeof phone === 'string' ? phone.trim() : null,
+        requestType: safeType,
+        poleName: pole && typeof pole === 'string' ? pole : undefined,
+        message: enrichedMessage,
+        createdAt: new Date().toISOString(),
+      }).catch((notifErr) => {
+        console.warn('[CRM Leads] Notification email asynchrone non transmise :', notifErr)
+      })
     } catch (dbError) {
       console.warn('[CRM Leads] Persistance ERPNext différée (base non active) :', dbError)
       createdLeadId = `offline-` + Date.now()

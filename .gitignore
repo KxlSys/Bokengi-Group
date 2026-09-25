@@ -25,3 +25,13 @@ node_modules/
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+
+# Sensitive / local backups
+backups/
+dumps/
+*.sql
+*.sql.gz
+*.zip
+
+# Local logs / runtime artifacts
+logs/

@@ -17,6 +17,14 @@ import {
   PostData,
   PostAuthor,
   PostCoverImage,
+  POLES_SEED_DATA,
+  POLES_SEED_DATA_EN,
+  SERVICES_SEED_DATA,
+  SERVICES_SEED_DATA_EN,
+  CASE_STUDIES_SEED_DATA,
+  CASE_STUDIES_SEED_DATA_EN,
+  POSTS_SEED_DATA,
+  POSTS_SEED_DATA_EN,
 } from '@/data/bokengi-seed-data'
 
 export function extractLexicalText(node: unknown): string {
@@ -24,27 +32,53 @@ export function extractLexicalText(node: unknown): string {
 }
 
 export async function getPoles(locale: Locale = 'fr'): Promise<PoleData[]> {
-  return fetchPolesFromERPNext(locale)
+  try {
+    return await fetchPolesFromERPNext(locale)
+  } catch {
+    return locale === 'en' ? POLES_SEED_DATA_EN : POLES_SEED_DATA
+  }
 }
 
 export async function getPoleBySlug(slug: string, locale: Locale = 'fr'): Promise<PoleData | null> {
-  return fetchPoleBySlugFromERPNext(slug, locale)
+  try {
+    const pole = await fetchPoleBySlugFromERPNext(slug, locale)
+    if (pole) return pole
+  } catch {}
+  const list: PoleData[] = locale === 'en' ? POLES_SEED_DATA_EN : POLES_SEED_DATA
+  return list.find((p: PoleData) => p.slug === slug) || null
 }
 
 export async function getServices(poleSlug?: string, locale: Locale = 'fr'): Promise<ServiceData[]> {
-  return fetchServicesFromERPNext(poleSlug, locale)
+  try {
+    const services = await fetchServicesFromERPNext(poleSlug, locale)
+    if (services && services.length > 0) return services
+  } catch {}
+  const list: ServiceData[] = locale === 'en' ? SERVICES_SEED_DATA_EN : SERVICES_SEED_DATA
+  if (poleSlug) {
+    const cleanPole = poleSlug.replace(/^POL-/, '')
+    return list.filter((s: ServiceData) => s.poleSlug === cleanPole)
+  }
+  return list
 }
 
 export async function getCaseStudies(featuredOnly: boolean = false, locale: Locale = 'fr'): Promise<CaseStudyData[]> {
-  const cases = await fetchCaseStudiesFromERPNext(locale)
-  if (featuredOnly) {
-    return cases.filter(c => c.featured)
-  }
-  return cases
+  try {
+    const cases = await fetchCaseStudiesFromERPNext(locale)
+    if (cases && cases.length > 0) {
+      return featuredOnly ? cases.filter((c: CaseStudyData) => c.featured) : cases
+    }
+  } catch {}
+  const list: CaseStudyData[] = locale === 'en' ? CASE_STUDIES_SEED_DATA_EN : CASE_STUDIES_SEED_DATA
+  return featuredOnly ? list.filter((c: CaseStudyData) => c.featured) : list
 }
 
 export async function getCaseStudyBySlug(slug: string, locale: Locale = 'fr'): Promise<CaseStudyData | null> {
-  return fetchCaseStudyBySlugFromERPNext(slug, locale)
+  try {
+    const cs = await fetchCaseStudyBySlugFromERPNext(slug, locale)
+    if (cs) return cs
+  } catch {}
+  const list: CaseStudyData[] = locale === 'en' ? CASE_STUDIES_SEED_DATA_EN : CASE_STUDIES_SEED_DATA
+  return list.find((c: CaseStudyData) => c.slug === slug) || null
 }
 
 export function calculateReadingTime(text: string): number {
@@ -77,16 +111,30 @@ export function mapPayloadPostToPostData(doc: any): PostData {
 }
 
 export async function getPosts(filter?: { category?: string; limit?: number }, locale: Locale = 'fr'): Promise<PostData[]> {
-  let posts = await fetchPostsFromERPNext(filter, locale)
+  let posts: PostData[] = []
+  try {
+    posts = await fetchPostsFromERPNext(filter, locale)
+  } catch {}
+  if (!posts || posts.length === 0) {
+    posts = locale === 'en' ? POSTS_SEED_DATA_EN : POSTS_SEED_DATA
+  }
   if (filter?.category && filter.category !== 'all') {
     const catLower = filter.category.toLowerCase()
-    posts = posts.filter((p) => p.categories.some((c) => c.toLowerCase() === catLower))
+    posts = posts.filter((p: PostData) => p.categories.some((c: string) => c.toLowerCase() === catLower))
+  }
+  if (filter?.limit) {
+    posts = posts.slice(0, filter.limit)
   }
   return posts
 }
 
 export async function getPostBySlug(slug: string, locale: Locale = 'fr'): Promise<PostData | null> {
-  return fetchPostBySlugFromERPNext(slug, locale)
+  try {
+    const post = await fetchPostBySlugFromERPNext(slug, locale)
+    if (post) return post
+  } catch {}
+  const list: PostData[] = locale === 'en' ? POSTS_SEED_DATA_EN : POSTS_SEED_DATA
+  return list.find((p: PostData) => p.slug === slug) || null
 }
 
 export async function getPostCategories(locale: Locale = 'fr'): Promise<string[]> {

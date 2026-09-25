@@ -11,8 +11,8 @@ export interface CalBookingProps {
 }
 
 export const CalBooking: React.FC<CalBookingProps> = ({
-  calLink = process.env.NEXT_PUBLIC_CALCOM_LINK,
-  enabled = process.env.NEXT_PUBLIC_CALCOM_ENABLED === 'true',
+  calLink = process.env.NEXT_PUBLIC_CALCOM_LINK || 'bokengi-group',
+  enabled = process.env.NEXT_PUBLIC_CALCOM_ENABLED !== 'false',
   className = '',
 }) => {
   const { t } = useI18n()

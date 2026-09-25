@@ -49,6 +49,8 @@ jobs:
         run: pnpm run build:worker
         env:
           CLOUDFLARE_WORKERS: 'true'
+          NEXT_PUBLIC_CALCOM_ENABLED: 'true'
+          NEXT_PUBLIC_CALCOM_LINK: 'https://cal.com/bokengi-group'
 
       - name: Verify build artifacts
         run: |

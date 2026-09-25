@@ -16,6 +16,10 @@
       "bucket_name": "bokengi-media"
     }
   ],
+  "vars": {
+    "NEXT_PUBLIC_CALCOM_LINK": "https://cal.com/bokengi-group",
+    "NEXT_PUBLIC_CALCOM_ENABLED": "true"
+  },
   "env": {
     "preview": {
       "name": "bokengi-group-preview",

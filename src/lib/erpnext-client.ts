@@ -465,3 +465,34 @@ export async function submitLeadToERPNext(leadData: {
 
   return { success: Boolean(res.data?.name), name: res.data?.name }
 }
+
+/**
+ * Envoie une demande d'accès sécurisée vers ERPNext (enregistrée comme Lead d'habilitation interne).
+ */
+export async function submitAccessRequestToERPNext(data: {
+  first_name: string
+  last_name: string
+  email: string
+  requested_role: string
+  justification: string
+}): Promise<{ success: boolean; name?: string }> {
+  const roleLabel = data.requested_role === 'admin' ? 'Administrateur Technique' : 'Éditeur de Contenu'
+  const message = [
+    `[DEMANDE D'ACCÈS INTERNE / HABILITATION]`,
+    `Demandeur : ${data.first_name} ${data.last_name}`.trim(),
+    `Email professionnel : ${data.email}`,
+    `Rôle sollicité : ${roleLabel} (${data.requested_role})`,
+    ``,
+    `Justification & Motivation :`,
+    data.justification,
+  ].join('\n')
+
+  return submitLeadToERPNext({
+    lead_name: `${data.first_name} ${data.last_name}`.trim(),
+    company_name: "Demande d'accès interne / Partenaire",
+    email_id: data.email,
+    custom_pole: 'POL-it',
+    custom_payload_message_raw: message,
+  })
+}
+

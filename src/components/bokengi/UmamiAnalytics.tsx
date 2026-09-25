@@ -34,6 +34,7 @@ export const UmamiAnalytics: React.FC<UmamiAnalyticsProps> = ({
   // 2. Mode Actif : Injection du tracker Umami non-bloquant
   return (
     <Script
+      id="umami-analytics"
       src={cleanSrc}
       data-website-id={cleanWebsiteId}
       data-host-url={hostUrl && typeof hostUrl === 'string' ? hostUrl.trim() : undefined}

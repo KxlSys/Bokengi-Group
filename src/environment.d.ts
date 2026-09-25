@@ -16,6 +16,7 @@ declare global {
       NEXT_PUBLIC_OPENSTATUS_ENABLED?: string
       NEXT_PUBLIC_UMAMI_WEBSITE_ID?: string
       NEXT_PUBLIC_UMAMI_SRC?: string
+      NEXT_PUBLIC_UMAMI_HOST_URL?: string
       NEXT_PUBLIC_UMAMI_ENABLED?: string
     }
   }

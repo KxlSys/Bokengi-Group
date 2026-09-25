@@ -34,6 +34,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function GroupePage({ params }: PageProps) {
   const { locale } = await params
   const currentLocale: Locale = locale === 'en' ? 'en' : 'fr'
+  const isEn = currentLocale === 'en'
   const t = getDictionary(currentLocale)
 
   const poles = await getPoles(currentLocale)
@@ -221,9 +222,9 @@ export default async function GroupePage({ params }: PageProps) {
                     {t.about.presenceLead}
                   </p>
                 </div>
-                <div className="pt-4 border-t border-[var(--border-subtle)] flex items-center justify-between text-xs font-mono text-[var(--ink-muted)]">
-                  <span>Siège social : Brazzaville</span>
-                  <span>Bureaux : Pointe-Noire · Kinshasa · Paris</span>
+                <div className="pt-4 border-t border-[var(--border-subtle)] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-xs font-mono text-[var(--ink-muted)]">
+                  <span>{isEn ? 'Headquarters: Paris, France' : 'Siège social : Paris, France'}</span>
+                  <span>{isEn ? 'Zone: Central Africa & International Remote Delivery' : 'Zone : Afrique centrale & Projets internationaux à distance'}</span>
                 </div>
               </div>
             </div>

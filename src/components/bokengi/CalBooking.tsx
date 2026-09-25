@@ -2,14 +2,13 @@
 
 import React, { useState } from 'react'
 import { Kicker } from './Kicker'
+import { useI18n } from '@/i18n'
 
 export interface CalBookingProps {
   calLink?: string
   enabled?: boolean
   className?: string
 }
-
-import { useI18n } from '@/i18n'
 
 export const CalBooking: React.FC<CalBookingProps> = ({
   calLink = process.env.NEXT_PUBLIC_CALCOM_LINK,
@@ -19,11 +18,17 @@ export const CalBooking: React.FC<CalBookingProps> = ({
   const { t } = useI18n()
   const [isOpen, setIsOpen] = useState(false)
 
-  // 1. Architecture prête mais NON activée publiquement par défaut (exigence Phase 3)
-  if (!enabled || !calLink) {
+  // Nettoyage et normalisation du lien / slug Cal.com
+  const rawLink = typeof calLink === 'string' ? calLink.trim() : ''
+  const cleanSlug = rawLink.replace(/^https?:\/\/cal\.com\//i, '').replace(/^\/+|\/+$/g, '')
+
+  // 1. Mode Standby : Architecture prête mais désactivée par défaut
+  if (!enabled || !cleanSlug) {
     return (
       <div
         className={`p-6 rounded-[var(--radius-md)] bg-[var(--bg-surface)] border border-[var(--border-subtle)] ${className}`}
+        role="region"
+        aria-label={t.contact.calTitle}
       >
         <div className="flex items-center justify-between mb-3">
           <Kicker>{t.contact.calKicker}</Kicker>
@@ -38,21 +43,25 @@ export const CalBooking: React.FC<CalBookingProps> = ({
           {t.contact.calDesc}
         </p>
         <div className="text-xs font-mono text-[var(--blue-cyan)] flex items-center gap-1.5">
-          <span>ℹ</span>
+          <span aria-hidden="true">ℹ</span>
           <span>{t.contact.calNote}</span>
         </div>
       </div>
     )
   }
 
-  // 2. Si activé par l'administrateur via variable d'environnement
+  // 2. Mode Actif : Affichage du déclencheur et de l'iframe intégrée Cal.com
+  const embedUrl = `https://cal.com/${cleanSlug}?embed=true`
+
   return (
     <div
-      className={`p-6 rounded-[var(--radius-md)] bg-[var(--bg-surface)] border border-[var(--border-medium)] ${className}`}
+      className={`p-6 rounded-[var(--radius-md)] bg-[var(--bg-surface)] border border-[var(--border-medium)] transition-all ${className}`}
+      role="region"
+      aria-label={t.contact.calActiveTitle}
     >
       <div className="flex items-center justify-between mb-3">
         <Kicker>{t.contact.calKicker}</Kicker>
-        <span className="text-[10px] font-mono px-2 py-0.5 rounded-[var(--radius-xs)] bg-[var(--blue-cyan)]/10 text-[var(--blue-cyan)] border border-[var(--blue-cyan)]/20">
+        <span className="text-[10px] font-mono px-2 py-0.5 rounded-[var(--radius-xs)] bg-[var(--blue-cyan)]/10 text-[var(--blue-cyan)] border border-[var(--blue-cyan)]/20 font-semibold">
           {t.contact.calActiveBadge}
         </span>
       </div>
@@ -63,20 +72,27 @@ export const CalBooking: React.FC<CalBookingProps> = ({
         {t.contact.calActiveDesc}
       </p>
 
-      {!isOpen ? (
-        <button
-          type="button"
-          onClick={() => setIsOpen(true)}
-          className="btn-v4-secondary w-full text-center text-xs py-2"
+      <button
+        type="button"
+        onClick={() => setIsOpen((prev) => !prev)}
+        aria-expanded={isOpen}
+        aria-controls="cal-embed-container"
+        className="btn-v4-secondary w-full text-center text-xs py-2.5 font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--blue-cyan)]"
+      >
+        {isOpen ? t.contact.calCloseBtn : t.contact.calOpenBtn}
+      </button>
+
+      {isOpen && (
+        <div
+          id="cal-embed-container"
+          className="mt-4 border-t border-[var(--border-subtle)] pt-4 animate-in fade-in duration-300"
         >
-          {t.contact.calOpenBtn}
-        </button>
-      ) : (
-        <div className="mt-4 border-t border-[var(--border-subtle)] pt-4">
           <iframe
-            src={`https://cal.com/${calLink}?embed=true`}
+            src={embedUrl}
             title={t.contact.calIframeTitle}
-            className="w-full h-[450px] rounded-[var(--radius-sm)] border border-[var(--border-subtle)]"
+            loading="lazy"
+            allow="camera; microphone; autoplay; fullscreen"
+            className="w-full h-[520px] rounded-[var(--radius-sm)] border border-[var(--border-subtle)] bg-[var(--bg-elevated)]"
           />
         </div>
       )}

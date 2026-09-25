@@ -238,6 +238,7 @@ export const fr: Dictionary = {
     calActiveTitle: 'Réserver un créneau de cadrage technique',
     calActiveDesc: 'Sélectionnez une date et heure pour échanger directement en visioconférence avec un responsable de pôle.',
     calIframeTitle: 'Réservation de rendez-vous Cal.com',
+    calCloseBtn: 'Fermer le calendrier interactif',
   },
   contactForm: {
     title: 'Initier un projet',

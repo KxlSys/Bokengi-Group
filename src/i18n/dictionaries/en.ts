@@ -238,6 +238,7 @@ export const en: Dictionary = {
     calActiveTitle: 'Book a Technical Scoping Session',
     calActiveDesc: 'Select a date and time to meet directly via videoconference with a practice lead.',
     calIframeTitle: 'Cal.com Meeting Booking',
+    calCloseBtn: 'Close interactive calendar',
   },
   contactForm: {
     title: 'Initiate a Project',

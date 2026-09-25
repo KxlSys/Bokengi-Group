@@ -223,6 +223,7 @@ export interface Dictionary {
     calActiveTitle: string
     calActiveDesc: string
     calIframeTitle: string
+    calCloseBtn: string
   }
   contactForm: {
     title: string

@@ -58,6 +58,15 @@ jobs:
           fi
           echo "✅ Worker build artifacts verified."
 
+      - name: Check Cloudflare Credentials
+        run: |
+          if [ -z "${{ secrets.CLOUDFLARE_API_TOKEN }}" ]; then
+            echo "::error::CLOUDFLARE_API_TOKEN secret is missing or empty in GitHub Repository Secrets."
+            echo "To enable automated production deployments, please add CLOUDFLARE_API_TOKEN in GitHub Settings > Secrets and variables > Actions."
+            exit 1
+          fi
+          echo "✅ Cloudflare API credentials detected."
+
       - name: Deploy to Cloudflare Workers (Preview)
         if: ${{ github.event.inputs.environment == 'preview' }}
         run: pnpm wrangler deploy --env preview

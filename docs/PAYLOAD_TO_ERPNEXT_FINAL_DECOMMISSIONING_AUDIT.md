@@ -144,3 +144,5 @@ $$\mathbf{VERDICT \ OFFICIEL \ : \ GO \ — \ AUDIT \ FINAL \ DE \ DÉCOMMISSION
 
 > [!IMPORTANT]
 > **RAPPEL DE SÉCURITÉ :** Conformément aux consignes, **aucun composant, package, secret ou service de base de données n'a été supprimé**. Le système demeure intact et en attente d'arbitrage pour le lancement de la Phase 1 du décommissionnement.
+
+PAYLOAD → ERPNEXT — FINAL DECOMMISSIONING AUDIT TERMINÉ / EN ATTENTE DE VALIDATION

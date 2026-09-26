@@ -97,12 +97,11 @@ export const Navbar: React.FC = () => {
     <header className={`header-v4 ${isScrolled ? 'is-scrolled' : ''}`}>
       <div className="container-v4 header-v4-inner">
         {/* Official Brand Logo */}
-        <Link href={getHref('/')} className="header-v4-logo" aria-label={`Bokengi Group · ${t.common.backToHome}`}>
+        <Link href={getHref('/')} className="header-v4-logo min-w-0 shrink" aria-label={`Bokengi Group · ${t.common.backToHome}`}>
           <img
             src={isDark ? '/bokengi-logo-horizontal-dark.png' : '/bokengi-logo-horizontal.png'}
             alt="Bokengi Group · Technology & Services"
-            className="header-v4-logo-img"
-            style={{ height: '38px', width: 'auto', display: 'block' }}
+            className="header-v4-logo-img h-[32px] xs:h-[35px] sm:h-[38px] w-auto max-w-[135px] xs:max-w-[170px] sm:max-w-none object-contain block"
           />
         </Link>
 
@@ -190,11 +189,11 @@ export const Navbar: React.FC = () => {
         </nav>
 
         {/* Header Actions */}
-        <div className="header-v4-actions flex items-center gap-2">
+        <div className="header-v4-actions flex items-center gap-1.5 xs:gap-2 sm:gap-3 shrink-0">
           <LanguageToggle />
           <ThemeToggle />
 
-          <Link href={getHref('/contact?type=devis')} className="btn-v4-primary hidden sm:inline-flex" style={{ height: '40px', padding: '0 1.25rem', fontSize: '0.85rem' }}>
+          <Link href={getHref('/contact?type=devis')} className="btn-v4-primary hidden lg:inline-flex" style={{ height: '40px', padding: '0 1.25rem', fontSize: '0.85rem' }}>
             {t.common.requestQuote} →
           </Link>
 
@@ -220,7 +219,7 @@ export const Navbar: React.FC = () => {
       {/* Mobile Menu Drawer */}
       {isOpen && (
         <div
-          className="md:hidden bg-[var(--bg-surface)] border-b border-[var(--border-subtle)] px-6 py-5 shadow-lg max-h-[calc(100dvh-80px)] overflow-y-auto"
+          className="md:hidden bg-[var(--bg-surface)] border-b border-[var(--border-subtle)] px-6 py-5 shadow-lg max-h-[calc(100dvh-72px)] sm:max-h-[calc(100dvh-80px)] overflow-y-auto"
           style={{ paddingBottom: 'max(1.25rem, env(safe-area-inset-bottom, 0px))' }}
         >
           <ul className="flex flex-col gap-3 list-none p-0 m-0">

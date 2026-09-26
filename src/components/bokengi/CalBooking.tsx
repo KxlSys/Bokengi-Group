@@ -26,7 +26,7 @@ export const CalBooking: React.FC<CalBookingProps> = ({
   if (!enabled || !cleanSlug) {
     return (
       <div
-        className={`p-6 rounded-[var(--radius-md)] bg-[var(--bg-surface)] border border-[var(--border-subtle)] ${className}`}
+        className={`p-5 sm:p-6 rounded-[var(--radius-md)] bg-[var(--bg-surface)] border border-[var(--border-subtle)] ${className}`}
         role="region"
         aria-label={t.contact.calTitle}
       >
@@ -55,7 +55,7 @@ export const CalBooking: React.FC<CalBookingProps> = ({
 
   return (
     <div
-      className={`p-6 rounded-[var(--radius-md)] bg-[var(--bg-surface)] border border-[var(--border-medium)] transition-all ${className}`}
+      className={`p-5 sm:p-6 rounded-[var(--radius-md)] bg-[var(--bg-surface)] border border-[var(--border-medium)] transition-all ${className}`}
       role="region"
       aria-label={t.contact.calActiveTitle}
     >
@@ -77,7 +77,7 @@ export const CalBooking: React.FC<CalBookingProps> = ({
         onClick={() => setIsOpen((prev) => !prev)}
         aria-expanded={isOpen}
         aria-controls="cal-embed-container"
-        className="btn-v4-secondary w-full text-center text-xs py-2.5 font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--blue-cyan)]"
+        className="btn-v4-secondary w-full text-center text-xs py-2.5 font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--blue-cyan)] min-h-[44px]"
       >
         {isOpen ? t.contact.calCloseBtn : t.contact.calOpenBtn}
       </button>
@@ -85,14 +85,14 @@ export const CalBooking: React.FC<CalBookingProps> = ({
       {isOpen && (
         <div
           id="cal-embed-container"
-          className="mt-4 border-t border-[var(--border-subtle)] pt-4 animate-in fade-in duration-300"
+          className="mt-4 border-t border-[var(--border-subtle)] pt-4 animate-in fade-in duration-300 w-full overflow-hidden"
         >
           <iframe
             src={embedUrl}
             title={t.contact.calIframeTitle}
             loading="lazy"
             allow="camera; microphone; autoplay; fullscreen"
-            className="w-full h-[520px] rounded-[var(--radius-sm)] border border-[var(--border-subtle)] bg-[var(--bg-elevated)]"
+            className="w-full max-w-full h-[460px] xs:h-[500px] sm:h-[540px] rounded-[var(--radius-sm)] border border-[var(--border-subtle)] bg-[var(--bg-elevated)]"
           />
         </div>
       )}

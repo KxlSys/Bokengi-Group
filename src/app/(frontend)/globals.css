@@ -1098,6 +1098,9 @@ body.dark-theme .footer-v4-bottom {
 }
 
 @media (max-width: 768px) {
+  .header-v4 {
+    height: 72px;
+  }
   .container-v4 {
     padding-left: 1.25rem;
     padding-right: 1.25rem;
@@ -1184,7 +1187,26 @@ body.dark-theme .footer-v4-bottom {
 
 @media (max-width: 640px) {
   .hero-v4 {
-    padding-top: 110px;
+    padding-top: 105px;
+    padding-bottom: 60px;
+    min-height: auto;
+  }
+  .hero-v4-title {
+    font-size: clamp(2.2rem, 9vw, 3.2rem);
+    margin-bottom: 1.25rem;
+  }
+  .hero-v4-lead {
+    font-size: 1.05rem;
+  }
+  .hero-v4-actions {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.75rem;
+  }
+  .hero-v4-actions .btn-v4-primary,
+  .hero-v4-actions .btn-v4-secondary {
+    width: 100%;
+    justify-content: center;
   }
   .footer-v4-grid {
     grid-template-columns: 1fr;
@@ -1212,6 +1234,39 @@ body.dark-theme .footer-v4-bottom {
   .project-v4-item {
     padding: 1.25rem 1rem;
   }
+}
+
+@media (max-width: 360px) {
+  .container-v4 {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+  .header-v4-actions {
+    gap: 0.25rem;
+  }
+}
+
+/* ── SÉCURITÉ ANTI-OVERFLOW & ACCESSIBILITÉ FLUIDE ── */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+img, svg, video, canvas, audio, iframe, embed, object {
+  max-width: 100%;
+}
+
+pre, code {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+a, p, span, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+button, [role="button"], a {
+  touch-action: manipulation;
 }
 
 /* ── ACCESSIBILITÉ : FOCUS-VISIBLE ── */

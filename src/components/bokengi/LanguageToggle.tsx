@@ -34,13 +34,13 @@ export const LanguageToggle: React.FC<LanguageToggleProps> = ({
 
   return (
     <div
-      className={`inline-flex items-center gap-1.5 text-xs font-sans ${className}`.trim()}
+      className={`inline-flex items-center gap-1.5 text-xs font-sans shrink-0 ${className}`.trim()}
       role="group"
       aria-label={`${t.nav.language}: ${locale === 'fr' ? t.nav.french : t.nav.english}`}
     >
       {showLabel && (
         <span
-          className="text-[var(--ink-muted)] font-medium text-[11px] uppercase tracking-wider hidden sm:inline select-none"
+          className="text-[var(--ink-muted)] font-medium text-[11px] uppercase tracking-wider hidden lg:inline select-none"
           aria-hidden="true"
         >
           {t.nav.language} :
@@ -50,7 +50,7 @@ export const LanguageToggle: React.FC<LanguageToggleProps> = ({
         <button
           type="button"
           onClick={() => handleSelectLocale('fr')}
-          className={`px-2 py-1 rounded-[2px] text-xs transition-all font-semibold cursor-pointer ${
+          className={`px-2.5 py-1 min-w-[32px] min-h-[32px] sm:min-h-[34px] rounded-[2px] text-xs transition-all font-semibold cursor-pointer inline-flex items-center justify-center ${
             locale === 'fr'
               ? 'bg-[var(--blue-primary)] text-white shadow-xs'
               : 'text-[var(--ink-muted)] hover:text-[var(--ink-heading)]'
@@ -65,7 +65,7 @@ export const LanguageToggle: React.FC<LanguageToggleProps> = ({
         <button
           type="button"
           onClick={() => handleSelectLocale('en')}
-          className={`px-2 py-1 rounded-[2px] text-xs transition-all font-semibold cursor-pointer ${
+          className={`px-2.5 py-1 min-w-[32px] min-h-[32px] sm:min-h-[34px] rounded-[2px] text-xs transition-all font-semibold cursor-pointer inline-flex items-center justify-center ${
             locale === 'en'
               ? 'bg-[var(--blue-primary)] text-white shadow-xs'
               : 'text-[var(--ink-muted)] hover:text-[var(--ink-heading)]'

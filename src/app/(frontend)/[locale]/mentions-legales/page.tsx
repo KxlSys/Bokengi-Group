@@ -60,7 +60,7 @@ export default async function MentionsLegalesPage({ params }: PageProps) {
         <section className="py-16">
           <div className="container-v4 max-w-4xl space-y-12">
             {/* 1. Éditeur de la plateforme */}
-            <article className="p-8 rounded-[var(--radius-md)] bg-[var(--bg-surface)] border border-[var(--border-subtle)] space-y-4">
+            <article className="p-5 sm:p-8 rounded-[var(--radius-md)] bg-[var(--bg-surface)] border border-[var(--border-subtle)] space-y-4">
               <Kicker>{t.legal.editorKicker}</Kicker>
               <h2 className="text-2xl font-bold text-[var(--ink-heading)]">
                 {t.legal.editorTitle}
@@ -105,7 +105,7 @@ export default async function MentionsLegalesPage({ params }: PageProps) {
             </article>
 
             {/* 2. Direction de publication */}
-            <article className="p-8 rounded-[var(--radius-md)] bg-[var(--bg-surface)] border border-[var(--border-subtle)] space-y-4">
+            <article className="p-5 sm:p-8 rounded-[var(--radius-md)] bg-[var(--bg-surface)] border border-[var(--border-subtle)] space-y-4">
               <Kicker>{t.legal.hostingKicker}</Kicker>
               <h2 className="text-2xl font-bold text-[var(--ink-heading)]">
                 {t.legal.hostingTitle}
@@ -124,7 +124,7 @@ export default async function MentionsLegalesPage({ params }: PageProps) {
             </article>
 
             {/* 3. Propriété intellectuelle */}
-            <article className="p-8 rounded-[var(--radius-md)] bg-[var(--bg-surface)] border border-[var(--border-subtle)] space-y-4">
+            <article className="p-5 sm:p-8 rounded-[var(--radius-md)] bg-[var(--bg-surface)] border border-[var(--border-subtle)] space-y-4">
               <Kicker>{t.legal.ipKicker}</Kicker>
               <h2 className="text-2xl font-bold text-[var(--ink-heading)]">
                 {t.legal.ipTitle}
@@ -137,7 +137,7 @@ export default async function MentionsLegalesPage({ params }: PageProps) {
             </article>
 
             {/* 4. Sécurité & Continuité */}
-            <article className="p-8 rounded-[var(--radius-md)] bg-[var(--bg-surface)] border border-[var(--border-subtle)] space-y-4">
+            <article className="p-5 sm:p-8 rounded-[var(--radius-md)] bg-[var(--bg-surface)] border border-[var(--border-subtle)] space-y-4">
               <Kicker>{t.legal.securityKicker}</Kicker>
               <h2 className="text-2xl font-bold text-[var(--ink-heading)]">
                 {t.legal.securityTitle}
@@ -150,7 +150,7 @@ export default async function MentionsLegalesPage({ params }: PageProps) {
             </article>
 
             {/* 5. Données personnelles */}
-            <article className="p-8 rounded-[var(--radius-md)] bg-[var(--bg-surface)] border border-[var(--border-subtle)] space-y-4">
+            <article className="p-5 sm:p-8 rounded-[var(--radius-md)] bg-[var(--bg-surface)] border border-[var(--border-subtle)] space-y-4">
               <Kicker>{t.legal.dpoKicker}</Kicker>
               <h2 className="text-2xl font-bold text-[var(--ink-heading)]">
                 {t.legal.dpoTitle}
@@ -163,7 +163,7 @@ export default async function MentionsLegalesPage({ params }: PageProps) {
             </article>
 
             {/* 6. Cookies */}
-            <article className="p-8 rounded-[var(--radius-md)] bg-[var(--bg-surface)] border border-[var(--border-subtle)] space-y-4">
+            <article className="p-5 sm:p-8 rounded-[var(--radius-md)] bg-[var(--bg-surface)] border border-[var(--border-subtle)] space-y-4">
               <Kicker>{t.legal.cookiesKicker}</Kicker>
               <h2 className="text-2xl font-bold text-[var(--ink-heading)]">
                 {t.legal.cookiesTitle}
@@ -176,7 +176,7 @@ export default async function MentionsLegalesPage({ params }: PageProps) {
             </article>
 
             {/* 7. Droit applicable */}
-            <article className="p-8 rounded-[var(--radius-md)] bg-[var(--bg-surface)] border border-[var(--border-subtle)] space-y-4">
+            <article className="p-5 sm:p-8 rounded-[var(--radius-md)] bg-[var(--bg-surface)] border border-[var(--border-subtle)] space-y-4">
               <Kicker>{t.legal.applicableLawKicker}</Kicker>
               <h2 className="text-2xl font-bold text-[var(--ink-heading)]">
                 {t.legal.applicableLawTitle}

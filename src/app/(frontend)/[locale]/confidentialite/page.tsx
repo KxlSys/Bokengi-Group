@@ -60,7 +60,7 @@ export default async function ConfidentialitePage({ params }: PageProps) {
         <section className="py-16">
           <div className="container-v4 max-w-4xl space-y-12">
             {/* 1. Responsable de traitement */}
-            <article className="p-8 rounded-[var(--radius-md)] bg-[var(--bg-surface)] border border-[var(--border-subtle)] space-y-4">
+            <article className="p-5 sm:p-8 rounded-[var(--radius-md)] bg-[var(--bg-surface)] border border-[var(--border-subtle)] space-y-4">
               <Kicker>{isEn ? '01 · DATA CONTROLLER' : '01 · RESPONSABLE DU TRAITEMENT'}</Kicker>
               <h2 className="text-2xl font-bold text-[var(--ink-heading)]">
                 {isEn ? 'Who is responsible for processing your personal data?' : 'Qui est responsable du traitement de vos données ?'}
@@ -95,7 +95,7 @@ export default async function ConfidentialitePage({ params }: PageProps) {
             </article>
 
             {/* 2. Données collectées */}
-            <article className="p-8 rounded-[var(--radius-md)] bg-[var(--bg-surface)] border border-[var(--border-subtle)] space-y-4">
+            <article className="p-5 sm:p-8 rounded-[var(--radius-md)] bg-[var(--bg-surface)] border border-[var(--border-subtle)] space-y-4">
               <Kicker>{isEn ? '02 · COLLECTED DATA' : '02 · DONNÉES COLLECTÉES'}</Kicker>
               <h2 className="text-2xl font-bold text-[var(--ink-heading)]">
                 {isEn ? 'What information do we collect?' : 'Quelles informations recueillons-nous ?'}
@@ -152,7 +152,7 @@ export default async function ConfidentialitePage({ params }: PageProps) {
             </article>
 
             {/* 3. Finalités & Bases légales */}
-            <article className="p-8 rounded-[var(--radius-md)] bg-[var(--bg-surface)] border border-[var(--border-subtle)] space-y-4">
+            <article className="p-5 sm:p-8 rounded-[var(--radius-md)] bg-[var(--bg-surface)] border border-[var(--border-subtle)] space-y-4">
               <Kicker>{isEn ? '03 · PURPOSES & LEGAL BASES' : '03 · FINALITÉS & BASES LÉGALES'}</Kicker>
               <h2 className="text-2xl font-bold text-[var(--ink-heading)]">
                 {isEn ? 'How and why do we process your data?' : 'Pourquoi traitons-nous vos données ?'}
@@ -182,7 +182,7 @@ export default async function ConfidentialitePage({ params }: PageProps) {
             </article>
 
             {/* 4. Durée de conservation */}
-            <article className="p-8 rounded-[var(--radius-md)] bg-[var(--bg-surface)] border border-[var(--border-subtle)] space-y-4">
+            <article className="p-5 sm:p-8 rounded-[var(--radius-md)] bg-[var(--bg-surface)] border border-[var(--border-subtle)] space-y-4">
               <Kicker>{isEn ? '04 · DATA RETENTION' : '04 · DURÉE DE CONSERVATION'}</Kicker>
               <h2 className="text-2xl font-bold text-[var(--ink-heading)]">
                 {isEn ? 'How long is data preserved?' : 'Combien de temps conservons-nous vos données ?'}
@@ -195,7 +195,7 @@ export default async function ConfidentialitePage({ params }: PageProps) {
             </article>
 
             {/* 5. Destinataires */}
-            <article className="p-8 rounded-[var(--radius-md)] bg-[var(--bg-surface)] border border-[var(--border-subtle)] space-y-4">
+            <article className="p-5 sm:p-8 rounded-[var(--radius-md)] bg-[var(--bg-surface)] border border-[var(--border-subtle)] space-y-4">
               <Kicker>{isEn ? '05 · DATA RECIPIENTS' : '05 · DESTINATAIRES DES DONNÉES'}</Kicker>
               <h2 className="text-2xl font-bold text-[var(--ink-heading)]">
                 {isEn ? 'Who has access to your data?' : 'Qui a accès à vos données ?'}
@@ -208,7 +208,7 @@ export default async function ConfidentialitePage({ params }: PageProps) {
             </article>
 
             {/* 6. Vos droits */}
-            <article className="p-8 rounded-[var(--radius-md)] bg-[var(--bg-surface)] border border-[var(--border-subtle)] space-y-4">
+            <article className="p-5 sm:p-8 rounded-[var(--radius-md)] bg-[var(--bg-surface)] border border-[var(--border-subtle)] space-y-4">
               <Kicker>{isEn ? '06 · YOUR RIGHTS' : '06 · EXERCICE DE VOS DROITS'}</Kicker>
               <h2 className="text-2xl font-bold text-[var(--ink-heading)]">
                 {isEn ? 'Your rights regarding personal information' : 'Quels sont vos droits ?'}

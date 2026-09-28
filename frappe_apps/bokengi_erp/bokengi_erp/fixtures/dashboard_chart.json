@@ -1,0 +1,36 @@
+[
+  {
+    "based_on": "posting_date",
+    "chart_name": "Évolution du Chiffre d'Affaires (12 Mois)",
+    "chart_type": "Sum",
+    "color": "#003366",
+    "docstatus": 0,
+    "doctype": "Dashboard Chart",
+    "document_type": "Sales Invoice",
+    "filters_json": "[[\"Sales Invoice\",\"docstatus\",\"=\",1]]",
+    "is_standard": 0,
+    "is_timeseries": 1,
+    "module": "Bokengi ERP",
+    "name": "Bokengi Evolution Ventes 12M",
+    "time_interval": "Monthly",
+    "timespan": "Last Year",
+    "type": "Bar",
+    "value_to_aggregate": "grand_total"
+  },
+  {
+    "chart_name": "Pipeline des Prospects par Statut",
+    "chart_type": "Group By",
+    "color": "#059669",
+    "docstatus": 0,
+    "doctype": "Dashboard Chart",
+    "document_type": "Lead",
+    "filters_json": "[]",
+    "group_by_based_on": "status",
+    "group_by_type": "Count",
+    "is_standard": 0,
+    "is_timeseries": 0,
+    "module": "Bokengi ERP",
+    "name": "Bokengi Pipeline Commercial",
+    "type": "Donut"
+  }
+]

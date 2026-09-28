@@ -1,0 +1,313 @@
+/* ==========================================================================
+   BOKENGI GROUP — LOGIN THEME & IDENTITÉ VISUELLE OFFICIELLE
+   Instance : gestion.bokengi-group.com
+   Version : 2.0 (Phase 2.4)
+   ========================================================================== */
+
+:root {
+  --bokengi-deep-navy: #0A192F;
+  --bokengi-navy-secondary: #112240;
+  --bokengi-navy-card: #142850;
+  --bokengi-cyan: #64FFDA;
+  --bokengi-cyan-hover: #4cdbb7;
+  --bokengi-gold: #F5A623;
+  --bokengi-text-primary: #E6F1FF;
+  --bokengi-text-secondary: #8892B0;
+  --bokengi-text-muted: #6272A4;
+  --bokengi-border: rgba(100, 255, 218, 0.18);
+  --bokengi-border-focus: #64FFDA;
+  --bokengi-input-bg: #0A192F;
+  --bokengi-card-shadow: 0 20px 45px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(100, 255, 218, 0.12);
+}
+
+/* 1. Global Page Background */
+body[data-path="login"],
+body.login-page,
+body:has(.for-login) {
+  background-color: var(--bokengi-deep-navy) !important;
+  background-image: 
+    radial-gradient(circle at 15% 20%, rgba(100, 255, 218, 0.04) 0%, transparent 40%),
+    radial-gradient(circle at 85% 80%, rgba(245, 166, 35, 0.03) 0%, transparent 40%),
+    linear-gradient(180deg, #0A192F 0%, #071120 100%) !important;
+  color: var(--bokengi-text-primary) !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif !important;
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 2. Login Container & Header */
+.page-card-head {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.page-card-head .app-logo {
+  max-height: 95px !important;
+  max-width: 240px !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain !important;
+  margin: 0 auto 16px auto !important;
+  display: block !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.45));
+}
+
+.page-card-head h4 {
+  color: var(--bokengi-text-primary) !important;
+  font-size: 1.45rem !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.02em !important;
+  margin-bottom: 6px !important;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.page-card-head::after {
+  content: "Portail d'Accès Interne Sécurisé" !important;
+  display: block;
+  font-size: 0.85rem;
+  color: var(--bokengi-text-secondary);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+/* 3. Card Container */
+.login-content.page-card,
+.page-card {
+  background-color: var(--bokengi-navy-secondary) !important;
+  border: 1px solid var(--bokengi-border) !important;
+  border-radius: 16px !important;
+  box-shadow: var(--bokengi-card-shadow) !important;
+  padding: 32px 28px !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  max-width: 420px !important;
+  margin: 0 auto !important;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease !important;
+}
+
+.login-content.page-card:hover {
+  border-color: rgba(100, 255, 218, 0.3) !important;
+  box-shadow: 0 25px 55px rgba(0, 0, 0, 0.75), 0 0 15px rgba(100, 255, 218, 0.08) !important;
+}
+
+/* 4. Form Fields & Inputs */
+.form-signin .form-control,
+.form-forgot .form-control,
+.form-login-with-email-link .form-control {
+  background-color: var(--bokengi-input-bg) !important;
+  border: 1px solid rgba(136, 146, 176, 0.3) !important;
+  color: var(--bokengi-text-primary) !important;
+  border-radius: 10px !important;
+  padding: 12px 16px !important;
+  font-size: 14px !important;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.form-signin .form-control::placeholder,
+.form-forgot .form-control::placeholder,
+.form-login-with-email-link .form-control::placeholder {
+  color: var(--bokengi-text-muted) !important;
+}
+
+.form-signin .form-control:focus,
+.form-forgot .form-control:focus,
+.form-login-with-email-link .form-control:focus {
+  background-color: #0d203f !important;
+  border-color: var(--bokengi-border-focus) !important;
+  box-shadow: 0 0 0 3px rgba(100, 255, 218, 0.2) !important;
+  outline: none !important;
+  color: #FFFFFF !important;
+}
+
+.email-field, .password-field {
+  position: relative;
+  margin-bottom: 18px;
+}
+
+.field-icon {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--bokengi-text-secondary);
+  pointer-events: none;
+}
+
+.field-icon svg, .field-icon path {
+  stroke: var(--bokengi-text-secondary) !important;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--bokengi-cyan) !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  cursor: pointer;
+  z-index: 5;
+  transition: color 0.2s ease;
+}
+
+.toggle-password:hover {
+  color: var(--bokengi-cyan-hover) !important;
+  text-decoration: underline;
+}
+
+/* 5. Buttons */
+.btn-primary.btn-login,
+.btn-primary.btn-forgot,
+.btn-primary.btn-login-with-email-link,
+.btn-primary#verify_token {
+  background: var(--bokengi-cyan) !important;
+  background-color: var(--bokengi-cyan) !important;
+  border: 1px solid var(--bokengi-cyan) !important;
+  color: var(--bokengi-deep-navy) !important;
+  font-weight: 700 !important;
+  font-size: 14px !important;
+  letter-spacing: 0.02em !important;
+  padding: 12px 20px !important;
+  border-radius: 10px !important;
+  box-shadow: 0 4px 14px rgba(100, 255, 218, 0.25) !important;
+  transition: all 0.25s ease !important;
+  cursor: pointer !important;
+  width: 100% !important;
+  margin-top: 8px !important;
+}
+
+.btn-primary.btn-login:hover,
+.btn-primary.btn-forgot:hover,
+.btn-primary.btn-login-with-email-link:hover,
+.btn-primary#verify_token:hover {
+  background: var(--bokengi-cyan-hover) !important;
+  border-color: var(--bokengi-cyan-hover) !important;
+  color: #050d18 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px rgba(100, 255, 218, 0.4) !important;
+}
+
+.btn-login-option,
+.btn-login-with-email-link {
+  background: transparent !important;
+  border: 1px solid rgba(100, 255, 218, 0.3) !important;
+  color: var(--bokengi-cyan) !important;
+  border-radius: 10px !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  padding: 10px 16px !important;
+  transition: all 0.2s ease !important;
+}
+
+.btn-login-option:hover,
+.btn-login-with-email-link:hover {
+  background: rgba(100, 255, 218, 0.08) !important;
+  border-color: var(--bokengi-cyan) !important;
+  color: #FFFFFF !important;
+}
+
+/* 6. Links & Secondary Actions */
+.forgot-password-message a,
+.sign-up-message a,
+.form-footer a {
+  color: var(--bokengi-cyan) !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+  transition: color 0.2s ease, text-shadow 0.2s ease !important;
+}
+
+.forgot-password-message a:hover,
+.sign-up-message a:hover,
+.form-footer a:hover {
+  color: var(--bokengi-gold) !important;
+  text-decoration: underline !important;
+  text-shadow: 0 0 8px rgba(245, 166, 35, 0.4) !important;
+}
+
+.login-divider {
+  color: var(--bokengi-text-secondary) !important;
+  font-size: 12px !important;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 18px 0 !important;
+  position: relative;
+}
+
+.login-divider::before,
+.login-divider::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 40%;
+  height: 1px;
+  background: rgba(136, 146, 176, 0.2);
+}
+
+.login-divider::before { left: 0; }
+.login-divider::after { right: 0; }
+
+/* 7. Error, Invalid & Success Feedback */
+.invalid-login,
+.page-card-body.invalid {
+  animation: bokengi-shake 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+@keyframes bokengi-shake {
+  10%, 90% { transform: translate3d(-1px, 0, 0); }
+  20%, 80% { transform: translate3d(2px, 0, 0); }
+  30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+  40%, 60% { transform: translate3d(4px, 0, 0); }
+}
+
+/* 8. Footer & Copyright Styling */
+.web-footer {
+  background-color: var(--bokengi-deep-navy) !important;
+  border-top: 1px solid rgba(136, 146, 176, 0.12) !important;
+  padding: 24px 0 !important;
+  margin-top: auto !important;
+}
+
+.web-footer .footer-logo-extension {
+  display: none !important; /* Neutralize generic newsletter widget on internal login */
+}
+
+.web-footer .container,
+.web-footer .footer-bottom {
+  color: var(--bokengi-text-secondary) !important;
+  font-size: 12px !important;
+  text-align: center !important;
+}
+
+.web-footer a {
+  color: var(--bokengi-cyan) !important;
+  text-decoration: none !important;
+}
+
+.web-footer a:hover {
+  color: var(--bokengi-gold) !important;
+}
+
+/* 9. Responsive Rules */
+@media (max-width: 576px) {
+  .login-content.page-card {
+    padding: 24px 20px !important;
+    border-radius: 12px !important;
+    margin: 0 16px !important;
+  }
+  
+  .page-card-head .app-logo {
+    max-height: 65px !important;
+  }
+  
+  .page-card-head h4 {
+    font-size: 1.25rem !important;
+  }
+}

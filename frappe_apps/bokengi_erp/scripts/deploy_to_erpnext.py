@@ -112,46 +112,53 @@ def deploy_doctypes(url, auth_headers, dry_run=False):
         else:
             print(f"     [ERROR] Unexpected response checking '{doctype_name}': HTTP {status}")
 
-def deploy_custom_fields(url, auth_headers, dry_run=False):
-    print("\n=== [2/2] Verifying & Deploying Custom Fields ===")
-    fixture_path = FIXTURES_DIR / "custom_field.json"
-    if not fixture_path.exists():
-        print(f"  [ERROR] Fixture file not found: {fixture_path}")
-        return
+def deploy_fixtures(url, auth_headers, dry_run=False):
+    print("\n=== [2/3] Verifying & Deploying Custom Fields ===")
+    fixture_files = [
+        ("Custom Field", FIXTURES_DIR / "custom_field.json"),
+        ("Custom HTML Block", FIXTURES_DIR / "custom_html_block.json"),
+        ("Number Card", FIXTURES_DIR / "number_card.json"),
+        ("Dashboard Chart", FIXTURES_DIR / "dashboard_chart.json"),
+        ("Workspace", FIXTURES_DIR / "workspace.json"),
+    ]
 
-    with open(fixture_path, "r", encoding="utf-8") as f:
-        custom_fields = json.load(f)
-
-    for cf in custom_fields:
-        cf_name = cf.get("name")
-        dt = cf.get("dt")
-        fieldname = cf.get("fieldname")
-        print(f"  -> Processing Custom Field: {cf_name} (DocType: {dt}, Field: {fieldname})")
-
-        if dry_run or not auth_headers:
-            print(f"     [DRY-RUN] Field definition valid.")
+    for doctype, fixture_path in fixture_files:
+        if not fixture_path.exists():
+            print(f"  [WARN] Fixture file not found: {fixture_path}")
             continue
 
-        endpoint = f"{url}/api/resource/Custom Field/{urllib.parse.quote(cf_name)}"
-        status, res = make_request(endpoint, method="GET", headers=auth_headers)
+        print(f"\n--- Processing Fixture File: {fixture_path.name} (DocType: {doctype}) ---")
+        with open(fixture_path, "r", encoding="utf-8") as f:
+            items = json.load(f)
 
-        if status == 200:
-            print(f"     Custom Field '{cf_name}' already exists. Updating...")
-            up_status, up_res = make_request(endpoint, method="PUT", data=cf, headers=auth_headers)
-            if up_status in (200, 201):
-                print(f"     [OK] Updated '{cf_name}'.")
+        for item in items:
+            item_name = item.get("name")
+            print(f"  -> Processing {doctype}: '{item_name}'")
+
+            if dry_run or not auth_headers:
+                print(f"     [DRY-RUN] Definition valid.")
+                continue
+
+            endpoint = f"{url}/api/resource/{urllib.parse.quote(doctype)}/{urllib.parse.quote(item_name)}"
+            status, res = make_request(endpoint, method="GET", headers=auth_headers)
+
+            if status == 200:
+                print(f"     {doctype} '{item_name}' already exists. Updating...")
+                up_status, up_res = make_request(endpoint, method="PUT", data=item, headers=auth_headers)
+                if up_status in (200, 201):
+                    print(f"     [OK] Updated '{item_name}'.")
+                else:
+                    print(f"     [WARN] Update status {up_status}: {up_res}")
+            elif status == 404:
+                print(f"     {doctype} '{item_name}' does not exist. Creating...")
+                create_endpoint = f"{url}/api/resource/{urllib.parse.quote(doctype)}"
+                c_status, c_res = make_request(create_endpoint, method="POST", data=item, headers=auth_headers)
+                if c_status in (200, 201):
+                    print(f"     [OK] Created {doctype} '{item_name}'.")
+                else:
+                    print(f"     [ERROR] Failed to create '{item_name}': {c_res}")
             else:
-                print(f"     [WARN] Update status {up_status}: {up_res}")
-        elif status == 404:
-            print(f"     Custom Field '{cf_name}' does not exist. Creating...")
-            create_endpoint = f"{url}/api/resource/Custom Field"
-            c_status, c_res = make_request(create_endpoint, method="POST", data=cf, headers=auth_headers)
-            if c_status in (200, 201):
-                print(f"     [OK] Created Custom Field '{cf_name}'.")
-            else:
-                print(f"     [ERROR] Failed to create '{cf_name}': {c_res}")
-        else:
-            print(f"     [ERROR] Unexpected response checking '{cf_name}': HTTP {status}")
+                print(f"     [ERROR] Unexpected response checking '{item_name}': HTTP {status}")
 
 def main():
     parser = argparse.ArgumentParser(description="Deploy Bokengi schemas to ERPNext")
@@ -176,7 +183,7 @@ def main():
         }
 
     deploy_doctypes(url, auth_headers, dry_run=args.dry_run or auth_headers is None)
-    deploy_custom_fields(url, auth_headers, dry_run=args.dry_run or auth_headers is None)
+    deploy_fixtures(url, auth_headers, dry_run=args.dry_run or auth_headers is None)
 
     print("\n==================================================")
     if auth_headers is None:

@@ -65,7 +65,7 @@ describe('UmamiAnalytics Component — Phase 7.4', () => {
       // next/script in jsdom renders into head or DOM
       const script = document.querySelector('script[data-website-id="bokengi-site-prod-id"]')
       expect(script).not.toBeNull()
-      expect(script?.getAttribute('src')).toBe('https://analytics.umami.is/script.js')
+      expect(script?.getAttribute('src')).toBe('https://cloud.umami.is/script.js')
       expect(script?.getAttribute('data-auto-track')).toBe('true')
     })
 

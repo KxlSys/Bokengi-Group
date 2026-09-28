@@ -18,7 +18,12 @@
   ],
   "vars": {
     "NEXT_PUBLIC_CALCOM_LINK": "https://cal.com/bokengi-group",
-    "NEXT_PUBLIC_CALCOM_ENABLED": "true"
+    "NEXT_PUBLIC_CALCOM_ENABLED": "true",
+    "NEXT_PUBLIC_UMAMI_ENABLED": "true",
+    "NEXT_PUBLIC_UMAMI_WEBSITE_ID": "ebaf55dd-ba11-448c-97cb-d744953375d3",
+    "NEXT_PUBLIC_UMAMI_SRC": "https://cloud.umami.is/script.js",
+    "NEXT_PUBLIC_OPENSTATUS_ENABLED": "false",
+    "NEXT_PUBLIC_OPENSTATUS_URL": ""
   },
   "env": {
     "preview": {

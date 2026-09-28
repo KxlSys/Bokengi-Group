@@ -1,0 +1,1391 @@
+[
+  {
+    "name": "Bokengi Enterprise Cockpit",
+    "docstatus": 0,
+    "idx": 0,
+    "label": "Bokengi Enterprise Cockpit",
+    "title": "Bokengi Enterprise Cockpit",
+    "sequence_id": 0.0,
+    "for_user": "",
+    "module": "Bokengi Core",
+    "icon": "dashboard",
+    "restrict_to_domain": "",
+    "hide_custom": 0,
+    "public": 1,
+    "is_hidden": 0,
+    "content": "[{\"type\": \"custom_block\", \"data\": {\"custom_block_name\": \"Bokengi Cockpit Header\", \"col\": 12}}, {\"type\": \"header\", \"data\": {\"text\": \"KPIs Financiers & Activit\\u00e9 (Tr\\u00e9sorerie, CA, Cr\\u00e9ances, Prestations)\", \"level\": 4}}, {\"type\": \"number_card\", \"data\": {\"number_card_name\": \"Bokengi CA Mensuel\", \"col\": 3}}, {\"type\": \"number_card\", \"data\": {\"number_card_name\": \"Bokengi Creances Clients\", \"col\": 3}}, {\"type\": \"number_card\", \"data\": {\"number_card_name\": \"Bokengi Solde Tresorerie\", \"col\": 3}}, {\"type\": \"number_card\", \"data\": {\"number_card_name\": \"Bokengi Commandes Actives\", \"col\": 3}}, {\"type\": \"header\", \"data\": {\"text\": \"Activit\\u00e9 Op\\u00e9rationnelle & Projets (Leads, RDV, Stock, Projets)\", \"level\": 4}}, {\"type\": \"number_card\", \"data\": {\"number_card_name\": \"Bokengi Leads En Cours\", \"col\": 3}}, {\"type\": \"number_card\", \"data\": {\"number_card_name\": \"Bokengi RDV Calcom\", \"col\": 3}}, {\"type\": \"number_card\", \"data\": {\"number_card_name\": \"Bokengi Stock Critique\", \"col\": 3}}, {\"type\": \"number_card\", \"data\": {\"number_card_name\": \"Bokengi Projets Actifs\", \"col\": 3}}, {\"type\": \"header\", \"data\": {\"text\": \"Analyse Activit\\u00e9 & Pipeline Commercial\", \"level\": 4}}, {\"type\": \"chart\", \"data\": {\"chart_name\": \"Bokengi Evolution Ventes 12M\", \"col\": 6}}, {\"type\": \"chart\", \"data\": {\"chart_name\": \"Bokengi Pipeline Commercial\", \"col\": 6}}, {\"type\": \"header\", \"data\": {\"text\": \"Raccourcis & Actions Rapides\", \"level\": 4}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"+ Nouveau Lead\", \"col\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"+ Nouveau Devis\", \"col\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"+ Nouvelle Facture\", \"col\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"+ Saisie Feuilles de Temps\", \"col\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Rapports Financiers\", \"col\": 3}}, {\"type\": \"header\", \"data\": {\"text\": \"R\\u00e9f\\u00e9rentiels & Modules BOKENGI\", \"level\": 4}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Direction & Gouvernance\", \"col\": 12}}]",
+    "doctype": "Workspace",
+    "quick_lists": [],
+    "charts": [
+      {
+        "name": "22mjodpp9o",
+        "docstatus": 0,
+        "idx": 1,
+        "chart_name": "Bokengi Evolution Ventes 12M",
+        "label": "Bokengi Evolution Ventes 12M",
+        "doctype": "Workspace Chart"
+      },
+      {
+        "name": "22m4pf5bhv",
+        "docstatus": 0,
+        "idx": 2,
+        "chart_name": "Bokengi Pipeline Commercial",
+        "label": "Bokengi Pipeline Commercial",
+        "doctype": "Workspace Chart"
+      }
+    ],
+    "number_cards": [
+      {
+        "name": "22mclbghg9",
+        "docstatus": 0,
+        "idx": 1,
+        "number_card_name": "Bokengi CA Mensuel",
+        "label": "Bokengi CA Mensuel",
+        "doctype": "Workspace Number Card"
+      },
+      {
+        "name": "22mqilnrl3",
+        "docstatus": 0,
+        "idx": 2,
+        "number_card_name": "Bokengi Creances Clients",
+        "label": "Bokengi Creances Clients",
+        "doctype": "Workspace Number Card"
+      },
+      {
+        "name": "22m2mpi74f",
+        "docstatus": 0,
+        "idx": 3,
+        "number_card_name": "Bokengi Solde Tresorerie",
+        "label": "Bokengi Solde Tresorerie",
+        "doctype": "Workspace Number Card"
+      },
+      {
+        "name": "22mlvlde7b",
+        "docstatus": 0,
+        "idx": 4,
+        "number_card_name": "Bokengi Commandes Actives",
+        "label": "Bokengi Commandes Actives",
+        "doctype": "Workspace Number Card"
+      },
+      {
+        "name": "22m967ubcc",
+        "docstatus": 0,
+        "idx": 5,
+        "number_card_name": "Bokengi Leads En Cours",
+        "label": "Bokengi Leads En Cours",
+        "doctype": "Workspace Number Card"
+      },
+      {
+        "name": "22mq72l36t",
+        "docstatus": 0,
+        "idx": 6,
+        "number_card_name": "Bokengi RDV Calcom",
+        "label": "Bokengi RDV Calcom",
+        "doctype": "Workspace Number Card"
+      },
+      {
+        "name": "22ms5s9upn",
+        "docstatus": 0,
+        "idx": 7,
+        "number_card_name": "Bokengi Stock Critique",
+        "label": "Bokengi Stock Critique",
+        "doctype": "Workspace Number Card"
+      },
+      {
+        "name": "22mrh3v8rc",
+        "docstatus": 0,
+        "idx": 8,
+        "number_card_name": "Bokengi Projets Actifs",
+        "label": "Bokengi Projets Actifs",
+        "doctype": "Workspace Number Card"
+      }
+    ],
+    "shortcuts": [
+      {
+        "name": "22m0qpj0nn",
+        "docstatus": 0,
+        "idx": 1,
+        "type": "DocType",
+        "link_to": "Lead",
+        "doc_view": "New",
+        "label": "+ Nouveau Lead",
+        "doctype": "Workspace Shortcut"
+      },
+      {
+        "name": "22mk4fbqdi",
+        "docstatus": 0,
+        "idx": 2,
+        "type": "DocType",
+        "link_to": "Quotation",
+        "doc_view": "New",
+        "label": "+ Nouveau Devis",
+        "doctype": "Workspace Shortcut"
+      },
+      {
+        "name": "22m1epc8km",
+        "docstatus": 0,
+        "idx": 3,
+        "type": "DocType",
+        "link_to": "Sales Invoice",
+        "doc_view": "New",
+        "label": "+ Nouvelle Facture",
+        "doctype": "Workspace Shortcut"
+      },
+      {
+        "name": "22mjsmd4dc",
+        "docstatus": 0,
+        "idx": 4,
+        "type": "DocType",
+        "link_to": "Timesheet",
+        "doc_view": "New",
+        "label": "+ Saisie Feuilles de Temps",
+        "doctype": "Workspace Shortcut"
+      },
+      {
+        "name": "22m22ohu1u",
+        "docstatus": 0,
+        "idx": 5,
+        "type": "Report",
+        "link_to": "General Ledger",
+        "doc_view": "",
+        "label": "Rapports Financiers",
+        "report_ref_doctype": "GL Entry",
+        "doctype": "Workspace Shortcut"
+      }
+    ],
+    "links": [
+      {
+        "name": "afao0sqmk0",
+        "docstatus": 0,
+        "idx": 1,
+        "type": "Card Break",
+        "label": "Direction & Gouvernance",
+        "hidden": 0,
+        "link_type": "DocType",
+        "onboard": 0,
+        "is_query_report": 0,
+        "link_count": 0,
+        "doctype": "Workspace Link"
+      },
+      {
+        "name": "afafjp67ip",
+        "docstatus": 0,
+        "idx": 2,
+        "type": "Link",
+        "label": "Prospects & Leads",
+        "hidden": 0,
+        "link_type": "DocType",
+        "link_to": "Lead",
+        "onboard": 0,
+        "is_query_report": 0,
+        "link_count": 0,
+        "doctype": "Workspace Link"
+      },
+      {
+        "name": "afa7e19vp2",
+        "docstatus": 0,
+        "idx": 3,
+        "type": "Link",
+        "label": "Devis & Propositions",
+        "hidden": 0,
+        "link_type": "DocType",
+        "link_to": "Quotation",
+        "onboard": 0,
+        "is_query_report": 0,
+        "link_count": 0,
+        "doctype": "Workspace Link"
+      },
+      {
+        "name": "afaek8meap",
+        "docstatus": 0,
+        "idx": 4,
+        "type": "Link",
+        "label": "Bons de Commande",
+        "hidden": 0,
+        "link_type": "DocType",
+        "link_to": "Sales Order",
+        "onboard": 0,
+        "is_query_report": 0,
+        "link_count": 0,
+        "doctype": "Workspace Link"
+      },
+      {
+        "name": "afaei97f4f",
+        "docstatus": 0,
+        "idx": 5,
+        "type": "Link",
+        "label": "Factures Prestations",
+        "hidden": 0,
+        "link_type": "DocType",
+        "link_to": "Sales Invoice",
+        "onboard": 0,
+        "is_query_report": 0,
+        "link_count": 0,
+        "doctype": "Workspace Link"
+      },
+      {
+        "name": "afa1fsfmqj",
+        "docstatus": 0,
+        "idx": 6,
+        "type": "Link",
+        "label": "Projets Client",
+        "hidden": 0,
+        "link_type": "DocType",
+        "link_to": "Project",
+        "onboard": 0,
+        "is_query_report": 0,
+        "link_count": 0,
+        "doctype": "Workspace Link"
+      },
+      {
+        "name": "afar1hrfmn",
+        "docstatus": 0,
+        "idx": 7,
+        "type": "Link",
+        "label": "Catalogue Services & Prestations",
+        "hidden": 0,
+        "link_type": "DocType",
+        "link_to": "Item",
+        "onboard": 0,
+        "is_query_report": 0,
+        "link_count": 0,
+        "doctype": "Workspace Link"
+      }
+    ],
+    "roles": [
+      {
+        "name": "i8e9fr1mt5",
+        "docstatus": 0,
+        "idx": 1,
+        "role": "System Manager",
+        "doctype": "Has Role"
+      },
+      {
+        "name": "i8ea34eg4k",
+        "docstatus": 0,
+        "idx": 2,
+        "role": "Accounts Manager",
+        "doctype": "Has Role"
+      },
+      {
+        "name": "i8eemnctou",
+        "docstatus": 0,
+        "idx": 3,
+        "role": "Sales Manager",
+        "doctype": "Has Role"
+      },
+      {
+        "name": "i8eh7kqa92",
+        "docstatus": 0,
+        "idx": 4,
+        "role": "Desk User",
+        "doctype": "Has Role"
+      }
+    ],
+    "custom_blocks": [
+      {
+        "name": "afalibp6a0",
+        "docstatus": 0,
+        "idx": 1,
+        "custom_block_name": "Bokengi Cockpit Header",
+        "label": "Bokengi Cockpit Header",
+        "doctype": "Workspace Custom Block"
+      }
+    ]
+  },
+  {
+    "name": "IT & Infrastructure",
+    "docstatus": 0,
+    "idx": 0,
+    "label": "IT & Infrastructure",
+    "title": "IT & Infrastructure",
+    "sequence_id": 2.0,
+    "module": "Bokengi Core",
+    "icon": "server",
+    "indicator_color": "green",
+    "hide_custom": 0,
+    "public": 1,
+    "is_hidden": 0,
+    "content": "[{\"type\": \"header\", \"data\": {\"text\": \"Pilotage IT, Syst\\u00e8mes, Cloud & Cybers\\u00e9curit\\u00e9\", \"level\": 4}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"+ Nouveau Projet IT\", \"col\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"+ Nouveau Ticket IT\", \"col\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"+ Saisie de Temps\", \"col\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Projets IT Bokengi\", \"col\": 3}}, {\"type\": \"header\", \"data\": {\"text\": \"Infrastructure & Prestations Informatiques\", \"level\": 4}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Projets & Infrastructure\", \"col\": 6}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Support & Op\\u00e9rations\", \"col\": 6}}]",
+    "doctype": "Workspace",
+    "quick_lists": [],
+    "charts": [],
+    "number_cards": [],
+    "shortcuts": [
+      {
+        "name": "afic3nt8mi",
+        "docstatus": 0,
+        "idx": 1,
+        "type": "DocType",
+        "link_to": "Project",
+        "doc_view": "New",
+        "label": "+ Nouveau Projet IT",
+        "doctype": "Workspace Shortcut"
+      },
+      {
+        "name": "afi3siol53",
+        "docstatus": 0,
+        "idx": 2,
+        "type": "DocType",
+        "link_to": "Issue",
+        "doc_view": "New",
+        "label": "+ Nouveau Ticket IT",
+        "doctype": "Workspace Shortcut"
+      },
+      {
+        "name": "aficftali9",
+        "docstatus": 0,
+        "idx": 3,
+        "type": "DocType",
+        "link_to": "Timesheet",
+        "doc_view": "New",
+        "label": "+ Saisie de Temps",
+        "doctype": "Workspace Shortcut"
+      },
+      {
+        "name": "afi7h45e02",
+        "docstatus": 0,
+        "idx": 4,
+        "type": "DocType",
+        "link_to": "Project",
+        "doc_view": "List",
+        "label": "Projets IT Bokengi",
+        "stats_filter": "[[\"Project\",\"custom_treatment_pole\",\"=\",\"POL-it\"]]",
+        "doctype": "Workspace Shortcut"
+      }
+    ],
+    "links": [
+      {
+        "name": "afiofeipjd",
+        "docstatus": 0,
+        "idx": 1,
+        "type": "Card Break",
+        "label": "Projets & Infrastructure",
+        "hidden": 0,
+        "link_type": "DocType",
+        "onboard": 0,
+        "is_query_report": 0,
+        "link_count": 0,
+        "doctype": "Workspace Link"
+      },
+      {
+        "name": "afi9tfcsnn",
+        "docstatus": 0,
+        "idx": 2,
+        "type": "Link",
+        "label": "Projets IT (POL-it)",
+        "hidden": 0,
+        "link_type": "DocType",
+        "link_to": "Project",
+        "onboard": 0,
+        "is_query_report": 0,
+        "link_count": 0,
+        "doctype": "Workspace Link"
+      },
+      {
+        "name": "afit47obq4",
+        "docstatus": 0,
+        "idx": 3,
+        "type": "Link",
+        "label": "Modèles de Projets",
+        "hidden": 0,
+        "link_type": "DocType",
+        "link_to": "Project Template",
+        "onboard": 0,
+        "is_query_report": 0,
+        "link_count": 0,
+        "doctype": "Workspace Link"
+      },
+      {
+        "name": "afilh51jb4",
+        "docstatus": 0,
+        "idx": 4,
+        "type": "Link",
+        "label": "Types de Projets",
+        "hidden": 0,
+        "link_type": "DocType",
+        "link_to": "Project Type",
+        "onboard": 0,
+        "is_query_report": 0,
+        "link_count": 0,
+        "doctype": "Workspace Link"
+      },
+      {
+        "name": "afibh7tniu",
+        "docstatus": 0,
+        "idx": 5,
+        "type": "Link",
+        "label": "Feuilles de Temps",
+        "hidden": 0,
+        "link_type": "DocType",
+        "link_to": "Timesheet",
+        "onboard": 0,
+        "is_query_report": 0,
+        "link_count": 0,
+        "doctype": "Workspace Link"
+      },
+      {
+        "name": "afivlrrp0c",
+        "docstatus": 0,
+        "idx": 6,
+        "type": "Card Break",
+        "label": "Support & Opérations",
+        "hidden": 0,
+        "link_type": "DocType",
+        "onboard": 0,
+        "is_query_report": 0,
+        "link_count": 0,
+        "doctype": "Workspace Link"
+      },
+      {
+        "name": "afiv2ba459",
+        "docstatus": 0,
+        "idx": 7,
+        "type": "Link",
+        "label": "Tickets & Incidents",
+        "hidden": 0,
+        "link_type": "DocType",
+        "link_to": "Issue",
+        "onboard": 0,
+        "is_query_report": 0,
+        "link_count": 0,
+        "doctype": "Workspace Link"
+      },
+      {
+        "name": "afi36u0c71",
+        "docstatus": 0,
+        "idx": 8,
+        "type": "Link",
+        "label": "Types d'Activités",
+        "hidden": 0,
+        "link_type": "DocType",
+        "link_to": "Activity Type",
+        "onboard": 0,
+        "is_query_report": 0,
+        "link_count": 0,
+        "doctype": "Workspace Link"
+      },
+      {
+        "name": "afigjngcj0",
+        "docstatus": 0,
+        "idx": 9,
+        "type": "Link",
+        "label": "Prospects IT",
+        "hidden": 0,
+        "link_type": "DocType",
+        "link_to": "Lead",
+        "onboard": 0,
+        "is_query_report": 0,
+        "link_count": 0,
+        "doctype": "Workspace Link"
+      }
+    ],
+    "roles": [
+      {
+        "name": "afib6viig6",
+        "docstatus": 0,
+        "idx": 1,
+        "role": "System Manager",
+        "doctype": "Has Role"
+      },
+      {
+        "name": "afitc9pvhl",
+        "docstatus": 0,
+        "idx": 2,
+        "role": "Accounts Manager",
+        "doctype": "Has Role"
+      },
+      {
+        "name": "afiaqn5r53",
+        "docstatus": 0,
+        "idx": 3,
+        "role": "Sales Manager",
+        "doctype": "Has Role"
+      },
+      {
+        "name": "afiooim4fv",
+        "docstatus": 0,
+        "idx": 4,
+        "role": "Desk User",
+        "doctype": "Has Role"
+      }
+    ],
+    "custom_blocks": []
+  },
+  {
+    "name": "Digital & Innovation",
+    "docstatus": 0,
+    "idx": 0,
+    "label": "Digital & Innovation",
+    "title": "Digital & Innovation",
+    "sequence_id": 3.0,
+    "module": "Bokengi Core",
+    "icon": "globe",
+    "indicator_color": "green",
+    "hide_custom": 0,
+    "public": 1,
+    "is_hidden": 0,
+    "content": "[{\"type\": \"header\", \"data\": {\"text\": \"D\\u00e9veloppement Web, Mobile, CMS & SaaS\", \"level\": 4}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"+ Nouveau Projet Digital\", \"col\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"+ Nouveau Lead Digital\", \"col\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Projets Digital\", \"col\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Site Web Bokengi\", \"col\": 3}}, {\"type\": \"header\", \"data\": {\"text\": \"Plateformes, CMS & Contenus\", \"level\": 4}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Projets Digitaux & Web\", \"col\": 6}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Contenus & M\\u00e9dias\", \"col\": 6}}]",
+    "doctype": "Workspace",
+    "quick_lists": [],
+    "charts": [],
+    "number_cards": [],
+    "shortcuts": [
+      {
+        "name": "afjti3fdhe",
+        "docstatus": 0,
+        "idx": 1,
+        "type": "DocType",
+        "link_to": "Project",
+        "doc_view": "New",
+        "label": "+ Nouveau Projet Digital",
+        "doctype": "Workspace Shortcut"
+      },
+      {
+        "name": "afj8ejbune",
+        "docstatus": 0,
+        "idx": 2,
+        "type": "DocType",
+        "link_to": "Lead",
+        "doc_view": "New",
+        "label": "+ Nouveau Lead Digital",
+        "doctype": "Workspace Shortcut"
+      },
+      {
+        "name": "afjqcd34jo",
+        "docstatus": 0,
+        "idx": 3,
+        "type": "DocType",
+        "link_to": "Project",
+        "doc_view": "List",
+        "label": "Projets Digital",
+        "stats_filter": "[[\"Project\",\"custom_treatment_pole\",\"=\",\"POL-digital\"]]",
+        "doctype": "Workspace Shortcut"
+      },
+      {
+        "name": "afjkv3ftdp",
+        "docstatus": 0,
+        "idx": 4,
+        "type": "URL",
+        "url": "/app/website",
+        "doc_view": "",
+        "label": "Site Web Bokengi",
+        "doctype": "Workspace Shortcut"
+      }
+    ],
+    "links": [
+      {
+        "name": "afj0pvp5jn",
+        "docstatus": 0,
+        "idx": 1,
+        "type": "Card Break",
+        "label": "Projets Digitaux & Web",
+        "hidden": 0,
+        "link_type": "DocType",
+        "onboard": 0,
+        "is_query_report": 0,
+        "link_count": 0,
+        "doctype": "Workspace Link"
+      },
+      {
+        "name": "afj611l98o",
+        "docstatus": 0,
+        "idx": 2,
+        "type": "Link",
+        "label": "Projets Digital (POL-digital)",
+        "hidden": 0,
+        "link_type": "DocType",
+        "link_to": "Project",
+        "onboard": 0,
+        "is_query_report": 0,
+        "link_count": 0,
+        "doctype": "Workspace Link"
+      },
+      {
+        "name": "afjgudekmq",
+        "docstatus": 0,
+        "idx": 3,
+        "type": "Link",
+        "label": "Prospects Digital",
+        "hidden": 0,
+        "link_type": "DocType",
+        "link_to": "Lead",
+        "onboard": 0,
+        "is_query_report": 0,
+        "link_count": 0,
+        "doctype": "Workspace Link"
+      },
+      {
+        "name": "afjrjp6cer",
+        "docstatus": 0,
+        "idx": 4,
+        "type": "Link",
+        "label": "Paramètres Site Web",
+        "hidden": 0,
+        "link_type": "DocType",
+        "link_to": "Website Settings",
+        "onboard": 0,
+        "is_query_report": 0,
+        "link_count": 0,
+        "doctype": "Workspace Link"
+      },
+      {
+        "name": "afjcp8acaj",
+        "docstatus": 0,
+        "idx": 5,
+        "type": "Card Break",
+        "label": "Contenus & Médias",
+        "hidden": 0,
+        "link_type": "DocType",
+        "onboard": 0,
+        "is_query_report": 0,
+        "link_count": 0,
+        "doctype": "Workspace Link"
+      },
+      {
+        "name": "afjbqap0dm",
+        "docstatus": 0,
+        "idx": 6,
+        "type": "Link",
+        "label": "Fichiers & Médias",
+        "hidden": 0,
+        "link_type": "DocType",
+        "link_to": "File",
+        "onboard": 0,
+        "is_query_report": 0,
+        "link_count": 0,
+        "doctype": "Workspace Link"
+      },
+      {
+        "name": "afj4g0jcep",
+        "docstatus": 0,
+        "idx": 7,
+        "type": "Link",
+        "label": "Articles de Blog",
+        "hidden": 0,
+        "link_type": "DocType",
+        "link_to": "Blog Post",
+        "onboard": 0,
+        "is_query_report": 0,
+        "link_count": 0,
+        "doctype": "Workspace Link"
+      },
+      {
+        "name": "afj5rkj742",
+        "docstatus": 0,
+        "idx": 8,
+        "type": "Link",
+        "label": "Newsletters",
+        "hidden": 0,
+        "link_type": "DocType",
+        "link_to": "Newsletter",
+        "onboard": 0,
+        "is_query_report": 0,
+        "link_count": 0,
+        "doctype": "Workspace Link"
+      }
+    ],
+    "roles": [
+      {
+        "name": "afjihkm7ha",
+        "docstatus": 0,
+        "idx": 1,
+        "role": "System Manager",
+        "doctype": "Has Role"
+      },
+      {
+        "name": "afj3keunjc",
+        "docstatus": 0,
+        "idx": 2,
+        "role": "Accounts Manager",
+        "doctype": "Has Role"
+      },
+      {
+        "name": "afjvo8tquf",
+        "docstatus": 0,
+        "idx": 3,
+        "role": "Sales Manager",
+        "doctype": "Has Role"
+      },
+      {
+        "name": "afjaih9h4g",
+        "docstatus": 0,
+        "idx": 4,
+        "role": "Desk User",
+        "doctype": "Has Role"
+      }
+    ],
+    "custom_blocks": []
+  },
+  {
+    "name": "Business Solutions",
+    "docstatus": 0,
+    "idx": 0,
+    "label": "Business Solutions",
+    "title": "Business Solutions",
+    "sequence_id": 4.0,
+    "module": "Bokengi Core",
+    "icon": "briefcase",
+    "indicator_color": "green",
+    "hide_custom": 0,
+    "public": 1,
+    "is_hidden": 0,
+    "content": "[{\"type\": \"header\", \"data\": {\"text\": \"ERPNext, Processus M\\u00e9tier & Facturation\", \"level\": 4}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"+ Nouveau Prospect\", \"col\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"+ Nouvelle Proposition\", \"col\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"+ Nouvelle Facture\", \"col\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Prospects Business\", \"col\": 3}}, {\"type\": \"header\", \"data\": {\"text\": \"Relations Clients, Devis & Facturation\", \"level\": 4}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Propositions & Devis\", \"col\": 6}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Facturation & Contrats\", \"col\": 6}}]",
+    "doctype": "Workspace",
+    "quick_lists": [],
+    "charts": [],
+    "number_cards": [],
+    "shortcuts": [
+      {
+        "name": "afjllemn51",
+        "docstatus": 0,
+        "idx": 1,
+        "type": "DocType",
+        "link_to": "Lead",
+        "doc_view": "New",
+        "label": "+ Nouveau Prospect",
+        "doctype": "Workspace Shortcut"
+      },
+      {
+        "name": "afjh4r4mv0",
+        "docstatus": 0,
+        "idx": 2,
+        "type": "DocType",
+        "link_to": "Quotation",
+        "doc_view": "New",
+        "label": "+ Nouvelle Proposition",
+        "doctype": "Workspace Shortcut"
+      },
+      {
+        "name": "afjk7brdp0",
+        "docstatus": 0,
+        "idx": 3,
+        "type": "DocType",
+        "link_to": "Sales Invoice",
+        "doc_view": "New",
+        "label": "+ Nouvelle Facture",
+        "doctype": "Workspace Shortcut"
+      },
+      {
+        "name": "afjm30c5ng",
+        "docstatus": 0,
+        "idx": 4,
+        "type": "DocType",
+        "link_to": "Lead",
+        "doc_view": "List",
+        "label": "Prospects Business",
+        "stats_filter": "[[\"Lead\",\"custom_treatment_pole\",\"=\",\"POL-business\"]]",
+        "doctype": "Workspace Shortcut"
+      }
+    ],
+    "links": [
+      {
+        "name": "afj6v4ahuj",
+        "docstatus": 0,
+        "idx": 1,
+        "type": "Card Break",
+        "label": "Propositions & Devis",
+        "hidden": 0,
+        "link_type": "DocType",
+        "onboard": 0,
+        "is_query_report": 0,
+        "link_count": 0,
+        "doctype": "Workspace Link"
+      },
+      {
+        "name": "afjamdmhn1",
+        "docstatus": 0,
+        "idx": 2,
+        "type": "Link",
+        "label": "Prospects & Leads",
+        "hidden": 0,
+        "link_type": "DocType",
+        "link_to": "Lead",
+        "onboard": 0,
+        "is_query_report": 0,
+        "link_count": 0,
+        "doctype": "Workspace Link"
+      },
+      {
+        "name": "afjn4ub6k7",
+        "docstatus": 0,
+        "idx": 3,
+        "type": "Link",
+        "label": "Devis & Propositions",
+        "hidden": 0,
+        "link_type": "DocType",
+        "link_to": "Quotation",
+        "onboard": 0,
+        "is_query_report": 0,
+        "link_count": 0,
+        "doctype": "Workspace Link"
+      },
+      {
+        "name": "afj527v9vs",
+        "docstatus": 0,
+        "idx": 4,
+        "type": "Link",
+        "label": "Opportunités",
+        "hidden": 0,
+        "link_type": "DocType",
+        "link_to": "Opportunity",
+        "onboard": 0,
+        "is_query_report": 0,
+        "link_count": 0,
+        "doctype": "Workspace Link"
+      },
+      {
+        "name": "afj9v8toau",
+        "docstatus": 0,
+        "idx": 5,
+        "type": "Link",
+        "label": "Clients",
+        "hidden": 0,
+        "link_type": "DocType",
+        "link_to": "Customer",
+        "onboard": 0,
+        "is_query_report": 0,
+        "link_count": 0,
+        "doctype": "Workspace Link"
+      },
+      {
+        "name": "afjnhddsbb",
+        "docstatus": 0,
+        "idx": 6,
+        "type": "Card Break",
+        "label": "Facturation & Contrats",
+        "hidden": 0,
+        "link_type": "DocType",
+        "onboard": 0,
+        "is_query_report": 0,
+        "link_count": 0,
+        "doctype": "Workspace Link"
+      },
+      {
+        "name": "afjdsl1s7n",
+        "docstatus": 0,
+        "idx": 7,
+        "type": "Link",
+        "label": "Factures Prestations",
+        "hidden": 0,
+        "link_type": "DocType",
+        "link_to": "Sales Invoice",
+        "onboard": 0,
+        "is_query_report": 0,
+        "link_count": 0,
+        "doctype": "Workspace Link"
+      },
+      {
+        "name": "afj866lidk",
+        "docstatus": 0,
+        "idx": 8,
+        "type": "Link",
+        "label": "Bons de Commande",
+        "hidden": 0,
+        "link_type": "DocType",
+        "link_to": "Sales Order",
+        "onboard": 0,
+        "is_query_report": 0,
+        "link_count": 0,
+        "doctype": "Workspace Link"
+      },
+      {
+        "name": "afju1g3a8o",
+        "docstatus": 0,
+        "idx": 9,
+        "type": "Link",
+        "label": "Paiements Reçus",
+        "hidden": 0,
+        "link_type": "DocType",
+        "link_to": "Payment Entry",
+        "onboard": 0,
+        "is_query_report": 0,
+        "link_count": 0,
+        "doctype": "Workspace Link"
+      },
+      {
+        "name": "afji5om5dc",
+        "docstatus": 0,
+        "idx": 10,
+        "type": "Link",
+        "label": "Catalogue des Services",
+        "hidden": 0,
+        "link_type": "DocType",
+        "link_to": "Item",
+        "onboard": 0,
+        "is_query_report": 0,
+        "link_count": 0,
+        "doctype": "Workspace Link"
+      }
+    ],
+    "roles": [
+      {
+        "name": "afjfmrtrfs",
+        "docstatus": 0,
+        "idx": 1,
+        "role": "System Manager",
+        "doctype": "Has Role"
+      },
+      {
+        "name": "afjduo9qp9",
+        "docstatus": 0,
+        "idx": 2,
+        "role": "Accounts Manager",
+        "doctype": "Has Role"
+      },
+      {
+        "name": "afj64lvf4l",
+        "docstatus": 0,
+        "idx": 3,
+        "role": "Sales Manager",
+        "doctype": "Has Role"
+      },
+      {
+        "name": "afjvmed53n",
+        "docstatus": 0,
+        "idx": 4,
+        "role": "Desk User",
+        "doctype": "Has Role"
+      }
+    ],
+    "custom_blocks": []
+  },
+  {
+    "name": "Consulting & Stratégie",
+    "docstatus": 0,
+    "idx": 0,
+    "label": "Consulting & Stratégie",
+    "title": "Consulting & Stratégie",
+    "sequence_id": 5.0,
+    "module": "Bokengi Core",
+    "icon": "compass",
+    "indicator_color": "green",
+    "hide_custom": 0,
+    "public": 1,
+    "is_hidden": 0,
+    "content": "[{\"type\": \"header\", \"data\": {\"text\": \"Conseil en Strat\\u00e9gie, Audits & Transformation SI\", \"level\": 4}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"+ Nouvelle Mission Conseil\", \"col\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"+ Devis de Cadrage\", \"col\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"+ Rapport de Mission\", \"col\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Missions Conseil\", \"col\": 3}}, {\"type\": \"header\", \"data\": {\"text\": \"Missions & Cadrage Strat\\u00e9gique\", \"level\": 4}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Missions & Livrables\", \"col\": 6}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Cadrage & Contrats\", \"col\": 6}}]",
+    "doctype": "Workspace",
+    "quick_lists": [],
+    "charts": [],
+    "number_cards": [],
+    "shortcuts": [
+      {
+        "name": "afk90ojqjd",
+        "docstatus": 0,
+        "idx": 1,
+        "type": "DocType",
+        "link_to": "Project",
+        "doc_view": "New",
+        "label": "+ Nouvelle Mission Conseil",
+        "doctype": "Workspace Shortcut"
+      },
+      {
+        "name": "afkb7ejuui",
+        "docstatus": 0,
+        "idx": 2,
+        "type": "DocType",
+        "link_to": "Quotation",
+        "doc_view": "New",
+        "label": "+ Devis de Cadrage",
+        "doctype": "Workspace Shortcut"
+      },
+      {
+        "name": "afkl6o8i3p",
+        "docstatus": 0,
+        "idx": 3,
+        "type": "DocType",
+        "link_to": "Project Update",
+        "doc_view": "New",
+        "label": "+ Rapport de Mission",
+        "doctype": "Workspace Shortcut"
+      },
+      {
+        "name": "afk9c5jv2m",
+        "docstatus": 0,
+        "idx": 4,
+        "type": "DocType",
+        "link_to": "Project",
+        "doc_view": "List",
+        "label": "Missions Conseil",
+        "stats_filter": "[[\"Project\",\"custom_treatment_pole\",\"=\",\"POL-consulting\"]]",
+        "doctype": "Workspace Shortcut"
+      }
+    ],
+    "links": [
+      {
+        "name": "afk1qorfdh",
+        "docstatus": 0,
+        "idx": 1,
+        "type": "Card Break",
+        "label": "Missions & Livrables",
+        "hidden": 0,
+        "link_type": "DocType",
+        "onboard": 0,
+        "is_query_report": 0,
+        "link_count": 0,
+        "doctype": "Workspace Link"
+      },
+      {
+        "name": "afk4tjfft4",
+        "docstatus": 0,
+        "idx": 2,
+        "type": "Link",
+        "label": "Missions Conseil (POL-consulting)",
+        "hidden": 0,
+        "link_type": "DocType",
+        "link_to": "Project",
+        "onboard": 0,
+        "is_query_report": 0,
+        "link_count": 0,
+        "doctype": "Workspace Link"
+      },
+      {
+        "name": "afkh33gat1",
+        "docstatus": 0,
+        "idx": 3,
+        "type": "Link",
+        "label": "Rapports de Missions",
+        "hidden": 0,
+        "link_type": "DocType",
+        "link_to": "Project Update",
+        "onboard": 0,
+        "is_query_report": 0,
+        "link_count": 0,
+        "doctype": "Workspace Link"
+      },
+      {
+        "name": "afk13fauhb",
+        "docstatus": 0,
+        "idx": 4,
+        "type": "Link",
+        "label": "Feuilles de Temps",
+        "hidden": 0,
+        "link_type": "DocType",
+        "link_to": "Timesheet",
+        "onboard": 0,
+        "is_query_report": 0,
+        "link_count": 0,
+        "doctype": "Workspace Link"
+      },
+      {
+        "name": "afkki0mnj2",
+        "docstatus": 0,
+        "idx": 5,
+        "type": "Link",
+        "label": "Tâches & Jalons",
+        "hidden": 0,
+        "link_type": "DocType",
+        "link_to": "Task",
+        "onboard": 0,
+        "is_query_report": 0,
+        "link_count": 0,
+        "doctype": "Workspace Link"
+      },
+      {
+        "name": "afkdgmipd0",
+        "docstatus": 0,
+        "idx": 6,
+        "type": "Card Break",
+        "label": "Cadrage & Contrats",
+        "hidden": 0,
+        "link_type": "DocType",
+        "onboard": 0,
+        "is_query_report": 0,
+        "link_count": 0,
+        "doctype": "Workspace Link"
+      },
+      {
+        "name": "afkoe5dctf",
+        "docstatus": 0,
+        "idx": 7,
+        "type": "Link",
+        "label": "Devis de Cadrage",
+        "hidden": 0,
+        "link_type": "DocType",
+        "link_to": "Quotation",
+        "onboard": 0,
+        "is_query_report": 0,
+        "link_count": 0,
+        "doctype": "Workspace Link"
+      },
+      {
+        "name": "afkb42v7l9",
+        "docstatus": 0,
+        "idx": 8,
+        "type": "Link",
+        "label": "Prospects Conseil",
+        "hidden": 0,
+        "link_type": "DocType",
+        "link_to": "Lead",
+        "onboard": 0,
+        "is_query_report": 0,
+        "link_count": 0,
+        "doctype": "Workspace Link"
+      },
+      {
+        "name": "afkqfvhmqk",
+        "docstatus": 0,
+        "idx": 9,
+        "type": "Link",
+        "label": "Clients Partenaires",
+        "hidden": 0,
+        "link_type": "DocType",
+        "link_to": "Customer",
+        "onboard": 0,
+        "is_query_report": 0,
+        "link_count": 0,
+        "doctype": "Workspace Link"
+      }
+    ],
+    "roles": [
+      {
+        "name": "afkk7munbk",
+        "docstatus": 0,
+        "idx": 1,
+        "role": "System Manager",
+        "doctype": "Has Role"
+      },
+      {
+        "name": "afkp5bfffn",
+        "docstatus": 0,
+        "idx": 2,
+        "role": "Accounts Manager",
+        "doctype": "Has Role"
+      },
+      {
+        "name": "afkc1mhmqg",
+        "docstatus": 0,
+        "idx": 3,
+        "role": "Sales Manager",
+        "doctype": "Has Role"
+      },
+      {
+        "name": "afkbg24hi6",
+        "docstatus": 0,
+        "idx": 4,
+        "role": "Desk User",
+        "doctype": "Has Role"
+      }
+    ],
+    "custom_blocks": []
+  },
+  {
+    "name": "Events & Formations",
+    "docstatus": 0,
+    "idx": 0,
+    "label": "Events & Formations",
+    "title": "Events & Formations",
+    "sequence_id": 6.0,
+    "module": "Bokengi Core",
+    "icon": "award",
+    "indicator_color": "green",
+    "hide_custom": 0,
+    "public": 1,
+    "is_hidden": 0,
+    "content": "[{\"type\": \"header\", \"data\": {\"text\": \"\\u00c9v\\u00e9nements Professionnels, Formations & Media\", \"level\": 4}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"+ Nouvel \\u00c9v\\u00e9nement\", \"col\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"+ Nouvelle Newsletter\", \"col\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"+ Devis \\u00c9v\\u00e9nement\", \"col\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Projets Events\", \"col\": 3}}, {\"type\": \"header\", \"data\": {\"text\": \"Organisation, Formations & Communication\", \"level\": 4}}, {\"type\": \"card\", \"data\": {\"card_name\": \"\\u00c9v\\u00e9nements & Formations\", \"col\": 6}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Communication & Diffusion\", \"col\": 6}}]",
+    "doctype": "Workspace",
+    "quick_lists": [],
+    "charts": [],
+    "number_cards": [],
+    "shortcuts": [
+      {
+        "name": "afkcego8aq",
+        "docstatus": 0,
+        "idx": 1,
+        "type": "DocType",
+        "link_to": "Project",
+        "doc_view": "New",
+        "label": "+ Nouvel Événement",
+        "doctype": "Workspace Shortcut"
+      },
+      {
+        "name": "afktreipkc",
+        "docstatus": 0,
+        "idx": 2,
+        "type": "DocType",
+        "link_to": "Newsletter",
+        "doc_view": "New",
+        "label": "+ Nouvelle Newsletter",
+        "doctype": "Workspace Shortcut"
+      },
+      {
+        "name": "afki25n5lj",
+        "docstatus": 0,
+        "idx": 3,
+        "type": "DocType",
+        "link_to": "Quotation",
+        "doc_view": "New",
+        "label": "+ Devis Événement",
+        "doctype": "Workspace Shortcut"
+      },
+      {
+        "name": "afkabp116b",
+        "docstatus": 0,
+        "idx": 4,
+        "type": "DocType",
+        "link_to": "Project",
+        "doc_view": "List",
+        "label": "Projets Events",
+        "stats_filter": "[[\"Project\",\"custom_treatment_pole\",\"=\",\"POL-events\"]]",
+        "doctype": "Workspace Shortcut"
+      }
+    ],
+    "links": [
+      {
+        "name": "afk7e7ho0m",
+        "docstatus": 0,
+        "idx": 1,
+        "type": "Card Break",
+        "label": "Événements & Formations",
+        "hidden": 0,
+        "link_type": "DocType",
+        "onboard": 0,
+        "is_query_report": 0,
+        "link_count": 0,
+        "doctype": "Workspace Link"
+      },
+      {
+        "name": "afknjdtt3h",
+        "docstatus": 0,
+        "idx": 2,
+        "type": "Link",
+        "label": "Projets Events (POL-events)",
+        "hidden": 0,
+        "link_type": "DocType",
+        "link_to": "Project",
+        "onboard": 0,
+        "is_query_report": 0,
+        "link_count": 0,
+        "doctype": "Workspace Link"
+      },
+      {
+        "name": "afke2nbrmi",
+        "docstatus": 0,
+        "idx": 3,
+        "type": "Link",
+        "label": "Tâches Logistiques",
+        "hidden": 0,
+        "link_type": "DocType",
+        "link_to": "Task",
+        "onboard": 0,
+        "is_query_report": 0,
+        "link_count": 0,
+        "doctype": "Workspace Link"
+      },
+      {
+        "name": "afkt98ufvs",
+        "docstatus": 0,
+        "idx": 4,
+        "type": "Link",
+        "label": "Feuilles de Temps Formations",
+        "hidden": 0,
+        "link_type": "DocType",
+        "link_to": "Timesheet",
+        "onboard": 0,
+        "is_query_report": 0,
+        "link_count": 0,
+        "doctype": "Workspace Link"
+      },
+      {
+        "name": "afk7sifn09",
+        "docstatus": 0,
+        "idx": 5,
+        "type": "Card Break",
+        "label": "Communication & Diffusion",
+        "hidden": 0,
+        "link_type": "DocType",
+        "onboard": 0,
+        "is_query_report": 0,
+        "link_count": 0,
+        "doctype": "Workspace Link"
+      },
+      {
+        "name": "afkgf0quna",
+        "docstatus": 0,
+        "idx": 6,
+        "type": "Link",
+        "label": "Campagnes & Newsletters",
+        "hidden": 0,
+        "link_type": "DocType",
+        "link_to": "Newsletter",
+        "onboard": 0,
+        "is_query_report": 0,
+        "link_count": 0,
+        "doctype": "Workspace Link"
+      },
+      {
+        "name": "afk7fccnmt",
+        "docstatus": 0,
+        "idx": 7,
+        "type": "Link",
+        "label": "Groupes d'Emails",
+        "hidden": 0,
+        "link_type": "DocType",
+        "link_to": "Email Group",
+        "onboard": 0,
+        "is_query_report": 0,
+        "link_count": 0,
+        "doctype": "Workspace Link"
+      },
+      {
+        "name": "afkq2b52n0",
+        "docstatus": 0,
+        "idx": 8,
+        "type": "Link",
+        "label": "Devis & Logistique",
+        "hidden": 0,
+        "link_type": "DocType",
+        "link_to": "Quotation",
+        "onboard": 0,
+        "is_query_report": 0,
+        "link_count": 0,
+        "doctype": "Workspace Link"
+      },
+      {
+        "name": "afkl4qljs4",
+        "docstatus": 0,
+        "idx": 9,
+        "type": "Link",
+        "label": "Contacts & Participants",
+        "hidden": 0,
+        "link_type": "DocType",
+        "link_to": "Lead",
+        "onboard": 0,
+        "is_query_report": 0,
+        "link_count": 0,
+        "doctype": "Workspace Link"
+      }
+    ],
+    "roles": [
+      {
+        "name": "afklnejinq",
+        "docstatus": 0,
+        "idx": 1,
+        "role": "System Manager",
+        "doctype": "Has Role"
+      },
+      {
+        "name": "afkbdj054c",
+        "docstatus": 0,
+        "idx": 2,
+        "role": "Accounts Manager",
+        "doctype": "Has Role"
+      },
+      {
+        "name": "afkqaujp36",
+        "docstatus": 0,
+        "idx": 3,
+        "role": "Sales Manager",
+        "doctype": "Has Role"
+      },
+      {
+        "name": "afkabb7b8f",
+        "docstatus": 0,
+        "idx": 4,
+        "role": "Desk User",
+        "doctype": "Has Role"
+      }
+    ],
+    "custom_blocks": []
+  }
+]

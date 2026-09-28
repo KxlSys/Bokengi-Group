@@ -67,6 +67,28 @@
   },
   {
     "doctype": "Custom Field",
+    "name": "Project-custom_requested_pole",
+    "dt": "Project",
+    "fieldname": "custom_requested_pole",
+    "label": "Pôle d'expertise d'origine",
+    "fieldtype": "Link",
+    "options": "Bokengi Pole",
+    "insert_after": "project_name",
+    "read_only": 1
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Project-custom_treatment_pole",
+    "dt": "Project",
+    "fieldname": "custom_treatment_pole",
+    "label": "Pôle de traitement opérationnel",
+    "fieldtype": "Link",
+    "options": "Bokengi Pole",
+    "insert_after": "custom_requested_pole",
+    "read_only": 0
+  },
+  {
+    "doctype": "Custom Field",
     "name": "File-custom_alt_fr",
     "dt": "File",
     "fieldname": "custom_alt_fr",
@@ -100,5 +122,136 @@
     "label": "Légende de l'image (EN)",
     "fieldtype": "Small Text",
     "insert_after": "custom_caption_fr"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Sales Invoice-bokengi_billing_model",
+    "dt": "Sales Invoice",
+    "fieldname": "bokengi_billing_model",
+    "label": "Modèle Tarifaire Bokengi",
+    "fieldtype": "Select",
+    "options": "Forfait\nRegie_TJM",
+    "default": "Forfait",
+    "insert_after": "customer"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Sales Invoice-bokengi_jurisdiction",
+    "dt": "Sales Invoice",
+    "fieldname": "bokengi_jurisdiction",
+    "label": "Régime Juridique & Fiscal",
+    "fieldtype": "Select",
+    "options": "FR_STANDARD\nEU_B2B\nINT_EXPORT",
+    "default": "FR_STANDARD",
+    "insert_after": "bokengi_billing_model"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Sales Invoice-bokengi_payment_milestone",
+    "dt": "Sales Invoice",
+    "fieldname": "bokengi_payment_milestone",
+    "label": "Jalon de Paiement",
+    "fieldtype": "Select",
+    "options": "Acompte_Commande\nSolde_PV_Signe\nRegie_Mensuelle\nComptant",
+    "default": "Acompte_Commande",
+    "insert_after": "bokengi_jurisdiction"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Sales Invoice-bokengi_deposit_percent",
+    "dt": "Sales Invoice",
+    "fieldname": "bokengi_deposit_percent",
+    "label": "Pourcentage d'Acompte (%)",
+    "fieldtype": "Percent",
+    "insert_after": "bokengi_payment_milestone"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Sales Invoice-bokengi_pv_attachment",
+    "dt": "Sales Invoice",
+    "fieldname": "bokengi_pv_attachment",
+    "label": "PV de Réception Signé",
+    "fieldtype": "Link",
+    "options": "File",
+    "insert_after": "bokengi_deposit_percent"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Sales Invoice-bokengi_einvoice_status",
+    "dt": "Sales Invoice",
+    "fieldname": "bokengi_einvoice_status",
+    "label": "Statut Facturation Électronique",
+    "fieldtype": "Select",
+    "options": "DRAFT\nSUBMITTED\nTRANSMITTED\nACCEPTED\nREJECTED\nCORRECTION_REQUIRED\nRESUBMISSION\nARCHIVED",
+    "default": "DRAFT",
+    "read_only": 1,
+    "insert_after": "status"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Sales Invoice-bokengi_einvoice_transmission_id",
+    "dt": "Sales Invoice",
+    "fieldname": "bokengi_einvoice_transmission_id",
+    "label": "ID Transmission PDP",
+    "fieldtype": "Data",
+    "read_only": 1,
+    "insert_after": "bokengi_einvoice_status"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Sales Invoice-bokengi_einvoice_sha256",
+    "dt": "Sales Invoice",
+    "fieldname": "bokengi_einvoice_sha256",
+    "label": "Empreinte Document (SHA-256)",
+    "fieldtype": "Data",
+    "read_only": 1,
+    "insert_after": "bokengi_einvoice_transmission_id"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Customer-bokengi_vat_number",
+    "dt": "Customer",
+    "fieldname": "bokengi_vat_number",
+    "label": "Numéro TVA Intracommunautaire",
+    "fieldtype": "Data",
+    "insert_after": "tax_id"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Customer-bokengi_registration_id",
+    "dt": "Customer",
+    "fieldname": "bokengi_registration_id",
+    "label": "Identifiant Légal (SIRET/SIREN/Tax ID)",
+    "fieldtype": "Data",
+    "insert_after": "bokengi_vat_number"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Customer-bokengi_peppol_id",
+    "dt": "Customer",
+    "fieldname": "bokengi_peppol_id",
+    "label": "Identifiant Peppol",
+    "fieldtype": "Data",
+    "insert_after": "bokengi_registration_id"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Customer-bokengi_pdp_routing_code",
+    "dt": "Customer",
+    "fieldname": "bokengi_pdp_routing_code",
+    "label": "Code Routage / Service PDP",
+    "fieldtype": "Data",
+    "insert_after": "bokengi_peppol_id"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Customer-bokengi_preferred_einvoice_format",
+    "dt": "Customer",
+    "fieldname": "bokengi_preferred_einvoice_format",
+    "label": "Format E-Invoice Préféré",
+    "fieldtype": "Select",
+    "options": "FACTURX_COMFORT\nFACTURX_BASIC\nUBL_2_1\nCII",
+    "default": "FACTURX_COMFORT",
+    "insert_after": "bokengi_pdp_routing_code"
   }
 ]

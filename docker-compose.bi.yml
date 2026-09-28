@@ -1,0 +1,75 @@
+version: '3.8'
+
+networks:
+  bokengi_bi_net:
+    driver: bridge
+
+volumes:
+  superset_pg_data:
+    driver: local
+  superset_home:
+    driver: local
+  superset_redis_data:
+    driver: local
+
+services:
+  # 1. Base PostgreSQL pour les métadonnées Superset
+  superset-db:
+    image: postgres:15-alpine
+    container_name: bokengi-superset-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${SUPERSET_PG_DB:-superset}
+      POSTGRES_USER: ${SUPERSET_PG_USER:-superset}
+      POSTGRES_PASSWORD: ${SUPERSET_PG_PASSWORD}
+    volumes:
+      - superset_pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${SUPERSET_PG_USER:-superset} -d ${SUPERSET_PG_DB:-superset}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - bokengi_bi_net
+
+  # 2. Cache Redis pour les sessions et requêtes
+  superset-redis:
+    image: redis:7-alpine
+    container_name: bokengi-superset-redis
+    restart: unless-stopped
+    volumes:
+      - superset_redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - bokengi_bi_net
+
+  # 3. Application Apache Superset
+  superset:
+    image: apache/superset:3.1.0
+    container_name: bokengi-superset-app
+    restart: unless-stopped
+    depends_on:
+      superset-db:
+        condition: service_healthy
+      superset-redis:
+        condition: service_healthy
+    environment:
+      SUPERSET_SECRET_KEY: ${SUPERSET_SECRET_KEY}
+      DATABASE_DB: ${SUPERSET_PG_DB:-superset}
+      DATABASE_HOST: superset-db
+      DATABASE_PORT: 5432
+      DATABASE_USER: ${SUPERSET_PG_USER:-superset}
+      DATABASE_PASSWORD: ${SUPERSET_PG_PASSWORD}
+      REDIS_HOST: superset-redis
+      REDIS_PORT: 6379
+      SUPERSET_PORT: ${SUPERSET_PORT:-8088}
+    volumes:
+      - superset_home:/app/superset_home
+    ports:
+      - "127.0.0.1:${SUPERSET_PORT:-8088}:8088"
+    networks:
+      - bokengi_bi_net

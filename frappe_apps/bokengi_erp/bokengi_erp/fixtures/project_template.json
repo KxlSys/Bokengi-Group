@@ -1,0 +1,181 @@
+[
+  {
+    "doctype": "Project Template",
+    "name": "TEMPLATE-CYBER",
+    "project_type": "Cybersécurité",
+    "tasks": [
+      {
+        "task_name": "Cadrage & Règles d'Engagement (RoE)",
+        "subject": "Cadrage & Règles d'Engagement (RoE)",
+        "duration": 2,
+        "start_day": 1
+      },
+      {
+        "task_name": "Reconnaissance & Analyse de Surface",
+        "subject": "Reconnaissance & Analyse de Surface",
+        "duration": 3,
+        "start_day": 3
+      },
+      {
+        "task_name": "Tests d'Intrusion & Exploitation",
+        "subject": "Tests d'Intrusion & Exploitation",
+        "duration": 5,
+        "start_day": 6
+      },
+      {
+        "task_name": "Rédaction du Rapport d'Audit",
+        "subject": "Rédaction du Rapport d'Audit",
+        "duration": 3,
+        "start_day": 11
+      },
+      {
+        "task_name": "Restitution & Clôture de Mission",
+        "subject": "Restitution & Clôture de Mission",
+        "duration": 2,
+        "start_day": 14
+      }
+    ]
+  },
+  {
+    "doctype": "Project Template",
+    "name": "TEMPLATE-CLOUD",
+    "project_type": "Cloud & DevOps",
+    "tasks": [
+      {
+        "task_name": "Architecture & Cadrage Technique (DAT)",
+        "subject": "Architecture & Cadrage Technique (DAT)",
+        "duration": 3,
+        "start_day": 1
+      },
+      {
+        "task_name": "Socle IaC & Réseau Sécurisé (Terraform)",
+        "subject": "Socle IaC & Réseau Sécurisé (Terraform)",
+        "duration": 5,
+        "start_day": 4
+      },
+      {
+        "task_name": "Déploiement des Services & Pipelines CI/CD",
+        "subject": "Déploiement des Services & Pipelines CI/CD",
+        "duration": 6,
+        "start_day": 9
+      },
+      {
+        "task_name": "Tests de Charge, Résilience & Sécurité",
+        "subject": "Tests de Charge, Résilience & Sécurité",
+        "duration": 3,
+        "start_day": 15
+      },
+      {
+        "task_name": "Bascule Production & Transfert Opérationnel",
+        "subject": "Bascule Production & Transfert Opérationnel",
+        "duration": 3,
+        "start_day": 18
+      }
+    ]
+  },
+  {
+    "doctype": "Project Template",
+    "name": "TEMPLATE-DATA",
+    "project_type": "Data & IA",
+    "tasks": [
+      {
+        "task_name": "Audit des Sources & Spécifications",
+        "subject": "Audit des Sources & Spécifications",
+        "duration": 3,
+        "start_day": 1
+      },
+      {
+        "task_name": "Ingestion & Pipelines ETL/ELT",
+        "subject": "Ingestion & Pipelines ETL/ELT",
+        "duration": 6,
+        "start_day": 4
+      },
+      {
+        "task_name": "Modélisation & Stockage Analytique (Warehouse)",
+        "subject": "Modélisation & Stockage Analytique (Warehouse)",
+        "duration": 5,
+        "start_day": 10
+      },
+      {
+        "task_name": "Restitution & Dashboards Métier",
+        "subject": "Restitution & Dashboards Métier",
+        "duration": 4,
+        "start_day": 15
+      },
+      {
+        "task_name": "Recette des Données & Transfert",
+        "subject": "Recette des Données & Transfert",
+        "duration": 2,
+        "start_day": 19
+      }
+    ]
+  },
+  {
+    "doctype": "Project Template",
+    "name": "TEMPLATE-SOFTENG",
+    "project_type": "Ingénierie Logicielle",
+    "tasks": [
+      {
+        "task_name": "Spécifications & Architecture Applicative",
+        "subject": "Spécifications & Architecture Applicative",
+        "duration": 4,
+        "start_day": 1
+      },
+      {
+        "task_name": "Sprint 1 : Développement Core & APIs",
+        "subject": "Sprint 1 : Développement Core & APIs",
+        "duration": 8,
+        "start_day": 5
+      },
+      {
+        "task_name": "Sprint 2 : Frontend UI/UX & Intégration",
+        "subject": "Sprint 2 : Frontend UI/UX & Intégration",
+        "duration": 8,
+        "start_day": 13
+      },
+      {
+        "task_name": "Recette QA & Tests Automatisés",
+        "subject": "Recette QA & Tests Automatisés",
+        "duration": 5,
+        "start_day": 21
+      },
+      {
+        "task_name": "Mise en Production & Recette Finale",
+        "subject": "Mise en Production & Recette Finale",
+        "duration": 3,
+        "start_day": 26
+      }
+    ]
+  },
+  {
+    "doctype": "Project Template",
+    "name": "TEMPLATE-STRAT",
+    "project_type": "Stratégie & Conseil IT",
+    "tasks": [
+      {
+        "task_name": "Diagnostic de l'Existant & Entretiens",
+        "subject": "Diagnostic de l'Existant & Entretiens",
+        "duration": 5,
+        "start_day": 1
+      },
+      {
+        "task_name": "Définition de la Cible Stratégique",
+        "subject": "Définition de la Cible Stratégique",
+        "duration": 6,
+        "start_day": 6
+      },
+      {
+        "task_name": "Élaboration de la Feuille de Route & Chiffrage",
+        "subject": "Élaboration de la Feuille de Route & Chiffrage",
+        "duration": 4,
+        "start_day": 12
+      },
+      {
+        "task_name": "Restitution Exécutive & Clôture de Mission",
+        "subject": "Restitution Exécutive & Clôture de Mission",
+        "duration": 3,
+        "start_day": 16
+      }
+    ]
+  }
+]

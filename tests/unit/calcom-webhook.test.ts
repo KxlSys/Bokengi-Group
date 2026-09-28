@@ -1,0 +1,94 @@
+import { describe, it } from 'node:test'
+import assert from 'node:assert'
+import crypto from 'node:crypto'
+import {
+  verifyCalcomSignature,
+  processCalcomWebhook,
+} from '../../src/lib/calcom'
+
+describe('Cal.com Webhook Integration & Security Suite', () => {
+  const TEST_SECRET = 'test_webhook_secret_bokengi_2026'
+
+  // ──────────────────────────────────────────────────────────────────────────
+  // 1. VÉRIFICATION DE LA SIGNATURE CRYPTOGRAPHIQUE HMAC SHA-256
+  // ──────────────────────────────────────────────────────────────────────────
+  it('CAL-1: Accepts valid HMAC SHA-256 signature', () => {
+    const rawBody = JSON.stringify({ triggerEvent: 'BOOKING_CREATED', payload: { uid: 'cal-uid-1001' } })
+    const validSignature = crypto.createHmac('sha256', TEST_SECRET).update(rawBody).digest('hex')
+
+    const check = verifyCalcomSignature(rawBody, validSignature, TEST_SECRET)
+    assert.strictEqual(check.isValid, true, 'Valid signature must be accepted')
+  })
+
+  it('CAL-2: Rejects invalid HMAC signature or tampered body', () => {
+    const rawBody = JSON.stringify({ triggerEvent: 'BOOKING_CREATED', payload: { uid: 'cal-uid-1001' } })
+    const invalidSignature = 'a'.repeat(64)
+
+    const check = verifyCalcomSignature(rawBody, invalidSignature, TEST_SECRET)
+    assert.strictEqual(check.isValid, false, 'Invalid signature must be rejected')
+  })
+
+  it('CAL-3: Rejects missing signature when secret is configured', () => {
+    const rawBody = JSON.stringify({ triggerEvent: 'BOOKING_CREATED', payload: { uid: 'cal-uid-1001' } })
+
+    const check = verifyCalcomSignature(rawBody, null, TEST_SECRET)
+    assert.strictEqual(check.isValid, false, 'Missing signature must be rejected when secret is set')
+  })
+
+  // ──────────────────────────────────────────────────────────────────────────
+  // 2. CONTRÔLE D'IDEMPOTENCE ET ANTI-DOUBLON (booking.uid)
+  // ──────────────────────────────────────────────────────────────────────────
+  it('CAL-4: Processes valid booking payload and handles duplicate idempotently', async () => {
+    const uniqueBookingUid = `bk-uid-test-${Date.now()}`
+    const payload = {
+      triggerEvent: 'BOOKING_CREATED',
+      payload: {
+        uid: uniqueBookingUid,
+        title: 'Cadrage Technique Bokengi IT',
+        startTime: '2026-10-15T14:00:00.000Z',
+        attendees: [
+          {
+            name: 'Jean Testeur',
+            email: 'jean.testeur@acme.com',
+          },
+        ],
+        responses: {
+          notes: { value: 'Besoin audit cybersécurité' },
+        },
+      },
+    }
+
+    const rawBody = JSON.stringify(payload)
+    const validSignature = crypto.createHmac('sha256', TEST_SECRET).update(rawBody).digest('hex')
+
+    // Premier appel (succès initial)
+    const res1 = await processCalcomWebhook(rawBody, validSignature)
+    assert.strictEqual(res1.statusCode, 200)
+    assert.strictEqual(res1.success, true)
+    assert.strictEqual(res1.bookingUid, uniqueBookingUid)
+    assert.strictEqual(res1.isDuplicate, false)
+
+    // Deuxième appel avec le même booking.uid (doit être reconnu comme doublon idempotent)
+    const res2 = await processCalcomWebhook(rawBody, validSignature)
+    assert.strictEqual(res2.statusCode, 200)
+    assert.strictEqual(res2.success, true)
+    assert.strictEqual(res2.isDuplicate, true, 'Second call must be flagged as duplicate')
+  })
+
+  // ──────────────────────────────────────────────────────────────────────────
+  // 3. GESTION DES ERREURS ET ENTRÉES INVALIDES
+  // ──────────────────────────────────────────────────────────────────────────
+  it('CAL-5: Rejects malformed JSON payload with HTTP 400', async () => {
+    const malformedBody = '{ triggerEvent: invalid json...'
+    const res = await processCalcomWebhook(malformedBody, null)
+    assert.strictEqual(res.statusCode, 400)
+    assert.strictEqual(res.success, false)
+  })
+
+  it('CAL-6: Rejects payload missing booking UID with HTTP 400', async () => {
+    const emptyPayload = JSON.stringify({ triggerEvent: 'BOOKING_CREATED', payload: {} })
+    const res = await processCalcomWebhook(emptyPayload, null)
+    assert.strictEqual(res.statusCode, 400)
+    assert.strictEqual(res.success, false)
+  })
+})

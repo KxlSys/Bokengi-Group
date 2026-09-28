@@ -5,7 +5,6 @@ import Link from 'next/link'
 import { useTheme } from '@/providers/Theme'
 import { useI18n } from '@/i18n'
 import { siteConfig } from '@/config/site'
-import { OpenStatusBadge } from './OpenStatusBadge'
 
 export const Footer: React.FC = () => {
   const { theme } = useTheme()
@@ -97,7 +96,6 @@ export const Footer: React.FC = () => {
             </Link>
           </div>
           <div className="flex items-center gap-4">
-            <OpenStatusBadge />
             <span>{t.footer.tagline}</span>
           </div>
         </div>

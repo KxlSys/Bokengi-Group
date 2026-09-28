@@ -455,3 +455,103 @@ def get_post_by_slug(slug, locale="fr"):
             "description": p.get("seo_description") or p.get("excerpt") or "",
         },
     }
+
+
+@frappe.whitelist()
+def get_poles_cockpit_summary():
+    """
+    Retourne la synthèse opérationnelle des 5 pôles Bokengi Group pour le Desk.
+    Applique automatiquement le filtrage RLS (pole_permissions.py) selon l'utilisateur connecté.
+    """
+    poles_meta = [
+        {
+            "id": "POL-it",
+            "name": "Bokengi IT & Infrastructure",
+            "subtitle": "Cloud, Réseaux & Cyber",
+            "badge_color": "#64FFDA",
+            "icon": "server",
+            "accent": "#0066CC",
+            "links": [
+                {"label": "Projets IT", "url": "/app/project?custom_treatment_pole=POL-it"},
+                {"label": "Tickets Support", "url": "/app/issue"},
+                {"label": "Saisie Temps", "url": "/app/timesheet"},
+            ]
+        },
+        {
+            "id": "POL-digital",
+            "name": "Bokengi Digital & Innovation",
+            "subtitle": "Web, Mobile & SaaS",
+            "badge_color": "#64FFDA",
+            "icon": "globe",
+            "accent": "#0EA5E9",
+            "links": [
+                {"label": "Projets Digital", "url": "/app/project?custom_treatment_pole=POL-digital"},
+                {"label": "Leads Digital", "url": "/app/lead?custom_treatment_pole=POL-digital"},
+                {"label": "Site Web Bokengi", "url": "/app/website"},
+            ]
+        },
+        {
+            "id": "POL-business",
+            "name": "Bokengi Business Solutions",
+            "subtitle": "ERPNext, BI & Process",
+            "badge_color": "#F5A623",
+            "icon": "briefcase",
+            "accent": "#F5A623",
+            "links": [
+                {"label": "CRM & Leads", "url": "/app/lead?custom_treatment_pole=POL-business"},
+                {"label": "Devis & Ventes", "url": "/app/quotation"},
+                {"label": "Factures Vente", "url": "/app/sales-invoice"},
+            ]
+        },
+        {
+            "id": "POL-consulting",
+            "name": "Bokengi Consulting & Stratégie",
+            "subtitle": "Audits, Conseil & SI",
+            "badge_color": "#64FFDA",
+            "icon": "compass",
+            "accent": "#8B5CF6",
+            "links": [
+                {"label": "Projets Conseil", "url": "/app/project?custom_treatment_pole=POL-consulting"},
+                {"label": "Devis Cadrage", "url": "/app/quotation"},
+                {"label": "Livrables Projets", "url": "/app/project-update"},
+            ]
+        },
+        {
+            "id": "POL-events",
+            "name": "Bokengi Events & Formations",
+            "subtitle": "Tech Events & Formations",
+            "badge_color": "#F5A623",
+            "icon": "award",
+            "accent": "#EC4899",
+            "links": [
+                {"label": "Projets Events", "url": "/app/project?custom_treatment_pole=POL-events"},
+                {"label": "Newsletters", "url": "/app/newsletter"},
+                {"label": "Support Events", "url": "/app/issue"},
+            ]
+        }
+    ]
+
+    has_project_pole = frappe.db.has_column("Project", "custom_treatment_pole")
+    has_lead_pole = frappe.db.has_column("Lead", "custom_treatment_pole")
+
+    summary = []
+    for p in poles_meta:
+        pid = p["id"]
+        
+        proj_count = 0
+        if has_project_pole and frappe.has_permission("Project", "read"):
+            proj_count = len(frappe.get_list("Project", filters={"custom_treatment_pole": pid, "status": "Open"}, fields=["name"]))
+            
+        lead_count = 0
+        if has_lead_pole and frappe.has_permission("Lead", "read"):
+            lead_count = len(frappe.get_list("Lead", filters={"custom_treatment_pole": pid, "status": "Open"}, fields=["name"]))
+
+        summary.append({
+            **p,
+            "metrics": {
+                "active_projects": proj_count,
+                "open_leads": lead_count
+            }
+        })
+
+    return summary

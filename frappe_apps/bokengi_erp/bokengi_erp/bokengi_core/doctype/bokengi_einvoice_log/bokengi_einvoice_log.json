@@ -1,0 +1,91 @@
+{
+  "actions": [],
+  "allow_rename": 0,
+  "autoname": "hash",
+  "creation": "2026-09-26 05:30:00.000000",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "transaction",
+    "event_type",
+    "status",
+    "timestamp",
+    "error_message",
+    "raw_response"
+  ],
+  "fields": [
+    {
+      "fieldname": "transaction",
+      "fieldtype": "Link",
+      "label": "Transaction",
+      "options": "Bokengi EInvoice Transaction",
+      "reqd": 1
+    },
+    {
+      "fieldname": "event_type",
+      "fieldtype": "Select",
+      "label": "Event Type",
+      "options": "TRANSMISSION_SENT\nSTATUS_UPDATE\nERROR_RECEIVED\nREJECTION_LOGGED\nRESUBMISSION\nARCHIVAL_SEALED",
+      "reqd": 1
+    },
+    {
+      "fieldname": "status",
+      "fieldtype": "Data",
+      "label": "Status"
+    },
+    {
+      "fieldname": "timestamp",
+      "fieldtype": "Datetime",
+      "label": "Timestamp UTC",
+      "reqd": 1
+    },
+    {
+      "fieldname": "error_message",
+      "fieldtype": "Small Text",
+      "label": "Error / Reason"
+    },
+    {
+      "fieldname": "raw_response",
+      "fieldtype": "Code",
+      "label": "Raw Response Payload",
+      "options": "JSON"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [],
+  "modified": "2026-09-26 05:30:00.000000",
+  "modified_by": "Administrator",
+  "module": "Bokengi Core",
+  "name": "Bokengi EInvoice Log",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 0,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 0
+    },
+    {
+      "create": 1,
+      "delete": 0,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "Accounts Manager",
+      "share": 1,
+      "write": 0
+    }
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}

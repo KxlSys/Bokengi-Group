@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { getCloudflareContext } from '@opennextjs/cloudflare'
 import { submitLeadToERPNext } from '@/lib/erpnext-client'
 import { sendLeadNotifications } from '@/lib/notifications'
+import { sendMattermostNotification } from '@/lib/mattermost'
 
 const rateLimitMap = new Map<string, { count: number; lastReset: number }>()
 
@@ -23,6 +25,14 @@ function isRateLimited(ip: string, limit = 5, windowMs = 60000): boolean {
 
 export async function POST(req: NextRequest) {
   try {
+    let env: Record<string, any> | undefined
+    let ctx: any | undefined
+    try {
+      const cfCtx = await getCloudflareContext({ async: true })
+      env = cfCtx?.env as CloudflareEnv | undefined
+      ctx = cfCtx?.ctx
+    } catch {}
+
     const ip =
       req.headers.get('cf-connecting-ip')?.trim() ||
       req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
@@ -99,14 +109,19 @@ export async function POST(req: NextRequest) {
         ? `[Demande de type: Support / Assistance technique]\n\n` + safeMessage
         : safeMessage
 
-      const result = await submitLeadToERPNext({
-        lead_name: `${safeFirstname} ${safeLastname}`.trim(),
-        company_name: typeof company === 'string' ? company.trim().slice(0, 150) : '',
-        email_id: safeEmail,
-        phone: typeof phone === 'string' ? phone.trim().slice(0, 50) : '',
-        custom_pole: pole && typeof pole === 'string' ? pole : '',
-        custom_payload_message_raw: enrichedMessage,
-      })
+      const result = await submitLeadToERPNext(
+        {
+          lead_name: `${safeFirstname} ${safeLastname}`.trim(),
+          company_name: typeof company === 'string' ? company.trim().slice(0, 150) : '',
+          email_id: safeEmail,
+          phone: typeof phone === 'string' ? phone.trim().slice(0, 50) : '',
+          custom_requested_pole: pole && typeof pole === 'string' ? pole : '',
+          custom_treatment_pole: pole && typeof pole === 'string' ? pole : '',
+          custom_pole: pole && typeof pole === 'string' ? pole : '',
+          custom_payload_message_raw: enrichedMessage,
+        },
+        env
+      )
       
       createdLeadId = result.name || `erpnext-generated-${Date.now()}`
       console.info(`[CRM Leads] Nouveau lead créé avec succès dans ERPNext (ID: ${createdLeadId}) pour ${safeEmail}`)
@@ -126,6 +141,29 @@ export async function POST(req: NextRequest) {
       }).catch((notifErr) => {
         console.warn('[CRM Leads] Notification email asynchrone non transmise :', notifErr)
       })
+
+      // Déclenchement asynchrone non-bloquant du routeur Mattermost (attaché au lifecycle Cloudflare Worker via ctx.waitUntil)
+      const mattermostPromise = sendMattermostNotification({
+        eventType: 'NEW_LEAD',
+        documentId: createdLeadId,
+        title: enrichedMessage.slice(0, 300),
+        clientName: `${safeFirstname} ${safeLastname}`,
+        companyName: typeof company === 'string' ? company.trim() : undefined,
+        email: safeEmail,
+        poleName: pole && typeof pole === 'string' ? pole : undefined,
+        needType: safeType === 'devis' ? 'Demande de devis' : safeType === 'cadrage' ? 'Cadrage technique' : safeType,
+        summary: enrichedMessage.slice(0, 500),
+        status: 'Nouveau',
+      }).catch((mmErr) => {
+        console.warn('[CRM Leads] Notification Mattermost asynchrone non transmise :', mmErr)
+      })
+
+      if (ctx && typeof ctx.waitUntil === 'function') {
+        console.info(`[CRM Leads] Notification Mattermost programmée (waitUntil) pour le lead ${createdLeadId}`)
+        ctx.waitUntil(mattermostPromise)
+      } else {
+        console.info(`[CRM Leads] Notification Mattermost programmée (background) pour le lead ${createdLeadId}`)
+      }
     } catch (dbError) {
       console.warn('[CRM Leads] Persistance ERPNext différée (base non active) :', dbError)
       createdLeadId = `offline-` + Date.now()

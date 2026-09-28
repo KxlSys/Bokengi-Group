@@ -1,0 +1,44 @@
+[
+  {
+    "doctype": "Activity Type",
+    "name": "ACT-CADRAGE",
+    "activity_type": "Audit & Cadrage Technique",
+    "default_is_billable": 1,
+    "disabled": 0
+  },
+  {
+    "doctype": "Activity Type",
+    "name": "ACT-INGENIERIE",
+    "activity_type": "Conception & Développement",
+    "default_is_billable": 1,
+    "disabled": 0
+  },
+  {
+    "doctype": "Activity Type",
+    "name": "ACT-VALIDATION",
+    "activity_type": "Recette, Tests & QA",
+    "default_is_billable": 1,
+    "disabled": 0
+  },
+  {
+    "doctype": "Activity Type",
+    "name": "ACT-RESTITUTION",
+    "activity_type": "Restitution & Accompagnement",
+    "default_is_billable": 1,
+    "disabled": 0
+  },
+  {
+    "doctype": "Activity Type",
+    "name": "ACT-MANAGEMENT",
+    "activity_type": "Pilotage & Gestion de Projet",
+    "default_is_billable": 1,
+    "disabled": 0
+  },
+  {
+    "doctype": "Activity Type",
+    "name": "ACT-AVANTVENTE",
+    "activity_type": "Avant-Vente & Cadrage Commercial",
+    "default_is_billable": 0,
+    "disabled": 0
+  }
+]

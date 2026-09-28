@@ -6,59 +6,84 @@ import type {
   PostData,
 } from '../data/bokengi-seed-data.ts'
 
+import { normalizePoleId } from './mattermost'
+
 /**
  * Client d'accès REST API à ERPNext v15 pour Bokengi Group 2.0.
  * Fournit une interface typée, résiliente et optimisée pour les Server Components Next.js.
  */
 
-function getERPNextConfig() {
-  let apiUrl = process.env.ERPNEXT_API_URL
-  let apiKey = process.env.ERPNEXT_API_KEY
-  let apiSecret = process.env.ERPNEXT_API_SECRET
+function getERPNextConfig(env?: Record<string, any>) {
+  const cfCtx = (globalThis as any)[Symbol.for('__cloudflare-context__')]
+  const cfEnv = cfCtx?.env
 
-  try {
-    const cf = (globalThis as any)[Symbol.for('__cloudflare-context__')]
-    if (cf?.env?.ERPNEXT_API_URL) apiUrl = cf.env.ERPNEXT_API_URL
-    if (cf?.env?.ERPNEXT_API_KEY) apiKey = cf.env.ERPNEXT_API_KEY
-    if (cf?.env?.ERPNEXT_API_SECRET) apiSecret = cf.env.ERPNEXT_API_SECRET
-  } catch {}
+  const apiUrl =
+    env?.ERPNEXT_API_URL ||
+    process.env.ERPNEXT_API_URL ||
+    cfEnv?.ERPNEXT_API_URL ||
+    'https://gestion.bokengi-group.com'
+
+  const apiKey =
+    env?.ERPNEXT_API_KEY ||
+    process.env.ERPNEXT_API_KEY ||
+    cfEnv?.ERPNEXT_API_KEY
+
+  const apiSecret =
+    env?.ERPNEXT_API_SECRET ||
+    process.env.ERPNEXT_API_SECRET ||
+    cfEnv?.ERPNEXT_API_SECRET
 
   return {
-    apiUrl: apiUrl || 'https://erp.bokengi-group.com',
+    apiUrl,
     apiKey,
     apiSecret,
     isConfigured: Boolean(apiKey && apiSecret),
   }
 }
 
-async function fetchFromERPNext<T = any>(endpoint: string, options?: RequestInit): Promise<T> {
-  const config = getERPNextConfig()
+async function fetchFromERPNext<T = any>(
+  endpoint: string,
+  options?: RequestInit,
+  env?: Record<string, any>
+): Promise<T> {
+  const config = getERPNextConfig(env)
+
+  if (!config.isConfigured) {
+    throw new Error('ERPNext is not configured (missing API key or secret)')
+  }
+
   const url = `${config.apiUrl}${endpoint}`
 
   const headers: Record<string, string> = {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
+    'Authorization': `token ${config.apiKey}:${config.apiSecret}`,
   }
 
-  if (config.isConfigured) {
-    headers['Authorization'] = `token ${config.apiKey}:${config.apiSecret}`
+  const controller = new AbortController()
+  const timeoutMs = options?.method === 'POST' ? 5000 : 3000
+  const timeoutId = setTimeout(() => controller.abort(), timeoutMs)
+
+  try {
+    const response = await fetch(url, {
+      ...options,
+      signal: options?.signal || controller.signal,
+      headers: {
+        ...headers,
+        ...(options?.headers as Record<string, string> | undefined),
+      },
+      // Next.js caching / ISR
+      next: { revalidate: 60 },
+    } as any)
+
+    if (!response.ok) {
+      throw new Error(`ERPNext API error: ${response.status} ${response.statusText} on ${endpoint}`)
+    }
+
+    return await response.json()
+  } finally {
+    clearTimeout(timeoutId)
   }
-
-  const response = await fetch(url, {
-    ...options,
-    headers: {
-      ...headers,
-      ...(options?.headers as Record<string, string> | undefined),
-    },
-    // Next.js caching / ISR
-    next: { revalidate: 60 },
-  } as any)
-
-  if (!response.ok) {
-    throw new Error(`ERPNext API error: ${response.status} ${response.statusText} on ${endpoint}`)
-  }
-
-  return response.json()
 }
 
 /**
@@ -440,28 +465,47 @@ export async function fetchSiteSettingsFromERPNext(): Promise<any> {
 
 /**
  * Envoie un formulaire de contact / Lead vers ERPNext.
+ * Conserve la traçabilité immuable du pôle demandé (custom_requested_pole)
+ * et initialise le pôle de traitement opérationnel (custom_treatment_pole).
  */
-export async function submitLeadToERPNext(leadData: {
-  lead_name: string
-  company_name?: string
-  email_id: string
-  phone?: string
-  custom_pole?: string
-  custom_payload_message_raw: string
-}): Promise<{ success: boolean; name?: string }> {
-  const res = await fetchFromERPNext<{ data: any }>('/api/resource/Lead', {
-    method: 'POST',
-    body: JSON.stringify({
-      lead_name: leadData.lead_name,
-      company_name: leadData.company_name || 'Particulier / Non spécifié',
-      email_id: leadData.email_id,
-      phone: leadData.phone || '',
-      custom_pole: leadData.custom_pole || 'POL-it',
-      custom_payload_message_raw: leadData.custom_payload_message_raw,
-      custom_priority_flag: 'Normal',
-      status: 'Open',
-    }),
-  })
+export async function submitLeadToERPNext(
+  leadData: {
+    lead_name: string
+    company_name?: string
+    email_id: string
+    phone?: string
+    custom_pole?: string
+    custom_requested_pole?: string
+    custom_treatment_pole?: string
+    custom_payload_message_raw: string
+  },
+  env?: Record<string, any>
+): Promise<{ success: boolean; name?: string }> {
+  const poleId = normalizePoleId(leadData.custom_requested_pole || leadData.custom_pole) || 'POL-it'
+  const treatmentPoleId = leadData.custom_treatment_pole
+    ? normalizePoleId(leadData.custom_treatment_pole) || poleId
+    : poleId
+
+  const res = await fetchFromERPNext<{ data: any }>(
+    '/api/resource/Lead',
+    {
+      method: 'POST',
+      body: JSON.stringify({
+        lead_name: leadData.lead_name,
+        company_name: leadData.company_name || 'Particulier / Non spécifié',
+        email_id: leadData.email_id,
+        phone: leadData.phone || '',
+        custom_requested_pole: poleId,
+        custom_treatment_pole: treatmentPoleId,
+        custom_pole: poleId,
+        custom_original_message: leadData.custom_payload_message_raw,
+        custom_payload_message_raw: leadData.custom_payload_message_raw,
+        custom_priority_flag: 'Normal',
+        status: 'Open',
+      }),
+    },
+    env
+  )
 
   return { success: Boolean(res.data?.name), name: res.data?.name }
 }
@@ -469,13 +513,16 @@ export async function submitLeadToERPNext(leadData: {
 /**
  * Envoie une demande d'accès sécurisée vers ERPNext (enregistrée comme Lead d'habilitation interne).
  */
-export async function submitAccessRequestToERPNext(data: {
-  first_name: string
-  last_name: string
-  email: string
-  requested_role: string
-  justification: string
-}): Promise<{ success: boolean; name?: string }> {
+export async function submitAccessRequestToERPNext(
+  data: {
+    first_name: string
+    last_name: string
+    email: string
+    requested_role: string
+    justification: string
+  },
+  env?: Record<string, any>
+): Promise<{ success: boolean; name?: string }> {
   const roleLabel = data.requested_role === 'admin' ? 'Administrateur Technique' : 'Éditeur de Contenu'
   const message = [
     `[DEMANDE D'ACCÈS INTERNE / HABILITATION]`,
@@ -487,12 +534,88 @@ export async function submitAccessRequestToERPNext(data: {
     data.justification,
   ].join('\n')
 
-  return submitLeadToERPNext({
-    lead_name: `${data.first_name} ${data.last_name}`.trim(),
-    company_name: "Demande d'accès interne / Partenaire",
-    email_id: data.email,
-    custom_pole: 'POL-it',
-    custom_payload_message_raw: message,
-  })
+  return submitLeadToERPNext(
+    {
+      lead_name: `${data.first_name} ${data.last_name}`.trim(),
+      company_name: "Demande d'accès interne / Partenaire",
+      email_id: data.email,
+      custom_pole: 'POL-it',
+      custom_payload_message_raw: message,
+    },
+    env
+  )
+}
+
+/**
+ * Rattache une réservation Cal.com à un dossier Lead existant ou crée un nouveau Lead de cadrage.
+ */
+export async function attachBookingToERPNextLead(
+  data: {
+    email: string
+    name: string
+    bookingUid: string
+    title: string
+    startTime: string
+    notes?: string
+  },
+  env?: Record<string, any>
+): Promise<{ success: boolean; leadId?: string }> {
+  const config = getERPNextConfig(env)
+
+  if (!config.isConfigured) {
+    // Mode hors-ligne / dégradé
+    return { success: true, leadId: `offline-lead-${data.bookingUid}` }
+  }
+
+  const cleanEmail = data.email.trim().toLowerCase()
+
+  try {
+    // 1. Recherche d'un Lead existant avec cet email
+    const searchRes = await fetchFromERPNext<{ data: Array<{ name: string }> }>(
+      `/api/resource/Lead?filters=[["email_id","=","${encodeURIComponent(cleanEmail)}"]]&limit_page_length=1`,
+      undefined,
+      env
+    )
+
+    if (searchRes.data && searchRes.data.length > 0) {
+      const existingLeadName = searchRes.data[0].name
+
+      // Ajout d'une note de communication / mise à jour
+      const noteMessage = `[RÉSERVATION CAL.COM CONFIRMÉE]\nUID: ${data.bookingUid}\nSujet: ${data.title}\nCréneau: ${data.startTime}\nNotes: ${data.notes || 'Aucune'}`
+
+      await fetchFromERPNext(
+        `/api/resource/Lead/${existingLeadName}`,
+        {
+          method: 'PUT',
+          body: JSON.stringify({
+            custom_notes: noteMessage,
+            status: 'Open',
+          }),
+        },
+        env
+      ).catch(() => null)
+
+      return { success: true, leadId: existingLeadName }
+    }
+
+    // 2. Création d'un nouveau Lead si inexistant
+    const newLeadMessage = `[PROSPECT VIA CAL.COM]\nRéservation directe UID: ${data.bookingUid}\nSujet: ${data.title}\nDate/Heure: ${data.startTime}\nNotes: ${data.notes || 'Aucune'}`
+
+    const createRes = await submitLeadToERPNext(
+      {
+        lead_name: data.name || 'Prospect Cal.com',
+        company_name: 'À qualifier (Réservation Cal.com)',
+        email_id: cleanEmail,
+        custom_pole: 'POL-it',
+        custom_payload_message_raw: newLeadMessage,
+      },
+      env
+    )
+
+    return { success: createRes.success, leadId: createRes.name }
+  } catch (err: any) {
+    console.warn('[ERPNext Client] Erreur lors du rattachement Cal.com :', err.message || err)
+    throw err
+  }
 }
 

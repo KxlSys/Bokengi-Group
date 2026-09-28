@@ -19,12 +19,12 @@ export interface UmamiAnalyticsProps {
  */
 export const UmamiAnalytics: React.FC<UmamiAnalyticsProps> = ({
   websiteId = process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID,
-  src = process.env.NEXT_PUBLIC_UMAMI_SRC || 'https://analytics.umami.is/script.js',
+  src = process.env.NEXT_PUBLIC_UMAMI_SRC || 'https://cloud.umami.is/script.js',
   hostUrl = process.env.NEXT_PUBLIC_UMAMI_HOST_URL,
   enabled = process.env.NEXT_PUBLIC_UMAMI_ENABLED === 'true',
 }) => {
   const cleanWebsiteId = typeof websiteId === 'string' ? websiteId.trim() : ''
-  const cleanSrc = typeof src === 'string' && src.trim().length > 0 ? src.trim() : 'https://analytics.umami.is/script.js'
+  const cleanSrc = typeof src === 'string' && src.trim().length > 0 ? src.trim() : 'https://cloud.umami.is/script.js'
 
   // 1. Mode Standby ou Identifiant absent : 0 injection DOM
   if (!enabled || !cleanWebsiteId) {

@@ -1,0 +1,121 @@
+{
+  "actions": [],
+  "allow_rename": 0,
+  "autoname": "hash",
+  "creation": "2026-09-26 05:30:00.000000",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "sales_invoice",
+    "pdp_provider",
+    "transmission_id",
+    "einvoice_format",
+    "file_sha256",
+    "status",
+    "column_break_1",
+    "transmitted_at",
+    "last_status_check",
+    "archived_at"
+  ],
+  "fields": [
+    {
+      "fieldname": "sales_invoice",
+      "fieldtype": "Link",
+      "label": "Sales Invoice",
+      "options": "Sales Invoice",
+      "reqd": 1,
+      "unique": 1
+    },
+    {
+      "fieldname": "pdp_provider",
+      "fieldtype": "Select",
+      "label": "PDP Provider",
+      "options": "CHORUS_PRO\nPDP_AGREED\nPEPPOL\nMANUAL",
+      "reqd": 1
+    },
+    {
+      "fieldname": "transmission_id",
+      "fieldtype": "Data",
+      "label": "Transmission ID",
+      "read_only": 1
+    },
+    {
+      "fieldname": "einvoice_format",
+      "fieldtype": "Select",
+      "label": "Format",
+      "options": "FACTURX_COMFORT\nFACTURX_BASIC\nUBL_2_1\nCII"
+    },
+    {
+      "fieldname": "file_sha256",
+      "fieldtype": "Data",
+      "label": "File SHA-256",
+      "read_only": 1
+    },
+    {
+      "default": "DRAFT",
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "label": "Current Status",
+      "options": "DRAFT\nSUBMITTED\nTRANSMITTED\nACCEPTED\nREJECTED\nCORRECTION_REQUIRED\nRESUBMISSION\nARCHIVED"
+    },
+    {
+      "fieldname": "column_break_1",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "transmitted_at",
+      "fieldtype": "Datetime",
+      "label": "Transmitted At",
+      "read_only": 1
+    },
+    {
+      "fieldname": "last_status_check",
+      "fieldtype": "Datetime",
+      "label": "Last Status Check",
+      "read_only": 1
+    },
+    {
+      "fieldname": "archived_at",
+      "fieldtype": "Datetime",
+      "label": "Archived At",
+      "read_only": 1
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [],
+  "modified": "2026-09-26 05:30:00.000000",
+  "modified_by": "Administrator",
+  "module": "Bokengi Core",
+  "name": "Bokengi EInvoice Transaction",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    },
+    {
+      "create": 1,
+      "delete": 0,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "Accounts Manager",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}

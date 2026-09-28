@@ -555,3 +555,210 @@ def get_poles_cockpit_summary():
         })
 
     return summary
+
+
+# ==============================================================================
+# BOKENGI WORKSPACE HEADER API (GÉNÉRIQUE & MULTI-PÔLES)
+# ==============================================================================
+
+BOKENGI_WORKSPACES_REGISTRY = {
+    "IT & Infrastructure": {
+        "name": "IT & Infrastructure",
+        "title": "IT & INFRASTRUCTURE",
+        "icon": "server",
+        "description": "Systèmes, Réseaux, Cloud, DevOps & Cybersécurité",
+        "pole": "POL-it",
+        "status": "OPÉRATIONNEL",
+        "breadcrumb": "Bokengi Group / Pôles d'Expertise / IT & Infrastructure",
+    },
+    "Digital & Innovation": {
+        "name": "Digital & Innovation",
+        "title": "DIGITAL & INNOVATION",
+        "icon": "smartphone",
+        "description": "Applications Web, Mobiles, Plateformes SaaS & CMS",
+        "pole": "POL-digital",
+        "status": "OPÉRATIONNEL",
+        "breadcrumb": "Bokengi Group / Pôles d'Expertise / Digital & Innovation",
+    },
+    "Business Solutions": {
+        "name": "Business Solutions",
+        "title": "BUSINESS SOLUTIONS",
+        "icon": "briefcase",
+        "description": "Intégration ERPNext, Digitalisation, BI & Facturation",
+        "pole": "POL-business",
+        "status": "OPÉRATIONNEL",
+        "breadcrumb": "Bokengi Group / Pôles d'Expertise / Business Solutions",
+    },
+    "Consulting & Stratégie": {
+        "name": "Consulting & Stratégie",
+        "title": "CONSULTING & STRATÉGIE",
+        "icon": "compass",
+        "description": "Conseil stratégique, Schéma directeur & Audits SI",
+        "pole": "POL-consulting",
+        "status": "OPÉRATIONNEL",
+        "breadcrumb": "Bokengi Group / Pôles d'Expertise / Consulting & Stratégie",
+    },
+    "Events & Formations": {
+        "name": "Events & Formations",
+        "title": "EVENTS & FORMATIONS",
+        "icon": "award",
+        "description": "Événements tech, Hackathons & Programmes de formation",
+        "pole": "POL-events",
+        "status": "OPÉRATIONNEL",
+        "breadcrumb": "Bokengi Group / Pôles d'Expertise / Events & Formations",
+    },
+    "Bokengi Enterprise Cockpit": {
+        "name": "Bokengi Enterprise Cockpit",
+        "title": "ENTERPRISE COCKPIT 2.0",
+        "icon": "dashboard",
+        "description": "Console Consolidée de Pilotage Stratégique & Opérationnel",
+        "pole": None,
+        "status": "OPÉRATIONNEL",
+        "breadcrumb": "Bokengi Group / Direction / Cockpit Enterprise",
+    },
+}
+
+
+def _derive_initials(full_name: str = "", name: str = "") -> str:
+    """Génère de façon déterministe les 2 initiales d'un utilisateur."""
+    source = (full_name or name or "").strip()
+    if not source:
+        return "BG"
+    parts = [p for p in source.replace("-", " ").split() if p]
+    if len(parts) >= 2:
+        return (parts[0][0] + parts[1][0]).upper()
+    elif len(parts) == 1:
+        return parts[0][:2].upper()
+    return "BG"
+
+
+@frappe.whitelist()
+def get_workspace_header_data(workspace_name="IT & Infrastructure"):
+    """
+    Retourne les données consolidées et sécurisées pour le composant
+    générique Bokengi Workspace Header.
+    
+    Structure retournée :
+    {
+      "current_user": { "name", "full_name", "email", "user_image", "initials" },
+      "workspace": { "name", "title", "icon", "description", "pole", "status", "breadcrumb" },
+      "members": [ { "name", "full_name", "email", "user_image", "initials" }, ... ],
+      "total_members": <int>
+    }
+    """
+    if not workspace_name:
+        workspace_name = "IT & Infrastructure"
+
+    # 1. Résolution des métadonnées du Workspace (générique avec fallback)
+    ws_meta = BOKENGI_WORKSPACES_REGISTRY.get(workspace_name)
+    if not ws_meta:
+        ws_doc = None
+        if hasattr(frappe, "db") and frappe.db.exists("Workspace", workspace_name):
+            ws_doc = frappe.get_doc("Workspace", workspace_name)
+
+        ws_title = (ws_doc.title if ws_doc and getattr(ws_doc, "title", None) else workspace_name).upper()
+        ws_icon = ws_doc.icon if ws_doc and getattr(ws_doc, "icon", None) else "server"
+        ws_meta = {
+            "name": workspace_name,
+            "title": ws_title,
+            "icon": ws_icon,
+            "description": f"Console de travail opérationnelle — {workspace_name}",
+            "pole": None,
+            "status": "OPÉRATIONNEL",
+            "breadcrumb": f"Bokengi Group / Espaces / {workspace_name}",
+        }
+
+    # 2. Utilisateur connecté (dynamique, zéro valeur en dur)
+    session_user_id = (
+        frappe.session.user
+        if hasattr(frappe, "session") and frappe.session and getattr(frappe.session, "user", None)
+        else "Administrator"
+    )
+
+    user_fields = ["name", "full_name", "first_name", "last_name", "email", "user_image"]
+    cur_user_dict = {}
+    if hasattr(frappe, "db") and hasattr(frappe.db, "get_value"):
+        cur_user_dict = frappe.db.get_value("User", session_user_id, user_fields, as_dict=True) or {}
+
+    cur_full_name = (
+        cur_user_dict.get("full_name")
+        or cur_user_dict.get("first_name")
+        or session_user_id
+    )
+
+    current_user = {
+        "name": cur_user_dict.get("name") or session_user_id,
+        "full_name": cur_full_name,
+        "email": cur_user_dict.get("email") or session_user_id,
+        "user_image": cur_user_dict.get("user_image") or None,
+        "initials": _derive_initials(cur_full_name, session_user_id),
+    }
+
+    # 3. Équipe réellement habilitée à ce Workspace
+    from bokengi_erp.bokengi_core.pole_permissions import (
+        is_executive_or_admin,
+        get_user_allowed_poles,
+    )
+
+    workspace_roles = set()
+    if hasattr(frappe, "db") and frappe.db.exists("DocType", "Has Role"):
+        raw_roles = frappe.get_all(
+            "Has Role",
+            filters={"parent": workspace_name, "parenttype": "Workspace"},
+            fields=["role"],
+        )
+        workspace_roles = {r.get("role") for r in raw_roles if r.get("role")}
+
+    active_users = []
+    if hasattr(frappe, "get_all"):
+        active_users = frappe.get_all(
+            "User",
+            filters={
+                "enabled": 1,
+                "name": ["not in", ["Guest"]],
+            },
+            fields=["name", "full_name", "first_name", "last_name", "email", "user_image"],
+            order_by="creation asc",
+        )
+
+    target_pole = ws_meta.get("pole")
+    eligible_members = []
+    seen_users = set()
+
+    for u in active_users:
+        uid = u.get("name")
+        if not uid or uid in seen_users:
+            continue
+
+        is_admin = uid in ("Administrator", "Script")
+        is_exec = is_executive_or_admin(uid)
+
+        if not is_admin and not is_exec:
+            u_roles = set(frappe.get_roles(uid)) if hasattr(frappe, "get_roles") else set()
+            if workspace_roles and not (u_roles & workspace_roles):
+                continue
+
+            if target_pole:
+                u_poles = get_user_allowed_poles(uid)
+                if target_pole not in u_poles:
+                    continue
+
+        seen_users.add(uid)
+        m_full_name = u.get("full_name") or u.get("first_name") or uid
+        eligible_members.append({
+            "name": uid,
+            "full_name": m_full_name,
+            "email": u.get("email") or "",
+            "user_image": u.get("user_image") or None,
+            "initials": _derive_initials(m_full_name, uid),
+        })
+
+    total_members = len(eligible_members)
+
+    return {
+        "current_user": current_user,
+        "workspace": ws_meta,
+        "members": eligible_members[:4],
+        "total_members": total_members,
+    }
+

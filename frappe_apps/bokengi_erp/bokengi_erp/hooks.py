@@ -163,8 +163,12 @@ fixtures = [
         "filters": [
             [
                 "name",
-                "=",
-                "Bokengi Cockpit Header"
+                "in",
+                [
+                    "Bokengi Cockpit Header",
+                    "Bokengi 5 Poles Hub",
+                    "Bokengi Workspace Header"
+                ]
             ]
         ]
     }

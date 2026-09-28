@@ -306,7 +306,7 @@
     "hide_custom": 0,
     "public": 1,
     "is_hidden": 0,
-    "content": "[{\"type\": \"header\", \"data\": {\"text\": \"Pilotage IT, Syst\\u00e8mes, Cloud & Cybers\\u00e9curit\\u00e9\", \"level\": 4}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"+ Nouveau Projet IT\", \"col\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"+ Nouveau Ticket IT\", \"col\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"+ Saisie de Temps\", \"col\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Projets IT Bokengi\", \"col\": 3}}, {\"type\": \"header\", \"data\": {\"text\": \"Infrastructure & Prestations Informatiques\", \"level\": 4}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Projets & Infrastructure\", \"col\": 6}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Support & Op\\u00e9rations\", \"col\": 6}}]",
+    "content": "[{\"type\": \"custom_block\", \"data\": {\"custom_block_name\": \"Bokengi Workspace Header\", \"col\": 12}}, {\"type\": \"header\", \"data\": {\"text\": \"Actions rapides\", \"level\": 4}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"+ Nouveau Projet IT\", \"col\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"+ Nouveau Ticket IT\", \"col\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"+ Saisie de Temps\", \"col\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Projets IT Bokengi\", \"col\": 3}}, {\"type\": \"header\", \"data\": {\"text\": \"Infrastructure & Prestations Informatiques\", \"level\": 4}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Projets & Infrastructure\", \"col\": 6}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Support & Opérations\", \"col\": 6}}]",
     "doctype": "Workspace",
     "quick_lists": [],
     "charts": [],
@@ -510,7 +510,16 @@
         "doctype": "Has Role"
       }
     ],
-    "custom_blocks": []
+    "custom_blocks": [
+      {
+        "name": "bwh_it_infra_block",
+        "docstatus": 0,
+        "idx": 1,
+        "custom_block_name": "Bokengi Workspace Header",
+        "label": "Bokengi Workspace Header",
+        "doctype": "Workspace Custom Block"
+      }
+    ]
   },
   {
     "name": "Digital & Innovation",

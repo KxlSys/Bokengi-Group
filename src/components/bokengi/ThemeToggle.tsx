@@ -35,7 +35,7 @@ export const ThemeToggle: React.FC = () => {
     <button
       type="button"
       onClick={toggleTheme}
-      className="theme-toggle-v4"
+      className="theme-toggle-v4 focus-visible:ring-2 focus-visible:ring-[var(--blue-cyan)] focus-visible:outline-none active:scale-95 transition-transform"
       aria-label={label}
       title={label}
     >

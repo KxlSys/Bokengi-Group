@@ -166,11 +166,12 @@ export async function fetchServicesFromERPNext(poleSlug?: string, locale: 'fr' |
     'status',
   ])
 
-  let filters = '[["status","=","published"]]'
+  const filterArray: any[] = [['status', '=', 'published']]
   if (poleSlug) {
     const poleId = poleSlug.startsWith('POL-') ? poleSlug : `POL-${poleSlug}`
-    filters = `[["status","=","published"],["pole","=","${poleId}"]]`
+    filterArray.push(['pole', '=', poleId])
   }
+  const filters = JSON.stringify(filterArray)
 
   const res = await fetchFromERPNext<{ data: any[] }>(
     `/api/resource/Bokengi Service?fields=${encodeURIComponent(fields)}&filters=${encodeURIComponent(filters)}&order_by=order_num asc&limit_page_length=50`
@@ -202,8 +203,9 @@ export async function fetchServicesFromERPNext(poleSlug?: string, locale: 'fr' |
  */
 export async function fetchServiceBySlugFromERPNext(slug: string, locale: 'fr' | 'en' = 'fr'): Promise<ServiceData | null> {
   const isEn = locale === 'en'
+  const filters = JSON.stringify([['slug', '=', slug], ['status', '=', 'published']])
   const res = await fetchFromERPNext<{ data: any[] }>(
-    `/api/resource/Bokengi Service?filters=[["slug","=","${slug}"],["status","=","published"]]&limit_page_length=1`
+    `/api/resource/Bokengi Service?filters=${encodeURIComponent(filters)}&limit_page_length=1`
   )
 
   if (!res.data || res.data.length === 0) {
@@ -304,8 +306,9 @@ export async function fetchCaseStudiesFromERPNext(locale: 'fr' | 'en' = 'fr'): P
  */
 export async function fetchCaseStudyBySlugFromERPNext(slug: string, locale: 'fr' | 'en' = 'fr'): Promise<CaseStudyData | null> {
   const isEn = locale === 'en'
+  const filters = JSON.stringify([['slug', '=', slug], ['status', '=', 'published']])
   const res = await fetchFromERPNext<{ data: any[] }>(
-    `/api/resource/Bokengi Case Study?filters=[["slug","=","${slug}"],["status","=","published"]]&limit_page_length=1`
+    `/api/resource/Bokengi Case Study?filters=${encodeURIComponent(filters)}&limit_page_length=1`
   )
 
   if (!res.data || res.data.length === 0) {
@@ -419,8 +422,9 @@ export async function fetchPostsFromERPNext(
  */
 export async function fetchPostBySlugFromERPNext(slug: string, locale: 'fr' | 'en' = 'fr'): Promise<PostData | null> {
   const isEn = locale === 'en'
+  const filters = JSON.stringify([['slug', '=', slug], ['status', '=', 'published']])
   const res = await fetchFromERPNext<{ data: any[] }>(
-    `/api/resource/Bokengi Post?filters=[["slug","=","${slug}"],["status","=","published"]]&limit_page_length=1`
+    `/api/resource/Bokengi Post?filters=${encodeURIComponent(filters)}&limit_page_length=1`
   )
 
   if (!res.data || res.data.length === 0) {
@@ -571,8 +575,9 @@ export async function attachBookingToERPNextLead(
 
   try {
     // 1. Recherche d'un Lead existant avec cet email
+    const leadFilters = JSON.stringify([['email_id', '=', cleanEmail]])
     const searchRes = await fetchFromERPNext<{ data: Array<{ name: string }> }>(
-      `/api/resource/Lead?filters=[["email_id","=","${encodeURIComponent(cleanEmail)}"]]&limit_page_length=1`,
+      `/api/resource/Lead?filters=${encodeURIComponent(leadFilters)}&limit_page_length=1`,
       undefined,
       env
     )

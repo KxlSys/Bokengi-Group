@@ -1,7 +1,7 @@
 {
   "name": "bokengi-group-web",
   "version": "2.0.0",
-  "description": "Bokengi Group 2.0 \u2014 Next.js + Payload CMS + Neon Postgres",
+  "description": "Bokengi Group 2.0 — Next.js + Payload CMS + Neon Postgres",
   "license": "MIT",
   "type": "module",
   "scripts": {
@@ -75,7 +75,6 @@
   "pnpm": {
     "overrides": {
       "sharp": "0.35.4",
-      "brace-expansion": "^2.1.7",
       "undici": "^7.29.1",
       "postcss-selector-parser": "^7.1.6",
       "proxy-addr": "^2.0.8",

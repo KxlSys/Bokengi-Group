@@ -71,7 +71,7 @@ export function executeStagingMigration001(): StagingMigrationReport {
   const steps: StagingMigrationReport['steps'] = []
   let totalCreates = 0
   let totalUpdates = 0
-  let totalErrors = 0
+  const totalErrors = 0
 
   // ═══════════════════════════════════════════════════════════════════════════
   // ÉTAPE 1 : USERS & HABILITATIONS RBAC (3)

@@ -74,7 +74,12 @@
   },
   "pnpm": {
     "overrides": {
-      "sharp": "0.35.4"
+      "sharp": "0.35.4",
+      "brace-expansion": "^2.1.7",
+      "undici": "^7.29.1",
+      "postcss-selector-parser": "^7.1.6",
+      "proxy-addr": "^2.0.8",
+      "source-map-js": "^1.2.2"
     },
     "onlyBuiltDependencies": [
       "sharp",

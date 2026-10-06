@@ -7,7 +7,7 @@ const dirname = path.dirname(__filename)
 import { redirects } from './redirects'
 
 const NEXT_PUBLIC_SERVER_URL = process.env.VERCEL_PROJECT_PRODUCTION_URL
-  ? "https://$(process.env.VERCEL_PROJECT_PRODUCTION_URL)"
+  ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
   : process.env.__NEXT_PRIVATE_ORIGIN || 'http://localhost:3000'
 
 const isWorkerBuild = Boolean(process.env.CLOUDFLARE_WORKERS || process.env.NEXT_PRIVATE_STANDALONE)

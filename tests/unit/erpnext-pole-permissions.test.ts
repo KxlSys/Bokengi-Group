@@ -185,7 +185,7 @@ describe('BOKENGI 2.0 — Cloisonnement ERPNext par Pôle (Suite de Contrôle d\
 
   // CAS 6 : Réassignation POL-digital → POL-business
   it('CAS-6: Reassigning custom_treatment_pole from POL-digital to POL-business updates access scope', () => {
-    let document = {
+    const document = {
       custom_requested_pole: 'POL-digital',
       custom_treatment_pole: 'POL-digital',
     }

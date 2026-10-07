@@ -8,6 +8,7 @@ app_license = "Proprietary"
 # Includes in <head>
 # ------------------
 web_include_css = "/assets/bokengi_erp/css/bokengi_login.css?v=2.4.1"
+app_include_css = "/assets/bokengi_erp/css/bokengi_desk.css?v=2.8.0"
 
 # DocType Events (Immutabilité stricte du prospect & Notifications Mattermost)
 # -------------------------------------------------------------------------

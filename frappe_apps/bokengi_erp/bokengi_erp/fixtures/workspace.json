@@ -306,11 +306,44 @@
     "hide_custom": 0,
     "public": 1,
     "is_hidden": 0,
-    "content": "[{\"type\": \"custom_block\", \"data\": {\"custom_block_name\": \"Bokengi Workspace Header\", \"col\": 12}}, {\"type\": \"header\", \"data\": {\"text\": \"Actions rapides\", \"level\": 4}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"+ Nouveau Projet IT\", \"col\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"+ Nouveau Ticket IT\", \"col\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"+ Saisie de Temps\", \"col\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Projets IT Bokengi\", \"col\": 3}}, {\"type\": \"header\", \"data\": {\"text\": \"Infrastructure & Prestations Informatiques\", \"level\": 4}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Projets & Infrastructure\", \"col\": 6}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Support & Opérations\", \"col\": 6}}]",
+    "content": "[{\"type\": \"custom_block\", \"data\": {\"custom_block_name\": \"Bokengi Workspace Header\", \"col\": 12}}, {\"type\": \"header\", \"data\": {\"text\": \"Actions rapides\", \"level\": 4}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"+ Nouveau Projet IT\", \"col\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"+ Nouveau Ticket IT\", \"col\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"+ Saisie de Temps\", \"col\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Projets IT Bokengi\", \"col\": 3}}, {\"type\": \"header\", \"data\": {\"text\": \"Infrastructure & Prestations Informatiques\", \"level\": 4}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Projets & Infrastructure\", \"col\": 6}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Support & Opérations\", \"col\": 6}}, {\"type\": \"header\", \"data\": {\"text\": \"Indicateurs de Performance IT\", \"level\": 4}}, {\"type\": \"number_card\", \"data\": {\"number_card_name\": \"Bokengi Projets Actifs\", \"col\": 3}}, {\"type\": \"number_card\", \"data\": {\"number_card_name\": \"Bokengi Commandes Actives\", \"col\": 3}}, {\"type\": \"number_card\", \"data\": {\"number_card_name\": \"Bokengi Leads En Cours\", \"col\": 3}}, {\"type\": \"number_card\", \"data\": {\"number_card_name\": \"Bokengi RDV Calcom\", \"col\": 3}}]",
     "doctype": "Workspace",
     "quick_lists": [],
     "charts": [],
-    "number_cards": [],
+    "number_cards": [
+      {
+        "name": "it_nc_projets_actifs",
+        "docstatus": 0,
+        "idx": 1,
+        "number_card_name": "Bokengi Projets Actifs",
+        "label": "Projets Actifs",
+        "doctype": "Workspace Number Card"
+      },
+      {
+        "name": "it_nc_commandes_actives",
+        "docstatus": 0,
+        "idx": 2,
+        "number_card_name": "Bokengi Commandes Actives",
+        "label": "Commandes & Prestations",
+        "doctype": "Workspace Number Card"
+      },
+      {
+        "name": "it_nc_leads_actifs",
+        "docstatus": 0,
+        "idx": 3,
+        "number_card_name": "Bokengi Leads En Cours",
+        "label": "Opportunités IT",
+        "doctype": "Workspace Number Card"
+      },
+      {
+        "name": "it_nc_rdv_calcom",
+        "docstatus": 0,
+        "idx": 4,
+        "number_card_name": "Bokengi RDV Calcom",
+        "label": "Rendez-vous Cadrage",
+        "doctype": "Workspace Number Card"
+      }
+    ],
     "shortcuts": [
       {
         "name": "afic3nt8mi",

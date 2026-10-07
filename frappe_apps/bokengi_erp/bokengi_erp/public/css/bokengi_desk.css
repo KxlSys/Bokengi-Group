@@ -1,0 +1,1403 @@
+/* ==========================================================================
+   BOKENGI GROUP 2.0 — UNIFIED ENTERPRISE DESIGN SYSTEM & DESK THEME
+   Instance   : gestion.bokengi-group.com
+   Version    : 2.6.0 (Phase 2 Global Enterprise Desk Refinement)
+   Scope      : Centralized design system covering all 13 Desk Workspaces,
+                Global Desk Header, Sidebar, Modules, Widgets, Lists & Tables.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. DESIGN SYSTEM TOKENS (CSS VARIABLES)
+   -------------------------------------------------------------------------- */
+:root {
+  /* Centralized Bokengi Tokens */
+  --bokengi-navy: #0A192F;
+  --bokengi-navy-deep: #060D17;
+  --bokengi-cyan: #64FFDA;
+  --bokengi-cyan-soft: rgba(100, 255, 218, 0.16);
+  --bokengi-bg: #060D17;
+  --bokengi-bg-alt: #070E18;
+  --bokengi-surface: #0B192E;
+  --bokengi-surface-elevated: #112240;
+  --bokengi-surface-hover: #162B4D;
+  --bokengi-border: rgba(100, 255, 218, 0.16);
+  --bokengi-border-subtle: rgba(255, 255, 255, 0.08);
+  --bokengi-border-hover: rgba(100, 255, 218, 0.38);
+  --bokengi-text: #F8FAFC;
+  --bokengi-text-muted: #8892B0;
+  --bokengi-text-dim: #64748B;
+  --bokengi-primary: #64FFDA;
+  --bokengi-primary-hover: #4CDBB7;
+  --bokengi-accent: #0066CC;
+  --bokengi-success: #10B981;
+  --bokengi-warning: #F59E0B;
+  --bokengi-danger: #EF4444;
+  --bokengi-radius-sm: 6px;
+  --bokengi-radius: 8px;
+  --bokengi-radius-lg: 12px;
+  --bokengi-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  --bokengi-shadow-elevated: 0 16px 48px rgba(0, 0, 0, 0.55);
+  --bokengi-shadow-glow: 0 0 16px rgba(100, 255, 218, 0.12);
+  --bokengi-font: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* --------------------------------------------------------------------------
+   2. GLOBAL DESK CANVAS & TECHNICAL PATTERN BACKGROUND
+   -------------------------------------------------------------------------- */
+body[data-route*="app"],
+body.desk,
+#page-Workspaces,
+.page-container[data-page-route="Workspaces"],
+.main-section,
+.layout-main {
+  background-color: var(--bokengi-bg) !important;
+  color: var(--bokengi-text) !important;
+  font-family: var(--bokengi-font) !important;
+  overflow-x: hidden !important;
+}
+
+/* --------------------------------------------------------------------------
+   3. GLOBAL DESK HEADER (TOPBAR & USER SESSION CAPSULE)
+   -------------------------------------------------------------------------- */
+header.navbar,
+.navbar.navbar-default,
+.navbar-expand,
+.page-head {
+  background-color: #0A192F !important;
+  border-bottom: 1px solid var(--bokengi-border) !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35) !important;
+}
+
+.navbar .navbar-brand,
+.navbar .navbar-home {
+  color: var(--bokengi-primary) !important;
+  font-weight: 700 !important;
+}
+
+/* Awesomebar / Search */
+.navbar .search-bar,
+header.navbar .search-bar {
+  display: flex !important;
+  align-items: center !important;
+  margin: auto 0 !important;
+}
+
+.navbar .search-bar input.form-control,
+#navbar-search {
+  background: #070E18 !important;
+  border: 1px solid rgba(148, 163, 184, 0.2) !important;
+  color: var(--bokengi-text) !important;
+  border-radius: var(--bokengi-radius-sm) !important;
+  font-size: 13px !important;
+  height: 32px !important;
+  line-height: 32px !important;
+  transition: all 0.2s ease !important;
+}
+
+.navbar .search-bar input.form-control:focus,
+#navbar-search:focus {
+  border-color: var(--bokengi-primary) !important;
+  box-shadow: 0 0 0 2px rgba(100, 255, 218, 0.15) !important;
+  background: #0B192E !important;
+}
+
+/* Notifications & Help Icons */
+.navbar .notifications-icon,
+.navbar .dropdown-help {
+  color: var(--bokengi-text-muted) !important;
+  transition: color 0.2s ease !important;
+}
+
+.navbar .notifications-icon:hover,
+.navbar .dropdown-help:hover {
+  color: var(--bokengi-primary) !important;
+}
+
+/* Connected User Session — Executive Profile Pill */
+.navbar .dropdown-user,
+.navbar .user-profile-menu {
+  display: flex !important;
+  align-items: center !important;
+}
+
+.navbar .dropdown-user .avatar-frame,
+.navbar .dropdown-user .avatar {
+  border: 1.5px solid var(--bokengi-primary) !important;
+  border-radius: 50% !important;
+  box-shadow: 0 0 8px rgba(100, 255, 218, 0.3) !important;
+}
+
+.navbar .dropdown-user .user-name {
+  color: var(--bokengi-text) !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+}
+
+.navbar .dropdown-menu {
+  background-color: var(--bokengi-surface) !important;
+  border: 1px solid var(--bokengi-border) !important;
+  border-radius: var(--bokengi-radius) !important;
+  box-shadow: var(--bokengi-shadow-elevated) !important;
+}
+
+.navbar .dropdown-menu .dropdown-item {
+  color: var(--bokengi-text-muted) !important;
+  font-size: 12.5px !important;
+  transition: all 0.15s ease !important;
+}
+
+.navbar .dropdown-menu .dropdown-item:hover {
+  background-color: var(--bokengi-surface-elevated) !important;
+  color: var(--bokengi-primary) !important;
+}
+
+/* --------------------------------------------------------------------------
+   4. DESK SIDEBAR (GLOBAL MULTI-WORKSPACE NAVIGATION)
+   -------------------------------------------------------------------------- */
+.desk-sidebar,
+.layout-side-section {
+  padding-right: 20px !important;
+}
+
+.desk-sidebar .sidebar-item-container,
+.desk-sidebar .standard-sidebar-item {
+  border-radius: var(--bokengi-radius-sm) !important;
+  transition: all 0.2s ease !important;
+  margin-bottom: 2px !important;
+}
+
+.desk-sidebar .sidebar-item-container a,
+.desk-sidebar .sidebar-item a,
+.desk-sidebar .standard-sidebar-item a {
+  color: var(--bokengi-text-muted) !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  padding: 8px 12px !important;
+  display: flex !important;
+  align-items: center !important;
+  border-radius: var(--bokengi-radius-sm) !important;
+}
+
+.desk-sidebar .sidebar-item-container:hover a,
+.desk-sidebar .sidebar-item:hover a,
+.desk-sidebar .standard-sidebar-item:hover a {
+  background: rgba(100, 255, 218, 0.06) !important;
+  color: #FFFFFF !important;
+}
+
+/* Active Workspace Item */
+.desk-sidebar .sidebar-item-container.selected a,
+.desk-sidebar .sidebar-item.selected a,
+.desk-sidebar .standard-sidebar-item.selected a,
+.desk-sidebar .sidebar-item-container.active a {
+  background: #112240 !important;
+  color: var(--bokengi-primary) !important;
+  font-weight: 600 !important;
+  border-left: 3px solid var(--bokengi-primary) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25) !important;
+}
+
+.desk-sidebar .sidebar-item-container svg,
+.desk-sidebar .standard-sidebar-item svg {
+  stroke: currentColor !important;
+  margin-right: 8px !important;
+}
+
+/* --------------------------------------------------------------------------
+   5. WORKSPACE CONTAINER & RESPONSIVE GRID (1600px - 1760px)
+   -------------------------------------------------------------------------- */
+[data-page-route="Workspaces"] .container,
+#page-Workspaces .container,
+.page-container[data-page-route="Workspaces"] .container {
+  max-width: 95% !important;
+  width: 95% !important;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+}
+
+@media (min-width: 1400px) {
+  [data-page-route="Workspaces"] .container,
+  #page-Workspaces .container {
+    max-width: 1600px !important;
+  }
+}
+
+@media (min-width: 1800px) {
+  [data-page-route="Workspaces"] .container,
+  #page-Workspaces .container {
+    max-width: 1760px !important;
+  }
+}
+
+@media (max-width: 1200px) {
+  [data-page-route="Workspaces"] .container,
+  #page-Workspaces .container {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  [data-page-route="Workspaces"] .container,
+  #page-Workspaces .container {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   6. WORKSPACE CANVAS — TECHNICAL INFRASTRUCTURE AMBIANCE
+   -------------------------------------------------------------------------- */
+[data-page-route="Workspaces"] .layout-main-section,
+#page-Workspaces .layout-main-section {
+  background-color: var(--bokengi-bg-alt) !important;
+  background-image: 
+    radial-gradient(rgba(100, 255, 218, 0.045) 1px, transparent 1px),
+    linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px) !important;
+  background-size: 24px 24px, 48px 48px, 48px 48px !important;
+  border: 1px solid var(--bokengi-border-subtle) !important;
+  border-radius: var(--bokengi-radius-lg) !important;
+  padding: 24px 28px !important;
+  box-shadow: var(--bokengi-shadow) !important;
+  position: relative !important;
+  min-height: calc(100vh - 160px) !important;
+}
+
+[data-page-route="Workspaces"] .codex-editor,
+[data-page-route="Workspaces"] .codex-editor__redactor,
+[data-page-route="Workspaces"] .ce-block__content {
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
+/* Workspace Generic Page Head */
+[data-page-route="Workspaces"] .page-head,
+.page-container[data-page-route="Workspaces"] .page-head {
+  background: #0A192F !important;
+  border-bottom: 1px solid rgba(100, 255, 218, 0.12) !important;
+  padding: 12px 0 !important;
+}
+
+[data-page-route="Workspaces"] .page-head .title-text {
+  color: #F8FAFC !important;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.01em !important;
+}
+
+/* --------------------------------------------------------------------------
+   7. COHESIVE THEME FOR ALL 13 WORKSPACES & MODULES
+   -------------------------------------------------------------------------- */
+/* 7.1 PÔLES D'EXPERTISE (5) + COCKPIT (1) */
+
+/* 1. Bokengi Enterprise Cockpit */
+[data-page-route*="Bokengi Enterprise Cockpit"] .layout-main-section {
+  border-top: 3px solid #64FFDA !important;
+  border-image: linear-gradient(90deg, #64FFDA 0%, #0066CC 100%) 1 !important;
+}
+
+/* 2. IT & Infrastructure (POL-it) */
+[data-page-route*="IT"] .layout-main-section {
+  border-top: 3px solid #64FFDA !important;
+  border-image: linear-gradient(90deg, #64FFDA 0%, #0EA5E9 100%) 1 !important;
+}
+
+/* 3. Digital & Innovation (POL-digital) */
+[data-page-route*="Digital"] .layout-main-section {
+  border-top: 3px solid #8B5CF6 !important;
+  border-image: linear-gradient(90deg, #8B5CF6 0%, #64FFDA 100%) 1 !important;
+}
+[data-page-route*="Digital"] .page-head .title-text::after {
+  content: "POL-DIGITAL" !important;
+  display: inline-block !important;
+  margin-left: 12px !important;
+  padding: 2px 8px !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.05em !important;
+  color: #A78BFA !important;
+  background: rgba(139, 92, 246, 0.12) !important;
+  border: 1px solid rgba(139, 92, 246, 0.3) !important;
+  border-radius: 4px !important;
+  vertical-align: middle !important;
+}
+
+/* 4. Business Solutions (POL-business) */
+[data-page-route*="Business"] .layout-main-section {
+  border-top: 3px solid #3B82F6 !important;
+  border-image: linear-gradient(90deg, #3B82F6 0%, #64FFDA 100%) 1 !important;
+}
+[data-page-route*="Business"] .page-head .title-text::after {
+  content: "POL-BUSINESS" !important;
+  display: inline-block !important;
+  margin-left: 12px !important;
+  padding: 2px 8px !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.05em !important;
+  color: #60A5FA !important;
+  background: rgba(59, 130, 246, 0.12) !important;
+  border: 1px solid rgba(59, 130, 246, 0.3) !important;
+  border-radius: 4px !important;
+  vertical-align: middle !important;
+}
+
+/* 5. Consulting & Stratégie (POL-consulting) */
+[data-page-route*="Consulting"] .layout-main-section {
+  border-top: 3px solid #F59E0B !important;
+  border-image: linear-gradient(90deg, #F59E0B 0%, #64FFDA 100%) 1 !important;
+}
+[data-page-route*="Consulting"] .page-head .title-text::after {
+  content: "POL-CONSULTING" !important;
+  display: inline-block !important;
+  margin-left: 12px !important;
+  padding: 2px 8px !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.05em !important;
+  color: #FBBF24 !important;
+  background: rgba(245, 158, 11, 0.12) !important;
+  border: 1px solid rgba(245, 158, 11, 0.3) !important;
+  border-radius: 4px !important;
+  vertical-align: middle !important;
+}
+
+/* 6. Events & Formations (POL-events) */
+[data-page-route*="Events"] .layout-main-section {
+  border-top: 3px solid #EC4899 !important;
+  border-image: linear-gradient(90deg, #EC4899 0%, #64FFDA 100%) 1 !important;
+}
+[data-page-route*="Events"] .page-head .title-text::after {
+  content: "POL-EVENTS" !important;
+  display: inline-block !important;
+  margin-left: 12px !important;
+  padding: 2px 8px !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.05em !important;
+  color: #F472B6 !important;
+  background: rgba(236, 72, 153, 0.12) !important;
+  border: 1px solid rgba(236, 72, 153, 0.3) !important;
+  border-radius: 4px !important;
+  vertical-align: middle !important;
+}
+
+/* 7.2 MODULES FONCTIONNELS ERPNEXT (7) */
+
+/* 7. Comptabilité */
+[data-page-route*="Comptabilit"] .layout-main-section,
+[data-page-route*="Accounting"] .layout-main-section {
+  border-top: 3px solid #10B981 !important;
+  border-image: linear-gradient(90deg, #10B981 0%, #3B82F6 100%) 1 !important;
+}
+[data-page-route*="Comptabilit"] .page-head .title-text::after,
+[data-page-route*="Accounting"] .page-head .title-text::after {
+  content: "FINANCE & TRÉSORERIE" !important;
+  display: inline-block !important;
+  margin-left: 12px !important;
+  padding: 2px 8px !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.05em !important;
+  color: #34D399 !important;
+  background: rgba(16, 185, 129, 0.12) !important;
+  border: 1px solid rgba(16, 185, 129, 0.3) !important;
+  border-radius: 4px !important;
+  vertical-align: middle !important;
+}
+
+/* 8. Stock */
+[data-page-route*="Stock"] .layout-main-section {
+  border-top: 3px solid #F59E0B !important;
+  border-image: linear-gradient(90deg, #F59E0B 0%, #D97706 100%) 1 !important;
+}
+[data-page-route*="Stock"] .page-head .title-text::after {
+  content: "LOGISTIQUE & STOCK" !important;
+  display: inline-block !important;
+  margin-left: 12px !important;
+  padding: 2px 8px !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.05em !important;
+  color: #FBBF24 !important;
+  background: rgba(245, 158, 11, 0.12) !important;
+  border: 1px solid rgba(245, 158, 11, 0.3) !important;
+  border-radius: 4px !important;
+  vertical-align: middle !important;
+}
+
+/* 9. Projets */
+[data-page-route*="Projet"] .layout-main-section,
+[data-page-route*="Project"] .layout-main-section {
+  border-top: 3px solid #0EA5E9 !important;
+  border-image: linear-gradient(90deg, #0EA5E9 0%, #6366F1 100%) 1 !important;
+}
+[data-page-route*="Projet"] .page-head .title-text::after,
+[data-page-route*="Project"] .page-head .title-text::after {
+  content: "PILOTAGE DE PROJETS" !important;
+  display: inline-block !important;
+  margin-left: 12px !important;
+  padding: 2px 8px !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.05em !important;
+  color: #38BDF8 !important;
+  background: rgba(14, 165, 233, 0.12) !important;
+  border: 1px solid rgba(14, 165, 233, 0.3) !important;
+  border-radius: 4px !important;
+  vertical-align: middle !important;
+}
+
+/* 10. Assistance / Support */
+[data-page-route*="Support"] .layout-main-section,
+[data-page-route*="Assistance"] .layout-main-section {
+  border-top: 3px solid #14B8A6 !important;
+  border-image: linear-gradient(90deg, #14B8A6 0%, #06B6D4 100%) 1 !important;
+}
+[data-page-route*="Support"] .page-head .title-text::after,
+[data-page-route*="Assistance"] .page-head .title-text::after {
+  content: "SUPPORT & SERVICES" !important;
+  display: inline-block !important;
+  margin-left: 12px !important;
+  padding: 2px 8px !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.05em !important;
+  color: #2DD4BF !important;
+  background: rgba(20, 184, 166, 0.12) !important;
+  border: 1px solid rgba(20, 184, 166, 0.3) !important;
+  border-radius: 4px !important;
+  vertical-align: middle !important;
+}
+
+/* 11. Utilisateurs */
+[data-page-route*="User"] .layout-main-section,
+[data-page-route*="Utilisateur"] .layout-main-section {
+  border-top: 3px solid #64748B !important;
+  border-image: linear-gradient(90deg, #64748B 0%, #3B82F6 100%) 1 !important;
+}
+[data-page-route*="User"] .page-head .title-text::after,
+[data-page-route*="Utilisateur"] .page-head .title-text::after {
+  content: "UTILISATEURS & ACCÈS" !important;
+  display: inline-block !important;
+  margin-left: 12px !important;
+  padding: 2px 8px !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.05em !important;
+  color: #94A3B8 !important;
+  background: rgba(100, 116, 139, 0.12) !important;
+  border: 1px solid rgba(100, 116, 139, 0.3) !important;
+  border-radius: 4px !important;
+  vertical-align: middle !important;
+}
+
+/* 12. Site Web */
+[data-page-route*="Website"] .layout-main-section,
+[data-page-route*="Site Web"] .layout-main-section {
+  border-top: 3px solid #6366F1 !important;
+  border-image: linear-gradient(90deg, #6366F1 0%, #8B5CF6 100%) 1 !important;
+}
+[data-page-route*="Website"] .page-head .title-text::after,
+[data-page-route*="Site Web"] .page-head .title-text::after {
+  content: "PORTAIL & CONTENU" !important;
+  display: inline-block !important;
+  margin-left: 12px !important;
+  padding: 2px 8px !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.05em !important;
+  color: #818CF8 !important;
+  background: rgba(99, 102, 241, 0.12) !important;
+  border: 1px solid rgba(99, 102, 241, 0.3) !important;
+  border-radius: 4px !important;
+  vertical-align: middle !important;
+}
+
+/* 13. CRM */
+[data-page-route*="CRM"] .layout-main-section {
+  border-top: 3px solid #F59E0B !important;
+  border-image: linear-gradient(90deg, #F59E0B 0%, #EF4444 100%) 1 !important;
+}
+[data-page-route*="CRM"] .page-head .title-text::after {
+  content: "RELATION CLIENT & VENTES" !important;
+  display: inline-block !important;
+  margin-left: 12px !important;
+  padding: 2px 8px !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.05em !important;
+  color: #FBBF24 !important;
+  background: rgba(245, 158, 11, 0.12) !important;
+  border: 1px solid rgba(245, 158, 11, 0.3) !important;
+  border-radius: 4px !important;
+  vertical-align: middle !important;
+}
+
+/* Section Headings Across Workspaces */
+[data-page-route="Workspaces"] .ce-header,
+[data-page-route="Workspaces"] .ce-block h4,
+[data-page-route="Workspaces"] .section-header {
+  font-family: var(--bokengi-font) !important;
+  font-size: 12.5px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.07em !important;
+  text-transform: uppercase !important;
+  color: #94A3B8 !important;
+  margin-top: 24px !important;
+  margin-bottom: 12px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+[data-page-route="Workspaces"] .ce-header::before,
+[data-page-route="Workspaces"] .ce-block h4::before,
+[data-page-route="Workspaces"] .section-header::before {
+  content: '' !important;
+  display: inline-block !important;
+  width: 3.5px !important;
+  height: 14px !important;
+  background: var(--bokengi-primary) !important;
+  border-radius: 2px !important;
+}
+
+/* --------------------------------------------------------------------------
+   8. WIDGETS DESIGN SYSTEM — LOT 2 ACTION CARDS (ACTIONS RAPIDES)
+   -------------------------------------------------------------------------- */
+/* Base Action Card Styling */
+.widget.shortcut.shortcut-widget-box,
+[data-page-route="Workspaces"] .widget.shortcut {
+  background: linear-gradient(135deg, #0A192F 0%, #112240 100%) !important;
+  border: 1px solid rgba(100, 255, 218, 0.16) !important;
+  border-radius: 10px !important;
+  padding: 16px 18px !important;
+  min-height: 80px !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  position: relative !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35) !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+}
+
+/* Hover & Active Interactions */
+.widget.shortcut.shortcut-widget-box:hover,
+[data-page-route="Workspaces"] .widget.shortcut:hover {
+  transform: translateY(-3px) !important;
+  border-color: rgba(100, 255, 218, 0.45) !important;
+  background: linear-gradient(135deg, #0F223D 0%, #162B4D 100%) !important;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45), 0 0 16px rgba(100, 255, 218, 0.18) !important;
+}
+
+.widget.shortcut.shortcut-widget-box:active,
+[data-page-route="Workspaces"] .widget.shortcut:active {
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Accessibility Keyboard Focus */
+.widget.shortcut.shortcut-widget-box:focus-visible,
+[data-page-route="Workspaces"] .widget.shortcut:focus-visible {
+  outline: 2px solid var(--bokengi-primary) !important;
+  outline-offset: 3px !important;
+}
+
+/* Action Card Icon Box (Left Column) */
+.widget.shortcut.shortcut-widget-box::before,
+[data-page-route="Workspaces"] .widget.shortcut::before {
+  content: '' !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 42px !important;
+  height: 42px !important;
+  min-width: 42px !important;
+  border-radius: 8px !important;
+  background-color: rgba(100, 255, 218, 0.08) !important;
+  border: 1px solid rgba(100, 255, 218, 0.22) !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: 20px 20px !important;
+  margin-right: 14px !important;
+  flex-shrink: 0 !important;
+  transition: all 0.25s ease !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%2364FFDA' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolygon points='13 2 3 14 12 14 11 22 21 10 12 10 13 2'/%3E%3C/svg%3E");
+}
+
+.widget.shortcut.shortcut-widget-box:hover::before,
+[data-page-route="Workspaces"] .widget.shortcut:hover::before {
+  background-color: rgba(100, 255, 218, 0.14) !important;
+  border-color: rgba(100, 255, 218, 0.45) !important;
+  box-shadow: 0 0 10px rgba(100, 255, 218, 0.25) !important;
+}
+
+/* Distinctive Icons for IT & Infrastructure Actions */
+/* 1. + Nouveau Projet IT */
+.widget.shortcut[aria-label*="Nouveau Projet IT"]::before,
+.widget.shortcut[data-widget-name*="Nouveau Projet IT"]::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%2364FFDA' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z'/%3E%3Cline x1='12' y1='11' x2='12' y2='17'/%3E%3Cline x1='9' y1='14' x2='15' y2='14'/%3E%3C/svg%3E") !important;
+}
+
+/* 2. + Nouveau Ticket IT */
+.widget.shortcut[aria-label*="Nouveau Ticket IT"]::before,
+.widget.shortcut[data-widget-name*="Nouveau Ticket IT"]::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%2364FFDA' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='2' y='7' width='20' height='14' rx='2' ry='2'/%3E%3Cpath d='M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16'/%3E%3Cline x1='12' y1='11' x2='12' y2='17'/%3E%3Cline x1='9' y1='14' x2='15' y2='14'/%3E%3C/svg%3E") !important;
+}
+
+/* 3. + Saisie de Temps */
+.widget.shortcut[aria-label*="Saisie de Temps"]::before,
+.widget.shortcut[data-widget-name*="Saisie de Temps"]::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%2364FFDA' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpolyline points='12 6 12 12 16 14'/%3E%3C/svg%3E") !important;
+}
+
+/* 4. Projets IT Bokengi */
+.widget.shortcut[aria-label*="Projets IT Bokengi"]::before,
+.widget.shortcut[data-widget-name*="Projets IT Bokengi"]::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%2364FFDA' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='2' y='3' width='20' height='14' rx='2' ry='2'/%3E%3Cline x1='8' y1='21' x2='16' y2='21'/%3E%3Cline x1='12' y1='17' x2='12' y2='21'/%3E%3C/svg%3E") !important;
+}
+
+/* Card Content Header & Label */
+.widget.shortcut .widget-head {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+  flex: 1 !important;
+  min-width: 0 !important;
+}
+
+.widget.shortcut .widget-label {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  flex: 1 !important;
+  min-width: 0 !important;
+}
+
+.widget.shortcut .widget-title {
+  color: #F8FAFC !important;
+  font-size: 13.5px !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.01em !important;
+  line-height: 1.3 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+/* Subtitle Descriptions for IT Actions */
+.widget.shortcut[aria-label*="Nouveau Projet IT"] .widget-label::after,
+.widget.shortcut[data-widget-name*="Nouveau Projet IT"] .widget-label::after {
+  content: "Démarrer un projet d'infrastructure ou cyber" !important;
+  display: block !important;
+  font-size: 11.5px !important;
+  color: #8892B0 !important;
+  margin-top: 3px !important;
+  font-weight: 400 !important;
+  line-height: 1.35 !important;
+  white-space: normal !important;
+}
+
+.widget.shortcut[aria-label*="Nouveau Ticket IT"] .widget-label::after,
+.widget.shortcut[data-widget-name*="Nouveau Ticket IT"] .widget-label::after {
+  content: "Ouvrir un incident technique ou support" !important;
+  display: block !important;
+  font-size: 11.5px !important;
+  color: #8892B0 !important;
+  margin-top: 3px !important;
+  font-weight: 400 !important;
+  line-height: 1.35 !important;
+  white-space: normal !important;
+}
+
+.widget.shortcut[aria-label*="Saisie de Temps"] .widget-label::after,
+.widget.shortcut[data-widget-name*="Saisie de Temps"] .widget-label::after {
+  content: "Enregistrer les heures d'ingénierie" !important;
+  display: block !important;
+  font-size: 11.5px !important;
+  color: #8892B0 !important;
+  margin-top: 3px !important;
+  font-weight: 400 !important;
+  line-height: 1.35 !important;
+  white-space: normal !important;
+}
+
+.widget.shortcut[aria-label*="Projets IT Bokengi"] .widget-label::after,
+.widget.shortcut[data-widget-name*="Projets IT Bokengi"] .widget-label::after {
+  content: "Consulter les projets du pôle POL-it" !important;
+  display: block !important;
+  font-size: 11.5px !important;
+  color: #8892B0 !important;
+  margin-top: 3px !important;
+  font-weight: 400 !important;
+  line-height: 1.35 !important;
+  white-space: normal !important;
+}
+
+/* Controls Area (Right side: Count Pill + Arrow) */
+.widget.shortcut .widget-control {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  margin-left: 10px !important;
+  flex-shrink: 0 !important;
+}
+
+.widget.shortcut .es-icon,
+.widget.shortcut svg {
+  stroke: var(--bokengi-primary) !important;
+  width: 14px !important;
+  height: 14px !important;
+  transition: transform 0.2s ease !important;
+}
+
+.widget.shortcut.shortcut-widget-box:hover .es-icon,
+.widget.shortcut.shortcut-widget-box:hover svg {
+  transform: translate(2px, -2px) !important;
+}
+
+.widget.shortcut .indicator-pill {
+  background: rgba(100, 255, 218, 0.12) !important;
+  color: var(--bokengi-primary) !important;
+  border: 1px solid rgba(100, 255, 218, 0.35) !important;
+  font-weight: 700 !important;
+  font-size: 11px !important;
+  padding: 3px 9px !important;
+  border-radius: 9999px !important;
+  box-shadow: 0 0 8px rgba(100, 255, 218, 0.12) !important;
+}
+
+/* --------------------------------------------------------------------------
+   8.1 DOMAIN CARDS & FUNCTIONAL BLOCS (LOT 3 — PROJETS & OPÉRATIONS)
+   -------------------------------------------------------------------------- */
+/* Domain Card Container */
+.widget.links-widget-box,
+[data-page-route="Workspaces"] .widget.links-widget-box {
+  background: linear-gradient(135deg, #0A192F 0%, #112240 100%) !important;
+  border: 1px solid rgba(100, 255, 218, 0.16) !important;
+  border-radius: 12px !important;
+  padding: 22px 24px !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4) !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  position: relative !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: visible !important;
+  box-sizing: border-box !important;
+}
+
+.widget.links-widget-box:hover,
+[data-page-route="Workspaces"] .widget.links-widget-box:hover {
+  border-color: rgba(100, 255, 218, 0.38) !important;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5), 0 0 20px rgba(100, 255, 218, 0.12) !important;
+}
+
+/* Domain Card Header & Titles */
+.widget.links-widget-box .widget-head {
+  padding-bottom: 14px !important;
+  margin-bottom: 16px !important;
+  border-bottom: 1px solid rgba(100, 255, 218, 0.12) !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.widget.links-widget-box .widget-head .widget-label {
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100% !important;
+}
+
+.widget.links-widget-box .widget-head .widget-title {
+  color: #F8FAFC !important;
+  font-size: 14.5px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+
+/* Domain Card Distinctive Header Icons */
+/* Domain 1: Projets & Infrastructure */
+.widget.links-widget-box[data-widget-name*="Projets & Infrastructure"] .widget-head .widget-title::before,
+.widget.links-widget-box:has(.widget-title [title*="Projets & Infrastructure"]) .widget-head .widget-title::before {
+  content: '' !important;
+  display: inline-block !important;
+  width: 20px !important;
+  height: 20px !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: 18px 18px !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%2364FFDA' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z'/%3E%3Cpolyline points='2 10 12 10 12 2'/%3E%3C/svg%3E") !important;
+  margin-right: 6px !important;
+  vertical-align: middle !important;
+  flex-shrink: 0 !important;
+}
+
+/* Domain 2: Support & Opérations */
+.widget.links-widget-box[data-widget-name*="Support & Opérations"] .widget-head .widget-title::before,
+.widget.links-widget-box:has(.widget-title [title*="Support & Opérations"]) .widget-head .widget-title::before {
+  content: '' !important;
+  display: inline-block !important;
+  width: 20px !important;
+  height: 20px !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: 18px 18px !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%2364FFDA' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z'/%3E%3Ccircle cx='12' cy='11' r='3'/%3E%3C/svg%3E") !important;
+  margin-right: 6px !important;
+  vertical-align: middle !important;
+  flex-shrink: 0 !important;
+}
+
+/* Domain Card Subtitles / Functional Scope */
+.widget.links-widget-box[data-widget-name*="Projets & Infrastructure"] .widget-head::after,
+.widget.links-widget-box:has(.widget-title [title*="Projets & Infrastructure"]) .widget-head::after {
+  content: "Pilotage des projets et ressources IT" !important;
+  display: block !important;
+  font-size: 12px !important;
+  color: #8892B0 !important;
+  margin-top: 6px !important;
+  font-weight: 400 !important;
+  letter-spacing: normal !important;
+  text-transform: none !important;
+}
+
+.widget.links-widget-box[data-widget-name*="Support & Opérations"] .widget-head::after,
+.widget.links-widget-box:has(.widget-title [title*="Support & Opérations"]) .widget-head::after {
+  content: "Gestion des incidents et opérations IT" !important;
+  display: block !important;
+  font-size: 12px !important;
+  color: #8892B0 !important;
+  margin-top: 6px !important;
+  font-weight: 400 !important;
+  letter-spacing: normal !important;
+  text-transform: none !important;
+}
+
+/* Domain Cards Link Body Grid (2 columns on desktop) */
+.widget.links-widget-box .widget-body,
+[data-page-route="Workspaces"] .widget.links-widget-box .widget-body {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 10px !important;
+  margin-top: 4px !important;
+}
+
+/* Link Items Styling (Button/Card presentation) */
+.widget.links-widget-box .link-item,
+[data-page-route="Workspaces"] .widget.links-widget-box .link-item {
+  padding: 10px 14px !important;
+  margin: 0 !important;
+  border-radius: 8px !important;
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid rgba(100, 255, 218, 0.12) !important;
+  color: #CBD5E1 !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  text-decoration: none !important;
+  min-height: 44px !important;
+  box-sizing: border-box !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  position: relative !important;
+}
+
+.widget.links-widget-box .link-item:hover,
+[data-page-route="Workspaces"] .widget.links-widget-box .link-item:hover {
+  background: rgba(100, 255, 218, 0.09) !important;
+  border-color: rgba(100, 255, 218, 0.35) !important;
+  color: #FFFFFF !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35), 0 0 10px rgba(100, 255, 218, 0.12) !important;
+}
+
+.widget.links-widget-box .link-item:active,
+[data-page-route="Workspaces"] .widget.links-widget-box .link-item:active {
+  transform: translateY(0) !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25) !important;
+}
+
+/* Link Items Keyboard Accessibility */
+.widget.links-widget-box .link-item:focus-visible,
+[data-page-route="Workspaces"] .widget.links-widget-box .link-item:focus-visible {
+  outline: 2px solid var(--bokengi-primary) !important;
+  outline-offset: 2px !important;
+}
+
+/* Link Content & Micro Bullet */
+.widget.links-widget-box .link-item .link-content {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+  min-width: 0 !important;
+}
+
+.widget.links-widget-box .link-item .link-text {
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.01em !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.widget.links-widget-box .link-item .link-text::before {
+  content: '' !important;
+  display: inline-block !important;
+  width: 6px !important;
+  height: 6px !important;
+  min-width: 6px !important;
+  border-radius: 50% !important;
+  background-color: var(--bokengi-primary) !important;
+  margin-right: 8px !important;
+  box-shadow: 0 0 6px rgba(100, 255, 218, 0.4) !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+.widget.links-widget-box .link-item:hover .link-text::before {
+  transform: scale(1.3) !important;
+  box-shadow: 0 0 10px rgba(100, 255, 218, 0.8) !important;
+}
+
+/* Action Arrow Icon */
+.widget.links-widget-box .link-item svg,
+.widget.links-widget-box .link-item .es-icon {
+  stroke: var(--bokengi-primary) !important;
+  width: 13px !important;
+  height: 13px !important;
+  opacity: 0.65 !important;
+  flex-shrink: 0 !important;
+  margin-left: 8px !important;
+  transition: all 0.2s ease !important;
+}
+
+.widget.links-widget-box .link-item:hover svg,
+.widget.links-widget-box .link-item:hover .es-icon {
+  opacity: 1 !important;
+  transform: translate(2px, -2px) !important;
+}
+
+/* --------------------------------------------------------------------------
+   8.2 NUMBER CARDS (KPIS & INDICATEURS DE PERFORMANCE — LOT 4)
+   -------------------------------------------------------------------------- */
+/* Number Card Base Container */
+.widget.number-card-widget-box,
+[data-page-route="Workspaces"] .widget.number-card-widget-box {
+  background: linear-gradient(135deg, #0A192F 0%, #112240 100%) !important;
+  border: 1px solid rgba(100, 255, 218, 0.16) !important;
+  border-radius: 10px !important;
+  padding: 16px 18px !important;
+  min-height: 104px !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  position: relative !important;
+  cursor: pointer !important;
+  box-sizing: border-box !important;
+}
+
+/* Number Card Hover & Active Interaction */
+.widget.number-card-widget-box:hover,
+[data-page-route="Workspaces"] .widget.number-card-widget-box:hover {
+  transform: translateY(-3px) !important;
+  border-color: rgba(100, 255, 218, 0.45) !important;
+  background: linear-gradient(135deg, #0F223D 0%, #162B4D 100%) !important;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45), 0 0 16px rgba(100, 255, 218, 0.18) !important;
+}
+
+.widget.number-card-widget-box:active,
+[data-page-route="Workspaces"] .widget.number-card-widget-box:active {
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Keyboard Focus Ring */
+.widget.number-card-widget-box:focus-visible,
+[data-page-route="Workspaces"] .widget.number-card-widget-box:focus-visible {
+  outline: 2px solid var(--bokengi-primary) !important;
+  outline-offset: 3px !important;
+}
+
+/* Card Header & Title */
+.widget.number-card-widget-box .widget-head {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  margin-bottom: 6px !important;
+  padding: 0 !important;
+  border: none !important;
+}
+
+.widget.number-card-widget-box .widget-title {
+  color: #8892B0 !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.06em !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+/* Leading Micro-Indicator Bullet */
+.widget.number-card-widget-box .widget-title::before {
+  content: '' !important;
+  display: inline-block !important;
+  width: 6px !important;
+  height: 6px !important;
+  min-width: 6px !important;
+  border-radius: 50% !important;
+  background-color: var(--bokengi-primary) !important;
+  box-shadow: 0 0 6px rgba(100, 255, 218, 0.6) !important;
+  flex-shrink: 0 !important;
+  transition: all 0.2s ease !important;
+}
+
+.widget.number-card-widget-box:hover .widget-title::before {
+  transform: scale(1.3) !important;
+  box-shadow: 0 0 10px rgba(100, 255, 218, 0.9) !important;
+}
+
+/* KPI Number Value Display */
+.widget.number-card-widget-box .number {
+  color: #64FFDA !important;
+  font-size: 28px !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.02em !important;
+  line-height: 1.15 !important;
+  font-family: var(--bokengi-font) !important;
+  text-shadow: 0 0 20px rgba(100, 255, 218, 0.2) !important;
+}
+
+/* KPI Qualifier / Stats */
+.widget.number-card-widget-box .card-stats {
+  font-size: 11px !important;
+  margin-top: 6px !important;
+  color: #8892B0 !important;
+  font-weight: 500 !important;
+}
+
+.widget.number-card-widget-box .card-stats.green-stat {
+  color: #10B981 !important;
+}
+
+.widget.number-card-widget-box .card-stats.red-stat {
+  color: #EF4444 !important;
+}
+
+.widget.number-card-widget-box .card-stats.grey-stat {
+  color: #64748B !important;
+}
+
+/* Chart Widgets */
+.widget.chart-widget-box,
+[data-page-route="Workspaces"] .widget.chart-widget-box {
+  background: var(--bokengi-surface) !important;
+  border: 1px solid var(--bokengi-border) !important;
+  border-radius: 10px !important;
+  padding: 20px !important;
+  box-shadow: var(--bokengi-shadow) !important;
+}
+
+/* Quick List & Onboarding */
+.widget.quick-list-widget-box,
+.widget.onboarding-widget-box {
+  background: var(--bokengi-surface) !important;
+  border: 1px solid var(--bokengi-border) !important;
+  border-radius: 10px !important;
+  box-shadow: var(--bokengi-shadow) !important;
+}
+
+/* --------------------------------------------------------------------------
+   9. MODULE VIEWS — LISTS, TABLES, FILTERS, BUTTONS & FORMS
+   -------------------------------------------------------------------------- */
+/* List Views & Tables (CRM, Projets, Stock, Comptabilité, etc.) */
+.frappe-list,
+.page-form,
+.standard-filter-section {
+  background: transparent !important;
+}
+
+.frappe-list .list-row,
+.frappe-list .list-row-head {
+  border-bottom: 1px solid var(--bokengi-border-subtle) !important;
+  transition: background 0.15s ease !important;
+}
+
+.frappe-list .list-row:hover {
+  background: rgba(100, 255, 218, 0.04) !important;
+}
+
+.frappe-list .list-row-head {
+  color: var(--bokengi-text-muted) !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+}
+
+.frappe-list .list-item,
+.frappe-list .list-item_content {
+  color: var(--bokengi-text) !important;
+  font-size: 13px !important;
+}
+
+/* Filters */
+.filter-selector .btn,
+.standard-filter-section .form-control {
+  background: #070E18 !important;
+  border: 1px solid rgba(148, 163, 184, 0.2) !important;
+  color: var(--bokengi-text) !important;
+  border-radius: var(--bokengi-radius-sm) !important;
+}
+
+/* Buttons */
+.btn-primary {
+  background: var(--bokengi-primary) !important;
+  border-color: var(--bokengi-primary) !important;
+  color: #0A192F !important;
+  font-weight: 700 !important;
+  border-radius: var(--bokengi-radius-sm) !important;
+  transition: all 0.2s ease !important;
+}
+
+.btn-primary:hover {
+  background: var(--bokengi-primary-hover) !important;
+  border-color: var(--bokengi-primary-hover) !important;
+  box-shadow: 0 4px 14px rgba(100, 255, 218, 0.4) !important;
+  transform: translateY(-1px) !important;
+}
+
+.btn-secondary,
+.btn-default {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: var(--bokengi-text) !important;
+  border-radius: var(--bokengi-radius-sm) !important;
+  transition: all 0.2s ease !important;
+}
+
+.btn-secondary:hover,
+.btn-default:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  color: #FFFFFF !important;
+}
+
+/* Form Controls */
+.form-control {
+  background-color: #070E18 !important;
+  border: 1px solid rgba(148, 163, 184, 0.2) !important;
+  color: var(--bokengi-text) !important;
+  border-radius: var(--bokengi-radius-sm) !important;
+}
+
+.form-control:focus {
+  border-color: var(--bokengi-primary) !important;
+  box-shadow: 0 0 0 2px rgba(100, 255, 218, 0.15) !important;
+  background-color: var(--bokengi-surface) !important;
+}
+
+/* Modals */
+.modal-content {
+  background-color: var(--bokengi-surface) !important;
+  border: 1px solid var(--bokengi-border) !important;
+  border-radius: var(--bokengi-radius-lg) !important;
+  box-shadow: var(--bokengi-shadow-elevated) !important;
+  color: var(--bokengi-text) !important;
+}
+
+.modal-header,
+.modal-footer {
+  border-color: var(--bokengi-border-subtle) !important;
+}
+
+/* Empty States */
+.empty-state,
+.no-result {
+  color: var(--bokengi-text-muted) !important;
+}
+
+/* --------------------------------------------------------------------------
+   10. WORKSPACE FOOTER & SYSTEM BUTTONS
+   -------------------------------------------------------------------------- */
+[data-page-route="Workspaces"] .workspace-footer {
+  margin-top: 32px !important;
+  padding-top: 16px !important;
+  border-top: 1px solid var(--bokengi-border-subtle) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  gap: 10px !important;
+}
+
+[data-page-route="Workspaces"] .workspace-footer .btn-new-workspace,
+[data-page-route="Workspaces"] .workspace-footer .btn-edit-workspace {
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  color: #64748B !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  padding: 5px 12px !important;
+  border-radius: var(--bokengi-radius-sm) !important;
+  transition: all 0.2s ease !important;
+}
+
+[data-page-route="Workspaces"] .workspace-footer .btn-new-workspace:hover,
+[data-page-route="Workspaces"] .workspace-footer .btn-edit-workspace:hover {
+  background: rgba(255, 255, 255, 0.07) !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+  color: #CBD5E1 !important;
+}
+
+/* --------------------------------------------------------------------------
+   11. RESPONSIVENESS & BREAKPOINTS (LAPTOP, TABLET, MOBILE)
+   -------------------------------------------------------------------------- */
+@media (min-width: 1025px) {
+  [data-page-route="Workspaces"] .widget-group[data-widget-type="shortcut"] .widget-grid,
+  #page-Workspaces .widget-group[data-widget-type="shortcut"] .widget-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 16px !important;
+  }
+  [data-page-route="Workspaces"] .widget-group[data-widget-type="number_card"] .widget-grid,
+  #page-Workspaces .widget-group[data-widget-type="number_card"] .widget-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 16px !important;
+  }
+}
+
+@media (max-width: 992px) {
+  [data-page-route="Workspaces"] .layout-main-section,
+  #page-Workspaces .layout-main-section {
+    padding: 18px 20px !important;
+  }
+}
+
+/* Tablet (601px - 1024px) Grid Adaptability (2 columns) */
+@media (max-width: 1024px) and (min-width: 601px) {
+  [data-page-route="Workspaces"] .widget-group[data-widget-type="shortcut"] .widget-grid,
+  #page-Workspaces .widget-group[data-widget-type="shortcut"] .widget-grid,
+  [data-page-route="Workspaces"] .widget-group[data-widget-type="number_card"] .widget-grid,
+  #page-Workspaces .widget-group[data-widget-type="number_card"] .widget-grid,
+  [data-page-route="Workspaces"] .grid-col-3,
+  [data-page-route="Workspaces"] .grid-col-4,
+  [data-page-route="Workspaces"] .shortcut-widget-box {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 14px !important;
+  }
+}
+
+/* Tablet / Laptop (769px - 1024px) */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .widget.links-widget-box,
+  [data-page-route="Workspaces"] .widget.links-widget-box {
+    padding: 20px 20px !important;
+  }
+}
+
+/* Tablet Portrait (481px - 768px) */
+@media (max-width: 768px) and (min-width: 481px) {
+  .widget.links-widget-box,
+  [data-page-route="Workspaces"] .widget.links-widget-box {
+    padding: 18px 18px !important;
+    margin-bottom: 14px !important;
+  }
+  .widget.links-widget-box .widget-body,
+  [data-page-route="Workspaces"] .widget.links-widget-box .widget-body {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+  }
+}
+
+/* Mobile Devices (<=640px) */
+@media (max-width: 640px) {
+  [data-page-route="Workspaces"] .layout-main-section,
+  #page-Workspaces .layout-main-section {
+    padding: 14px 14px !important;
+  }
+  [data-page-route="Workspaces"] .widget-group[data-widget-type="shortcut"] .widget-grid,
+  #page-Workspaces .widget-group[data-widget-type="shortcut"] .widget-grid,
+  [data-page-route="Workspaces"] .widget-group[data-widget-type="number_card"] .widget-grid,
+  #page-Workspaces .widget-group[data-widget-type="number_card"] .widget-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+  [data-page-route="Workspaces"] .widget.shortcut.shortcut-widget-box {
+    margin-bottom: 8px !important;
+  }
+  [data-page-route="Workspaces"] .widget.links-widget-box {
+    margin-bottom: 12px !important;
+    padding: 16px 16px !important;
+  }
+  [data-page-route="Workspaces"] .widget.chart-widget-box,
+  .widget.chart-widget-box,
+  .chart-container,
+  .frappe-chart {
+    max-height: 280px !important;
+    overflow: hidden !important;
+  }
+  .frappe-chart svg,
+  .frappe-chart canvas {
+    max-height: 240px !important;
+  }
+  [data-page-route="Workspaces"] .workspace-footer {
+    justify-content: center !important;
+  }
+}
+
+/* Small Mobile Devices (<=480px) — Strict Zero Horizontal Overflow */
+@media (max-width: 480px) {
+  [data-page-route="Workspaces"] .layout-main-section,
+  #page-Workspaces .layout-main-section {
+    padding: 12px 10px !important;
+  }
+  .widget.number-card-widget-box,
+  [data-page-route="Workspaces"] .widget.number-card-widget-box {
+    padding: 14px 14px !important;
+    min-height: 90px !important;
+    margin-bottom: 8px !important;
+  }
+  .widget.links-widget-box,
+  [data-page-route="Workspaces"] .widget.links-widget-box {
+    padding: 14px 14px !important;
+    margin-bottom: 12px !important;
+  }
+  .widget.links-widget-box .widget-head {
+    padding-bottom: 10px !important;
+    margin-bottom: 12px !important;
+  }
+  .widget.links-widget-box .widget-body,
+  [data-page-route="Workspaces"] .widget.links-widget-box .widget-body {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+  }
+  .widget.links-widget-box .link-item,
+  [data-page-route="Workspaces"] .widget.links-widget-box .link-item {
+    min-height: 40px !important;
+    padding: 8px 12px !important;
+  }
+  body, .page-container, #page-Workspaces {
+    overflow-x: hidden !important;
+  }
+}
+

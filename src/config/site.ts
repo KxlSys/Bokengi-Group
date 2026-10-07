@@ -25,6 +25,7 @@ export const siteConfig = {
    */
   contact: {
     email: process.env.NEXT_PUBLIC_CONTACT_EMAIL || process.env.CONTACT_EMAIL || 'contact@bokengi-group.com',
+    phone: process.env.NEXT_PUBLIC_CONTACT_PHONE || null,
     responseTime: '24 à 48h ouvrées',
   },
 

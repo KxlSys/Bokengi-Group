@@ -13,6 +13,7 @@ const NEXT_PUBLIC_SERVER_URL = process.env.VERCEL_PROJECT_PRODUCTION_URL
 const isWorkerBuild = Boolean(process.env.CLOUDFLARE_WORKERS || process.env.NEXT_PRIVATE_STANDALONE)
 
 const nextConfig: NextConfig = {
+  output: 'standalone',
   poweredByHeader: false,
   images: {
     localPatterns: [

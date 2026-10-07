@@ -28,10 +28,10 @@ function getLocale(request: NextRequest): Locale {
   return 'fr'
 }
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const { pathname, search } = request.nextUrl
 
-  // 1. Never redirect Payload admin, API, media, next internal, or static assets
+  // 1. Never redirect admin, API, media, next internal, or static assets
   if (
     pathname.startsWith('/_next') ||
     pathname.startsWith('/admin') ||

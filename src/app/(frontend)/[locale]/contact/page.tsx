@@ -107,23 +107,25 @@ export default async function ContactPage({ params }: PageProps) {
                         {t.contact.officialEmail}
                       </span>
                       <a
-                        href="mailto:contact@bokengi-group.com"
+                        href={`mailto:${siteConfig.contact.email}`}
                         className="font-mono text-sm text-[var(--blue-cyan)] hover:underline font-medium"
                       >
-                        contact@bokengi-group.com
+                        {siteConfig.contact.email}
                       </a>
                     </div>
-                    <div>
-                      <span className="block text-xs text-[var(--ink-muted)] font-mono uppercase">
-                        {t.contact.phone}
-                      </span>
-                      <a
-                        href="tel:+33758888434"
-                        className="font-mono text-sm text-[var(--ink-heading)] hover:text-[var(--blue-cyan)] transition-colors"
-                      >
-                        +33 7 58 88 84 34
-                      </a>
-                    </div>
+                    {siteConfig.contact.phone && (
+                      <div>
+                        <span className="block text-xs text-[var(--ink-muted)] font-mono uppercase">
+                          {t.contact.phone}
+                        </span>
+                        <a
+                          href={`tel:${siteConfig.contact.phone.replace(/\s+/g, '')}`}
+                          className="font-mono text-sm text-[var(--ink-heading)] hover:text-[var(--blue-cyan)] transition-colors"
+                        >
+                          {siteConfig.contact.phone}
+                        </a>
+                      </div>
+                    )}
                     <div className="pt-2 border-t border-[var(--border-subtle)]">
                       <span className="block text-xs text-[var(--ink-muted)] font-mono uppercase">
                         {t.contact.coverageZone}

@@ -106,10 +106,6 @@ export function formatFrenchDate(dateStr?: string | null): string {
   return formatDate(dateStr, 'fr')
 }
 
-export function mapPayloadPostToPostData(doc: any): PostData {
-  return doc as PostData
-}
-
 export async function getPosts(filter?: { category?: string; limit?: number }, locale: Locale = 'fr'): Promise<PostData[]> {
   let posts: PostData[] = []
   try {

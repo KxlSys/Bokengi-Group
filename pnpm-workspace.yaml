@@ -1,0 +1,11 @@
+overrides:
+  sharp: 0.35.5
+  undici: ^7.29.1
+  postcss-selector-parser: ^7.1.6
+  proxy-addr: ^2.0.8
+  source-map-js: ^1.2.2
+
+onlyBuiltDependencies:
+  - sharp
+  - esbuild
+  - unrs-resolver

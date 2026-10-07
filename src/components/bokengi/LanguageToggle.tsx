@@ -50,7 +50,7 @@ export const LanguageToggle: React.FC<LanguageToggleProps> = ({
         <button
           type="button"
           onClick={() => handleSelectLocale('fr')}
-          className={`px-2.5 py-1 min-w-[32px] min-h-[32px] sm:min-h-[34px] rounded-[2px] text-xs transition-all font-semibold cursor-pointer inline-flex items-center justify-center ${
+          className={`px-2.5 py-1 min-w-[32px] min-h-[32px] sm:min-h-[34px] rounded-[2px] text-xs transition-all font-semibold cursor-pointer inline-flex items-center justify-center focus-visible:ring-2 focus-visible:ring-[var(--blue-cyan)] focus-visible:outline-none active:scale-95 ${
             locale === 'fr'
               ? 'bg-[var(--blue-primary)] text-white shadow-xs'
               : 'text-[var(--ink-muted)] hover:text-[var(--ink-heading)]'
@@ -65,7 +65,7 @@ export const LanguageToggle: React.FC<LanguageToggleProps> = ({
         <button
           type="button"
           onClick={() => handleSelectLocale('en')}
-          className={`px-2.5 py-1 min-w-[32px] min-h-[32px] sm:min-h-[34px] rounded-[2px] text-xs transition-all font-semibold cursor-pointer inline-flex items-center justify-center ${
+          className={`px-2.5 py-1 min-w-[32px] min-h-[32px] sm:min-h-[34px] rounded-[2px] text-xs transition-all font-semibold cursor-pointer inline-flex items-center justify-center focus-visible:ring-2 focus-visible:ring-[var(--blue-cyan)] focus-visible:outline-none active:scale-95 ${
             locale === 'en'
               ? 'bg-[var(--blue-primary)] text-white shadow-xs'
               : 'text-[var(--ink-muted)] hover:text-[var(--ink-heading)]'

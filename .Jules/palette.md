@@ -1,0 +1,3 @@
+## 2025-05-18 - Interactive Controls Focus and Tactile Micro-Interactions
+**Learning:** Compact header toggles (theme, language) often rely on global focus indicators which may be clipped or blend in with surrounding header surfaces. Explicit `focus-visible:ring-2` with `focus-visible:ring-[var(--blue-cyan)]` alongside subtle `active:scale-95` transitions ensure distinct keyboard focus rings and immediate tactile feedback for mouse/touch interactions without layout shift.
+**Action:** Always verify header toggle controls for explicit `focus-visible:ring-2` focus outlines and `active:scale-95` press micro-interactions across both light and dark themes.

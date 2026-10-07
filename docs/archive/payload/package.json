@@ -50,7 +50,7 @@
     "payload": "3.88.0",
     "react": "19.2.6",
     "react-dom": "19.2.6",
-    "sharp": "0.35.4",
+    "sharp": "0.35.5",
     "tailwind-merge": "^3.4.0"
   },
   "devDependencies": {
@@ -85,7 +85,7 @@
   },
   "pnpm": {
     "overrides": {
-      "sharp": "0.35.4"
+      "sharp": "0.35.5"
     },
     "onlyBuiltDependencies": [
       "sharp",

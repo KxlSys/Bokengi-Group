@@ -109,4 +109,25 @@ describe('Cal.com Webhook Integration & Security Suite', () => {
     assert.strictEqual(res.statusCode, 400)
     assert.strictEqual(res.success, false)
   })
+
+  it('CAL-7: Fails closed when secret is missing in production environment', () => {
+    const originalEnv = process.env.NODE_ENV
+    const originalSecret = process.env.CALCOM_WEBHOOK_SECRET
+    try {
+      process.env.NODE_ENV = 'production'
+      delete process.env.CALCOM_WEBHOOK_SECRET
+
+      const rawBody = JSON.stringify({ triggerEvent: 'BOOKING_CREATED', payload: { uid: 'cal-uid-1001' } })
+      const check = verifyCalcomSignature(rawBody, 'some_sig', '')
+      assert.strictEqual(check.isValid, false, 'Missing secret in production must fail closed')
+      assert.match(check.reason || '', /not configured in production/i)
+    } finally {
+      process.env.NODE_ENV = originalEnv
+      if (originalSecret !== undefined) {
+        process.env.CALCOM_WEBHOOK_SECRET = originalSecret
+      } else {
+        delete process.env.CALCOM_WEBHOOK_SECRET
+      }
+    }
+  })
 })

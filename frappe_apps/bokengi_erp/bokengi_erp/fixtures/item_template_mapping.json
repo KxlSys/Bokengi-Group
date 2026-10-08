@@ -1,0 +1,22 @@
+[
+  { "item_code": "SRV-CYBER-01", "pole": "bokengi-cyber", "project_template": "TEMPLATE-CYBER" },
+  { "item_code": "SRV-CYBER-02", "pole": "bokengi-cyber", "project_template": "TEMPLATE-CYBER" },
+  { "item_code": "SRV-CYBER-03", "pole": "bokengi-cyber", "project_template": "TEMPLATE-CYBER" },
+  { "item_code": "SRV-CYBER-04", "pole": "bokengi-cyber", "project_template": "TEMPLATE-CYBER" },
+  { "item_code": "SRV-CLOUD-01", "pole": "bokengi-cloud", "project_template": "TEMPLATE-CLOUD" },
+  { "item_code": "SRV-CLOUD-02", "pole": "bokengi-cloud", "project_template": "TEMPLATE-CLOUD" },
+  { "item_code": "SRV-CLOUD-03", "pole": "bokengi-cloud", "project_template": "TEMPLATE-CLOUD" },
+  { "item_code": "SRV-CLOUD-04", "pole": "bokengi-cloud", "project_template": "TEMPLATE-CLOUD" },
+  { "item_code": "SRV-DATA-01", "pole": "bokengi-data", "project_template": "TEMPLATE-DATA" },
+  { "item_code": "SRV-DATA-02", "pole": "bokengi-data", "project_template": "TEMPLATE-DATA" },
+  { "item_code": "SRV-DATA-03", "pole": "bokengi-data", "project_template": "TEMPLATE-DATA" },
+  { "item_code": "SRV-DATA-04", "pole": "bokengi-data", "project_template": "TEMPLATE-DATA" },
+  { "item_code": "SRV-SOFTENG-01", "pole": "bokengi-softeng", "project_template": "TEMPLATE-SOFTENG" },
+  { "item_code": "SRV-SOFTENG-02", "pole": "bokengi-softeng", "project_template": "TEMPLATE-SOFTENG" },
+  { "item_code": "SRV-SOFTENG-03", "pole": "bokengi-softeng", "project_template": "TEMPLATE-SOFTENG" },
+  { "item_code": "SRV-SOFTENG-04", "pole": "bokengi-softeng", "project_template": "TEMPLATE-SOFTENG" },
+  { "item_code": "SRV-STRAT-01", "pole": "bokengi-strat", "project_template": "TEMPLATE-STRAT" },
+  { "item_code": "SRV-STRAT-02", "pole": "bokengi-strat", "project_template": "TEMPLATE-STRAT" },
+  { "item_code": "SRV-STRAT-03", "pole": "bokengi-strat", "project_template": "TEMPLATE-STRAT" },
+  { "item_code": "SRV-STRAT-04", "pole": "bokengi-strat", "project_template": "TEMPLATE-STRAT" }
+]

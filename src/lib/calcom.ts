@@ -46,6 +46,9 @@ export function verifyCalcomSignature(
 
   // Si aucun secret n'est configuré en environnement, la signature ne peut être vérifiée
   if (!webhookSecret) {
+    if (process.env.NODE_ENV === 'production') {
+      return { isValid: false, reason: 'CALCOM_WEBHOOK_SECRET is not configured in production' }
+    }
     return { isValid: true, reason: 'No webhook secret configured (Development mode)' }
   }
 

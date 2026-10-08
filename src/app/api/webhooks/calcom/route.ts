@@ -1,8 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { getCloudflareContext } from '@opennextjs/cloudflare'
 import { processCalcomWebhook } from '@/lib/calcom'
 
 export async function POST(req: NextRequest) {
   try {
+    let env: Record<string, any> | undefined
+    try {
+      const cfCtx = await getCloudflareContext({ async: true })
+      env = cfCtx?.env as CloudflareEnv | undefined
+    } catch {}
+
     const rawBody = await req.text()
 
     if (!rawBody || rawBody.trim().length === 0) {
@@ -17,7 +24,7 @@ export async function POST(req: NextRequest) {
       req.headers.get('X-Cal-Signature-256') ||
       req.headers.get('x-calcom-signature')
 
-    const result = await processCalcomWebhook(rawBody, signatureHeader)
+    const result = await processCalcomWebhook(rawBody, signatureHeader, env)
 
     return NextResponse.json(
       {

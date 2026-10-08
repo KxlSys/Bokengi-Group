@@ -32,7 +32,8 @@ function cleanupExpiredCache() {
 export function verifyCalcomSignature(
   rawBody: string,
   signatureHeader: string | null,
-  secret?: string
+  secret?: string,
+  env?: Record<string, any>
 ): { isValid: boolean; reason?: string } {
   let webhookSecret = secret
   if (!webhookSecret) {
@@ -49,6 +50,9 @@ export function verifyCalcomSignature(
 
   // Si aucun secret n'est configuré en environnement, la signature ne peut être vérifiée
   if (!webhookSecret) {
+    if (process.env.NODE_ENV === 'production') {
+      return { isValid: false, reason: 'CALCOM_WEBHOOK_SECRET is not configured in production' }
+    }
     return { isValid: true, reason: 'No webhook secret configured (Development mode)' }
   }
 
@@ -116,7 +120,8 @@ export interface CalcomWebhookPayload {
  */
 export async function processCalcomWebhook(
   rawBody: string,
-  signatureHeader: string | null
+  signatureHeader: string | null,
+  env?: Record<string, any>
 ): Promise<{
   statusCode: number
   success: boolean
@@ -128,7 +133,7 @@ export async function processCalcomWebhook(
   cleanupExpiredCache()
 
   // 1. Vérification de la signature HMAC
-  const signatureCheck = verifyCalcomSignature(rawBody, signatureHeader)
+  const signatureCheck = verifyCalcomSignature(rawBody, signatureHeader, undefined, env)
   if (!signatureCheck.isValid) {
     console.warn(`[Cal.com Webhook] Signature invalide : ${signatureCheck.reason}`)
     return {
@@ -208,14 +213,17 @@ export async function processCalcomWebhook(
 
   // 6. Interaction ERPNext (Recherche ou Création du Lead & Rattachement)
   try {
-    const attachResult = await attachBookingToERPNextLead({
-      email: attendeeEmail,
-      name: attendeeName,
-      bookingUid,
-      title: meetingTitle,
-      startTime,
-      notes,
-    })
+    const attachResult = await attachBookingToERPNextLead(
+      {
+        email: attendeeEmail,
+        name: attendeeName,
+        bookingUid,
+        title: meetingTitle,
+        startTime,
+        notes,
+      },
+      env
+    )
 
     erpLeadId = attachResult.leadId || null
   } catch (erpError: any) {

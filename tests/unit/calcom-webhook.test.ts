@@ -35,6 +35,24 @@ describe('Cal.com Webhook Integration & Security Suite', () => {
     assert.strictEqual(check.isValid, false, 'Missing signature must be rejected when secret is set')
   })
 
+  it('CAL-3b: Respects Cloudflare env bindings for signature verification', () => {
+    const rawBody = JSON.stringify({ triggerEvent: 'BOOKING_CREATED', payload: { uid: 'cal-uid-1001' } })
+    const cfSecret = 'cf_worker_env_secret_key_12345'
+    const validSignature = crypto.createHmac('sha256', cfSecret).update(rawBody).digest('hex')
+
+    // Test passing env object
+    const checkWithEnv = verifyCalcomSignature(rawBody, validSignature, undefined, {
+      CALCOM_WEBHOOK_SECRET: cfSecret,
+    })
+    assert.strictEqual(checkWithEnv.isValid, true, 'Valid signature with Cloudflare env must be accepted')
+
+    // Test tampered signature with Cloudflare env
+    const checkWithEnvTampered = verifyCalcomSignature(rawBody, 'deadbeef', undefined, {
+      CALCOM_WEBHOOK_SECRET: cfSecret,
+    })
+    assert.strictEqual(checkWithEnvTampered.isValid, false, 'Tampered signature with Cloudflare env must be rejected')
+  })
+
   // ──────────────────────────────────────────────────────────────────────────
   // 2. CONTRÔLE D'IDEMPOTENCE ET ANTI-DOUBLON (booking.uid)
   // ──────────────────────────────────────────────────────────────────────────
@@ -90,5 +108,26 @@ describe('Cal.com Webhook Integration & Security Suite', () => {
     const res = await processCalcomWebhook(emptyPayload, null)
     assert.strictEqual(res.statusCode, 400)
     assert.strictEqual(res.success, false)
+  })
+
+  it('CAL-7: Fails closed when secret is missing in production environment', () => {
+    const originalEnv = process.env.NODE_ENV
+    const originalSecret = process.env.CALCOM_WEBHOOK_SECRET
+    try {
+      process.env.NODE_ENV = 'production'
+      delete process.env.CALCOM_WEBHOOK_SECRET
+
+      const rawBody = JSON.stringify({ triggerEvent: 'BOOKING_CREATED', payload: { uid: 'cal-uid-1001' } })
+      const check = verifyCalcomSignature(rawBody, 'some_sig', '')
+      assert.strictEqual(check.isValid, false, 'Missing secret in production must fail closed')
+      assert.match(check.reason || '', /not configured in production/i)
+    } finally {
+      process.env.NODE_ENV = originalEnv
+      if (originalSecret !== undefined) {
+        process.env.CALCOM_WEBHOOK_SECRET = originalSecret
+      } else {
+        delete process.env.CALCOM_WEBHOOK_SECRET
+      }
+    }
   })
 })

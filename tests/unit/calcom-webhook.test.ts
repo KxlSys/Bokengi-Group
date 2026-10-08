@@ -35,6 +35,24 @@ describe('Cal.com Webhook Integration & Security Suite', () => {
     assert.strictEqual(check.isValid, false, 'Missing signature must be rejected when secret is set')
   })
 
+  it('CAL-3b: Respects Cloudflare env bindings for signature verification', () => {
+    const rawBody = JSON.stringify({ triggerEvent: 'BOOKING_CREATED', payload: { uid: 'cal-uid-1001' } })
+    const cfSecret = 'cf_worker_env_secret_key_12345'
+    const validSignature = crypto.createHmac('sha256', cfSecret).update(rawBody).digest('hex')
+
+    // Test passing env object
+    const checkWithEnv = verifyCalcomSignature(rawBody, validSignature, undefined, {
+      CALCOM_WEBHOOK_SECRET: cfSecret,
+    })
+    assert.strictEqual(checkWithEnv.isValid, true, 'Valid signature with Cloudflare env must be accepted')
+
+    // Test tampered signature with Cloudflare env
+    const checkWithEnvTampered = verifyCalcomSignature(rawBody, 'deadbeef', undefined, {
+      CALCOM_WEBHOOK_SECRET: cfSecret,
+    })
+    assert.strictEqual(checkWithEnvTampered.isValid, false, 'Tampered signature with Cloudflare env must be rejected')
+  })
+
   // ──────────────────────────────────────────────────────────────────────────
   // 2. CONTRÔLE D'IDEMPOTENCE ET ANTI-DOUBLON (booking.uid)
   // ──────────────────────────────────────────────────────────────────────────

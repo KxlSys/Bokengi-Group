@@ -3,8 +3,19 @@ import { submitAccessRequestToERPNext } from '@/lib/erpnext-client'
 
 const rateLimitMap = new Map<string, { count: number; lastReset: number }>()
 
-function isAccessRequestRateLimited(ip: string, limit = 5, windowMs = 60000): boolean {
+function cleanupAccessRequestRateLimitMap(now: number, windowMs: number) {
+  if (rateLimitMap.size > 1000) {
+    for (const [ipKey, entry] of rateLimitMap.entries()) {
+      if (now - entry.lastReset > windowMs) {
+        rateLimitMap.delete(ipKey)
+      }
+    }
+  }
+}
+
+function isAccessRequestRateLimited(ip: string, limit = 5, windowMs = 3600000): boolean {
   const now = Date.now()
+  cleanupAccessRequestRateLimitMap(now, windowMs)
   const entry = rateLimitMap.get(ip)
   if (!entry || now - entry.lastReset > windowMs) {
     rateLimitMap.set(ip, { count: 1, lastReset: now })

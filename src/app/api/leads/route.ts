@@ -6,8 +6,19 @@ import { sendMattermostNotification } from '@/lib/mattermost'
 
 const rateLimitMap = new Map<string, { count: number; lastReset: number }>()
 
-function isRateLimited(ip: string, limit = 5, windowMs = 60000): boolean {
+function cleanupRateLimitMap(now: number, windowMs: number) {
+  if (rateLimitMap.size > 1000) {
+    for (const [ipKey, entry] of rateLimitMap.entries()) {
+      if (now - entry.lastReset > windowMs) {
+        rateLimitMap.delete(ipKey)
+      }
+    }
+  }
+}
+
+function isRateLimited(ip: string, limit = 6, windowMs = 60000): boolean {
   const now = Date.now()
+  cleanupRateLimitMap(now, windowMs)
   const entry = rateLimitMap.get(ip)
 
   if (!entry || now - entry.lastReset > windowMs) {

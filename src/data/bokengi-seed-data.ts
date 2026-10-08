@@ -605,6 +605,85 @@ export const CASE_STUDIES_SEED_DATA: CaseStudyData[] = [
       description: 'Supervision des équipements de sécurité maritime avec alertes prédictives, télémétrie IoT et conformité réglementaire par Bokengi IT.',
     },
   },
+  {
+    title: 'Curriculum Pro — Studio de CV d\'Excellence & Moteur ATS',
+    slug: 'curriculum-pro',
+    clientName: 'Bokengi R&D Lab · Candidats & Professionnels Francophones',
+    category: 'Bokengi Digital & IA · Studio CV & Local-First',
+    summary:
+      'Studio de création et d\'optimisation de CV professionnels combinant rendu vectoriel pixel-perfect, score ATS 2026 déterministe et architecture souveraine local-first sans hallucination.',
+    context:
+      'La recherche d\'emploi et d\'opportunités internationales requiert des CV irréprochables tant sur le plan typographique que sur la lisibilité par les algorithmes de recrutement (ATS). Les outils existants souffrent fréquemment de ruptures de mise en page lors de l\'export PDF, compromettent la confidentialité des données personnelles sur des serveurs tiers et intègrent des modèles d\'IA générative qui inventent des qualifications fictives.',
+    challenge:
+      'Concevoir un outil accessible, rapide et 100% respectueux de la vie privée, capable de générer des PDF vectoriels fidèles au pixel près, d\'évaluer objectivement la structure face aux parseurs ATS et de proposer des optimisations syntaxiques ciblées sous le contrôle exclusif du candidat.',
+    solution:
+      'Bokengi a architecturé une Progressive Web App (PWA) modulaire local-first. Le moteur de templates propose 5 identités visuelles rigoureuses (LaTeX Éminence, L\'Avant-Garde, Le Stratège, L\'Expert, Le Visionnaire). L\'export PDF vectoriel est calculé directement dans le navigateur avec prise en charge des liens cliquables. Un copilote IA serverless analyse les offres collées et propose des ajustements de formulations acceptables par diff, adossé à un schéma de données JSON Resume étendu et une persistance chiffrée optionnelle via Supabase.',
+    results:
+      'Curriculum Pro est déployé en ligne et permet de générer un CV complet et optimisé pour les plateformes de recrutement en moins de 10 minutes, sans qu\'aucune donnée ne quitte le terminal de l\'utilisateur en mode hors-ligne.',
+    resultsList: [
+      'Rendu PDF vectoriel A4 pixel-perfect avec pagination automatique sans coupure',
+      'Moteur ATS déterministe simulant les parseurs Workday, Greenhouse et Lever',
+      'Architecture 100% souveraine et local-first fonctionnant hors-ligne (PWA)',
+      'Copilote IA d\'optimisation textuelle avec validation stricte zéro hallucination',
+    ],
+    technologies: [
+      { name: 'Vanilla JS (ES6+)' },
+      { name: 'React / TypeScript' },
+      { name: 'PWA / Service Worker' },
+      { name: 'jsPDF / PDF-Lib' },
+      { name: 'Supabase' },
+      { name: 'Vercel Serverless' },
+      { name: 'JSON Resume' },
+    ],
+    architecture:
+      'Architecture client-side découplée Zero-Knowledge : le traitement des données et la compilation PDF s\'exécutent localement dans le moteur du navigateur (IndexedDB). Les fonctions Serverless Vercel sont isolées pour le traitement IA optionnel par API sans conservation de logs nominatifs. Synchronisation Cloud chiffrée par jeton JWT Supabase.',
+    featured: true,
+    publishedDate: '2026-03-10',
+    seo: {
+      title: 'Étude de cas Curriculum Pro · Studio CV & Moteur ATS — Bokengi Group',
+      description:
+        'Découvrez Curriculum Pro : studio de CV haute fidélité, score ATS déterministe et architecture souveraine local-first par Bokengi Group.',
+    },
+  },
+  {
+    title: 'Heaven Corporation — Agence & Plateforme de Communication Visuelle',
+    slug: 'heaven-corporation',
+    clientName: 'Heaven Corporation · Marques, Entreprises & Particuliers',
+    category: 'Bokengi Digital & Events · Agence Communication Visuelle & Studio',
+    summary:
+      'Conception et développement de la plateforme vitrine interactive de l\'agence créative Heaven Corporation, structurant 4 pôles d\'expertise visuelle et digitalisant la génération de devis.',
+    context:
+      'Heaven Corporation souhaitait affirmer son positionnement d\'agence de référence en communication visuelle, photographie professionnelle et production audiovisuelle en Afrique centrale, en disposant d\'un canal digital moderne pour présenter son portfolio et accélérer la prise de contact client.',
+    challenge:
+      'Créer une expérience web haute performance avec une direction artistique soignée (charte graphique or et bleu, micro-interactions, fluidité), tout en garantissant des temps de chargement ultra-rapides sur mobile et une sécurité renforcée contre les vulnérabilités web courantes.',
+    solution:
+      'Bokengi a développé une application web responsive sur-mesure en HTML5 sémantique, CSS3 moderne et JavaScript modulaire. La plateforme détaille les 4 pôles de l\'agence (Design Graphique, Photographie Professionnelle, Vidéographie & Production, Communication Digitale), intègre un portfolio interactif multi-formats et connecte un formulaire de devis sécurisé avec redirection instantanée vers les canaux WhatsApp et téléphoniques directs.',
+    results:
+      'La plateforme offre une vitrine percutante et accessible, réduisant le temps de qualification des prospects et renforçant la visibilité de marque de l\'agence auprès des particuliers et entreprises.',
+    resultsList: [
+      'Structuration complète des 4 pôles de services créatifs et de la grille tarifaire',
+      'Tunnel de conversion direct avec intégration WhatsApp et formulaire validé',
+      'Temps de chargement instantané (< 1s) grâce à une architecture sans dépendance lourde',
+      'Sécurisation éprouvée : politique CSP stricte et protection anti-reverse tabnabbing',
+    ],
+    technologies: [
+      { name: 'HTML5 Semantic' },
+      { name: 'CSS3 / Grid & Flexbox' },
+      { name: 'Vanilla JavaScript' },
+      { name: 'Content Security Policy (CSP)' },
+      { name: 'Vercel' },
+      { name: 'WhatsApp API Integration' },
+    ],
+    architecture:
+      'Architecture Single Page Application (SPA) autonome optimisée pour l\'Edge hosting. Rendu statique à très faible empreinte carbone sans framework tiers, assurant une résilience maximale sur réseaux mobiles restreints. Headers HTTP et méta-balises CSP stricts configurés pour la protection des données formulaire.',
+    featured: true,
+    publishedDate: '2026-02-20',
+    seo: {
+      title: 'Étude de cas Heaven Corporation · Communication Visuelle & Studio — Bokengi Group',
+      description:
+        'Découvrez comment Bokengi Group a conçu la plateforme vitrine de l\'agence de communication visuelle Heaven Corporation.',
+    },
+  },
 ]
 
 export const POSTS_SEED_DATA: PostData[] = [
@@ -1256,6 +1335,85 @@ export const CASE_STUDIES_SEED_DATA_EN: CaseStudyData[] = [
     seo: {
       title: 'FleetGuard Case Study · Maritime Telemetry & IoT — Bokengi Group',
       description: 'Maritime safety equipment supervision with predictive alerts, IoT telemetry, and regulatory compliance by Bokengi IT.',
+    },
+  },
+  {
+    title: 'Curriculum Pro — Resume Studio of Excellence & ATS Engine',
+    slug: 'curriculum-pro',
+    clientName: 'Bokengi R&D Lab · Francophone Job Seekers & Professionals',
+    category: 'Bokengi Digital & AI · Resume Studio & Local-First',
+    summary:
+      'Professional resume creation and optimization studio pairing pixel-perfect vector rendering, deterministic 2026 ATS scoring, and sovereign zero-hallucination local-first architecture.',
+    context:
+      'International job searches require impeccable resumes in both typographic excellence and algorithmic readability by Applicant Tracking Systems (ATS). Existing tools frequently suffer from layout breaks during PDF export, compromise personal data privacy on third-party servers, and embed generative AI models that hallucinate qualifications.',
+    challenge:
+      'Engineer an accessible, rapid, and 100% privacy-compliant tool capable of pixel-perfect vector PDF generation, objectively evaluating resume structure against ATS parsers, and providing targeted syntactic optimizations under the candidate’s exclusive control.',
+    solution:
+      'Bokengi architected a modular local-first Progressive Web App (PWA). The template engine offers 5 rigorous visual identities (LaTeX Éminence, L\'Avant-Garde, Le Stratège, L\'Expert, Le Visionnaire). Vector PDF export is computed directly in the browser with clickable link support. A serverless AI co-pilot analyzes job postings and suggests diff-based phrasing adjustments, backed by an extended JSON Resume schema and optional encrypted sync via Supabase.',
+    results:
+      'Curriculum Pro is deployed online and enables generating a complete, ATS-optimized resume in under 10 minutes, without any user data ever leaving the client device in offline mode.',
+    resultsList: [
+      'Pixel-perfect A4 vector PDF rendering with automated page break avoidance',
+      'Deterministic ATS engine simulating Workday, Greenhouse, and Lever parsers',
+      '100% sovereign and local-first architecture operating offline (PWA)',
+      'Text optimization AI co-pilot with strict zero-hallucination validation',
+    ],
+    technologies: [
+      { name: 'Vanilla JS (ES6+)' },
+      { name: 'React / TypeScript' },
+      { name: 'PWA / Service Worker' },
+      { name: 'jsPDF / PDF-Lib' },
+      { name: 'Supabase' },
+      { name: 'Vercel Serverless' },
+      { name: 'JSON Resume' },
+    ],
+    architecture:
+      'Zero-Knowledge decoupled client-side architecture: data processing and PDF compilation execute locally in the browser engine (IndexedDB). Serverless Vercel functions are isolated for optional AI processing via API without storing personal logs. Cloud synchronization encrypted with Supabase JWT tokens.',
+    featured: true,
+    publishedDate: '2026-03-10',
+    seo: {
+      title: 'Curriculum Pro Case Study · Resume Studio & ATS Engine — Bokengi Group',
+      description:
+        'Discover Curriculum Pro: high-fidelity resume studio, deterministic ATS scoring, and sovereign local-first architecture by Bokengi Group.',
+    },
+  },
+  {
+    title: 'Heaven Corporation — Visual Communication Agency & Platform',
+    slug: 'heaven-corporation',
+    clientName: 'Heaven Corporation · Brands, Enterprises & Individuals',
+    category: 'Bokengi Digital & Events · Visual Communication Agency & Studio',
+    summary:
+      'Design and engineering of the interactive showcase platform for creative agency Heaven Corporation, structuring 4 visual expertise hubs and digitizing quote generation.',
+    context:
+      'Heaven Corporation sought to consolidate its position as a leading agency in visual communication, professional photography, and audiovisual production in Central Africa by deploying a modern digital channel to showcase its portfolio and accelerate client outreach.',
+    challenge:
+      'Deliver a high-performance web experience with curated art direction (gold and blue visual identity, micro-interactions, fluidity), while ensuring ultra-fast loading times on mobile devices and robust security against web vulnerabilities.',
+    solution:
+      'Bokengi engineered a custom responsive web application using semantic HTML5, modern CSS3, and modular JavaScript. The platform details the agency\'s 4 divisions (Graphic Design, Professional Photography, Videography & Production, Digital Communication), integrates a multi-format interactive portfolio, and connects a secure quote form with instant redirection to WhatsApp and direct phone channels.',
+    results:
+      'The platform delivers an impactful, accessible showcase, reducing lead qualification time and strengthening the agency\'s brand visibility across private and corporate clients.',
+    resultsList: [
+      'Comprehensive structuring of the 4 creative service pillars and rate cards',
+      'Direct conversion funnel with WhatsApp integration and validated intake form',
+      'Instant loading speed (< 1s) powered by a lightweight zero-heavy-dependency build',
+      'Hardened security: strict CSP policy and anti-reverse tabnabbing protection',
+    ],
+    technologies: [
+      { name: 'HTML5 Semantic' },
+      { name: 'CSS3 / Grid & Flexbox' },
+      { name: 'Vanilla JavaScript' },
+      { name: 'Content Security Policy (CSP)' },
+      { name: 'Vercel' },
+      { name: 'WhatsApp API Integration' },
+    ],
+    architecture:
+      'Autonomous Single Page Application (SPA) architecture optimized for Edge hosting. Static rendering with ultra-low carbon footprint and no third-party framework overhead, ensuring maximal resilience over constrained mobile networks. Strict HTTP headers and CSP meta tags configured for form protection.',
+    featured: true,
+    publishedDate: '2026-02-20',
+    seo: {
+      title: 'Heaven Corporation Case Study · Visual Communication & Studio — Bokengi Group',
+      description:
+        'Explore how Bokengi Group designed and built the showcase platform for visual communication agency Heaven Corporation.',
     },
   },
 ]

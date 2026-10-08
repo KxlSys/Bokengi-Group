@@ -173,7 +173,7 @@ export const fr: Dictionary = {
   },
   caseStudies: {
     metaTitle: 'Réalisations & Études de Cas · Projets Déployés — Bokengi Group',
-    metaDescription: 'Découvrez les réalisations d’ingénierie majeures de Bokengi Group : ESIIKA, Portail Kongama, Kongama Academy, BisoMapTech et FleetGuard.',
+    metaDescription: 'Découvrez les réalisations d’ingénierie majeures de Bokengi Group : ESIIKA, Portail Kongama, Kongama Academy, BisoMapTech, FleetGuard, Curriculum Pro et Heaven Corporation.',
     kicker: 'PORTFOLIO & ÉTUDES DE CAS',
     title: 'Des architectures déployées, éprouvées et mesurables.',
     lead: 'Chaque projet mené par Bokengi Group répond à un cahier des charges rigoureux : résilience face aux contraintes réseaux, sécurité dès la conception (Security by Design), maîtrise des coûts d’exploitation et transfert d’autonomie.',

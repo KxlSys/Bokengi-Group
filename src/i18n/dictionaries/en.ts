@@ -173,7 +173,7 @@ export const en: Dictionary = {
   },
   caseStudies: {
     metaTitle: 'Case Studies & Deployed Solutions · Engineering Portfolio — Bokengi Group',
-    metaDescription: 'Discover Bokengi Group major engineering achievements: ESIIKA, Kongama Portal, Kongama Academy, BisoMapTech, and FleetGuard.',
+    metaDescription: 'Discover Bokengi Group major engineering achievements: ESIIKA, Kongama Portal, Kongama Academy, BisoMapTech, FleetGuard, Curriculum Pro, and Heaven Corporation.',
     kicker: 'PORTFOLIO & CASE STUDIES',
     title: 'Engineered architectures: proven, resilient, and measurable.',
     lead: 'Every project executed by Bokengi Group follows rigorous engineering standards: connectivity resilience, security by design, cost predictability, and full operational handover.',

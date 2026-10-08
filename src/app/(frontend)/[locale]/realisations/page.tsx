@@ -57,7 +57,7 @@ export default async function RealisationsPage({ params }: PageProps) {
           </div>
         </section>
 
-        {/* ── LISTE COMPLÈTE DES 5 CASE STUDIES OFFICIELS ── */}
+        {/* ── LISTE COMPLÈTE DES RÉALISATIONS OFFICIELLES ── */}
         <section className="py-20">
           <div className="container-v4 space-y-20">
             {cases.map((cs, idx) => (

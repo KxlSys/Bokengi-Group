@@ -34,7 +34,18 @@ export function verifyCalcomSignature(
   signatureHeader: string | null,
   secret?: string
 ): { isValid: boolean; reason?: string } {
-  const webhookSecret = secret || process.env.CALCOM_WEBHOOK_SECRET
+  let webhookSecret = secret
+  if (!webhookSecret) {
+    try {
+      const cf = (globalThis as any)[Symbol.for('__cloudflare-context__')]
+      if (cf?.env?.CALCOM_WEBHOOK_SECRET) {
+        webhookSecret = cf.env.CALCOM_WEBHOOK_SECRET
+      }
+    } catch {}
+  }
+  if (!webhookSecret) {
+    webhookSecret = process.env.CALCOM_WEBHOOK_SECRET
+  }
 
   // Si aucun secret n'est configuré en environnement, la signature ne peut être vérifiée
   if (!webhookSecret) {

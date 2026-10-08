@@ -241,7 +241,15 @@ export function buildLeadNotificationContent(lead: LeadNotificationData): {
 export async function sendLeadNotifications(
   lead: LeadNotificationData
 ): Promise<{ success: boolean; details?: string }> {
-  const apiKey = process.env.RESEND_API_KEY
+  let cfEnv: Record<string, any> | undefined
+  try {
+    const cf = (globalThis as any)[Symbol.for('__cloudflare-context__')]
+    if (cf?.env) {
+      cfEnv = cf.env
+    }
+  } catch {}
+
+  const apiKey = cfEnv?.RESEND_API_KEY || process.env.RESEND_API_KEY
 
   if (!apiKey) {
     console.info(
@@ -250,8 +258,8 @@ export async function sendLeadNotifications(
     return { success: true, details: 'Mode hors-ligne / Clé Resend non fournie' }
   }
 
-  const teamEmail = process.env.CONTACT_EMAIL || 'contact@bokengi-group.com'
-  const fromEmail = process.env.CONTACT_FROM_EMAIL || 'Bokengi Group <contact@bokengi-group.com>'
+  const teamEmail = cfEnv?.CONTACT_EMAIL || process.env.CONTACT_EMAIL || 'contact@bokengi-group.com'
+  const fromEmail = cfEnv?.CONTACT_FROM_EMAIL || process.env.CONTACT_FROM_EMAIL || 'Bokengi Group <contact@bokengi-group.com>'
   const fullName = `${lead.firstname} ${lead.lastname}`.trim() || 'Prospect inconnu'
   const poleLabel = lead.poleName || 'Général / Non spécifié'
   const typeLabel = (lead.requestType && REQUEST_TYPE_LABELS[lead.requestType]) || lead.requestType || 'Demande'

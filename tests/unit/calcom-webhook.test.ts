@@ -114,7 +114,7 @@ describe('Cal.com Webhook Integration & Security Suite', () => {
     const originalEnv = process.env.NODE_ENV
     const originalSecret = process.env.CALCOM_WEBHOOK_SECRET
     try {
-      process.env.NODE_ENV = 'production'
+      ;(process.env as any).NODE_ENV = 'production'
       delete process.env.CALCOM_WEBHOOK_SECRET
 
       const rawBody = JSON.stringify({ triggerEvent: 'BOOKING_CREATED', payload: { uid: 'cal-uid-1001' } })
@@ -122,7 +122,7 @@ describe('Cal.com Webhook Integration & Security Suite', () => {
       assert.strictEqual(check.isValid, false, 'Missing secret in production must fail closed')
       assert.match(check.reason || '', /not configured in production/i)
     } finally {
-      process.env.NODE_ENV = originalEnv
+      ;(process.env as any).NODE_ENV = originalEnv
       if (originalSecret !== undefined) {
         process.env.CALCOM_WEBHOOK_SECRET = originalSecret
       } else {

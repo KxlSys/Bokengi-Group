@@ -35,7 +35,7 @@ export function verifyCalcomSignature(
   secret?: string,
   env?: Record<string, any>
 ): { isValid: boolean; reason?: string } {
-  let webhookSecret = secret
+  let webhookSecret = secret || env?.CALCOM_WEBHOOK_SECRET
   if (!webhookSecret) {
     try {
       const cf = (globalThis as any)[Symbol.for('__cloudflare-context__')]
